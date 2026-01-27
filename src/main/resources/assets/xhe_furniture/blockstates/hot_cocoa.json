@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "xhe_furniture:block/hot_cocoa",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "xhe_furniture:block/hot_cocoa",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "xhe_furniture:block/hot_cocoa",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "xhe_furniture:block/hot_cocoa",
+      "y": 270
+    }
+  }
+}
