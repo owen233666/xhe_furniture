@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=north,slippers_type=a": {
+      "model": "xhe_furniture:block/black_bunny_slippers_a"
+    },
+    "facing=east,slippers_type=a": {
+      "model": "xhe_furniture:block/black_bunny_slippers_a",
+      "y": 90
+    },
+    "facing=south,slippers_type=a": {
+      "model": "xhe_furniture:block/black_bunny_slippers_a",
+      "y": 180
+    },
+    "facing=west,slippers_type=a": {
+      "model": "xhe_furniture:block/black_bunny_slippers_a",
+      "y": 270
+    },
+    "facing=north,slippers_type=b": {
+      "model": "xhe_furniture:block/black_bunny_slippers_b"
+    },
+    "facing=east,slippers_type=b": {
+      "model": "xhe_furniture:block/black_bunny_slippers_b",
+      "y": 90
+    },
+    "facing=south,slippers_type=b": {
+      "model": "xhe_furniture:block/black_bunny_slippers_b",
+      "y": 180
+    },
+    "facing=west,slippers_type=b": {
+      "model": "xhe_furniture:block/black_bunny_slippers_b",
+      "y": 270
+    },
+    "facing=north,slippers_type=c": {
+      "model": "xhe_furniture:block/black_bunny_slippers_c"
+    },
+    "facing=east,slippers_type=c": {
+      "model": "xhe_furniture:block/black_bunny_slippers_c",
+      "y": 90
+    },
+    "facing=south,slippers_type=c": {
+      "model": "xhe_furniture:block/black_bunny_slippers_c",
+      "y": 180
+    },
+    "facing=west,slippers_type=c": {
+      "model": "xhe_furniture:block/black_bunny_slippers_c",
+      "y": 270
+    }
+  }
+}

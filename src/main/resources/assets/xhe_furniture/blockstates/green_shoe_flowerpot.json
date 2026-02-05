@@ -1,0 +1,21 @@
+
+{
+  "variants": {
+    "facing=north": {
+      "model": "xhe_furniture:block/green_shoe_flowerpot",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "xhe_furniture:block/green_shoe_flowerpot",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "xhe_furniture:block/green_shoe_flowerpot",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "xhe_furniture:block/green_shoe_flowerpot",
+      "y": 270
+    }
+  }
+}

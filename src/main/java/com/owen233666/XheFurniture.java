@@ -1,9 +1,9 @@
 package com.owen233666;
 
 import com.owen233666.block.ModBlocks;
+import com.owen233666.block.entity.ModBlockEntityTypes;
 import com.owen233666.creativetab.ModCreativeTab;
 import net.fabricmc.api.ModInitializer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,5 +23,6 @@ public class XheFurniture implements ModInitializer {
 
         ModBlocks.registerModBlocks();
         ModCreativeTab.registerItemGroup();
+		ModBlockEntityTypes.registerBlockEntityTypes();
 	}
 }

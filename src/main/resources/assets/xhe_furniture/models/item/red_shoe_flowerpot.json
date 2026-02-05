@@ -1,0 +1,7 @@
+{
+  "parent": "xhe_furniture:block/parent/shoe_flowerpot",
+  "textures": {
+    "1": "xhe_furniture:block/red_shoe_flowerpot",
+    "particle": "xhe_furniture:block/red_shoe_flowerpot"
+  }
+}
