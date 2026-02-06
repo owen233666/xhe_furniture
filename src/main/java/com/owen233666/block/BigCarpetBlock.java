@@ -10,7 +10,7 @@ public class BigCarpetBlock extends StorageBlock{
 
     @Override
     public int size() {
-        return 0;
+        return 3;
     }
 
     @Override
