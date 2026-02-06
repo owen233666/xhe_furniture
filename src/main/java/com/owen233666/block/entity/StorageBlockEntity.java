@@ -31,29 +31,28 @@ public class StorageBlockEntity extends BlockEntity {
     }
 
     public ItemStack removeStack(int slot) {
-//        System.out.println("StorageBlockEntity.removeStack called"); //debug
         ItemStack itemstack = this.inventory.set(slot, ItemStack.EMPTY);
-        setChanged();
+        markDirty();
         return itemstack;
     }
 
     public void setStack(int slot, ItemStack stack) {
-//        System.out.println("StorageBlockEntity.setStack called"); //debug
         this.inventory.set(slot, stack);
-        setChanged();
+        markDirty();
     }
 
-    public void setChanged(){
+    @Override
+    public void markDirty() {
         World world = this.world;
         if (world instanceof ServerWorld serverWorld) {
             if(!this.world.isClient()){
                 Packet<ClientPlayPacketListener> updatePacket = this.getUpdatePacket();
-//                System.out.println("StorageBlockEntity.setChanged called"); //debug
                 for(ServerPlayerEntity serverPlayerEntity : serverWorld.getChunkManager().threadedAnvilChunkStorage.getPlayersWatchingChunk(new ChunkPos(this.getPos()))) {
                     serverPlayerEntity.networkHandler.sendPacket(updatePacket);
                 }
             }
         }
+        super.markDirty();
     }
 
     @Override
@@ -61,7 +60,6 @@ public class StorageBlockEntity extends BlockEntity {
         super.readNbt(nbt);
         this.size = nbt.getInt("size");
         this.inventory = DefaultedList.ofSize(this.size, ItemStack.EMPTY);
-//        System.out.println("StorageBlockEntity.readNbt called"); //debug
         Inventories.readNbt(nbt, this.inventory);
     }
 
@@ -69,7 +67,6 @@ public class StorageBlockEntity extends BlockEntity {
     protected void writeNbt(NbtCompound nbt) {
         Inventories.writeNbt(nbt, this.inventory);
         nbt.putInt("size", this.size);
-//        System.out.println("StorageBlockEntity.writeNbt called"); //debug
         super.writeNbt(nbt);
     }
 
@@ -79,8 +76,7 @@ public class StorageBlockEntity extends BlockEntity {
 
     @Override
     public @NotNull NbtCompound toInitialChunkDataNbt() {
-//        System.out.println("StorageBlockEntity.toInitialChunkDataNbt called"); //debug
-        return createNbt();
+        return this.createNbt();
     }
 
     public void setInv(DefaultedList<ItemStack> inventory) {

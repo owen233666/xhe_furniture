@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
@@ -43,13 +44,11 @@ public class ShoeFlowerPotBlock extends StorageBlock implements BlockEntityProvi
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-//        XheFurniture.LOGGER.debug("StorageBlock.getOutlineShape called"); //debug
         return SHAPE;
     }
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
-//        XheFurniture.LOGGER.debug("StorageBlock.getPlacementState called"); //debug
         return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing());
     }
 
@@ -65,17 +64,16 @@ public class ShoeFlowerPotBlock extends StorageBlock implements BlockEntityProvi
 
     @Override
     public Boolean canInsertStack(ItemStack stack) {
-//        XheFurniture.LOGGER.info("=== canInsertStack 检查 ===");
-//        XheFurniture.LOGGER.info("物品: {}", stack.getItem());
-//        XheFurniture.LOGGER.info("物品ID: {}", Registries.ITEM.getId(stack.getItem()));
-//
-//        boolean isSmallFlower = stack.isIn(ItemTags.SMALL_FLOWERS);
-//        XheFurniture.LOGGER.info("是否在小花标签中: {}", isSmallFlower);
-
-//        // 打印所有标签以便调试
-//        List<TagKey<Item>> tags = stack.streamTags().toList();
-//        XheFurniture.LOGGER.info("物品的所有标签: {}", tags);
-
         return stack.isIn(ItemTags.SMALL_FLOWERS);
+    }
+
+    @Override
+    public Direction[] unAllowedDirections() {
+        return new Direction[]{Direction.DOWN};
+    }
+
+    @Override
+    public int getSection(float x, float y) {
+        return 0;
     }
 }

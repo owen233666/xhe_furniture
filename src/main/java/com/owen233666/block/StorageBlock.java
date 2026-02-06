@@ -1,6 +1,7 @@
 package com.owen233666.block;
 
 import com.owen233666.block.entity.StorageBlockEntity;
+import com.owen233666.util.BlockUtil;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,15 +11,15 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Property;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.ItemScatterer;
+import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public abstract class StorageBlock extends HorizontalFacingBlock implements BlockEntityProvider {
     protected StorageBlock(Settings settings) {
@@ -31,17 +32,33 @@ public abstract class StorageBlock extends HorizontalFacingBlock implements Bloc
 
     public abstract Boolean canInsertStack(ItemStack stack);
 
+    public abstract Direction[] unAllowedDirections();
+
+    public abstract int getSection(float x, float y);
+
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         BlockEntity be = world.getBlockEntity(pos);
         ItemStack heldStack = player.getStackInHand(hand);
 
         if(be instanceof StorageBlockEntity storageBlockEntity){
-            ItemStack firstItem = storageBlockEntity.getInv().get(0);
+
+            Optional<Pair<Float, Float>> hitPos = BlockUtil.getHitSectionCoordinate(hit, state.get(FACING), this.unAllowedDirections());
+            if (hitPos.isEmpty()) {
+                return ActionResult.PASS;
+            }
+
+            Pair<Float, Float> coordinate = hitPos.get();
+            int section = this.getSection(coordinate.getLeft(), coordinate.getRight());
+            if (section == Integer.MIN_VALUE) {
+                return  ActionResult.PASS;
+            }
+
+            ItemStack firstItem = storageBlockEntity.getInv().get(section);
             boolean hasItem = !firstItem.isEmpty();
 
             if(hasItem){
-                remove(world, pos, player, storageBlockEntity, 0);
+                remove(world, pos, player, storageBlockEntity, section);
                 return ActionResult.SUCCESS;
             }
 
@@ -49,7 +66,7 @@ public abstract class StorageBlock extends HorizontalFacingBlock implements Bloc
                 boolean canInsert = this.canInsertStack(heldStack);
 
                 if(canInsert){
-                    this.add(world, pos, player, storageBlockEntity, heldStack, 0);
+                    this.add(world, pos, player, storageBlockEntity, heldStack, section);
                     return ActionResult.SUCCESS;
                 }
             }

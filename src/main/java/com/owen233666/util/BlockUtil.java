@@ -35,27 +35,71 @@ public class BlockUtil {
     }
 
     public static Optional<Pair<Float, Float>> getHitSectionCoordinate(BlockHitResult blockHitResult, Direction direction, Direction[] unAllowedDirections) {
-        Direction direction2 = blockHitResult.getSide();
-        if (Arrays.asList(unAllowedDirections).contains(direction2)) {
-            return Optional.empty();
-        } else if (direction != direction2 && direction2 != Direction.UP && direction2 != Direction.DOWN) {
-            return Optional.empty();
-        } else {
-            BlockPos blockPos = blockHitResult.getBlockPos().offset(direction2);
-            Vec3d vec3d = blockHitResult.getPos().subtract(blockPos.getX(), blockPos.getY(), blockPos.getZ());
-            float d = (float) vec3d.getX(), f = (float) vec3d.getY(), y = (float) vec3d.getZ();
+        Direction hitSide = blockHitResult.getSide();
 
-            if (direction2 == Direction.UP || direction2 == Direction.DOWN) {
-                direction2 = direction;
-            }
-
-            return switch (direction2) {
-                case NORTH -> Optional.of(new Pair<>((float) (1.0 - d), y));
-                case SOUTH -> Optional.of(new Pair<>(d, y));
-                case WEST -> Optional.of(new Pair<>(f, y));
-                case EAST -> Optional.of(new Pair<>((float) (1.0 - f), y));
-                case DOWN, UP -> Optional.empty();
-            };
+        // 检查是否点击了不允许的方向
+        if (Arrays.asList(unAllowedDirections).contains(hitSide)) {
+            return Optional.empty();
         }
+
+        // 获取点击点在方块内部的相对坐标
+        Vec3d hitPos = blockHitResult.getPos();
+        BlockPos blockPos = blockHitResult.getBlockPos();
+
+        // 计算相对于方块左下角的坐标 (0,0,0 到 1,1,1)
+        Vec3d relativePos = hitPos.subtract(blockPos.getX(), blockPos.getY(), blockPos.getZ());
+
+        float x = (float) relativePos.getX();
+        float y = (float) relativePos.getY();
+        float z = (float) relativePos.getZ();
+
+        return switch (hitSide) {
+            case DOWN -> Optional.empty();
+            case UP -> {
+                yield switch (direction) {
+                    case NORTH -> Optional.of(new Pair<>(1.0f - x, z));
+                    case SOUTH -> Optional.of(new Pair<>(x, z));
+                    case WEST -> Optional.of(new Pair<>(z, 1.0f - x));
+                    case EAST -> Optional.of(new Pair<>(1.0f - z, x));
+                    default -> Optional.empty();
+                };
+            }
+            case NORTH -> {
+                yield switch (direction) {
+                    case NORTH -> Optional.of(new Pair<>(x, y));
+                    case SOUTH -> Optional.of(new Pair<>(1.0f - x, y));
+                    case WEST -> Optional.of(new Pair<>(1.0f - y, x));
+                    case EAST -> Optional.of(new Pair<>(y, 1.0f - x));
+                    default -> Optional.empty();
+                };
+            }
+            case SOUTH -> {
+                yield switch (direction) {
+                    case NORTH -> Optional.of(new Pair<>(1.0f - x, y));
+                    case SOUTH -> Optional.of(new Pair<>(x, y));
+                    case WEST -> Optional.of(new Pair<>(y, 1.0f - x));
+                    case EAST -> Optional.of(new Pair<>(1.0f - y, x));
+                    default -> Optional.empty();
+                };
+            }
+            case WEST -> {
+                yield switch (direction) {
+                    case NORTH -> Optional.of(new Pair<>(z, y));
+                    case SOUTH -> Optional.of(new Pair<>(1.0f - z, y));
+                    case WEST -> Optional.of(new Pair<>(x, y));
+                    case EAST -> Optional.of(new Pair<>(1.0f - x, y));
+                    default -> Optional.empty();
+                };
+            }
+            case EAST -> {
+                yield switch (direction) {
+                    case NORTH -> Optional.of(new Pair<>(1.0f - z, y));
+                    case SOUTH -> Optional.of(new Pair<>(z, y));
+                    case WEST -> Optional.of(new Pair<>(1.0f - x, y));
+                    case EAST -> Optional.of(new Pair<>(x, y));
+                    default -> Optional.empty();
+                };
+            }
+        };
     }
 }
