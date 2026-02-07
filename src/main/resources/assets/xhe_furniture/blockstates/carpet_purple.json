@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "xhe_furniture:block/carpet_purple",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "xhe_furniture:block/carpet_purple"
+    },
+    "facing=south": {
+      "model": "xhe_furniture:block/carpet_purple",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "xhe_furniture:block/carpet_purple",
+      "y": 270
+    }
+  }
+}

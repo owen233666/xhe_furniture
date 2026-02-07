@@ -117,7 +117,7 @@ public class ModBlocks {
     public static final Block CARPET_FLAPJACK_A     = registerBlock(CARPET_FLAPJACK_A_RESOURCE_LOCATION,    new BigCarpetBlock(AbstractBlock.Settings.copy(Blocks.YELLOW_CARPET)));
     public static final Block CARPET_GRAY           = registerBlock(CARPET_GRAY_RESOURCE_LOCATION,          new BigCarpetBlock(AbstractBlock.Settings.copy(Blocks.GRAY_CARPET)));
     public static final Block CARPET_GRAY_A         = registerBlock(CARPET_GRAY_A_RESOURCE_LOCATION,        new BigCarpetBlock(AbstractBlock.Settings.copy(Blocks.GRAY_CARPET)));
-    public static final Block CARPET_GREEN          = registerBlock(CARPET_GREEN_RESOURCE_LOCATION,       new BigCarpetBlock(AbstractBlock.Settings.copy(Blocks.LIME_CARPET)));
+    public static final Block CARPET_GREEN          = registerBlock(CARPET_GREEN_RESOURCE_LOCATION,         new BigCarpetBlock(AbstractBlock.Settings.copy(Blocks.LIME_CARPET)));
     public static final Block CARPET_GREEN_A        = registerBlock(CARPET_GREEN_A_RESOURCE_LOCATION,       new BigCarpetBlock(AbstractBlock.Settings.copy(Blocks.LIME_CARPET)));
     public static final Block CARPET_LEMON_SLICE    = registerBlock(CARPET_LEMON_SLICE_RESOURCE_LOCATION,   new BigCarpetBlock(AbstractBlock.Settings.copy(Blocks.YELLOW_CARPET)));
     public static final Block CARPET_ORANGE         = registerBlock(CARPET_ORANGE_RESOURCE_LOCATION,        new BigCarpetBlock(AbstractBlock.Settings.copy(Blocks.ORANGE_CARPET)));

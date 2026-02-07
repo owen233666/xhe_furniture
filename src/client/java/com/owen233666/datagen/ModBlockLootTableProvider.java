@@ -37,7 +37,42 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.CALICO_HAMSTERS_SLIPPERS);
         addDrop(ModBlocks.PANDA_SLIPPERS);
         //Carpets
+        addDrop(ModBlocks.CARPET_BLACK);
+        addDrop(ModBlocks.CARPET_BLACK_A);
+        addDrop(ModBlocks.CARPET_BLUE);
+        addDrop(ModBlocks.CARPET_BLUE_A);
+        addDrop(ModBlocks.CARPET_BLUE_B);
+        addDrop(ModBlocks.CARPET_BROWN);
+        addDrop(ModBlocks.CARPET_BROWN_A);
+        addDrop(ModBlocks.CARPET_DEEP_BLUE);
+        addDrop(ModBlocks.CARPET_DEEP_BLUE_A);
+        addDrop(ModBlocks.CARPET_DEEP_BLUE_B);
+        addDrop(ModBlocks.CARPET_DEEP_GREEN);
+        addDrop(ModBlocks.CARPET_DEEP_GREEN_A);
+        addDrop(ModBlocks.CARPET_DEEP_PURPLE);
+        addDrop(ModBlocks.CARPET_DEEP_PURPLE_A);
+        addDrop(ModBlocks.CARPET_FLAPJACK);
+        addDrop(ModBlocks.CARPET_FLAPJACK_A);
+        addDrop(ModBlocks.CARPET_GRAY);
+        addDrop(ModBlocks.CARPET_GRAY_A);
+        addDrop(ModBlocks.CARPET_GREEN);
+        addDrop(ModBlocks.CARPET_GREEN_A);
+        addDrop(ModBlocks.CARPET_LEMON_SLICE);
+        addDrop(ModBlocks.CARPET_ORANGE);
+        addDrop(ModBlocks.CARPET_ORANGE_A);
+        addDrop(ModBlocks.CARPET_PINK);
+        addDrop(ModBlocks.CARPET_PINK_A);
+        addDrop(ModBlocks.CARPET_PINK_B);
+        addDrop(ModBlocks.CARPET_PIZZA);
+        addDrop(ModBlocks.CARPET_PURPLE);
+        addDrop(ModBlocks.CARPET_PURPLE_A);
+        addDrop(ModBlocks.CARPET_RED);
+        addDrop(ModBlocks.CARPET_RED_A);
         addDrop(ModBlocks.CARPET_WAFFLE);
+        addDrop(ModBlocks.CARPET_WAFFLE_A);
+        addDrop(ModBlocks.CARPET_WHITE);
+        addDrop(ModBlocks.CARPET_WHITE_A);
+        addDrop(ModBlocks.CARPET_YELLOW);
 
     }
 }

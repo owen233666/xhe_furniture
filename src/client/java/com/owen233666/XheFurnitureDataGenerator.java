@@ -1,6 +1,7 @@
 package com.owen233666;
 
 import com.owen233666.datagen.ModBlockLootTableProvider;
+//import com.owen233666.datagen.ModModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -9,6 +10,7 @@ public class XheFurnitureDataGenerator implements DataGeneratorEntrypoint {
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
+//		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModBlockLootTableProvider::new);
 	}
 }
