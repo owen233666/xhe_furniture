@@ -77,6 +77,8 @@ public class XheFurnitureClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CARPET_WHITE, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CARPET_WHITE_A, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CARPET_YELLOW, RenderLayer.getCutout());
+		//Rattan Table
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RATTAN_TABLE, RenderLayer.getCutout());
 
 
 		BlockEntityRendererFactories.register(ModBlockEntityTypes.STORAGE_BLOCK_BE, StorageBlockEntityRenderer::new);

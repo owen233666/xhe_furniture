@@ -81,6 +81,8 @@ public class ModCreativeTab {
                         entries.add(ModBlocks.CARPET_WHITE);
                         entries.add(ModBlocks.CARPET_WHITE_A);
                         entries.add(ModBlocks.CARPET_YELLOW);
+                        //Rattan Table
+                        entries.add(ModBlocks.RATTAN_TABLE);
                     }).build()
     );
 

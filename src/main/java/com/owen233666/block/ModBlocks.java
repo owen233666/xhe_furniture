@@ -73,6 +73,11 @@ public class ModBlocks {
     public static final Identifier CARPET_WHITE_RESOURCE_LOCATION         = new Identifier(XheFurniture.MOD_ID, "carpet_white");
     public static final Identifier CARPET_WHITE_A_RESOURCE_LOCATION       = new Identifier(XheFurniture.MOD_ID, "carpet_white_a");
     public static final Identifier CARPET_YELLOW_RESOURCE_LOCATION        = new Identifier(XheFurniture.MOD_ID, "carpet_yellow");
+    //Rattan Table
+    public static final Identifier RATTAN_TABLE_RESOURCEL_LOCATION = new Identifier(XheFurniture.MOD_ID, "rattan_table");
+
+
+
 
     //Cups
     public static final Block HOT_COCOA = registerBlock(HOT_COCOA_RESOURCE_LOCATION, new CupBlock(AbstractBlock.Settings.create().mapColor(MapColor.WHITE).strength(0.0F, 0.0F).breakInstantly().sounds(BlockSoundGroup.STONE).noCollision()));
@@ -135,7 +140,8 @@ public class ModBlocks {
     public static final Block CARPET_WHITE          = registerBlock(CARPET_WHITE_RESOURCE_LOCATION,         new BigCarpetBlock(AbstractBlock.Settings.copy(Blocks.WHITE_CARPET)));
     public static final Block CARPET_WHITE_A        = registerBlock(CARPET_WHITE_A_RESOURCE_LOCATION,       new BigCarpetBlock(AbstractBlock.Settings.copy(Blocks.WHITE_CARPET)));
     public static final Block CARPET_YELLOW         = registerBlock(CARPET_YELLOW_RESOURCE_LOCATION,        new BigCarpetBlock(AbstractBlock.Settings.copy(Blocks.YELLOW_CARPET)));
-
+    //Rattan Table
+    public static final Block RATTAN_TABLE = registerBlock(RATTAN_TABLE_RESOURCEL_LOCATION, new RattanTableBlock(AbstractBlock.Settings.create().strength(2.0F).sounds(BlockSoundGroup.WOOD)));
 
     public static Block registerBlock(Identifier resourceLocation, Block block){
         registerBlockItem(resourceLocation, block);

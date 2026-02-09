@@ -73,6 +73,7 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.CARPET_WHITE);
         addDrop(ModBlocks.CARPET_WHITE_A);
         addDrop(ModBlocks.CARPET_YELLOW);
-
+        //Ratten Table
+        addDrop(ModBlocks.RATTAN_TABLE);
     }
 }
