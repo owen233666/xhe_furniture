@@ -2,7 +2,8 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "xhe_furniture:block/white_bear_slippers"
+		"1": "xhe_furniture:block/white_bear_slippers",
+		"particle": "xhe_furniture:block/white_bear_slippers"
 	},
 	"elements": [
 		{

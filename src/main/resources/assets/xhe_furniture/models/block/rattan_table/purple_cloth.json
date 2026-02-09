@@ -1,0 +1,7 @@
+{
+  "parent": "xhe_furniture:block/rattan_table/cloth",
+  "textures": {
+    "1": "xhe_furniture:block/rattan_table/purple",
+    "particle": "xhe_furniture:block/rattan_table/purple"
+  }
+}

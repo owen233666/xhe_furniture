@@ -1,0 +1,468 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/rattan_table"
+      },
+      "when": {
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/rattan_table",
+        "y": 90
+      },
+      "when": {
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/rattan_table",
+        "y": 180
+      },
+      "when": {
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/rattan_table",
+        "y": 270
+      },
+      "when": {
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/orange_cloth"
+      },
+      "when": {
+        "facing": "north",
+        "cloth_color": "orange"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/blue_cloth"
+      },
+      "when": {
+        "facing": "north",
+        "cloth_color": "blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/deep_blue_cloth"
+      },
+      "when": {
+        "facing": "north",
+        "cloth_color": "deep_blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/deep_green_cloth"
+      },
+      "when": {
+        "facing": "north",
+        "cloth_color": "deep_green"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/deep_purple_cloth"
+      },
+      "when": {
+        "facing": "north",
+        "cloth_color": "deep_purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/green_cloth"
+      },
+      "when": {
+        "facing": "north",
+        "cloth_color": "green"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/pink_cloth"
+      },
+      "when": {
+        "facing": "north",
+        "cloth_color": "pink"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/purple_cloth"
+      },
+      "when": {
+        "facing": "north",
+        "cloth_color": "purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/red_cloth"
+      },
+      "when": {
+        "facing": "north",
+        "cloth_color": "red"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/white_cloth"
+      },
+      "when": {
+        "facing": "north",
+        "cloth_color": "white"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/yellow_cloth"
+      },
+      "when": {
+        "facing": "north",
+        "cloth_color": "yellow"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/orange_cloth",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "cloth_color": "orange"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/blue_cloth",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "cloth_color": "blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/deep_blue_cloth",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "cloth_color": "deep_blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/deep_green_cloth",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "cloth_color": "deep_green"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/deep_purple_cloth",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "cloth_color": "deep_purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/green_cloth",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "cloth_color": "green"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/pink_cloth",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "cloth_color": "pink"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/purple_cloth",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "cloth_color": "purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/red_cloth",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "cloth_color": "red"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/white_cloth",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "cloth_color": "white"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/yellow_cloth",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "cloth_color": "yellow"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/orange_cloth",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "cloth_color": "orange"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/blue_cloth",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "cloth_color": "blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/deep_blue_cloth",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "cloth_color": "deep_blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/deep_green_cloth",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "cloth_color": "deep_green"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/deep_purple_cloth",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "cloth_color": "deep_purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/green_cloth",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "cloth_color": "green"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/pink_cloth",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "cloth_color": "pink"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/purple_cloth",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "cloth_color": "purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/red_cloth",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "cloth_color": "red"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/white_cloth",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "cloth_color": "white"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/yellow_cloth",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "cloth_color": "yellow"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/orange_cloth",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "cloth_color": "orange"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/blue_cloth",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "cloth_color": "blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/deep_blue_cloth",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "cloth_color": "deep_blue"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/deep_green_cloth",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "cloth_color": "deep_green"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/deep_purple_cloth",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "cloth_color": "deep_purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/green_cloth",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "cloth_color": "green"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/pink_cloth",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "cloth_color": "pink"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/purple_cloth",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "cloth_color": "purple"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/red_cloth",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "cloth_color": "red"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/white_cloth",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "cloth_color": "white"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/rattan_table/yellow_cloth",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "cloth_color": "yellow"
+      }
+    }
+  ]
+}
