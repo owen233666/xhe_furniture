@@ -1,5 +1,6 @@
 {
   "xhe_furniture.creativetab.items": "小禾的家具",
+  "xhe_furniture.creativetab.paintings": "小禾的家具-画作",
 
   "block.xhe_furniture.hot_cocoa": "热可可",
 
@@ -23,5 +24,47 @@
   "block.xhe_furniture.black_bear_slippers": "黑色小熊拖鞋",
   "block.xhe_furniture.calico_bunny_slippers": "三花兔子拖鞋",
   "block.xhe_furniture.calico_hamsters_slippers": "三花仓鼠拖鞋",
-  "block.xhe_furniture.panda_slippers": "熊猫拖鞋"
+  "block.xhe_furniture.panda_slippers": "熊猫拖鞋",
+
+  "block.xhe_furniture.carpet_black": "黑色地毯",
+  "block.xhe_furniture.carpet_black_a": "黑色地毯A",
+  "block.xhe_furniture.carpet_blue": "蓝色地毯",
+  "block.xhe_furniture.carpet_blue_a": "蓝色地毯A",
+  "block.xhe_furniture.carpet_blue_b": "蓝色地毯B",
+  "block.xhe_furniture.carpet_brown": "棕色地毯",
+  "block.xhe_furniture.carpet_brown_a": "棕色地毯A",
+  "block.xhe_furniture.carpet_deep_blue": "深蓝色地毯",
+  "block.xhe_furniture.carpet_deep_blue_a": "深蓝色地毯A",
+  "block.xhe_furniture.carpet_deep_blue_b": "深蓝色地毯B",
+  "block.xhe_furniture.carpet_deep_green": "深绿色地毯",
+  "block.xhe_furniture.carpet_deep_green_a": "深绿色地毯A",
+  "block.xhe_furniture.carpet_deep_purple": "深紫色地毯",
+  "block.xhe_furniture.carpet_deep_purple_a": "深紫色地毯A",
+  "block.xhe_furniture.carpet_flapjack": "煎饼地毯",
+  "block.xhe_furniture.carpet_flapjack_a": "煎饼地毯A",
+  "block.xhe_furniture.carpet_gray": "灰色地毯",
+  "block.xhe_furniture.carpet_gray_a": "灰色地毯A",
+  "block.xhe_furniture.carpet_green": "绿色地毯",
+  "block.xhe_furniture.carpet_green_a": "绿色地毯A",
+  "block.xhe_furniture.carpet_lemon_slice": "柠檬片地毯",
+  "block.xhe_furniture.carpet_orange": "橘色地毯",
+  "block.xhe_furniture.carpet_orange_a": "橘色地毯A",
+  "block.xhe_furniture.carpet_pink": "粉红色地毯",
+  "block.xhe_furniture.carpet_pink_a": "粉红色地毯A",
+  "block.xhe_furniture.carpet_pink_b": "粉红色地毯B",
+  "block.xhe_furniture.carpet_pizza": "披萨地毯",
+  "block.xhe_furniture.carpet_pizza_a": "披萨地毯A",
+  "block.xhe_furniture.carpet_purple": "紫色地毯",
+  "block.xhe_furniture.carpet_purple_a": "紫色地毯A",
+  "block.xhe_furniture.carpet_red": "红色地毯",
+  "block.xhe_furniture.carpet_red_a": "红色地毯A",
+  "block.xhe_furniture.carpet_waffle": "华夫饼地毯",
+  "block.xhe_furniture.carpet_waffle_a": "华夫饼地毯A",
+  "block.xhe_furniture.carpet_white": "白色地毯",
+  "block.xhe_furniture.carpet_white_a": "白色地毯A",
+  "block.xhe_furniture.carpet_yellow": "黄色地毯",
+
+  "block.xhe_furniture.rattan_table": "藤木小圆桌",
+
+  "tooltip.xhe_furniture.rattan_table": "可以将地毯放在桌子上当桌布"
 }

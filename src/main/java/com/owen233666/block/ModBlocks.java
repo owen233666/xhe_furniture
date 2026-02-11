@@ -3,7 +3,10 @@ package com.owen233666.block;
 
 import com.owen233666.XheFurniture;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.block.*;
+import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.MapColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
