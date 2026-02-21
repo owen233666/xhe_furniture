@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public class BlockUtil {
-    @Deprecated
     public static VoxelShape rotateVoxelShape(Direction facing1, Direction facing2, VoxelShape voxelShape) {
         VoxelShape[] tempVoxelShape = new VoxelShape[]{voxelShape, VoxelShapes.empty()};
         int times = (facing2.getHorizontal() - facing1.getHorizontal() + 4) % 4;

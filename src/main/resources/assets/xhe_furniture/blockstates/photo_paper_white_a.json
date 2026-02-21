@@ -1,0 +1,1833 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "xhe_furniture:block/photo_paper_white_a"
+      },
+      "when": {
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/photo_paper_white_a",
+        "y": 90
+      },
+      "when": {
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/photo_paper_white_a",
+        "y": 180
+      },
+      "when": {
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/photo_paper_white_a",
+        "y": 270
+      },
+      "when": {
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/angel"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "angel"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/angel",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "angel"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/angel",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "angel"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/angel",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "angel"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/bedroom_bed"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "bedroom_bed"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/bedroom_bed",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "bedroom_bed"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/bedroom_bed",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "bedroom_bed"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/bedroom_bed",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "bedroom_bed"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/berry_bush"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "berry_bush"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/berry_bush",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "berry_bush"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/berry_bush",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "berry_bush"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/berry_bush",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "berry_bush"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/bichon"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "bichon"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/bichon",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "bichon"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/bichon",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "bichon"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/bichon",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "bichon"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/cake"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "cake"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/cake",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "cake"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/cake",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "cake"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/cake",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "cake"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/cat_under_a_tree"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "cat_under_a_tree"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/cat_under_a_tree",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "cat_under_a_tree"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/cat_under_a_tree",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "cat_under_a_tree"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/cat_under_a_tree",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "cat_under_a_tree"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/chime"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "chime"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/chime",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "chime"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/chime",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "chime"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/chime",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "chime"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/city_night"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "city_night"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/city_night",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "city_night"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/city_night",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "city_night"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/city_night",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "city_night"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/clover"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "clover"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/clover",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "clover"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/clover",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "clover"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/clover",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "clover"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/cow"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "cow"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/cow",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "cow"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/cow",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "cow"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/cow",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "cow"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/crystal_fairy"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "crystal_fairy"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/crystal_fairy",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "crystal_fairy"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/crystal_fairy",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "crystal_fairy"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/crystal_fairy",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "crystal_fairy"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/dessert"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "dessert"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/dessert",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "dessert"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/dessert",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "dessert"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/dessert",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "dessert"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/flower_basket"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "flower_basket"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/flower_basket",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "flower_basket"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/flower_basket",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "flower_basket"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/flower_basket",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "flower_basket"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/flowersea_cottage"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "flowersea_cottage"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/flowersea_cottage",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "flowersea_cottage"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/flowersea_cottage",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "flowersea_cottage"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/flowersea_cottage",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "flowersea_cottage"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/friends_party"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "friends_party"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/friends_party",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "friends_party"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/friends_party",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "friends_party"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/friends_party",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "friends_party"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/fruits_basket"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "fruits_basket"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/fruits_basket",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "fruits_basket"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/fruits_basket",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "fruits_basket"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/fruits_basket",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "fruits_basket"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/garden_entrance"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "garden_entrance"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/garden_entrance",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "garden_entrance"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/garden_entrance",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "garden_entrance"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/garden_entrance",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "garden_entrance"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/gramophone"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "gramophone"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/gramophone",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "gramophone"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/gramophone",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "gramophone"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/gramophone",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "gramophone"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/graveyard"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "graveyard"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/graveyard",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "graveyard"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/graveyard",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "graveyard"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/graveyard",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "graveyard"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/harvest"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "harvest"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/harvest",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "harvest"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/harvest",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "harvest"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/harvest",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "harvest"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/island"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "island"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/island",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "island"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/island",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "island"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/island",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "island"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/kitchen_sink"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "kitchen_sink"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/kitchen_sink",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "kitchen_sink"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/kitchen_sink",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "kitchen_sink"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/kitchen_sink",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "kitchen_sink"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/kite"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "kite"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/kite",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "kite"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/kite",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "kite"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/kite",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "kite"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/lemon_slice"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "lemon_slice"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/lemon_slice",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "lemon_slice"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/lemon_slice",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "lemon_slice"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/lemon_slice",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "lemon_slice"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/mermaid"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "mermaid"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/mermaid",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "mermaid"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/mermaid",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "mermaid"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/mermaid",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "mermaid"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/milkyway"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "milkyway"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/milkyway",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "milkyway"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/milkyway",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "milkyway"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/milkyway",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "milkyway"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/night_campfire"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "night_campfire"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/night_campfire",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "night_campfire"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/night_campfire",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "night_campfire"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/night_campfire",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "night_campfire"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/pumpkin"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "pumpkin"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/pumpkin",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "pumpkin"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/pumpkin",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "pumpkin"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/pumpkin",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "pumpkin"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/rainbow_unicorn"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "rainbow_unicorn"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/rainbow_unicorn",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "rainbow_unicorn"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/rainbow_unicorn",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "rainbow_unicorn"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/rainbow_unicorn",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "rainbow_unicorn"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/restaurant"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "restaurant"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/restaurant",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "restaurant"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/restaurant",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "restaurant"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/restaurant",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "restaurant"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/rose_swing"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "rose_swing"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/rose_swing",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "rose_swing"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/rose_swing",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "rose_swing"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/rose_swing",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "rose_swing"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/salted_lemon"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "salted_lemon"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/salted_lemon",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "salted_lemon"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/salted_lemon",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "salted_lemon"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/salted_lemon",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "salted_lemon"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/scenery"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "scenery"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/scenery",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "scenery"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/scenery",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "scenery"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/scenery",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "scenery"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/sketch"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "sketch"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/sketch",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "sketch"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/sketch",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "sketch"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/sketch",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "sketch"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/snow_house"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "snow_house"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/snow_house",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "snow_house"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/snow_house",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "snow_house"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/snow_house",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "snow_house"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/stationary_objects"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "stationary_objects"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/stationary_objects",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "stationary_objects"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/stationary_objects",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "stationary_objects"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/stationary_objects",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "stationary_objects"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/sumptuous_meal"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "sumptuous_meal"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/sumptuous_meal",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "sumptuous_meal"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/sumptuous_meal",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "sumptuous_meal"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/sumptuous_meal",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "sumptuous_meal"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/sunset"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "sunset"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/sunset",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "sunset"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/sunset",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "sunset"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/sunset",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "sunset"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/teddy_bear"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "teddy_bear"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/teddy_bear",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "teddy_bear"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/teddy_bear",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "teddy_bear"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/teddy_bear",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "teddy_bear"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/toys"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "toys"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/toys",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "toys"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/toys",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "toys"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/toys",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "toys"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/tulip"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "tulip"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/tulip",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "tulip"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/tulip",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "tulip"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/tulip",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "tulip"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/urban_beauty"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "urban_beauty"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/urban_beauty",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "urban_beauty"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/urban_beauty",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "urban_beauty"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/urban_beauty",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "urban_beauty"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/waves"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "waves"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/waves",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "waves"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/waves",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "waves"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/waves",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "waves"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/wheat_field"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "wheat_field"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/wheat_field",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "wheat_field"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/wheat_field",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "wheat_field"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/wheat_field",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "wheat_field"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/wildflower_plain"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "wildflower_plain"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/wildflower_plain",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "wildflower_plain"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/wildflower_plain",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "wildflower_plain"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/wildflower_plain",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "wildflower_plain"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/world_tree"
+      },
+      "when": {
+        "facing": "north",
+        "painting": "world_tree"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/world_tree",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "painting": "world_tree"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/world_tree",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "painting": "world_tree"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paintings/photo_paper_a/world_tree",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "painting": "world_tree"
+      }
+    }
+  ]
+}

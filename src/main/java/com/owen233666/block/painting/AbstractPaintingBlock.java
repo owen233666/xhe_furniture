@@ -8,7 +8,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
@@ -21,25 +20,24 @@ public abstract class AbstractPaintingBlock extends HorizontalFacingBlock {
 
     public static final HashMap<Item, Paintings> ITEM_PAINTINGS_HASH_MAP = new HashMap<>();
 
-    protected AbstractPaintingBlock(Settings settings) {
+    public static final EnumProperty<Paintings> PAINTINGS = EnumProperty.of("painting", Paintings.class);
+
+    public AbstractPaintingBlock(Settings settings) {
         super(settings);
         this.setDefaultState(getDefaultState()
                 .with(HorizontalFacingBlock.FACING, Direction.NORTH)
-                .with(WIP, false));
+                );
     }
-
-    public static final EnumProperty<Paintings> PAINTINGS = EnumProperty.of("painting", Paintings.class);
-    public static final BooleanProperty WIP = BooleanProperty.of("wip");
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         super.appendProperties(builder);
-        builder.add(FACING, PAINTINGS, WIP);
+        builder.add(FACING, PAINTINGS);
     }
 
     @Override
     public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing());
+        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
     public Paintings getPaintingsFromItem(Item item) {
@@ -54,6 +52,7 @@ public abstract class AbstractPaintingBlock extends HorizontalFacingBlock {
         // Paintings -> Items 映射
         PAINTINGS_ITEM_HASH_MAP.put(Paintings.ANGEL, ModItems.PAINTING_ANGEL);
         PAINTINGS_ITEM_HASH_MAP.put(Paintings.BEDROOM_BED, ModItems.PAINTING_BEDROOM_BED);
+        PAINTINGS_ITEM_HASH_MAP.put(Paintings.BERRY_BUSH, ModItems.PAINTING_BERRY_BUSH);
         PAINTINGS_ITEM_HASH_MAP.put(Paintings.BICHON, ModItems.PAINTING_BICHON);
         PAINTINGS_ITEM_HASH_MAP.put(Paintings.CAKE, ModItems.PAINTING_CAKE);
         PAINTINGS_ITEM_HASH_MAP.put(Paintings.CAT_UNDER_A_TREE, ModItems.PAINTING_CAT_UNDER_A_TREE);
@@ -98,9 +97,10 @@ public abstract class AbstractPaintingBlock extends HorizontalFacingBlock {
         PAINTINGS_ITEM_HASH_MAP.put(Paintings.WILDFLOWER_PLAIN, ModItems.PAINTING_WILDFLOWER_PLAIN);
         PAINTINGS_ITEM_HASH_MAP.put(Paintings.WORLD_TREE, ModItems.PAINTING_WORLD_TREE);
 
-        // Items -> Paintings 映射（反向）
+        // Items -> Paintings 映射
         ITEM_PAINTINGS_HASH_MAP.put(ModItems.PAINTING_ANGEL, Paintings.ANGEL);
         ITEM_PAINTINGS_HASH_MAP.put(ModItems.PAINTING_BEDROOM_BED, Paintings.BEDROOM_BED);
+        ITEM_PAINTINGS_HASH_MAP.put(ModItems.PAINTING_BERRY_BUSH, Paintings.BERRY_BUSH);
         ITEM_PAINTINGS_HASH_MAP.put(ModItems.PAINTING_BICHON, Paintings.BICHON);
         ITEM_PAINTINGS_HASH_MAP.put(ModItems.PAINTING_CAKE, Paintings.CAKE);
         ITEM_PAINTINGS_HASH_MAP.put(ModItems.PAINTING_CAT_UNDER_A_TREE, Paintings.CAT_UNDER_A_TREE);

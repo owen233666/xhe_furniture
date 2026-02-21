@@ -1,0 +1,210 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"render_type": "solid",
+	"elements": [
+		{
+			"name": "画框",
+			"from": [0, 0.5, 15],
+			"to": [0.5, 15.5, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-6, -15, 16.3]},
+			"faces": {
+				"north": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"east": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"south": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"west": {"uv": [0, 1, 1, 16], "texture": "#7"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [9, 0.5, 15],
+			"to": [10, 15.5, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3, -15, 16.3]},
+			"faces": {
+				"north": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"east": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"south": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"west": {"uv": [0, 1, 1, 16], "texture": "#7"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [6, 0.5, 15],
+			"to": [7, 15.5, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -15, 16.3]},
+			"faces": {
+				"north": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"east": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"south": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"west": {"uv": [0, 1, 1, 16], "texture": "#7"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [3, 0.5, 15],
+			"to": [4, 15.5, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [-3, -15, 16.3]},
+			"faces": {
+				"north": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"east": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"south": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"west": {"uv": [0, 1, 1, 16], "texture": "#7"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [12, 0.5, 15],
+			"to": [13, 15.5, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [6, -15, 16.3]},
+			"faces": {
+				"north": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"east": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"south": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"west": {"uv": [0, 1, 1, 16], "texture": "#7"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0, 15.5, 15],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, 0, 16.3]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"east": {"uv": [1, 1, 2, 2], "texture": "#7"},
+				"south": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"west": {"uv": [1, 2, 2, 3], "texture": "#7"},
+				"up": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"down": {"uv": [0, 0, 16, 1], "texture": "#7"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0.5, 12, 15.2],
+			"to": [15.5, 13, 15.9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, -3, 16.3]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"east": {"uv": [1, 1, 2, 2], "texture": "#7"},
+				"south": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"west": {"uv": [1, 2, 2, 3], "texture": "#7"},
+				"up": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"down": {"uv": [0, 0, 16, 1], "texture": "#7"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0.5, 9, 15.2],
+			"to": [15.5, 10, 15.9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, -6, 16.3]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"east": {"uv": [1, 1, 2, 2], "texture": "#7"},
+				"south": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"west": {"uv": [1, 2, 2, 3], "texture": "#7"},
+				"up": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"down": {"uv": [0, 0, 16, 1], "texture": "#7"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0.5, 6, 15.2],
+			"to": [15.5, 7, 15.9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, -9, 16.3]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"east": {"uv": [1, 1, 2, 2], "texture": "#7"},
+				"south": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"west": {"uv": [1, 2, 2, 3], "texture": "#7"},
+				"up": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"down": {"uv": [0, 0, 16, 1], "texture": "#7"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0.5, 3, 15.2],
+			"to": [15.5, 4, 15.9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, -12, 16.3]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"east": {"uv": [1, 1, 2, 2], "texture": "#7"},
+				"south": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"west": {"uv": [1, 2, 2, 3], "texture": "#7"},
+				"up": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"down": {"uv": [0, 0, 16, 1], "texture": "#7"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0, 0, 15],
+			"to": [16, 0.5, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, -15, 16.3]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"east": {"uv": [1, 1, 2, 2], "texture": "#7"},
+				"south": {"uv": [0, 0, 16, 1], "texture": "#7"},
+				"west": {"uv": [1, 2, 2, 3], "texture": "#7"},
+				"up": {"uv": [16, 1, 0, 0], "texture": "#7"},
+				"down": {"uv": [16, 0, 0, 1], "texture": "#7"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [15.5, 0.5, 15],
+			"to": [16, 15.5, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9, -15, 16.3]},
+			"faces": {
+				"north": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"east": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"south": {"uv": [0, 1, 1, 16], "texture": "#7"},
+				"west": {"uv": [0, 1, 1, 16], "texture": "#7"}
+			}
+		}
+	],
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 5.6, 6],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 5.6, 6],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 5.6, 6],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 5.6, 6],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"ground": {
+			"translation": [0, 4, -5.5],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"gui": {
+			"rotation": [0, -180, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"fixed": {
+			"translation": [0, 0, -16],
+			"scale": [2, 2, 2]
+		},
+		"on_shelf": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 0, 8.5]
+		}
+	},
+	"groups": [
+		{
+			"name": "画框",
+			"origin": [-6, -15, 16.3],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+		}
+	]
+}

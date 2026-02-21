@@ -1,0 +1,7 @@
+{
+  "parent": "xhe_furniture:block/parent/photo_painting_b",
+  "textures": {
+    "5": "xhe_furniture:item/paintings/waves",
+    "particle": "xhe_furniture:item/paintings/waves"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "xhe_furniture:block/parent/photo_paper_c",
+  "textures": {
+    "1": "xhe_furniture:block/photo_black_white",
+    "particle": "xhe_furniture:block/photo_black_white"
+  }
+}

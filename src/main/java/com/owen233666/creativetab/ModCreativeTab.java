@@ -89,8 +89,29 @@ public class ModCreativeTab {
             new Identifier(XheFurniture.MOD_ID, "xhe_furniture.creativetab.paintings"),
             FabricItemGroup.builder().displayName(Text.translatable("xhe_furniture.creativetab.paintings")).icon(() -> new ItemStack(Registries.BLOCK.get(new Identifier(XheFurniture.MOD_ID, "hot_cocoa"))))
                     .entries(((displayContext, entries) -> {
+                        entries.add(ModBlocks.EASEL);
+                        entries.add(ModBlocks.CANVAS);
+                        entries.add(ModBlocks.DRAWING_BOARD);
+                        entries.add(ModBlocks.PHOTO_PAPER_WHITE_A);
+                        entries.add(ModBlocks.PHOTO_PAPER_WHITE_B);
+                        entries.add(ModBlocks.PHOTO_PAPER_WHITE_C);
+                        entries.add(ModBlocks.PHOTO_PAPER_BLACK_A);
+                        entries.add(ModBlocks.PHOTO_PAPER_BLACK_B);
+                        entries.add(ModBlocks.PHOTO_PAPER_BLACK_C);
+                        entries.add(ModBlocks.GRID_SHELF_OAK);
+                        entries.add(ModBlocks.GRID_SHELF_SPRUCE);
+                        entries.add(ModBlocks.GRID_SHELF_JUNGLE);
+                        entries.add(ModBlocks.GRID_SHELF_BIRCH);
+                        entries.add(ModBlocks.GRID_SHELF_ACACIA);
+                        entries.add(ModBlocks.GRID_SHELF_DARK_OAK);
+                        entries.add(ModBlocks.GRID_SHELF_MANGROVE);
+                        entries.add(ModBlocks.GRID_SHELF_CHERRY);
+                        entries.add(ModBlocks.GRID_SHELF_BAMBOO);
+                        entries.add(ModBlocks.GRID_SHELF_PALE_OAK);
+                        entries.add(ModBlocks.GRID_SHELF_BLACKSTONE);
                         entries.add(ModItems.PAINTING_ANGEL);
                         entries.add(ModItems.PAINTING_BEDROOM_BED);
+                        entries.add(ModItems.PAINTING_BERRY_BUSH);
                         entries.add(ModItems.PAINTING_BICHON);
                         entries.add(ModItems.PAINTING_CAKE);
                         entries.add(ModItems.PAINTING_CAT_UNDER_A_TREE);

@@ -1,0 +1,7 @@
+{
+  "parent": "xhe_furniture:block/parent/canvas_wall",
+  "textures": {
+    "0": "xhe_furniture:block/canvas_a",
+    "particle": "xhe_furniture:block/canvas_a"
+  }
+}

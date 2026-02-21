@@ -1,0 +1,7 @@
+{
+  "parent": "xhe_furniture:block/parent/grid_shelf",
+  "textures": {
+    "7": "xhe_furniture:block/grid_shelf_birch",
+    "particle": "xhe_furniture:block/grid_shelf_birch"
+  }
+}

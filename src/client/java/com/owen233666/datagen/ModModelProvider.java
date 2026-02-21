@@ -1,105 +1,100 @@
 package com.owen233666.datagen;
 
+import com.owen233666.XheFurniture;
 import com.owen233666.block.ModBlocks;
-import com.owen233666.item.ModItems;
+import com.owen233666.block.painting.GridShelfBlock;
+import com.owen233666.block.painting.Paintings;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Models;
-import net.minecraft.data.client.TexturedModel;
+import net.minecraft.block.Block;
+import net.minecraft.data.client.*;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
+
+import java.util.List;
+import java.util.Optional;
+
+import static com.owen233666.datagen.CanvasAndDrawingBoardPaintingWallModelProvider.IMAGE_NAMES;
 
 public class ModModelProvider extends FabricModelProvider {
+
     public ModModelProvider(FabricDataOutput output) {
         super(output);
     }
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_BLACK, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_BLACK_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_BLUE, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_BLUE_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_BLUE_B, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_BROWN, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_BROWN_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_DEEP_BLUE, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_DEEP_BLUE_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_DEEP_BLUE_B, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_DEEP_GREEN, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_DEEP_GREEN_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_DEEP_PURPLE, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_DEEP_PURPLE_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_FLAPJACK, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_FLAPJACK_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_GRAY, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_GRAY_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_GREEN, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_GREEN_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_LEMON_SLICE, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_ORANGE, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_ORANGE_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_PINK, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_PINK_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_PINK_B, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_PIZZA, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_PURPLE, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_PURPLE_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_RED, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_RED_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_WAFFLE, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_WAFFLE_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_WHITE, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_WHITE_A, TexturedModel.CUBE_ALL);
-//        blockStateModelGenerator.registerNorthDefaultHorizontalRotated(ModBlocks.CARPET_YELLOW, TexturedModel.CUBE_ALL);
+        final List<Block> BLOCKS = List.of(
+                ModBlocks.GRID_SHELF_OAK,
+                ModBlocks.GRID_SHELF_SPRUCE,
+                ModBlocks.GRID_SHELF_JUNGLE,
+                ModBlocks.GRID_SHELF_BIRCH,
+                ModBlocks.GRID_SHELF_ACACIA,
+                ModBlocks.GRID_SHELF_DARK_OAK,
+                ModBlocks.GRID_SHELF_MANGROVE,
+                ModBlocks.GRID_SHELF_CHERRY,
+                ModBlocks.GRID_SHELF_BAMBOO,
+                ModBlocks.GRID_SHELF_PALE_OAK,
+                ModBlocks.GRID_SHELF_BLACKSTONE
+        );
+
+        for (Block block : BLOCKS) {
+            MultipartBlockStateSupplier multipartBlockStateSupplier = MultipartBlockStateSupplier.create(block);
+
+            Identifier id = ModelIds.getBlockModelId(block);
+            for (Direction direction : Direction.Type.HORIZONTAL) {
+                VariantSettings.Rotation rotation = switch (direction) {
+                    case NORTH -> VariantSettings.Rotation.R0;
+                    case EAST -> VariantSettings.Rotation.R90;
+                    case SOUTH -> VariantSettings.Rotation.R180;
+                    case WEST -> VariantSettings.Rotation.R270;
+                    default -> VariantSettings.Rotation.R0;
+                };
+
+                BlockStateVariant variant = BlockStateVariant.create()
+                        .put(VariantSettings.MODEL, id);
+
+                multipartBlockStateSupplier.with(
+                        When.create().set(GridShelfBlock.FACING, direction),
+                        variant.put(VariantSettings.Y, rotation)
+                );
+
+                final List<GridShelfBlock.PhotoType> PHOTO_TYPES = List.of(GridShelfBlock.PhotoType.A, GridShelfBlock.PhotoType.B, GridShelfBlock.PhotoType.C);
+
+                for (GridShelfBlock.PhotoType photoType : PHOTO_TYPES) {
+                    for (Boolean white : List.of(true, false)) {
+                        Identifier photoModelID = new Identifier(XheFurniture.MOD_ID, "block/grid_shelf_photo_paper_" + (white ? "white_" : "black_") + photoType.asString().toLowerCase());
+
+                        multipartBlockStateSupplier.with(
+                                When.create()
+                                        .set(GridShelfBlock.FACING, direction)
+                                        .set(GridShelfBlock.PHOTO_TYPE, photoType)
+                                        .set(GridShelfBlock.WHITE, white),
+                                BlockStateVariant.create().put(VariantSettings.MODEL, photoModelID)
+                                        .put(VariantSettings.Y, rotation)
+                        );
+                    }
+                    for (String painting_name : IMAGE_NAMES) {
+                        String modelPath = "block/paintings/grid_shelf_photo_paper_" + photoType.toString().toLowerCase() + "/" + painting_name;
+                        Identifier modelID = new Identifier(XheFurniture.MOD_ID, modelPath);
+                        multipartBlockStateSupplier.with(
+                                When.create()
+                                        .set(GridShelfBlock.FACING, direction)
+                                        .set(GridShelfBlock.PHOTO_TYPE, photoType)
+                                        .set(GridShelfBlock.PAINTINGS, Paintings.createFromString(painting_name)),
+                                BlockStateVariant.create()
+                                        .put(VariantSettings.MODEL, modelID)
+                                        .put(VariantSettings.Y, rotation)
+                        );
+                    }
+                }
+            }
+
+            blockStateModelGenerator.blockStateCollector.accept(multipartBlockStateSupplier);
+        }
     }
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        itemModelGenerator.register(ModItems.PAINTING_ANGEL, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_BEDROOM_BED, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_BICHON, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_CAKE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_CAT_UNDER_A_TREE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_CHIME, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_CITY_NIGHT, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_CLOVER, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_COW, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_CRYSTAL_FAIRY, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_DESSERT, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_FLOWER_BASKET, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_FLOWERSEA_COTTAGE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_FRIENDS_PARTY, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_FRUITS_BASKET, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_GARDEN_ENTRANCE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_GRAMOPHONE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_GRAVEYARD, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_HARVEST, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_ISLAND, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_KITCHEN_SINK, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_KITE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_LEMON_SLICE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_MERMAID, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_MILKYWAY, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_NIGHT_CAMPFIRE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_PUMPKIN, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_RAINBOW_UNICORN, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_RESTAURANT, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_ROSE_SWING, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_SALTED_LEMON, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_SCENERY, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_SKETCH, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_SNOW_HOUSE, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_STATIONARY_OBJECTS, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_SUMPTUOUS_MEAL, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_SUNSET, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_TEDDY_BEAR, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_TOYS, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_TULIP, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_URBAN_BEAUTY, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_WAVES, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_WHEAT_FIELD, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_WILDFLOWER_PLAIN, Models.GENERATED);
-        itemModelGenerator.register(ModItems.PAINTING_WORLD_TREE, Models.GENERATED);
     }
 }

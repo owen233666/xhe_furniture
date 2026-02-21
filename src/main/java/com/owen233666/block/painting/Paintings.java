@@ -1,17 +1,11 @@
 package com.owen233666.block.painting;
 
-import com.owen233666.item.ModItems;
-import com.owen233666.util.impl.BlockStateMap;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.util.StringIdentifiable;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public enum Paintings implements StringIdentifiable {
     ANGEL("angel"),
     BEDROOM_BED("bedroom_bed"),
+    BERRY_BUSH("berry_bush"),
     BICHON("bichon"),
     CAKE("cake"),
     CAT_UNDER_A_TREE("cat_under_a_tree"),
@@ -34,7 +28,7 @@ public enum Paintings implements StringIdentifiable {
     KITE("kite"),
     LEMON_SLICE("lemon_slice"),
     MERMAID("mermaid"),
-    MILKYWAY("milkway"),
+    MILKYWAY("milkyway"),
     NIGHT_CAMPFIRE("night_campfire"),
     PUMPKIN("pumpkin"),
     RAINBOW_UNICORN("rainbow_unicorn"),
@@ -68,4 +62,14 @@ public enum Paintings implements StringIdentifiable {
         return name;
     }
 
+    public static Paintings createFromString(String name) {
+        for (Paintings p : values()) {
+            if (p.name.equals(name)) {
+                return p;
+            }else {
+                return Paintings.NONE;
+            }
+        }
+        return Paintings.NONE;
+    }
 }

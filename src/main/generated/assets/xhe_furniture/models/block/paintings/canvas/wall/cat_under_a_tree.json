@@ -1,0 +1,7 @@
+{
+  "parent": "xhe_furniture:block/parent/painting_wall",
+  "textures": {
+    "1": "xhe_furniture:item/paintings/cat_under_a_tree",
+    "particle": "xhe_furniture:item/paintings/cat_under_a_tree"
+  }
+}

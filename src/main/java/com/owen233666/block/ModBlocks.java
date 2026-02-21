@@ -2,6 +2,10 @@ package com.owen233666.block;
 
 
 import com.owen233666.XheFurniture;
+import com.owen233666.block.painting.CanvasBlock;
+import com.owen233666.block.painting.EaselBlock;
+import com.owen233666.block.painting.GridShelfBlock;
+import com.owen233666.block.painting.PhotoPaperBlock;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -77,8 +81,28 @@ public class ModBlocks {
     public static final Identifier CARPET_WHITE_A_RESOURCE_LOCATION       = new Identifier(XheFurniture.MOD_ID, "carpet_white_a");
     public static final Identifier CARPET_YELLOW_RESOURCE_LOCATION        = new Identifier(XheFurniture.MOD_ID, "carpet_yellow");
     //Rattan Table
-    public static final Identifier RATTAN_TABLE_RESOURCEL_LOCATION = new Identifier(XheFurniture.MOD_ID, "rattan_table");
-
+    public static final Identifier RATTAN_TABLE_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "rattan_table");
+    //Painting Studio Series
+    public static final Identifier EASEL_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "easel");
+    public static final Identifier CANVAS_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "canvas");
+    public static final Identifier DRAWING_BOARD_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "drawing_board");
+    public static final Identifier PHOTO_PAPER_WHITE_A_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "photo_paper_white_a");
+    public static final Identifier PHOTO_PAPER_WHITE_B_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "photo_paper_white_b");
+    public static final Identifier PHOTO_PAPER_WHITE_C_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "photo_paper_white_c");
+    public static final Identifier PHOTO_PAPER_BLACK_A_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "photo_paper_black_a");
+    public static final Identifier PHOTO_PAPER_BLACK_B_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "photo_paper_black_b");
+    public static final Identifier PHOTO_PAPER_BLACK_C_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "photo_paper_black_c");
+    public static final Identifier GRID_SHELF_OAK_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "grid_shelf_oak");
+    public static final Identifier GRID_SHELF_SPRUCE_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "grid_shelf_spruce");
+    public static final Identifier GRID_SHELF_BIRCH_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "grid_shelf_birch");
+    public static final Identifier GRID_SHELF_JUNGLE_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "grid_shelf_jungle");
+    public static final Identifier GRID_SHELF_ACACIA_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "grid_shelf_acacia");
+    public static final Identifier GRID_SHELF_DARK_OAK_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "grid_shelf_dark_oak");
+    public static final Identifier GRID_SHELF_MANGROVE_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "grid_shelf_mangrove");
+    public static final Identifier GRID_SHELF_CHERRY_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID,"grid_shelf_cherry");
+    public static final Identifier GRID_SHELF_BAMBOO_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "grid_shelf_bamboo");
+    public static final Identifier GRID_SHELF_PALE_OAK_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "grid_shelf_pale_oak");
+    public static final Identifier GRID_SHELF_BLACKSTONE_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "grid_shelf_blackstone");
 
 
 
@@ -144,7 +168,28 @@ public class ModBlocks {
     public static final Block CARPET_WHITE_A        = registerBlock(CARPET_WHITE_A_RESOURCE_LOCATION,       new BigCarpetBlock(AbstractBlock.Settings.copy(Blocks.WHITE_CARPET)));
     public static final Block CARPET_YELLOW         = registerBlock(CARPET_YELLOW_RESOURCE_LOCATION,        new BigCarpetBlock(AbstractBlock.Settings.copy(Blocks.YELLOW_CARPET)));
     //Rattan Table
-    public static final Block RATTAN_TABLE = registerBlock(RATTAN_TABLE_RESOURCEL_LOCATION, new RattanTableBlock(AbstractBlock.Settings.create().strength(2.0F).sounds(BlockSoundGroup.WOOD)));
+    public static final Block RATTAN_TABLE = registerBlock(RATTAN_TABLE_RESOURCE_LOCATION, new RattanTableBlock(AbstractBlock.Settings.create().strength(2.0F).sounds(BlockSoundGroup.WOOD)));
+    //Painting Studio Series
+    public static final Block EASEL                     = registerBlock(EASEL_RESOURCE_LOCATION,                    new      EaselBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block CANVAS                    = registerBlock(CANVAS_RESOURCE_LOCATION,                   new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block DRAWING_BOARD             = registerBlock(DRAWING_BOARD_RESOURCE_LOCATION,            new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block PHOTO_PAPER_WHITE_A       = registerBlock(PHOTO_PAPER_WHITE_A_RESOURCE_LOCATION,      new PhotoPaperBlock(AbstractBlock.Settings.create().strength(0.1F).sounds(BlockSoundGroup.STONE).breakInstantly().noCollision().nonOpaque()));
+    public static final Block PHOTO_PAPER_WHITE_B       = registerBlock(PHOTO_PAPER_WHITE_B_RESOURCE_LOCATION,      new PhotoPaperBlock(AbstractBlock.Settings.create().strength(0.1F).sounds(BlockSoundGroup.STONE).breakInstantly().noCollision().nonOpaque()));
+    public static final Block PHOTO_PAPER_WHITE_C       = registerBlock(PHOTO_PAPER_WHITE_C_RESOURCE_LOCATION,      new PhotoPaperBlock(AbstractBlock.Settings.create().strength(0.1F).sounds(BlockSoundGroup.STONE).breakInstantly().noCollision().nonOpaque()));
+    public static final Block PHOTO_PAPER_BLACK_A       = registerBlock(PHOTO_PAPER_BLACK_A_RESOURCE_LOCATION,      new PhotoPaperBlock(AbstractBlock.Settings.create().strength(0.1F).sounds(BlockSoundGroup.STONE).breakInstantly().noCollision().nonOpaque()));
+    public static final Block PHOTO_PAPER_BLACK_B       = registerBlock(PHOTO_PAPER_BLACK_B_RESOURCE_LOCATION,      new PhotoPaperBlock(AbstractBlock.Settings.create().strength(0.1F).sounds(BlockSoundGroup.STONE).breakInstantly().noCollision().nonOpaque()));
+    public static final Block PHOTO_PAPER_BLACK_C       = registerBlock(PHOTO_PAPER_BLACK_C_RESOURCE_LOCATION,      new PhotoPaperBlock(AbstractBlock.Settings.create().strength(0.1F).sounds(BlockSoundGroup.STONE).breakInstantly().noCollision().nonOpaque()));
+    public static final Block GRID_SHELF_OAK            = registerBlock(GRID_SHELF_OAK_RESOURCE_LOCATION,           new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block GRID_SHELF_SPRUCE         = registerBlock(GRID_SHELF_SPRUCE_RESOURCE_LOCATION,        new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block GRID_SHELF_JUNGLE         = registerBlock(GRID_SHELF_JUNGLE_RESOURCE_LOCATION,        new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block GRID_SHELF_BIRCH          = registerBlock(GRID_SHELF_BIRCH_RESOURCE_LOCATION,         new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block GRID_SHELF_ACACIA         = registerBlock(GRID_SHELF_ACACIA_RESOURCE_LOCATION,        new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block GRID_SHELF_DARK_OAK       = registerBlock(GRID_SHELF_DARK_OAK_RESOURCE_LOCATION,      new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block GRID_SHELF_MANGROVE       = registerBlock(GRID_SHELF_MANGROVE_RESOURCE_LOCATION,      new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block GRID_SHELF_CHERRY         = registerBlock(GRID_SHELF_CHERRY_RESOURCE_LOCATION,        new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block GRID_SHELF_BAMBOO         = registerBlock(GRID_SHELF_BAMBOO_RESOURCE_LOCATION,        new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block GRID_SHELF_PALE_OAK       = registerBlock(GRID_SHELF_PALE_OAK_RESOURCE_LOCATION,      new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block GRID_SHELF_BLACKSTONE     = registerBlock(GRID_SHELF_BLACKSTONE_RESOURCE_LOCATION,    new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 
     public static Block registerBlock(Identifier resourceLocation, Block block){
         registerBlockItem(resourceLocation, block);

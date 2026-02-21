@@ -1,0 +1,7 @@
+{
+  "parent": "xhe_furniture:block/parent/painting_wall",
+  "textures": {
+    "1": "xhe_furniture:item/paintings/fruits_basket",
+    "particle": "xhe_furniture:item/paintings/fruits_basket"
+  }
+}

@@ -73,7 +73,22 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.CARPET_WHITE);
         addDrop(ModBlocks.CARPET_WHITE_A);
         addDrop(ModBlocks.CARPET_YELLOW);
-        //Ratten Table
+        //Rattan Table
         addDrop(ModBlocks.RATTAN_TABLE);
+        //Painting Studio Series
+        addDrop(ModBlocks.EASEL);
+        addDrop(ModBlocks.CANVAS);
+        addDrop(ModBlocks.DRAWING_BOARD);
+        addDrop(ModBlocks.GRID_SHELF_OAK);
+        addDrop(ModBlocks.GRID_SHELF_SPRUCE);
+        addDrop(ModBlocks.GRID_SHELF_JUNGLE);
+        addDrop(ModBlocks.GRID_SHELF_BIRCH);
+        addDrop(ModBlocks.GRID_SHELF_ACACIA);
+        addDrop(ModBlocks.GRID_SHELF_DARK_OAK);
+        addDrop(ModBlocks.GRID_SHELF_MANGROVE);
+        addDrop(ModBlocks.GRID_SHELF_CHERRY);
+        addDrop(ModBlocks.GRID_SHELF_BAMBOO);
+        addDrop(ModBlocks.GRID_SHELF_PALE_OAK);
+        addDrop(ModBlocks.GRID_SHELF_BLACKSTONE);
     }
 }

@@ -1,0 +1,66 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"render_type": "solid",
+	"elements": [
+		{
+			"name": "画布",
+			"from": [0, 10.6, 5],
+			"to": [16, 26.6, 6],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [9, 14.6, 6.3]},
+			"faces": {
+				"north": {"uv": [0, 0, 4, 4], "texture": "#5"},
+				"east": {"uv": [0, 0, 0.25, 4], "texture": "#5"},
+				"south": {"uv": [0, 4.25, 4, 8.25], "texture": "#5"},
+				"west": {"uv": [3.75, 0, 4, 4], "texture": "#5"},
+				"up": {"uv": [4, 0.25, 0, 0], "texture": "#5"},
+				"down": {"uv": [4, 3.75, 0, 4], "texture": "#5"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [35, -180, 0],
+			"translation": [0, 0.5, -2.75],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [35, -180, 0],
+			"translation": [0, 0.5, -2.75],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_righthand": {
+			"rotation": [10, -180, 0],
+			"translation": [0, 0.5, -2.75],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [10, -180, 0],
+			"translation": [0, 0.5, -2.75],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"ground": {
+			"translation": [0, 4, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"gui": {
+			"rotation": [45, -135, 0],
+			"translation": [-0.5, -1.75, 0],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"head": {
+			"translation": [0, 12.75, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"fixed": {
+			"rotation": [-90, 0, 0],
+			"translation": [0, 0, -16],
+			"scale": [2, 2, 2]
+		},
+		"on_shelf": {
+			"rotation": [21, -180, 0],
+			"translation": [0, 0, 3]
+		}
+	}
+}
