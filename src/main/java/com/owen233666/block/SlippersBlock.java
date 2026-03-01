@@ -1,53 +1,53 @@
 package com.owen233666.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.Nullable;
 
-public class SlippersBlock extends HorizontalFacingBlock {
-    public static final EnumProperty<SlippersType> SLIPPERS_TYPE = EnumProperty.of("slippers_type", SlippersType.class);
+public class SlippersBlock extends HorizontalDirectionalBlock {
+    public static final EnumProperty<SlippersType> SLIPPERS_TYPE = EnumProperty.create("slippers_type", SlippersType.class);
 
-    public SlippersBlock(Settings settings) {
+    public SlippersBlock(Properties settings) {
         super(settings);
-        this.setDefaultState(this.stateManager.getDefaultState()
-                .with(FACING, Direction.NORTH)
-                .with(SLIPPERS_TYPE, SlippersType.A));
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(FACING, Direction.NORTH)
+                .setValue(SLIPPERS_TYPE, SlippersType.A));
     }
 
 
     @Override
-    public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing());
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection());
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, SLIPPERS_TYPE);
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!world.isClient) {
-            SlippersType slippersType = state.get(SLIPPERS_TYPE).next();
-            BlockState newState = state.with(SLIPPERS_TYPE, slippersType);
-            world.setBlockState(pos, newState);
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (!world.isClientSide) {
+            SlippersType slippersType = state.getValue(SLIPPERS_TYPE).next();
+            BlockState newState = state.setValue(SLIPPERS_TYPE, slippersType);
+            world.setBlockAndUpdate(pos, newState);
         }
-        return ActionResult.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
-    public enum SlippersType implements StringIdentifiable {
+    public enum SlippersType implements StringRepresentable {
         A("a"),
         B("b"),
         C("c");
@@ -59,7 +59,7 @@ public class SlippersBlock extends HorizontalFacingBlock {
         }
 
         @Override
-        public String asString() {
+        public String getSerializedName() {
             return this.name;
         }
 

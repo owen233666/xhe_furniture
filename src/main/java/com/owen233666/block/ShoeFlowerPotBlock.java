@@ -1,35 +1,35 @@
 package com.owen233666.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class ShoeFlowerPotBlock extends StorageBlock implements BlockEntityProvider {
+public class ShoeFlowerPotBlock extends StorageBlock implements EntityBlock {
 
-    public static final VoxelShape SHAPE = Block.createCuboidShape(4, 0, 4, 12, 12, 12);
+    public static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 12, 12);
 
-    public ShoeFlowerPotBlock(Settings settings) {
+    public ShoeFlowerPotBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing());
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection());
     }
 
     @Override
@@ -38,13 +38,13 @@ public class ShoeFlowerPotBlock extends StorageBlock implements BlockEntityProvi
     }
 
     @Override
-    public Identifier type() {
+    public ResourceLocation type() {
         return ModBlocks.WHITE_SHOE_FLOWERPOT_RESOURCE_LOCATION;
     }
 
     @Override
     public Boolean canInsertStack(ItemStack stack) {
-        return stack.isIn(ItemTags.SMALL_FLOWERS);
+        return stack.is(ItemTags.SMALL_FLOWERS);
     }
 
     @Override

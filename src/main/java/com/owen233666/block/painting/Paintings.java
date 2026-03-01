@@ -1,8 +1,8 @@
 package com.owen233666.block.painting;
 
-import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.StringRepresentable;
 
-public enum Paintings implements StringIdentifiable {
+public enum Paintings implements StringRepresentable {
     ANGEL("angel"),
     BEDROOM_BED("bedroom_bed"),
     BERRY_BUSH("berry_bush"),
@@ -58,7 +58,7 @@ public enum Paintings implements StringIdentifiable {
     Paintings(String name) {this.name = name;}
 
     @Override
-    public String asString() {
+    public String getSerializedName() {
         return name;
     }
 

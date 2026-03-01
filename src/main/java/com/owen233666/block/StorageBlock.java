@@ -3,32 +3,41 @@ package com.owen233666.block;
 import com.owen233666.block.entity.StorageBlockEntity;
 import com.owen233666.util.BlockUtil;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.Property;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.*;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public abstract class StorageBlock extends HorizontalFacingBlock implements BlockEntityProvider {
-    protected StorageBlock(Settings settings) {
+public abstract class StorageBlock extends HorizontalDirectionalBlock implements EntityBlock {
+    protected StorageBlock(Properties settings) {
         super(settings);
     }
 
     public abstract int size();
 
-    public abstract Identifier type();
+    public abstract ResourceLocation type();
 
     public abstract Boolean canInsertStack(ItemStack stack);
 
@@ -37,21 +46,21 @@ public abstract class StorageBlock extends HorizontalFacingBlock implements Bloc
     public abstract int getSection(float x, float y);
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         BlockEntity be = world.getBlockEntity(pos);
-        ItemStack heldStack = player.getStackInHand(hand);
+        ItemStack heldStack = player.getItemInHand(hand);
 
         if(be instanceof StorageBlockEntity storageBlockEntity){
 
-            Optional<Pair<Float, Float>> hitPos = BlockUtil.getHitSectionCoordinate(hit, state.get(FACING), this.unAllowedDirections());
+            Optional<Tuple<Float, Float>> hitPos = BlockUtil.getHitSectionCoordinate(hit, state.getValue(FACING), this.unAllowedDirections());
             if (hitPos.isEmpty()) {
-                return ActionResult.PASS;
+                return InteractionResult.PASS;
             }
 
-            Pair<Float, Float> coordinate = hitPos.get();
-            int section = this.getSection(coordinate.getLeft(), coordinate.getRight());
+            Tuple<Float, Float> coordinate = hitPos.get();
+            int section = this.getSection(coordinate.getA(), coordinate.getB());
             if (section == Integer.MIN_VALUE) {
-                return  ActionResult.PASS;
+                return  InteractionResult.PASS;
             }
 
             ItemStack firstItem = storageBlockEntity.getInv().get(section);
@@ -59,7 +68,7 @@ public abstract class StorageBlock extends HorizontalFacingBlock implements Bloc
 
             if(hasItem){
                 remove(world, pos, player, storageBlockEntity, section);
-                return ActionResult.SUCCESS;
+                return InteractionResult.SUCCESS;
             }
 
             if(!heldStack.isEmpty()){
@@ -67,61 +76,61 @@ public abstract class StorageBlock extends HorizontalFacingBlock implements Bloc
 
                 if(canInsert){
                     this.addItem(world, pos, player, storageBlockEntity, heldStack, section);
-                    return ActionResult.SUCCESS;
+                    return InteractionResult.SUCCESS;
                 }
             }
 
-            return ActionResult.CONSUME;
+            return InteractionResult.CONSUME;
         }
-        return ActionResult.PASS;
+        return InteractionResult.PASS;
     }
 
-    public void remove(World world, BlockPos pos, PlayerEntity player, StorageBlockEntity storageBlockEntity, int index){
-        if(!world.isClient()) {
+    public void remove(Level world, BlockPos pos, Player player, StorageBlockEntity storageBlockEntity, int index){
+        if(!world.isClientSide()) {
             ItemStack toRemoveStack =storageBlockEntity.removeStack(index);
-            world.playSound(null, pos, SoundEvents.BLOCK_WOOD_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-            if(!player.getInventory().insertStack(toRemoveStack)){
-                player.dropStack(toRemoveStack);
+            world.playSound(null, pos, SoundEvents.WOOD_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
+            if(!player.getInventory().add(toRemoveStack)){
+                player.spawnAtLocation(toRemoveStack);
             }
         }
     }
 
-    public void addItem(World world, BlockPos pos, PlayerEntity player, StorageBlockEntity storageBlockEntity, ItemStack stack, int index){
-        if(!world.isClient()) {
+    public void addItem(Level world, BlockPos pos, Player player, StorageBlockEntity storageBlockEntity, ItemStack stack, int index){
+        if(!world.isClientSide()) {
             storageBlockEntity.setStack(index, stack.split(1));
-            world.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            world.playSound(null, pos, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
             if(player.isCreative()) {
-                stack.increment(1);
+                stack.grow(1);
             }
         }
     }
 
     @Override
-    public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
         Block block = state.getBlock();
         if(!state.equals(newState)) {
             BlockEntity be  =  world.getBlockEntity(pos);
             if(be instanceof StorageBlockEntity storageBlockEntity){
-                if(world instanceof ServerWorld serverWorld){
-                    ItemScatterer.spawn(serverWorld, pos, storageBlockEntity.getInv());
+                if(world instanceof ServerLevel serverWorld){
+                    Containers.dropContents(serverWorld, pos, storageBlockEntity.getInv());
                 }
             }
         }
-        super.onStateReplaced(state, world, pos, newState, moved);
+        super.onRemove(state, world, pos, newState, moved);
     }
 
     @Override
-    public @NotNull BlockRenderType getRenderType(BlockState state) {
-        return BlockRenderType.MODEL;
+    public @NotNull RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
     }
 
     @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+    public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new StorageBlockEntity(pos, state, this.size());
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(new Property[]{FACING});
     }
 }

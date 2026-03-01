@@ -3,54 +3,59 @@ package com.owen233666.block.painting;
 import com.owen233666.block.ModBlocks;
 import com.owen233666.item.ModItems;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.WetSpongeBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class PaintBrushBlock extends HorizontalFacingBlock {
-    public static final IntProperty DURABILITY = IntProperty.of("durability", 0, 64);
-    public static final VoxelShape SHAPE = Block.createCuboidShape(1, 0, 1, 15, 2, 15);
+public class PaintBrushBlock extends HorizontalDirectionalBlock {
+    public static final IntegerProperty DURABILITY = IntegerProperty.create("durability", 0, 64);
+    public static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 2, 15);
 
-    public PaintBrushBlock(Settings settings) {
+    public PaintBrushBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    public void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    public void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, DURABILITY);
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (Block.getBlockFromItem(player.getStackInHand(hand).getItem()) instanceof WetSpongeBlock && state.get(DURABILITY) != 0){
-            world.setBlockState(pos, state.with(DURABILITY, 0));
-            return ActionResult.SUCCESS;
+    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (Block.byItem(player.getItemInHand(hand).getItem()) instanceof WetSpongeBlock && state.getValue(DURABILITY) != 0){
+            world.setBlockAndUpdate(pos, state.setValue(DURABILITY, 0));
+            return InteractionResult.SUCCESS;
         }
-        return super.onUse(state, world, pos, player, hand, hit);
+        return super.use(state, world, pos, player, hand, hit);
     }
 
     @Override
-    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
-        super.afterBreak(world, player, pos, state, blockEntity, tool);
+    public void playerDestroy(Level world, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
+        super.playerDestroy(world, player, pos, state, blockEntity, tool);
         if (player.isCreative()) return;
-        int durability = state.get(DURABILITY);
+        int durability = state.getValue(DURABILITY);
         ItemStack toDropStack = new ItemStack(ModItems.PAINT_BRUSH, 1);
-        toDropStack.setDamage(ModItems.PAINT_BRUSH.getMaxDamage() - durability);
-        dropStack(world, pos, toDropStack);
+        toDropStack.setDamageValue(ModItems.PAINT_BRUSH.getMaxDamage() - durability);
+        popResource(world, pos, toDropStack);
     }
 }

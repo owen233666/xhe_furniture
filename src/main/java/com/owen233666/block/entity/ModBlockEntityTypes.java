@@ -2,16 +2,16 @@ package com.owen233666.block.entity;
 
 import com.owen233666.XheFurniture;
 import com.owen233666.block.ModBlocks;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class ModBlockEntityTypes {
 
     public static final BlockEntityType<StorageBlockEntity> STORAGE_BLOCK_BE =
-            Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(XheFurniture.MOD_ID, "storage_block_entity"),
-                    BlockEntityType.Builder.create(
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "storage_block_entity"),
+                    BlockEntityType.Builder.of(
                             StorageBlockEntity::new,
                             ModBlocks.WHITE_SHOE_FLOWERPOT,
                             ModBlocks.PINK_SHOE_FLOWERPOT,
@@ -22,8 +22,8 @@ public class ModBlockEntityTypes {
             );
 
     public static final BlockEntityType<EaselBlockEntity> EASEL_BLOCK_BE =
-            Registry.register(Registries.BLOCK_ENTITY_TYPE, new Identifier(XheFurniture.MOD_ID, "easel_block_entity"),
-                    BlockEntityType.Builder.create(
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "easel_block_entity"),
+                    BlockEntityType.Builder.of(
                             EaselBlockEntity::new,
                             ModBlocks.EASEL
                     ).build(null)

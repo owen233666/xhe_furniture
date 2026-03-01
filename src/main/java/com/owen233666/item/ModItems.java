@@ -3,11 +3,11 @@ package com.owen233666.item;
 import com.owen233666.XheFurniture;
 import com.owen233666.block.ModBlocks;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Rarity;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Rarity;
 
 public class ModItems {
     public static final Item PAINTING_ANGEL                 = registerItem("painting_angel",                new ItemWithTranslatableTooltip(new FabricItemSettings(), "angel",              "在掐饭的小禾"));
@@ -56,10 +56,10 @@ public class ModItems {
     public static final Item PAINTING_WHEAT_FIELD           = registerItem("painting_wheat_field",          new ItemWithTranslatableTooltip(new FabricItemSettings(), "wheat_field",        "在掐饭的小禾"));
     public static final Item PAINTING_WILDFLOWER_PLAIN      = registerItem("painting_wildflower_plain",     new ItemWithTranslatableTooltip(new FabricItemSettings(), "wildflower_plain",   "在掐饭的小禾"));
     public static final Item PAINTING_WORLD_TREE            = registerItem("painting_world_tree",           new ItemWithTranslatableTooltip(new FabricItemSettings(), "world_tree",         "在掐饭的小禾"));
-    public static final Item PAINT_BRUSH                    = registerItem("paint_brush",                   new PaintBrushItem(new FabricItemSettings().maxCount(1).maxDamage(64).rarity(Rarity.RARE), ModBlocks.PAINT_BRUSH));
+    public static final Item PAINT_BRUSH                    = registerItem("paint_brush",                   new PaintBrushItem(new FabricItemSettings().stacksTo(1).durability(64).rarity(Rarity.RARE), ModBlocks.PAINT_BRUSH));
 
     private static Item registerItem(String name, Item item) {
-        return Registry.register(Registries.ITEM, new Identifier(XheFurniture.MOD_ID, name), item);
+        return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(XheFurniture.MOD_ID, name), item);
     }
 
     public static void registerModItems() {

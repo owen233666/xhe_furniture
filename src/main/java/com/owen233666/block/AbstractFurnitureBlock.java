@@ -1,26 +1,26 @@
     package com.owen233666.block;
 
-    import net.minecraft.block.Block;
-    import net.minecraft.block.BlockState;
-    import net.minecraft.item.ItemPlacementContext;
-    import net.minecraft.state.StateManager;
-    import net.minecraft.state.property.DirectionProperty;
-    import net.minecraft.state.property.Property;
-    import net.minecraft.util.math.BlockPos;
-    import net.minecraft.util.math.Direction;
-    import net.minecraft.world.World;
-    import org.jetbrains.annotations.Nullable;
+    import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.Property;
+import org.jetbrains.annotations.Nullable;
 
     public abstract class AbstractFurnitureBlock extends Block {
     //    protected VoxelShape SHAPE = Block.createCuboidShape(4.0d, 0.0d, 4.0d, 12.0d, 6.0d, 12.0d);
-        protected static final DirectionProperty FACING = DirectionProperty.of("facing", new Direction[]{Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST});
+        protected static final DirectionProperty FACING = DirectionProperty.create("facing", new Direction[]{Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST});
     //    public static final EnumProperty<EightDirection> FACING = EnumProperty.of("facing", EightDirection.class);
 
 
-        public AbstractFurnitureBlock(Settings settings) {
+        public AbstractFurnitureBlock(Properties settings) {
             super(settings);
             // 初始化默认状态
-            this.setDefaultState(this.getStateManager().getDefaultState().with(FACING, Direction.NORTH));
+            this.registerDefaultState(this.getStateDefinition().any().setValue(FACING, Direction.NORTH));
         }
 
     //    @Override
@@ -29,19 +29,19 @@
     //    }
 
         @Override
-        public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
-            if(!state.isOf(oldState.getBlock())){
-                world.setBlockState(pos, state, 2);
+        public void onPlace(BlockState state, Level world, BlockPos pos, BlockState oldState, boolean notify) {
+            if(!state.is(oldState.getBlock())){
+                world.setBlock(pos, state, 2);
             }
         }
 
         @Override
-        protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
             builder.add(new Property[]{FACING});
         }
 
         @Override
-        public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
+        public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
     //        float playerYaw = ctx.getPlayerYaw();
     //
     //        float angle = playerYaw % 360;
@@ -50,7 +50,7 @@
     //        }
     //
     //        EightDirection facing = getDirectionFromYaw(angle);
-            return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing());
+            return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection());
         }
 
     //    private static EightDirection getDirectionFromYaw(float yaw) {

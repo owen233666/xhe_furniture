@@ -2,83 +2,87 @@ package com.owen233666.item;
 
 import com.owen233666.XheFurniture;
 import com.owen233666.block.painting.*;
-import net.minecraft.advancement.criterion.Criteria;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.item.*;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Vanishable;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
 
 public class PaintBrushItem extends Item implements Vanishable {
     private final Block block;
 
-    public PaintBrushItem(Settings settings, Block block) {
+    public PaintBrushItem(Properties settings, Block block) {
         super(settings);
         this.block = block;
     }
 
     @Override
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        World world = context.getWorld();
-        BlockPos pos = context.getBlockPos();
+    public InteractionResult useOn(UseOnContext context) {
+        Level world = context.getLevel();
+        BlockPos pos = context.getClickedPos();
         BlockState blockstate = world.getBlockState(pos);
         Block clickedBlock = blockstate.getBlock();
-        ItemStack itemstack = context.getStack();
-        PlayerEntity playerentity = context.getPlayer();
+        ItemStack itemstack = context.getItemInHand();
+        Player playerentity = context.getPlayer();
 
         if (clickedBlock instanceof EaselBlock || clickedBlock instanceof CanvasBlock) {
-            return ActionResult.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
 
-        BlockPos placePos = pos.offset(context.getSide());
+        BlockPos placePos = pos.relative(context.getClickedFace());
 
-        if (!world.getBlockState(placePos).isReplaceable()) {
-            return ActionResult.FAIL;
+        if (!world.getBlockState(placePos).canBeReplaced()) {
+            return InteractionResult.FAIL;
         }
 
-        if (!world.canSetBlock(placePos)) {
-            return ActionResult.FAIL;
+        if (!world.isLoaded(placePos)) {
+            return InteractionResult.FAIL;
         }
 
-        if (!world.isClient && playerentity.isSneaking()) {
-            Direction facing = playerentity.getHorizontalFacing().getOpposite();
+        if (!world.isClientSide && playerentity.isShiftKeyDown()) {
+            Direction facing = playerentity.getDirection().getOpposite();
 
             if (clickedBlock instanceof DyeablePaintCanBlock) {
-                itemstack.setDamage(0);
-                return ActionResult.SUCCESS;
+                itemstack.setDamageValue(0);
+                return InteractionResult.SUCCESS;
             }
 
-            int currentDurability = itemstack.getMaxDamage() - itemstack.getDamage();
+            int currentDurability = itemstack.getMaxDamage() - itemstack.getDamageValue();
 
-            BlockState placementState = (block).getDefaultState()
-                    .with(PaintBrushBlock.FACING, facing)
-                    .with(PaintBrushBlock.DURABILITY, currentDurability);
+            BlockState placementState = (block).defaultBlockState()
+                    .setValue(PaintBrushBlock.FACING, facing)
+                    .setValue(PaintBrushBlock.DURABILITY, currentDurability);
 
-            world.setBlockState(placePos, placementState, 3);
+            world.setBlock(placePos, placementState, 3);
 
-            BlockSoundGroup soundGroup = block.getDefaultState().getSoundGroup();
-            world.playSound(null, placePos, soundGroup.getPlaceSound(), SoundCategory.BLOCKS,
+            SoundType soundGroup = block.defaultBlockState().getSoundType();
+            world.playSound(null, placePos, soundGroup.getPlaceSound(), SoundSource.BLOCKS,
                     (soundGroup.getVolume() + 1.0F) / 2.0F, soundGroup.getPitch() * 0.8F);
 
-            world.emitGameEvent(GameEvent.BLOCK_PLACE, placePos, GameEvent.Emitter.of(playerentity, placementState));
+            world.gameEvent(GameEvent.BLOCK_PLACE, placePos, GameEvent.Context.of(playerentity, placementState));
 
-            if (playerentity instanceof ServerPlayerEntity serverPlayer) {
-                Criteria.PLACED_BLOCK.trigger(serverPlayer, placePos, itemstack);
+            if (playerentity instanceof ServerPlayer serverPlayer) {
+                CriteriaTriggers.PLACED_BLOCK.trigger(serverPlayer, placePos, itemstack);
             }
 
-            if (playerentity == null || !playerentity.getAbilities().creativeMode) {
-                itemstack.decrement(1);
+            if (playerentity == null || !playerentity.getAbilities().instabuild) {
+                itemstack.shrink(1);
             }
         }
 
-        return ActionResult.success(world.isClient);
+        return InteractionResult.sidedSuccess(world.isClientSide);
     }
 
 
@@ -104,12 +108,12 @@ public class PaintBrushItem extends Item implements Vanishable {
 //    }
 
     @Override
-    public boolean isItemBarVisible(ItemStack stack) {
+    public boolean isBarVisible(ItemStack stack) {
         return true;
     }
 
     @Override
     public boolean isEnchantable(ItemStack stack) {
-        return this.getMaxCount() == 1;
+        return this.getMaxStackSize() == 1;
     }
 }

@@ -1,8 +1,8 @@
 package com.owen233666.block.painting;
 
-import net.minecraft.util.StringIdentifiable;
+import net.minecraft.util.StringRepresentable;
 
-public enum PlacementState implements StringIdentifiable {
+public enum PlacementState implements StringRepresentable {
     CORNER("corner"),
     WALL("wall");
 
@@ -13,7 +13,7 @@ public enum PlacementState implements StringIdentifiable {
     }
 
     @Override
-    public String asString() {
+    public String getSerializedName() {
         return name;
     }
 }

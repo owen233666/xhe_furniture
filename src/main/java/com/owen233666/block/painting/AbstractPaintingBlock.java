@@ -1,43 +1,43 @@
 package com.owen233666.block.painting;
 
 import com.owen233666.item.ModItems;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 
-public abstract class AbstractPaintingBlock extends HorizontalFacingBlock {
+public abstract class AbstractPaintingBlock extends HorizontalDirectionalBlock {
 
     public static final HashMap<Paintings, Item> PAINTINGS_ITEM_HASH_MAP = new HashMap<>();
 
     public static final HashMap<Item, Paintings> ITEM_PAINTINGS_HASH_MAP = new HashMap<>();
 
-    public static final EnumProperty<Paintings> PAINTINGS = EnumProperty.of("painting", Paintings.class);
+    public static final EnumProperty<Paintings> PAINTINGS = EnumProperty.create("painting", Paintings.class);
 
-    public AbstractPaintingBlock(Settings settings) {
+    public AbstractPaintingBlock(Properties settings) {
         super(settings);
-        this.setDefaultState(getDefaultState()
-                .with(HorizontalFacingBlock.FACING, Direction.NORTH)
+        this.registerDefaultState(defaultBlockState()
+                .setValue(HorizontalDirectionalBlock.FACING, Direction.NORTH)
                 );
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(FACING, PAINTINGS);
     }
 
     @Override
-    public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
     }
 
     public Paintings getPaintingsFromItem(Item item) {
