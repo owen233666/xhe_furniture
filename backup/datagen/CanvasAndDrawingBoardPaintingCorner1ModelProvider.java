@@ -6,9 +6,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+import net.minecraft.Util;
+import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.DataWriter;
-import net.minecraft.util.Util;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -29,8 +29,8 @@ public class CanvasAndDrawingBoardPaintingCorner1ModelProvider implements DataPr
     }
 
     @Override
-    public CompletableFuture<?> run(DataWriter writer) {
-        Path basePath = output.getPath().resolve("assets/xhe_furniture/models/block/paintings/canvas/corner_1");
+    public CompletableFuture<?> run(CachedOutput writer) {
+        Path basePath = output.getOutputFolder().resolve("assets/xhe_furniture/models/block/paintings/canvas/corner_1");
         List<CompletableFuture<?>> futures = new ArrayList<>();
 
         for (String name : IMAGE_NAMES) {
@@ -50,11 +50,11 @@ public class CanvasAndDrawingBoardPaintingCorner1ModelProvider implements DataPr
 
             futures.add(CompletableFuture.runAsync(() -> {
                 try {
-                    writer.write(filePath, jsonBytes, hashCode);
+                    writer.writeIfNeeded(filePath, jsonBytes, hashCode);
                 } catch (IOException e) {
                     throw new RuntimeException("Failed to write painting model: " + filePath, e);
                 }
-            }, Util.getMainWorkerExecutor()));
+            }, Util.backgroundExecutor()));
         }
 
         return CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]));

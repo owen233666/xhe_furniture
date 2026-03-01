@@ -1,85 +1,85 @@
 package com.owen233666.blockentityrenderer;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Axis;
 import com.owen233666.block.entity.EaselBlockEntity;
+import com.owen233666.block.entity.StorageBlockEntity;
 import com.owen233666.block.painting.EaselBlock;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.block.entity.BlockEntityRenderer;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.render.model.BakedModel;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.RotationAxis;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
+import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.client.resources.model.BakedModel;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class EaselEntityRenderer implements BlockEntityRenderer<EaselBlockEntity> {
 
-    public EaselEntityRenderer(BlockEntityRendererFactory.Context context) {
+    public EaselEntityRenderer(BlockEntityRendererProvider.Context context) {
 
     }
 
     @Override
-    public void render(EaselBlockEntity entity, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
-        ItemStack stack = entity.getInv().get(0);
-        BlockState state = entity.getCachedState();
-        Direction direction = state.get(EaselBlock.FACING);
+    public void render(EaselBlockEntity blockEntity, float f, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j) {
+        ItemStack stack = blockEntity.getInv().get(0);
+        BlockState state = blockEntity.getBlockState();
+        Direction direction = state.getValue(EaselBlock.FACING);
         if (stack.isEmpty()) {
             return;
         }
 
         // 保存当前矩阵状态
-        matrices.push();
+        poseStack.pushPose();
 
         switch (direction) {
             case NORTH -> {
                 // 移动到方块中心并抬高一点
-                matrices.translate(0.5, 1.17, 0.43);
+                poseStack.translate(0.5, 1.17, 0.43);
 
                 //添加轴旋转
-                matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(22.5F));
+                poseStack.mulPose(Axis.XP.rotationDegrees(22.5F));
 
                 // 设置缩放，让物品大小适中
-                matrices.scale(0.87F, 0.87F, 0.87F);
+                poseStack.scale(0.87F, 0.87F, 0.87F);
             }
             case SOUTH -> {
                 // 移动到方块中心并抬高一点
-                matrices.translate(0.5, 1.17, 0.57);
+                poseStack.translate(0.5, 1.17, 0.57);
 
                 //添加轴旋转
-                matrices.multiply(RotationAxis.NEGATIVE_X.rotationDegrees(22.5F));
+                poseStack.mulPose(Axis.XN.rotationDegrees(22.5F));
 
                 // 设置缩放，让物品大小适中
-                matrices.scale(0.87F, 0.87F, 0.87F);
+                poseStack.scale(0.87F, 0.87F, 0.87F);
             }
             case EAST -> {
-                matrices.translate(0.57, 1.17, 0.5);
-                matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(90.0F));
-                matrices.multiply(RotationAxis.NEGATIVE_X.rotationDegrees(22.5F));
-                matrices.scale(0.87F, 0.87F, 0.87F);
+                poseStack.translate(0.57, 1.17, 0.5);
+                poseStack.mulPose(Axis.YP.rotationDegrees(90.0F));
+                poseStack.mulPose(Axis.XN.rotationDegrees(22.5F));
+                poseStack.scale(0.87F, 0.87F, 0.87F);
             }
             case WEST -> {
-                matrices.translate(0.43, 1.17, 0.5);
-                matrices.multiply(RotationAxis.NEGATIVE_Y.rotationDegrees(90.0F));
-                matrices.multiply(RotationAxis.NEGATIVE_X.rotationDegrees(22.5F));
-                matrices.scale(0.87F, 0.87F, 0.87F);
+                poseStack.translate(0.43, 1.17, 0.5);
+                poseStack.mulPose(Axis.YN.rotationDegrees(90.0F));
+                poseStack.mulPose(Axis.XN.rotationDegrees(22.5F));
+                poseStack.scale(0.87F, 0.87F, 0.87F);
             }
         }
 
         // 获取物品渲染器
-        ItemRenderer itemRenderer = MinecraftClient.getInstance().getItemRenderer();
+        ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
 
         // 获取物品的模型
-        BakedModel model = itemRenderer.getModel(stack, entity.getWorld(), null, 0);
+        BakedModel model = itemRenderer.getModel(stack, blockEntity.getLevel(), null, 0);
 
         // 渲染物品
-        itemRenderer.renderItem(stack, ModelTransformationMode.FIXED, false, matrices,
-                vertexConsumers, light, OverlayTexture.DEFAULT_UV, model);
+        itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, i, j, poseStack, multiBufferSource, blockEntity.getLevel(), 0);
 
         // 恢复矩阵状态
-        matrices.pop();
+        poseStack.popPose();
     }
 }
