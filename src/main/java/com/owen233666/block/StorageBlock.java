@@ -66,7 +66,7 @@ public abstract class StorageBlock extends HorizontalFacingBlock implements Bloc
                 boolean canInsert = this.canInsertStack(heldStack);
 
                 if(canInsert){
-                    this.add(world, pos, player, storageBlockEntity, heldStack, section);
+                    this.addItem(world, pos, player, storageBlockEntity, heldStack, section);
                     return ActionResult.SUCCESS;
                 }
             }
@@ -86,7 +86,7 @@ public abstract class StorageBlock extends HorizontalFacingBlock implements Bloc
         }
     }
 
-    public void add(World world, BlockPos pos, PlayerEntity player, StorageBlockEntity storageBlockEntity, ItemStack stack, int index){
+    public void addItem(World world, BlockPos pos, PlayerEntity player, StorageBlockEntity storageBlockEntity, ItemStack stack, int index){
         if(!world.isClient()) {
             storageBlockEntity.setStack(index, stack.split(1));
             world.playSound(null, pos, SoundEvents.BLOCK_WOOD_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);

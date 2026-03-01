@@ -1,7 +1,0 @@
-{
-  "parent": "xhe_furniture:block/parent/painting_corner_2",
-  "textures": {
-    "2": "xhe_furniture:item/paintings/salted_lemon",
-    "particle": "xhe_furniture:item/paintings/salted_lemon"
-  }
-}

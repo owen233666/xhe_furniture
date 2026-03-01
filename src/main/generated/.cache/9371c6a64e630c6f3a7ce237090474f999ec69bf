@@ -1,4 +1,4 @@
-// 1.20.1	2026-02-21T22:52:51.5657808	Xhe Furniture/Block Loot Tables
+// 1.20.1	2026-02-28T18:27:29.3690528	Xhe Furniture/Block Loot Tables
 4e65e44a3c34c324b6312f853bcf002fa3ffde58 data\xhe_furniture\loot_tables\blocks\beige_bunny_slippers.json
 b48e6a19c455ccf39399c60e4093a728bcdf7c27 data\xhe_furniture\loot_tables\blocks\grid_shelf_dark_oak.json
 8dac45fb63b94154a7a4c99dedf21602387793ee data\xhe_furniture\loot_tables\blocks\white_bunny_slippers.json
@@ -62,8 +62,8 @@ ebcbc5db4f92674c5544d943b77634c87186acaa data\xhe_furniture\loot_tables\blocks\c
 92baa9e2795493e0c7c456089ee50cf0e933b053 data\xhe_furniture\loot_tables\blocks\carpet_deep_green_a.json
 3c946b9c53bc1d103792aad83e7ef29b96853acc data\xhe_furniture\loot_tables\blocks\carpet_deep_blue_a.json
 b1358bb46afe4a9af299a2b1dcd39718cf0dde2d data\xhe_furniture\loot_tables\blocks\brown_hamsters_slippers.json
-7ce603a574c4a70010e340ec51268b35ad74058f data\xhe_furniture\loot_tables\blocks\carpet_black_a.json
 4218166fa13037d98a143e4507051b976cb0d56d data\xhe_furniture\loot_tables\blocks\carpet_red_a.json
+7ce603a574c4a70010e340ec51268b35ad74058f data\xhe_furniture\loot_tables\blocks\carpet_black_a.json
 0998087c2fc782cd1a15aeb47db344b8d40110bc data\xhe_furniture\loot_tables\blocks\black_bunny_slippers.json
 9dd45c05e97d2ced4969bdd7c270ea1963671802 data\xhe_furniture\loot_tables\blocks\red_shoe_flowerpot.json
 f3c311a5c81530f0684816ea4ce72cbddb1bccc1 data\xhe_furniture\loot_tables\blocks\carpet_black.json

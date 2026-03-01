@@ -1,7 +1,0 @@
-{
-  "parent": "xhe_furniture:block/parent/photo_painting_a",
-  "textures": {
-    "0": "xhe_furniture:item/paintings/cake",
-    "particle": "xhe_furniture:item/paintings/cake"
-  }
-}

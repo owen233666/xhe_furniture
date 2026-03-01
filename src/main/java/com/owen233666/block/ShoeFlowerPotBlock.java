@@ -16,26 +16,6 @@ import org.jetbrains.annotations.Nullable;
 
 public class ShoeFlowerPotBlock extends StorageBlock implements BlockEntityProvider {
 
-//    private static final Supplier<VoxelShape> SHAPE_SUPPLIER = () -> {
-//        VoxelShape shape = VoxelShapes.empty();
-//        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(9.5, 0, 8,  10.5, 8, 11), BooleanBiFunction.OR);
-//        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(5.5, 0, 8,  6.5,  8, 11), BooleanBiFunction.OR);
-//        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(6.5, 2, 7,  9.5,  8, 8 ), BooleanBiFunction.OR);
-//        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(6.5, 0, 4,  9.5,  2, 11), BooleanBiFunction.OR);
-//        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(5.5, 0, 6,  6.5,  2, 8 ), BooleanBiFunction.OR);
-//        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(6.5, 2, 5,  9.5,  3, 7 ), BooleanBiFunction.OR);
-//        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(9.5, 0, 6,  10.5, 2, 8 ), BooleanBiFunction.OR);
-//        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(6.5, 0, 11, 9.5,  8, 12), BooleanBiFunction.OR);
-//        shape = VoxelShapes.combine(shape, VoxelShapes.cuboid(6.5, 2, 8,  9.5,  7, 11), BooleanBiFunction.OR);
-//        return shape;
-//    };
-//
-//    public static final Map<Direction, VoxelShape> SHAPE_BY_DIRECTION = Util.make(new HashMap<>(), map ->{
-//        for(Direction direction : Direction.Type.HORIZONTAL) {
-//            map.put(direction, BlockUtil.rotateVoxelShape(Direction.NORTH, direction, SHAPE_SUPPLIER.get()));
-//        }
-//    });
-
     public static final VoxelShape SHAPE = Block.createCuboidShape(4, 0, 4, 12, 12, 12);
 
     public ShoeFlowerPotBlock(Settings settings) {

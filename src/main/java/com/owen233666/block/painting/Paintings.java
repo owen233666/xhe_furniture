@@ -66,8 +66,6 @@ public enum Paintings implements StringIdentifiable {
         for (Paintings p : values()) {
             if (p.name.equals(name)) {
                 return p;
-            }else {
-                return Paintings.NONE;
             }
         }
         return Paintings.NONE;

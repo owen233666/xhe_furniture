@@ -89,8 +89,20 @@ public class ModCreativeTab {
             new Identifier(XheFurniture.MOD_ID, "xhe_furniture.creativetab.paintings"),
             FabricItemGroup.builder().displayName(Text.translatable("xhe_furniture.creativetab.paintings")).icon(() -> new ItemStack(Registries.BLOCK.get(new Identifier(XheFurniture.MOD_ID, "hot_cocoa"))))
                     .entries(((displayContext, entries) -> {
+                        entries.add(ModItems.PAINT_BRUSH);
                         entries.add(ModBlocks.EASEL);
                         entries.add(ModBlocks.CANVAS);
+                        entries.add(ModBlocks.PAINTING_FRAME_OAK);
+                        entries.add(ModBlocks.PAINTING_FRAME_SPRUCE);
+                        entries.add(ModBlocks.PAINTING_FRAME_JUNGLE);
+                        entries.add(ModBlocks.PAINTING_FRAME_BIRCH);
+                        entries.add(ModBlocks.PAINTING_FRAME_ACACIA);
+                        entries.add(ModBlocks.PAINTING_FRAME_DARK_OAK);
+                        entries.add(ModBlocks.PAINTING_FRAME_MANGROVE);
+                        entries.add(ModBlocks.PAINTING_FRAME_CHERRY);
+                        entries.add(ModBlocks.PAINTING_FRAME_BAMBOO);
+                        entries.add(ModBlocks.PAINTING_FRAME_PALE_OAK);
+                        entries.add(ModBlocks.PAINTING_FRAME_BLACKSTONE);
                         entries.add(ModBlocks.DRAWING_BOARD);
                         entries.add(ModBlocks.PHOTO_PAPER_WHITE_A);
                         entries.add(ModBlocks.PHOTO_PAPER_WHITE_B);
@@ -109,6 +121,8 @@ public class ModCreativeTab {
                         entries.add(ModBlocks.GRID_SHELF_BAMBOO);
                         entries.add(ModBlocks.GRID_SHELF_PALE_OAK);
                         entries.add(ModBlocks.GRID_SHELF_BLACKSTONE);
+                        entries.add(ModBlocks.PAINT_CAN);
+                        entries.add(ModBlocks.MESSY_PAINT_CAN);
                         entries.add(ModItems.PAINTING_ANGEL);
                         entries.add(ModItems.PAINTING_BEDROOM_BED);
                         entries.add(ModItems.PAINTING_BERRY_BUSH);

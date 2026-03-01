@@ -1,7 +1,7 @@
 {
   "parent": "xhe_furniture:block/parent/grid_shelf_photo_paper_b",
   "textures": {
-    "1": "xhe_furniture:block/photo_paper_black",
+    "2": "xhe_furniture:block/photo_paper_black",
     "particle": "xhe_furniture:block/photo_paper_black"
   }
 }

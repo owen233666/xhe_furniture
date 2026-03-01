@@ -3,6 +3,7 @@
   "package": "com.owen233666.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ItemStackMixin",
     "ServerPlayNetworkHandlerMixin"
   ],
   "injectors": {

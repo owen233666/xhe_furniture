@@ -1,0 +1,7 @@
+{
+  "parent": "xhe_furniture:block/parent/painting_frame_wall",
+  "textures": {
+    "1": "xhe_furniture:block/painting_frame_oak",
+    "particle": "xhe_furniture:block/painting_frame_oak"
+  }
+}

@@ -2,6 +2,7 @@ package com.owen233666;
 
 import com.owen233666.block.ModBlocks;
 import com.owen233666.block.entity.ModBlockEntityTypes;
+import com.owen233666.blockentityrenderer.EaselEntityRenderer;
 import com.owen233666.blockentityrenderer.ShoeFlowerPotBlockEntityRenderer;
 import com.owen233666.blockentityrenderer.StorageBlockEntityRenderer;
 import com.owen233666.blockentityrenderer.StorageTypeRenderer;
@@ -9,6 +10,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.util.Identifier;
@@ -79,11 +81,15 @@ public class XheFurnitureClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CARPET_YELLOW, RenderLayer.getCutout());
 		//Rattan Table
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RATTAN_TABLE, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PAINT_BRUSH, RenderLayer.getCutout());
 
 
 		BlockEntityRendererFactories.register(ModBlockEntityTypes.STORAGE_BLOCK_BE, StorageBlockEntityRenderer::new);
+		BlockEntityRendererFactories.register(ModBlockEntityTypes.EASEL_BLOCK_BE, EaselEntityRenderer::new);
 		berInit();
 		registerStorageTypeRenderers();
+
+		ModItemProperties.registerModItemProperties();
 	}
 
 	public static void registerStorageTypeRenderers(){

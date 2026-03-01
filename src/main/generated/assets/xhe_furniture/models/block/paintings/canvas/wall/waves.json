@@ -1,7 +1,0 @@
-{
-  "parent": "xhe_furniture:block/parent/painting_wall",
-  "textures": {
-    "1": "xhe_furniture:item/paintings/waves",
-    "particle": "xhe_furniture:item/paintings/waves"
-  }
-}

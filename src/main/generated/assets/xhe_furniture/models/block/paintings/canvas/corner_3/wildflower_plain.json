@@ -1,7 +1,0 @@
-{
-  "parent": "xhe_furniture:block/parent/painting_corner_3",
-  "textures": {
-    "2": "xhe_furniture:item/paintings/wildflower_plain",
-    "particle": "xhe_furniture:item/paintings/wildflower_plain"
-  }
-}

@@ -3,6 +3,7 @@ package com.owen233666;
 import com.owen233666.block.ModBlocks;
 import com.owen233666.block.entity.ModBlockEntityTypes;
 import com.owen233666.creativetab.ModCreativeTab;
+import com.owen233666.item.ModItemTags;
 import com.owen233666.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -26,5 +27,6 @@ public class XheFurniture implements ModInitializer {
         ModBlocks.registerModBlocks();
         ModCreativeTab.registerItemGroup();
 		ModBlockEntityTypes.registerBlockEntityTypes();
+		ModItemTags.registerModItemTags();
 	}
 }

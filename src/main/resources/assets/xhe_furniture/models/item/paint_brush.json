@@ -1,0 +1,11 @@
+{
+  "parent": "xhe_furniture:block/dirty_paint_brush",
+  "overrides": [
+    {
+      "predicate": {
+        "damage": 0.999
+      },
+      "model": "xhe_furniture:block/paint_brush"
+    }
+  ]
+}

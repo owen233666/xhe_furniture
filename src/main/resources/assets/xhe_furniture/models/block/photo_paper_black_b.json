@@ -1,7 +1,7 @@
 {
   "parent": "xhe_furniture:block/parent/photo_paper_b",
   "textures": {
-    "w": "xhe_furniture:block/photo_black_white",
-    "particle": "xhe_furniture:block/photo_black_white"
+    "2": "xhe_furniture:block/photo_paper_black",
+    "particle": "xhe_furniture:block/photo_paper_black"
   }
 }

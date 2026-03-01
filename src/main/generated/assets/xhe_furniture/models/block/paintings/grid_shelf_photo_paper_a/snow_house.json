@@ -1,7 +1,0 @@
-{
-  "parent": "xhe_furniture:block/parent/grid_shelf_photo_painting_a",
-  "textures": {
-    "0": "xhe_furniture:item/paintings/snow_house",
-    "particle": "xhe_furniture:item/paintings/snow_house"
-  }
-}

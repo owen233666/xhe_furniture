@@ -2,10 +2,7 @@ package com.owen233666.block;
 
 
 import com.owen233666.XheFurniture;
-import com.owen233666.block.painting.CanvasBlock;
-import com.owen233666.block.painting.EaselBlock;
-import com.owen233666.block.painting.GridShelfBlock;
-import com.owen233666.block.painting.PhotoPaperBlock;
+import com.owen233666.block.painting.*;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -85,6 +82,17 @@ public class ModBlocks {
     //Painting Studio Series
     public static final Identifier EASEL_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "easel");
     public static final Identifier CANVAS_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "canvas");
+    public static final Identifier PAINTING_FRAME_OAK_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "painting_frame");
+    public static final Identifier PAINTING_FRAME_SPRUCE_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "painting_frame_spruce");
+    public static final Identifier PAINTING_FRAME_BIRCH_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "painting_frame_birch");
+    public static final Identifier PAINTING_FRAME_JUNGLE_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "painting_frame_jungle");
+    public static final Identifier PAINTING_FRAME_ACACIA_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "painting_frame_acacia");
+    public static final Identifier PAINTING_FRAME_DARK_OAK_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "painting_frame_dark_oak");
+    public static final Identifier PAINTING_FRAME_MANGROVE_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "painting_frame_mangrove");
+    public static final Identifier PAINTING_FRAME_CHERRY_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "painting_frame_cherry");
+    public static final Identifier PAINTING_FRAME_BAMBOO_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "painting_frame_bamboo");
+    public static final Identifier PAINTING_FRAME_PALE_OAK_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "painting_frame_palm");
+    public static final Identifier PAINTING_FRAME_BLACKSTONE_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "painting_frame_blackstone");
     public static final Identifier DRAWING_BOARD_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "drawing_board");
     public static final Identifier PHOTO_PAPER_WHITE_A_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "photo_paper_white_a");
     public static final Identifier PHOTO_PAPER_WHITE_B_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "photo_paper_white_b");
@@ -103,7 +111,9 @@ public class ModBlocks {
     public static final Identifier GRID_SHELF_BAMBOO_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "grid_shelf_bamboo");
     public static final Identifier GRID_SHELF_PALE_OAK_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "grid_shelf_pale_oak");
     public static final Identifier GRID_SHELF_BLACKSTONE_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "grid_shelf_blackstone");
-
+    public static final Identifier PAINT_BRUSH_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "paint_brush");
+    public static final Identifier PAINT_CAN_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "paint_can");
+    public static final Identifier MESSY_PAINT_CAN_RESOURCE_LOCATION = new Identifier(XheFurniture.MOD_ID, "messy_paint_can");
 
 
     //Cups
@@ -172,6 +182,17 @@ public class ModBlocks {
     //Painting Studio Series
     public static final Block EASEL                     = registerBlock(EASEL_RESOURCE_LOCATION,                    new      EaselBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
     public static final Block CANVAS                    = registerBlock(CANVAS_RESOURCE_LOCATION,                   new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block PAINTING_FRAME_OAK        = registerBlock(PAINTING_FRAME_OAK_RESOURCE_LOCATION,       new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block PAINTING_FRAME_SPRUCE     = registerBlock(PAINTING_FRAME_SPRUCE_RESOURCE_LOCATION,    new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block PAINTING_FRAME_JUNGLE     = registerBlock(PAINTING_FRAME_JUNGLE_RESOURCE_LOCATION,    new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block PAINTING_FRAME_BIRCH      = registerBlock(PAINTING_FRAME_BIRCH_RESOURCE_LOCATION,     new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block PAINTING_FRAME_ACACIA     = registerBlock(PAINTING_FRAME_ACACIA_RESOURCE_LOCATION,    new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block PAINTING_FRAME_DARK_OAK   = registerBlock(PAINTING_FRAME_DARK_OAK_RESOURCE_LOCATION,  new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block PAINTING_FRAME_MANGROVE   = registerBlock(PAINTING_FRAME_MANGROVE_RESOURCE_LOCATION,  new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block PAINTING_FRAME_CHERRY     = registerBlock(PAINTING_FRAME_CHERRY_RESOURCE_LOCATION,    new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block PAINTING_FRAME_BAMBOO     = registerBlock(PAINTING_FRAME_BAMBOO_RESOURCE_LOCATION,    new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block PAINTING_FRAME_PALE_OAK   = registerBlock(PAINTING_FRAME_PALE_OAK_RESOURCE_LOCATION,  new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
+    public static final Block PAINTING_FRAME_BLACKSTONE = registerBlock(PAINTING_FRAME_BLACKSTONE_RESOURCE_LOCATION,new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
     public static final Block DRAWING_BOARD             = registerBlock(DRAWING_BOARD_RESOURCE_LOCATION,            new     CanvasBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).noCollision().nonOpaque()));
     public static final Block PHOTO_PAPER_WHITE_A       = registerBlock(PHOTO_PAPER_WHITE_A_RESOURCE_LOCATION,      new PhotoPaperBlock(AbstractBlock.Settings.create().strength(0.1F).sounds(BlockSoundGroup.STONE).breakInstantly().noCollision().nonOpaque()));
     public static final Block PHOTO_PAPER_WHITE_B       = registerBlock(PHOTO_PAPER_WHITE_B_RESOURCE_LOCATION,      new PhotoPaperBlock(AbstractBlock.Settings.create().strength(0.1F).sounds(BlockSoundGroup.STONE).breakInstantly().noCollision().nonOpaque()));
@@ -190,9 +211,16 @@ public class ModBlocks {
     public static final Block GRID_SHELF_BAMBOO         = registerBlock(GRID_SHELF_BAMBOO_RESOURCE_LOCATION,        new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block GRID_SHELF_PALE_OAK       = registerBlock(GRID_SHELF_PALE_OAK_RESOURCE_LOCATION,      new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
     public static final Block GRID_SHELF_BLACKSTONE     = registerBlock(GRID_SHELF_BLACKSTONE_RESOURCE_LOCATION,    new  GridShelfBlock(AbstractBlock.Settings.create().strength(1.0F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+    public static final Block PAINT_BRUSH               = registerWithoutItem(PAINT_BRUSH_RESOURCE_LOCATION,        new PaintBrushBlock(AbstractBlock.Settings.create().strength(1.0F).breakInstantly().nonOpaque()));
+    public static final Block PAINT_CAN                 = registerBlock(PAINT_CAN_RESOURCE_LOCATION,                new   PaintCanBlock(AbstractBlock.Settings.create().strength(1.0F).breakInstantly().nonOpaque(), 0, 0, 0, 16, 6, 16));
+    public static final Block MESSY_PAINT_CAN           = registerBlock(MESSY_PAINT_CAN_RESOURCE_LOCATION,          new DyeablePaintCanBlock(AbstractBlock.Settings.create().strength(1.0F).breakInstantly().nonOpaque(), 0, 0, 0, 16, 6, 16));
 
     public static Block registerBlock(Identifier resourceLocation, Block block){
         registerBlockItem(resourceLocation, block);
+        return Registry.register(Registries.BLOCK, resourceLocation, block);
+    }
+
+    public static Block registerWithoutItem(Identifier resourceLocation, Block block){
         return Registry.register(Registries.BLOCK, resourceLocation, block);
     }
 

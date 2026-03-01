@@ -1,7 +1,0 @@
-{
-  "parent": "xhe_furniture:block/parent/grid_shelf_photo_painting_b",
-  "textures": {
-    "5": "xhe_furniture:item/paintings/kitchen_sink",
-    "particle": "xhe_furniture:item/paintings/kitchen_sink"
-  }
-}

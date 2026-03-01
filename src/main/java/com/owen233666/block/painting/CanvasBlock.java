@@ -1,10 +1,12 @@
 package com.owen233666.block.painting;
 
 import com.owen233666.block.ModBlocks;
+import com.owen233666.item.PaintBrushItem;
 import com.owen233666.util.BlockUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
+import net.minecraft.block.WetSpongeBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -73,6 +75,24 @@ public class CanvasBlock extends AbstractPaintingBlock {
         ItemStack heldStack = player.getStackInHand(hand);
         Item heldItem = heldStack.getItem();
         boolean canAddCanvas = !state.get(RACK);
+
+        if (heldItem instanceof PaintBrushItem) {
+            if (state.get(DIRTY)) return ActionResult.PASS;
+            if (heldStack.getDamage() == heldItem.getMaxDamage()) return ActionResult.PASS;
+            world.setBlockState(pos, state.with(DIRTY, true));
+            if (!player.isCreative()) heldStack.damage(1, player, (entity) -> {});
+            return ActionResult.SUCCESS;
+        }
+
+
+        if (Block.getBlockFromItem(heldItem) instanceof WetSpongeBlock){
+            if (state.get(DIRTY)) {
+                world.setBlockState(pos, state.with(DIRTY, false));
+                return ActionResult.SUCCESS;
+            }else {
+                return ActionResult.PASS;
+            }
+        }
 
         if (canAddCanvas && state.getBlock().asItem() == heldItem) {
             if (state.get(COUNT) == 3) {

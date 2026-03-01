@@ -1,0 +1,279 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"render_type": "solid",
+	"elements": [
+		{
+			"name": "画框",
+			"from": [0, 1, 13.7],
+			"to": [1, 15, 14.7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 14.4]},
+			"faces": {
+				"north": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"east": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"south": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"west": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"up": {"uv": [1, 16, 0, 15], "texture": "#1"},
+				"down": {"uv": [16, 0, 15, 1], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0, 15, 13.7],
+			"to": [16, 16, 14.7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 14.4]},
+			"faces": {
+				"north": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"east": {"uv": [1, 15, 2, 16], "texture": "#1"},
+				"south": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"west": {"uv": [15, 1, 16, 2], "texture": "#1"},
+				"up": {"uv": [16, 15, 0, 14], "texture": "#1"},
+				"down": {"uv": [16, 14, 0, 15], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0, 0, 13.7],
+			"to": [16, 1, 14.7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 14.4]},
+			"faces": {
+				"north": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"east": {"uv": [1, 15, 2, 16], "texture": "#1"},
+				"south": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"west": {"uv": [15, 1, 16, 2], "texture": "#1"},
+				"up": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"down": {"uv": [0, 14, 16, 15], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [15, 1, 13.7],
+			"to": [16, 15, 14.7],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 14.4]},
+			"faces": {
+				"north": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"east": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"south": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"west": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"up": {"uv": [0, 15, 1, 16], "texture": "#1"},
+				"down": {"uv": [15, 0, 16, 1], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [1, 1, 14.6],
+			"to": [15, 15, 14.6],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 14.4]},
+			"faces": {
+				"north": {"uv": [0, 0, 14, 14], "texture": "#1"},
+				"east": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"south": {"uv": [0, 0, 14, 14], "texture": "#1"},
+				"west": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"up": {"uv": [0, 15, 1, 16], "texture": "#1"},
+				"down": {"uv": [15, 0, 16, 1], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0, 1, 6.6],
+			"to": [1, 15, 7.6],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 0, 7.3]},
+			"faces": {
+				"north": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"east": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"south": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"west": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"up": {"uv": [1, 16, 0, 15], "texture": "#1"},
+				"down": {"uv": [16, 0, 15, 1], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0, 15, 6.6],
+			"to": [16, 16, 7.6],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 0, 7.3]},
+			"faces": {
+				"north": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"east": {"uv": [1, 15, 2, 16], "texture": "#1"},
+				"south": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"west": {"uv": [15, 1, 16, 2], "texture": "#1"},
+				"up": {"uv": [16, 15, 0, 14], "texture": "#1"},
+				"down": {"uv": [16, 14, 0, 15], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0, 0, 6.6],
+			"to": [16, 1, 7.6],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 0, 7.3]},
+			"faces": {
+				"north": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"east": {"uv": [1, 15, 2, 16], "texture": "#1"},
+				"south": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"west": {"uv": [15, 1, 16, 2], "texture": "#1"},
+				"up": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"down": {"uv": [0, 14, 16, 15], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [15, 1, 6.6],
+			"to": [16, 15, 7.6],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 0, 7.3]},
+			"faces": {
+				"north": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"east": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"south": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"west": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"up": {"uv": [0, 15, 1, 16], "texture": "#1"},
+				"down": {"uv": [15, 0, 16, 1], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [1, 1, 7.5],
+			"to": [15, 15, 7.5],
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [8, 0, 7.3]},
+			"faces": {
+				"north": {"uv": [0, 0, 14, 14], "texture": "#1"},
+				"east": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"south": {"uv": [0, 0, 14, 14], "texture": "#1"},
+				"west": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"up": {"uv": [0, 15, 1, 16], "texture": "#1"},
+				"down": {"uv": [15, 0, 16, 1], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0, 1, 15],
+			"to": [1, 15, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 15.7]},
+			"faces": {
+				"north": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"east": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"south": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"west": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"up": {"uv": [1, 16, 0, 15], "texture": "#1"},
+				"down": {"uv": [16, 0, 15, 1], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0, 15, 15],
+			"to": [16, 16, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 15.7]},
+			"faces": {
+				"north": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"east": {"uv": [1, 15, 2, 16], "texture": "#1"},
+				"south": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"west": {"uv": [15, 1, 16, 2], "texture": "#1"},
+				"up": {"uv": [16, 15, 0, 14], "texture": "#1"},
+				"down": {"uv": [16, 14, 0, 15], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [0, 0, 15],
+			"to": [16, 1, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 15.7]},
+			"faces": {
+				"north": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"east": {"uv": [1, 15, 2, 16], "texture": "#1"},
+				"south": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"west": {"uv": [15, 1, 16, 2], "texture": "#1"},
+				"up": {"uv": [0, 14, 16, 15], "texture": "#1"},
+				"down": {"uv": [0, 14, 16, 15], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [15, 1, 15],
+			"to": [16, 15, 16],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 15.7]},
+			"faces": {
+				"north": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"east": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"south": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"west": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"up": {"uv": [0, 15, 1, 16], "texture": "#1"},
+				"down": {"uv": [15, 0, 16, 1], "texture": "#1"}
+			}
+		},
+		{
+			"name": "画框",
+			"from": [1, 1, 15.9],
+			"to": [15, 15, 15.9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 0, 15.7]},
+			"faces": {
+				"north": {"uv": [0, 0, 14, 14], "texture": "#1"},
+				"east": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"south": {"uv": [0, 0, 14, 14], "texture": "#1"},
+				"west": {"uv": [14, 0, 15, 14], "texture": "#1"},
+				"up": {"uv": [0, 15, 1, 16], "texture": "#1"},
+				"down": {"uv": [15, 0, 16, 1], "texture": "#1"}
+			}
+		}
+	],
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 5, 6],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 5, 6],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"firstperson_righthand": {
+			"rotation": [-22, -180, 0],
+			"translation": [-1.75, 5, 6],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-22, -180, 0],
+			"translation": [-1.75, 5, 6],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"ground": {
+			"translation": [0, 4, -5.5],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"gui": {
+			"rotation": [0, -180, 0],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"head": {
+			"translation": [0, 0, -15.25]
+		},
+		"fixed": {
+			"translation": [0, 0, -14.1],
+			"scale": [2, 2, 2]
+		},
+		"on_shelf": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 0, 8.5]
+		}
+	},
+	"groups": [
+		{
+			"name": "画框",
+			"origin": [-6, -15, 16.3],
+			"color": 0,
+			"children": [0, 1, 2, 3, 4]
+		},
+		{
+			"name": "画框",
+			"origin": [-6, -15, 16.3],
+			"color": 0,
+			"children": [5, 6, 7, 8, 9]
+		},
+		{
+			"name": "画框",
+			"origin": [-6, -15, 16.3],
+			"color": 0,
+			"children": [10, 11, 12, 13, 14]
+		}
+	]
+}

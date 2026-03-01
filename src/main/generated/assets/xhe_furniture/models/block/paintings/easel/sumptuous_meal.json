@@ -1,7 +1,0 @@
-{
-  "parent": "xhe_furniture:block/parent/easel_painting",
-  "textures": {
-    "2": "xhe_furniture:item/paintings/sumptuous_meal",
-    "particle": "xhe_furniture:item/paintings/sumptuous_meal"
-  }
-}

@@ -1,0 +1,7 @@
+{
+  "parent": "xhe_furniture:block/parent/painting_frame_corner_1",
+  "textures": {
+    "1": "xhe_furniture:block/painting_frame_jungle",
+    "particle": "xhe_furniture:block/painting_frame_jungle"
+  }
+}
