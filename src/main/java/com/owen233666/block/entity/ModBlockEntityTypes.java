@@ -29,6 +29,15 @@ public class ModBlockEntityTypes {
                     ).build(null)
             );
 
+    public static final BlockEntityType<CanvasBlockEntity> CANVAS_BLOCK_BE =
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "canvas_block_entity"),
+                    BlockEntityType.Builder.of(
+                            CanvasBlockEntity::new,
+                            ModBlocks.CANVAS,
+                            ModBlocks.DRAWING_BOARD
+                    ).build(null)
+            );
+
     public static void registerBlockEntityTypes() {
     }
 }

@@ -2,7 +2,6 @@ package com.owen233666.block;
 
 import com.owen233666.block.entity.StorageBlockEntity;
 import com.owen233666.util.BlockUtil;
-import net.minecraft.block.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;

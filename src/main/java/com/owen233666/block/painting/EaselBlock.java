@@ -7,7 +7,6 @@ import com.owen233666.block.entity.StorageBlockEntity;
 import com.owen233666.item.ModItemTags;
 import com.owen233666.item.ModItems;
 import com.owen233666.item.PaintBrushItem;
-import net.minecraft.block.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -82,7 +81,7 @@ public class EaselBlock extends AbstractPaintingBlock implements EntityBlock {
         //染色逻辑，与be无关
         if (heldItem instanceof PaintBrushItem) {
 
-            XheFurniture.LOGGER.info("1");
+//            XheFurniture.LOGGER.info("1");
 
             if (state.getValue(DIRTY)) return InteractionResult.PASS;
             if (heldStack.getDamageValue() == heldItem.getMaxDamage()) return InteractionResult.PASS;
@@ -94,7 +93,7 @@ public class EaselBlock extends AbstractPaintingBlock implements EntityBlock {
         //洗色逻辑，与be无关
         if (byItem(heldItem) instanceof WetSpongeBlock){
 
-            XheFurniture.LOGGER.info("2");
+//            XheFurniture.LOGGER.info("2");
 
             if (state.getValue(DIRTY)) {
                 world.setBlockAndUpdate(pos, state.setValue(DIRTY, false));
@@ -107,7 +106,7 @@ public class EaselBlock extends AbstractPaintingBlock implements EntityBlock {
         //放画布逻辑
         if (byItem(heldItem) instanceof CanvasBlock){
 
-            XheFurniture.LOGGER.info("3");
+//            XheFurniture.LOGGER.info("3");
 
             if (!hasCanvas){
                 if (byItem(heldItem) == ModBlocks.CANVAS){
@@ -131,7 +130,7 @@ public class EaselBlock extends AbstractPaintingBlock implements EntityBlock {
 
         //取画布逻辑，仅hasPainting与be无关，大部分与be无关
         if (player.getItemInHand(hand).isEmpty() && player.isShiftKeyDown()) {
-            XheFurniture.LOGGER.info("4");
+//            XheFurniture.LOGGER.info("4");
             if (hasCanvas && !hasPainting) {
                 CanvasType canvasType = state.getValue(CANVAS_TYPE);
                 return switch (canvasType) {
@@ -161,8 +160,9 @@ public class EaselBlock extends AbstractPaintingBlock implements EntityBlock {
         //放画逻辑
         //判断获取到的方块实体是EaselBlockEntity
         if (be instanceof EaselBlockEntity easelBlockEntity){
-            XheFurniture.LOGGER.info("5");
+//            XheFurniture.LOGGER.info("5");
             boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
+            if (!hasCanvas)return InteractionResult.PASS;
             //方块实体inv为空
             if (!(inventory.isEmpty() || inventory.getFirst() == ItemStack.EMPTY)) {
                 //手上拿的东西是画
@@ -170,10 +170,12 @@ public class EaselBlock extends AbstractPaintingBlock implements EntityBlock {
                     addItem(world, pos, player, easelBlockEntity, heldStack);
                     return InteractionResult.CONSUME;
                 }else {
+                    remove(world, pos, player, easelBlockEntity);
                     return InteractionResult.PASS;
                 }
             //方块实体inv不为空
             }else {
+                if (!hasCanvas)return InteractionResult.PASS;
                 //手上拿的东西是画
                 if (heldIsPainting){
                     remove(world, pos, player, easelBlockEntity);

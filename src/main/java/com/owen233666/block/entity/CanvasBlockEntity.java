@@ -16,14 +16,12 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-public class EaselBlockEntity extends BlockEntity {
-    private NonNullList<ItemStack> inventory = NonNullList.withSize(1, ItemStack.EMPTY);
-    private Boolean wip;
+public class CanvasBlockEntity extends BlockEntity {
+    private NonNullList<ItemStack> inventory;
 
-    public EaselBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntityTypes.EASEL_BLOCK_BE, pos, state);
+    public CanvasBlockEntity(BlockPos blockPos, BlockState blockState) {
+        super(ModBlockEntityTypes.CANVAS_BLOCK_BE, blockPos, blockState);
         this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
-        this.wip = false;
     }
 
     public void setStack(ItemStack stack) {
@@ -31,23 +29,16 @@ public class EaselBlockEntity extends BlockEntity {
         setChanged();
     }
 
-    public void setWip(boolean wip) {
-        this.wip = wip;
-        setChanged();
-    }
-
     @Override
     public void load(CompoundTag nbt) {
         super.load(nbt);
         this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
-        this.wip = nbt.getBoolean("wip");
         ContainerHelper.loadAllItems(nbt, this.inventory);
     }
 
     @Override
     protected void saveAdditional(CompoundTag nbt) {
         ContainerHelper.saveAllItems(nbt, this.inventory);
-        nbt.putBoolean("wip", wip);
         super.saveAdditional(nbt);
     }
 
@@ -89,4 +80,5 @@ public class EaselBlockEntity extends BlockEntity {
         setChanged();
         return itemstack;
     }
+
 }

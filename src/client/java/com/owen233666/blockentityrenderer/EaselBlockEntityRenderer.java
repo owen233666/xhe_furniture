@@ -3,23 +3,21 @@ package com.owen233666.blockentityrenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.owen233666.block.entity.EaselBlockEntity;
-import com.owen233666.block.entity.StorageBlockEntity;
 import com.owen233666.block.painting.EaselBlock;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class EaselEntityRenderer implements BlockEntityRenderer<EaselBlockEntity> {
+public class EaselBlockEntityRenderer implements BlockEntityRenderer<EaselBlockEntity> {
 
-    public EaselEntityRenderer(BlockEntityRendererProvider.Context context) {
+    public EaselBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
 
     }
 
@@ -72,14 +70,7 @@ public class EaselEntityRenderer implements BlockEntityRenderer<EaselBlockEntity
 
         // 获取物品渲染器
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-
-        // 获取物品的模型
-        BakedModel model = itemRenderer.getModel(stack, blockEntity.getLevel(), null, 0);
-
-        // 渲染物品
         itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, i, j, poseStack, multiBufferSource, blockEntity.getLevel(), 0);
-
-        // 恢复矩阵状态
         poseStack.popPose();
     }
 }

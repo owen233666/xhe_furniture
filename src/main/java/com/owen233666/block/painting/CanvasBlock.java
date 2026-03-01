@@ -1,8 +1,16 @@
 package com.owen233666.block.painting;
 
-import com.owen233666.block.ModBlocks;
+import com.owen233666.block.entity.CanvasBlockEntity;
+import com.owen233666.block.entity.EaselBlockEntity;
+import com.owen233666.item.ModItemTags;
 import com.owen233666.item.PaintBrushItem;
 import com.owen233666.util.BlockUtil;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -31,13 +39,16 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class CanvasBlock extends AbstractPaintingBlock {
+public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlock {
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new CanvasBlockEntity(blockPos, blockState);
+    }
 
     public static final IntegerProperty COUNT = IntegerProperty.create("count", 1, 3);
     public static final BooleanProperty DIRTY = BooleanProperty.create("dirty");
     public static final BooleanProperty RACK = BooleanProperty.create("rack");
     public static final EnumProperty<PlacementState> PLACE_TYPE = EnumProperty.create("type", PlacementState.class);
-
 
     public static final Supplier<VoxelShape> SHAPE_WALL_SUPPLIER = () -> Block.box(0, 0, 15, 16, 16, 16);
     public static final Supplier<VoxelShape> SHAPE_CORNER_SUPPLIER = () -> Block.box(0, 0, 6, 16, 16, 16);
@@ -52,7 +63,6 @@ public class CanvasBlock extends AbstractPaintingBlock {
         }
     });
 
-
     public CanvasBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(
@@ -61,8 +71,13 @@ public class CanvasBlock extends AbstractPaintingBlock {
                         .setValue(DIRTY, false)
                         .setValue(RACK, false)
                         .setValue(PLACE_TYPE, PlacementState.CORNER)
-                        .setValue(PAINTINGS, Paintings.NONE)
         );
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(FACING, COUNT, PLACE_TYPE, DIRTY, RACK);
     }
 
     @Override
@@ -71,15 +86,26 @@ public class CanvasBlock extends AbstractPaintingBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack heldStack = player.getItemInHand(hand);
         Item heldItem = heldStack.getItem();
+        BlockEntity be = level.getBlockEntity(pos);
+        NonNullList<ItemStack> inventory;
         boolean canAddCanvas = !state.getValue(RACK);
+
+        //初始化inventory
+        if (be instanceof EaselBlockEntity){
+            inventory = ((EaselBlockEntity) be).getInv();
+        }else {
+            inventory = NonNullList.withSize(1, ItemStack.EMPTY);
+        }
+        //判断是否有画（获取be的inventory）
+        boolean hasPainting =!(inventory.getFirst() == ItemStack.EMPTY);
 
         if (heldItem instanceof PaintBrushItem) {
             if (state.getValue(DIRTY)) return InteractionResult.PASS;
             if (heldStack.getDamageValue() == heldItem.getMaxDamage()) return InteractionResult.PASS;
-            world.setBlockAndUpdate(pos, state.setValue(DIRTY, true));
+            level.setBlockAndUpdate(pos, state.setValue(DIRTY, true));
             if (!player.isCreative()) heldStack.hurtAndBreak(1, player, (entity) -> {});
             return InteractionResult.SUCCESS;
         }
@@ -87,7 +113,7 @@ public class CanvasBlock extends AbstractPaintingBlock {
 
         if (Block.byItem(heldItem) instanceof WetSpongeBlock){
             if (state.getValue(DIRTY)) {
-                world.setBlockAndUpdate(pos, state.setValue(DIRTY, false));
+                level.setBlockAndUpdate(pos, state.setValue(DIRTY, false));
                 return InteractionResult.SUCCESS;
             }else {
                 return InteractionResult.PASS;
@@ -98,26 +124,32 @@ public class CanvasBlock extends AbstractPaintingBlock {
             if (state.getValue(COUNT) == 3) {
                 return InteractionResult.PASS;
             }
-            world.setBlockAndUpdate(pos, state.setValue(COUNT, state.getValue(COUNT) + 1));
+            level.setBlockAndUpdate(pos, state.setValue(COUNT, state.getValue(COUNT) + 1));
             heldStack.split(1);
             if (player.isCreative()) heldStack.grow(1);
             return InteractionResult.CONSUME_PARTIAL;
         }
 
-        if (getPaintingsFromItem(heldItem) != Paintings.NONE){
-            Paintings paintings = getPaintingsFromItem(heldItem);
-            heldStack.split(1);
-            if (player.isCreative()) heldStack.grow(1);
-            if (!player.getInventory().add(getItemFromPaintings(state.getValue(PAINTINGS)))) player.spawnAtLocation(getItemFromPaintings(state.getValue(PAINTINGS)).getItem());
-            world.setBlockAndUpdate(pos, state.setValue(PAINTINGS, paintings));
-            return InteractionResult.SUCCESS;
-        }
+        if (be instanceof CanvasBlockEntity canvasBlockEntity){
+            boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
 
-        if (heldStack.isEmpty()) {
-            ItemStack giveStack = getItemFromPaintings(state.getValue(PAINTINGS));
-            if (!player.getInventory().add(giveStack)) player.spawnAtLocation(heldStack.getItem());
-            world.setBlockAndUpdate(pos, state.setValue(PAINTINGS, Paintings.NONE));
-            return InteractionResult.SUCCESS;
+            //有画
+            if (hasPainting) {
+                //手上是画
+                if (heldIsPainting){
+                    remove(level, pos, player, canvasBlockEntity);
+                    addItem(level, pos, player, canvasBlockEntity, heldStack);
+                    return InteractionResult.CONSUME;
+                }else {
+                    remove(level, pos, player, canvasBlockEntity);
+                    return InteractionResult.SUCCESS;
+                }
+            }else{
+                if (heldIsPainting){
+                    addItem(level, pos, player, canvasBlockEntity, heldStack);
+                    return InteractionResult.CONSUME;
+                }
+            }
         }
 
         return InteractionResult.PASS;
@@ -172,18 +204,27 @@ public class CanvasBlock extends AbstractPaintingBlock {
         return this.defaultBlockState().setValue(FACING, playerFacing.getOpposite()).setValue(RACK, true);
     }
 
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(COUNT, PLACE_TYPE, DIRTY, RACK);
+    //向be的inv中添加物品的方法
+    public void addItem(Level level, BlockPos pos, Player player, CanvasBlockEntity canvasBlockEntity, ItemStack stack){
+        if(!level.isClientSide()) {
+            canvasBlockEntity.setStack(stack.split(1));
+            level.playSound(null, pos, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+
+            if(player.isCreative()) {
+                stack.grow(1);
+            }
+        }
     }
 
-    @Override
-    public void playerDestroy(Level world, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
-        super.playerDestroy(world, player, pos, state, blockEntity, tool);
-        if (player.isCreative()) return;
-        int canvasItemToDropCount = state.getValue(COUNT) - 1;
-        popResource(world, pos, state.is(ModBlocks.CANVAS) ? new ItemStack(ModBlocks.CANVAS, canvasItemToDropCount) : new ItemStack(ModBlocks.DRAWING_BOARD, canvasItemToDropCount));
-        popResource(world, pos, getItemFromPaintings(state.getValue(PAINTINGS)));
+    public void remove(Level level, BlockPos pos, Player player, CanvasBlockEntity canvasBlockEntity){
+        if(!level.isClientSide()) {
+            ItemStack toRemoveStack =canvasBlockEntity.removeStack();
+
+            level.playSound(null, pos, SoundEvents.WOOD_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
+            if(!player.getInventory().add(toRemoveStack)){
+                player.spawnAtLocation(toRemoveStack);
+            }
+        }
     }
+
 }
