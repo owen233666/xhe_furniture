@@ -26,9 +26,10 @@ public class CanvasBlockEntityRenderer implements BlockEntityRenderer<CanvasBloc
         BlockState blockState = blockEntity.getBlockState();
         ItemStack stack = blockEntity.getInv().get(0);
         Direction direction = blockState.getValue(CanvasBlock.FACING);
+
         poseStack.pushPose();
+        poseStack.scale(0.87f, 0.87f, 0.87f);
         if (blockState.getValue(CanvasBlock.PLACE_TYPE) == PlacementState.WALL){
-            poseStack.scale(0.87f, 0.87f, 0.87f);
 
             switch (direction){
                 case NORTH -> {
@@ -48,11 +49,75 @@ public class CanvasBlockEntityRenderer implements BlockEntityRenderer<CanvasBloc
                 }
             }
 
-        }else{
+        }else if (blockState.getValue(CanvasBlock.PLACE_TYPE) == PlacementState.CORNER){
+            int count = blockState.getValue(CanvasBlock.COUNT);
+            if (count == 1){
+                renderPainting(count, direction, poseStack);
+            } else if (count == 2) {
 
+            } else {
+
+            }
         }
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, i, j, poseStack, multiBufferSource, blockEntity.getLevel(), 0);
         poseStack.popPose();
+    }
+
+    public void renderPainting(int count, Direction direction, PoseStack poseStack){
+
+        if (count == 1){
+            switch (direction) {
+                case NORTH -> {
+                    poseStack.mulPose(Axis.XP.rotationDegrees(22.5f));
+                    poseStack.translate(0.575, 0.855, 0.6085);
+                }
+                case SOUTH -> {
+                    poseStack.mulPose(Axis.XN.rotationDegrees(22.5f));
+                    poseStack.translate(0.575, 0.45, 0.5015);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
+                }
+                case EAST -> {
+                    poseStack.mulPose(Axis.ZP.rotationDegrees(22.5f));
+                    poseStack.translate(0.6085, 0.855, 0.575);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
+                }
+                case WEST -> {
+                    poseStack.mulPose(Axis.ZN.rotationDegrees(22.5f));
+                    poseStack.translate(0.3915, 0.855, 0.425);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
+                }
+            }
+        } else if (count == 2) {
+            switch (direction) {
+                case NORTH -> {
+                    poseStack.translate(0.575, 0.88, 0.5925);
+                }
+                case SOUTH -> {
+                    poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
+                }
+                case EAST -> {
+                    poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
+                }
+                case WEST -> {
+                    poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
+                }
+            }
+        } else {
+            switch (direction) {
+                case NORTH -> {
+                    poseStack.translate(0.575, 0.88, 0.5925);
+                }
+                case SOUTH -> {
+                    poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
+                }
+                case EAST -> {
+                    poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
+                }
+                case WEST -> {
+                    poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
+                }
+            }
+        }
     }
 }
