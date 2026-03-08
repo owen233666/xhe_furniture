@@ -38,6 +38,40 @@ public class ModBlockEntityTypes {
                     ).build(null)
             );
 
+    public static final BlockEntityType<CanvasBlockEntity> PAINTING_FRAME_BLOCK_BE =
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_block_entity"),
+                    BlockEntityType.Builder.of(
+                            CanvasBlockEntity::new,
+                            ModBlocks.PAINTING_FRAME_OAK
+                    ).build(null)
+            );
+
+    public static final BlockEntityType<PhotoABlockEntity> PHOTO_A_BLOCK_BE =
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "photo_a_block_entity"),
+                    BlockEntityType.Builder.of(
+                            PhotoABlockEntity::new,
+                            ModBlocks.PHOTO_PAPER_WHITE_A,
+                            ModBlocks.PHOTO_PAPER_BLACK_A
+                    ).build(null)
+            );
+
+    public static final BlockEntityType<PhotoABlockEntity> PHOTO_B_BLOCK_BE =
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "photo_b_block_entity"),
+                    BlockEntityType.Builder.of(
+                            PhotoABlockEntity::new,
+                            ModBlocks.PHOTO_PAPER_WHITE_B,
+                            ModBlocks.PHOTO_PAPER_BLACK_B
+                    ).build(null)
+            );
+
+    public static final BlockEntityType<PhotoABlockEntity> PHOTO_C_BLOCK_BE =
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "photo_c_block_entity"),
+                    BlockEntityType.Builder.of(
+                            PhotoABlockEntity::new,
+                            ModBlocks.PHOTO_PAPER_WHITE_C,
+                            ModBlocks.PHOTO_PAPER_BLACK_C
+                    ).build(null)
+            );
     public static void registerBlockEntityTypes() {
     }
 }

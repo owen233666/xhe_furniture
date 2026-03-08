@@ -1,7 +1,6 @@
 package com.owen233666;
 
 import com.owen233666.block.ModBlocks;
-import com.owen233666.block.entity.CanvasBlockEntity;
 import com.owen233666.block.entity.ModBlockEntityTypes;
 import com.owen233666.blockentityrenderer.*;
 import net.fabricmc.api.ClientModInitializer;
@@ -83,7 +82,8 @@ public class XheFurnitureClient implements ClientModInitializer {
 
 		BlockEntityRenderers.register(ModBlockEntityTypes.STORAGE_BLOCK_BE, StorageBlockEntityRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.EASEL_BLOCK_BE, EaselBlockEntityRenderer::new);
-		BlockEntityRenderers.register(ModBlockEntityTypes.CANVAS_BLOCK_BE, CanvasBlockEntityRenderer::new);
+		BlockEntityRenderers.register(ModBlockEntityTypes.CANVAS_BLOCK_BE, context -> new CanvasBlockEntityRenderer(context, true));
+		BlockEntityRenderers.register(ModBlockEntityTypes.PAINTING_FRAME_BLOCK_BE, context ->  new CanvasBlockEntityRenderer(context, false));
 		berInit();
 		registerStorageTypeRenderers();
 	}

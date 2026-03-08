@@ -17,8 +17,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class CanvasBlockEntityRenderer implements BlockEntityRenderer<CanvasBlockEntity> {
-    public CanvasBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
-
+    private final boolean IS_CANVAS_METHOD;
+    public CanvasBlockEntityRenderer(BlockEntityRendererProvider.Context context, boolean bool) {
+        this.IS_CANVAS_METHOD = bool;
     }
 
     @Override
@@ -29,35 +30,33 @@ public class CanvasBlockEntityRenderer implements BlockEntityRenderer<CanvasBloc
 
         poseStack.pushPose();
         poseStack.scale(0.87f, 0.87f, 0.87f);
-        if (blockState.getValue(CanvasBlock.PLACE_TYPE) == PlacementState.WALL){
+        if (IS_CANVAS_METHOD) {
+            if (blockState.getValue(CanvasBlock.PLACE_TYPE) == PlacementState.WALL) {
 
-            switch (direction){
-                case NORTH -> {
-                    poseStack.translate(0.573, 0.573, 1.105);
+                switch (direction) {
+                    case NORTH -> {
+                        poseStack.translate(0.573, 0.573, 1.105);
+                    }
+                    case SOUTH -> {
+                        poseStack.translate(0.573, 0.573, 0.045);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
+                    }
+                    case EAST -> {
+                        poseStack.translate(0.045, 0.573, 0.573);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
+                    }
+                    case WEST -> {
+                        poseStack.translate(1.105, 0.573, 0.573);
+                        poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
+                    }
                 }
-                case SOUTH ->  {
-                    poseStack.translate(0.573, 0.573, 0.045);
-                    poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
-                }
-                case EAST -> {
-                    poseStack.translate(0.045, 0.573, 0.573);
-                    poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
-                }
-                case WEST -> {
-                    poseStack.translate(1.105, 0.573, 0.573);
-                    poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
-                }
-            }
 
-        }else if (blockState.getValue(CanvasBlock.PLACE_TYPE) == PlacementState.CORNER){
-            int count = blockState.getValue(CanvasBlock.COUNT);
-            if (count == 1){
+            } else if (blockState.getValue(CanvasBlock.PLACE_TYPE) == PlacementState.CORNER) {
+                int count = blockState.getValue(CanvasBlock.COUNT);
                 renderPainting(count, direction, poseStack);
-            } else if (count == 2) {
-
-            } else {
-
             }
+        }else {
+
         }
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, i, j, poseStack, multiBufferSource, blockEntity.getLevel(), 0);
@@ -65,7 +64,6 @@ public class CanvasBlockEntityRenderer implements BlockEntityRenderer<CanvasBloc
     }
 
     public void renderPainting(int count, Direction direction, PoseStack poseStack){
-
         if (count == 1){
             switch (direction) {
                 case NORTH -> {
@@ -74,47 +72,61 @@ public class CanvasBlockEntityRenderer implements BlockEntityRenderer<CanvasBloc
                 }
                 case SOUTH -> {
                     poseStack.mulPose(Axis.XN.rotationDegrees(22.5f));
-                    poseStack.translate(0.575, 0.45, 0.5015);
+                    poseStack.translate(0.575, 0.42, 0.4465);
                     poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
                 }
                 case EAST -> {
                     poseStack.mulPose(Axis.ZP.rotationDegrees(22.5f));
-                    poseStack.translate(0.6085, 0.855, 0.575);
+                    poseStack.translate(0.4485, 0.41, 0.575);
                     poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
                 }
                 case WEST -> {
                     poseStack.mulPose(Axis.ZN.rotationDegrees(22.5f));
-                    poseStack.translate(0.3915, 0.855, 0.425);
+                    poseStack.translate(0.6105, 0.855, 0.575);
                     poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
                 }
             }
         } else if (count == 2) {
             switch (direction) {
                 case NORTH -> {
-                    poseStack.translate(0.575, 0.88, 0.5925);
+                    poseStack.mulPose(Axis.XP.rotationDegrees(22.5f));
+                    poseStack.translate(0.575, 0.82375, 0.546);
                 }
                 case SOUTH -> {
-                    poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
-                }
-                case EAST -> {
+                    poseStack.mulPose(Axis.XN.rotationDegrees(22.5f));
+                    poseStack.translate(0.575, 0.38875, 0.519);
                     poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
                 }
+                case EAST -> {
+                    poseStack.mulPose(Axis.ZP.rotationDegrees(22.5f));
+                    poseStack.translate(0.516, 0.37875, 0.575);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
+                }
                 case WEST -> {
+                    poseStack.mulPose(Axis.ZN.rotationDegrees(22.5f));
+                    poseStack.translate(0.548, 0.82375, 0.575);
                     poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
                 }
             }
         } else {
             switch (direction) {
                 case NORTH -> {
-                    poseStack.translate(0.575, 0.88, 0.5925);
+                    poseStack.mulPose(Axis.XP.rotationDegrees(22.5f));
+                    poseStack.translate(0.575, 0.7925, 0.4535);
                 }
                 case SOUTH -> {
-                    poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
-                }
-                case EAST -> {
+                    poseStack.mulPose(Axis.XN.rotationDegrees(22.5f));
+                    poseStack.translate(0.575, 0.3575, 0.6015);
                     poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
                 }
+                case EAST -> {
+                    poseStack.mulPose(Axis.ZP.rotationDegrees(22.5f));
+                    poseStack.translate(0.6035, 0.3475, 0.575);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
+                }
                 case WEST -> {
+                    poseStack.mulPose(Axis.ZN.rotationDegrees(22.5f));
+                    poseStack.translate(0.4555, 0.7925, 0.575);
                     poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
                 }
             }
