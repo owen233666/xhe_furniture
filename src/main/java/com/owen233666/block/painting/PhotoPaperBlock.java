@@ -1,6 +1,16 @@
 package com.owen233666.block.painting;
 
+import com.owen233666.block.entity.EaselBlockEntity;
+import com.owen233666.block.entity.PhotoBlockEntity;
+import com.owen233666.item.ModItemTags;
 import com.owen233666.util.BlockUtil;
+import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.state.StateDefinition;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -24,7 +34,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class PhotoPaperBlock extends AbstractPaintingBlock{
+public abstract class PhotoPaperBlock extends AbstractPaintingBlock implements EntityBlock {
 
     public static final Supplier<VoxelShape> SHAPE_SUPPLIER = () -> Block.box(0, 0, 15F, 16, 16, 16);
     public static final Map<Direction, VoxelShape> SHAPE = Util.make(new HashMap<>(), map -> {
@@ -35,7 +45,11 @@ public class PhotoPaperBlock extends AbstractPaintingBlock{
 
     public PhotoPaperBlock(Properties settings) {
         super(settings);
-        this.registerDefaultState(this.stateDefinition.any().setValue(PAINTINGS, Paintings.NONE));
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
     }
 
     @Override
@@ -45,24 +59,47 @@ public class PhotoPaperBlock extends AbstractPaintingBlock{
 
     @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        Paintings paintingsTo = getPaintingsFromItem(player.getItemInHand(hand).getItem());
-        Paintings paintingsOn = state.getValue(PAINTINGS);
         ItemStack heldStack = player.getItemInHand(hand);
-        if (paintingsTo != Paintings.NONE){
-            ItemStack giveStack = getItemFromPaintings(paintingsOn);
-            heldStack.split(1);
-            if (player.isCreative()) heldStack.grow(1);
-            if (!player.getInventory().add(giveStack)) player.spawnAtLocation(giveStack);
-            world.setBlockAndUpdate(pos, state.setValue(PAINTINGS, paintingsTo));
-            return InteractionResult.CONSUME_PARTIAL;
-        }else if (paintingsOn != Paintings.NONE){
-            ItemStack giveStack = getItemFromPaintings(paintingsOn);
-            if (!player.getInventory().add(giveStack)) player.spawnAtLocation(giveStack);
-            world.setBlockAndUpdate(pos, state.setValue(PAINTINGS, Paintings.NONE));
-            return InteractionResult.SUCCESS;
+        Item heldItem = heldStack.getItem();
+        BlockEntity be = world.getBlockEntity(pos);
+        NonNullList<ItemStack> inventory;
+
+        //初始化inventory
+        if (be instanceof EaselBlockEntity){
+            inventory = ((EaselBlockEntity) be).getInv();
         }else {
-            return InteractionResult.PASS;
+            inventory = NonNullList.withSize(1, ItemStack.EMPTY);
         }
+        //判断是否有画（获取be的inventory）
+        boolean hasPainting =!(inventory.getFirst() == ItemStack.EMPTY);
+
+
+        if (be instanceof PhotoBlockEntity photoBlockEntity) {
+            boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
+            //方块实体inv为空
+            if (!(inventory.isEmpty() || inventory.getFirst() == ItemStack.EMPTY)) {
+                //手上拿的东西是画
+                if (heldIsPainting){
+                    addItem(world, pos, player, photoBlockEntity, heldStack);
+                    return InteractionResult.CONSUME;
+                }else {
+                    remove(world, pos, player, photoBlockEntity);
+                    return InteractionResult.PASS;
+                }
+                //方块实体inv不为空
+            }else {
+                //手上拿的东西是画
+                if (heldIsPainting){
+                    remove(world, pos, player, photoBlockEntity);
+                    addItem(world, pos, player, photoBlockEntity, heldStack);
+                    return InteractionResult.CONSUME;
+                }else{
+                    remove(world, pos, player, photoBlockEntity);
+                    return InteractionResult.SUCCESS;
+                }
+            }
+        }
+        return InteractionResult.PASS;
     }
 
     @Override
@@ -111,11 +148,33 @@ public class PhotoPaperBlock extends AbstractPaintingBlock{
         return null;
     }
 
-    @Override
-    public void playerDestroy(Level world, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
-        super.playerDestroy(world, player, pos, state, blockEntity, tool);
-        if (player.isCreative()) return;
-        ItemStack painting = getItemFromPaintings(state.getValue(PAINTINGS));
-        popResource(world, pos, painting);
+    public void addItem(Level world, BlockPos pos, Player player, PhotoBlockEntity photoBlockEntity, ItemStack stack){
+
+        if(!world.isClientSide()) {
+            photoBlockEntity.setStack(stack.split(1));
+            world.playSound(null, pos, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+
+            if(player.isCreative()) {
+                stack.grow(1);
+            }
+        }
     }
+
+    public void remove(Level world, BlockPos pos, Player player, PhotoBlockEntity photoBlockEntity){
+        if(!world.isClientSide()) {
+            ItemStack toRemoveStack =photoBlockEntity.removeStack();
+            world.playSound(null, pos, SoundEvents.WOOD_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
+            if(!player.getInventory().add(toRemoveStack)){
+                player.spawnAtLocation(toRemoveStack);
+            }
+        }
+    }
+
+//    @Override
+//    public void playerDestroy(Level world, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
+//        super.playerDestroy(world, player, pos, state, blockEntity, tool);
+//        if (player.isCreative()) return;
+//        ItemStack painting = getItemFromPaintings(state.getValue(PAINTINGS));
+//        popResource(world, pos, painting);
+//    }
 }
