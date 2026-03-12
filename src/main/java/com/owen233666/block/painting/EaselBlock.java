@@ -162,6 +162,7 @@ public class EaselBlock extends AbstractPaintingBlock implements EntityBlock {
         if (be instanceof EaselBlockEntity easelBlockEntity){
 //            XheFurniture.LOGGER.info("5");
             boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
+            XheFurniture.LOGGER.info(String.valueOf(heldIsPainting));
             if (!hasCanvas)return InteractionResult.PASS;
             //方块实体inv为空
             if (!(inventory.isEmpty() || inventory.getFirst() == ItemStack.EMPTY)) {
@@ -189,8 +190,6 @@ public class EaselBlock extends AbstractPaintingBlock implements EntityBlock {
         }
         return InteractionResult.PASS;
     }
-
-    {    //没用了，有大括号是为了能收起来
 //    @Override
 //    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
 //        super.afterBreak(world, player, pos, state, blockEntity, tool);
@@ -202,7 +201,6 @@ public class EaselBlock extends AbstractPaintingBlock implements EntityBlock {
 //        ItemStack paintings = getItemFromPaintings(state.get(PAINTINGS));
 //        dropStack(world, pos, paintings);
 //    }
-    }
 
     private boolean hasCanvas(CanvasType canvasType) {
         if (canvasType == CanvasType.NONE) {

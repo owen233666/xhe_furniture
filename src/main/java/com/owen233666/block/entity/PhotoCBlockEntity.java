@@ -5,6 +5,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class PhotoCBlockEntity extends PhotoBlockEntity {
     public PhotoCBlockEntity(BlockPos blockPos, BlockState blockState) {
-        super(blockPos, blockState);
+        super(ModBlockEntityTypes.PHOTO_B_BLOCK_BE, blockPos, blockState);
     }
 }

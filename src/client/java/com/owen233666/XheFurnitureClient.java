@@ -83,7 +83,9 @@ public class XheFurnitureClient implements ClientModInitializer {
 		BlockEntityRenderers.register(ModBlockEntityTypes.STORAGE_BLOCK_BE, StorageBlockEntityRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.EASEL_BLOCK_BE, EaselBlockEntityRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.CANVAS_BLOCK_BE, context -> new CanvasBlockEntityRenderer(context, true));
-		BlockEntityRenderers.register(ModBlockEntityTypes.PAINTING_FRAME_BLOCK_BE, context ->  new CanvasBlockEntityRenderer(context, false));
+//		BlockEntityRenderers.register(ModBlockEntityTypes.PAINTING_FRAME_BLOCK_BE, context ->  new CanvasBlockEntityRenderer(context, false));
+		BlockEntityRenderers.register(ModBlockEntityTypes.PHOTO_A_BLOCK_BE, PhotoABlockRenderer::new);
+
 		berInit();
 		registerStorageTypeRenderers();
 	}
