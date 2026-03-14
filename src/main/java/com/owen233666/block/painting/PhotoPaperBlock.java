@@ -1,5 +1,6 @@
 package com.owen233666.block.painting;
 
+import com.owen233666.XheFurniture;
 import com.owen233666.block.entity.EaselBlockEntity;
 import com.owen233666.block.entity.PhotoBlockEntity;
 import com.owen233666.item.ModItemTags;
@@ -73,11 +74,10 @@ public abstract class PhotoPaperBlock extends AbstractPaintingBlock implements E
         //判断是否有画（获取be的inventory）
         boolean hasPainting =!(inventory.getFirst() == ItemStack.EMPTY);
 
-
         if (be instanceof PhotoBlockEntity photoBlockEntity) {
             boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
             //方块实体inv为空
-            if (!(inventory.isEmpty() || inventory.getFirst() == ItemStack.EMPTY)) {
+            if (hasPainting) {
                 //手上拿的东西是画
                 if (heldIsPainting){
                     addItem(world, pos, player, photoBlockEntity, heldStack);

@@ -1,35 +1,25 @@
 package com.owen233666.blockentityrenderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import com.owen233666.XheFurniture;
 import com.owen233666.block.entity.PhotoABlockEntity;
 import com.owen233666.block.painting.PhotoPaperBlock;
 import com.owen233666.clientUtil.ClientUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.Nullable;
 
-public class PhotoABlockRenderer implements BlockEntityRenderer<PhotoABlockEntity> {
+public class PhotoCBlockRenderer implements BlockEntityRenderer<PhotoABlockEntity> {
     private final float[] CUBE_UV_1 = {0.21875f,     0.65625f,    0.46875f,     0.93750f};
     private final float[] CUBE_UV_2 = {0.34375f,     0.09375f,    0.60625f,     0.37500f};
     private final float[] CUBE_UV_3 = {0.65625f,     0.31250f,    0.90625f,     0.59375f};
 
-    public PhotoABlockRenderer(BlockEntityRendererProvider.Context context) {
+    public PhotoCBlockRenderer(BlockEntityRendererProvider.Context context) {
     }
 
     @Override
