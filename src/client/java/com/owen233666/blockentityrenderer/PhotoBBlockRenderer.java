@@ -204,13 +204,13 @@ public class PhotoBBlockRenderer implements BlockEntityRenderer<PhotoBBlockEntit
                 renderPhotos(poseStack, multiBufferSource, textureLocation, i, null, 0.99f, 0.0f);
             }
             case SOUTH -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, -1.0f, -0.01f, 180.0f);
+                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, null, 180.0f);
             }
             case WEST -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, -1.0f, 0.99f, 90.0f);
+                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.99f, 90.0f);
             }
             case EAST -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, null, 0.01f, 270.0f);
+                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.01f, null, 270.0f);
             }
         }
     }
