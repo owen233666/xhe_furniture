@@ -219,21 +219,9 @@ public class PhotoBBlockRenderer implements BlockEntityRenderer<PhotoBBlockEntit
                               int packedLight, @Nullable Float offsetX, @Nullable Float offsetZ, Float yRotationDegrees) {
 
         poseStack.pushPose();
-
-        float centerX1 = (0.57500f + 0.82500f) / 2;
-        float centerY1 = (0.20625f + 0.48750f) / 2;
-
-        poseStack.translate(offsetX == null ? 0.0f : offsetX,
-                0.0F,
-                offsetZ == null ? 0.0f : offsetZ);
-
-        poseStack.translate(centerX1, centerY1, 0);
-
+        poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
         poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
         poseStack.mulPose(Axis.ZP.rotationDegrees(-22.5f));
-
-        poseStack.translate(-centerX1, -centerY1, 0);
-
         ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
                 0.57500f, 0.20625f, 0.82500f, 0.48750f,
                 CUBE_UV_1[0], CUBE_UV_1[1], CUBE_UV_1[2], CUBE_UV_1[3],
@@ -242,21 +230,9 @@ public class PhotoBBlockRenderer implements BlockEntityRenderer<PhotoBBlockEntit
         poseStack.popPose();
 
         poseStack.pushPose();
-
-        float centerX2 = (0.15625f + 0.40625f) / 2;
-        float centerY2 = (0.54375f + 0.82500f) / 2;
-
-        poseStack.translate(offsetX == null ? 0.0f : offsetX,
-                0.0F,
-                offsetZ == null ? 0.0f : offsetZ);
-
-        poseStack.translate(centerX2, centerY2, 0);
-
+        poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
         poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
         poseStack.mulPose(Axis.ZP.rotationDegrees(22.5f));
-
-        poseStack.translate(-centerX2, -centerY2, 0);
-
         ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
                 0.15625f, 0.54375f, 0.40625f, 0.82500f,
                 CUBE_UV_2[0], CUBE_UV_2[1], CUBE_UV_2[2], CUBE_UV_2[3],
