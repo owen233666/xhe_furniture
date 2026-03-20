@@ -1,6 +1,8 @@
 package com.owen233666;
 
-import com.owen233666.datagen.*;
+import com.owen233666.datagen.ModBlockLootTableProvider;
+import com.owen233666.datagen.ModBlockTagProvider;
+import com.owen233666.datagen.ModItemTagProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 

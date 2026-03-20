@@ -1,7 +1,9 @@
 package com.owen233666.item;
 
-import com.owen233666.XheFurniture;
-import com.owen233666.block.painting.*;
+import com.owen233666.block.painting.CanvasBlock;
+import com.owen233666.block.painting.DyeablePaintCanBlock;
+import com.owen233666.block.painting.EaselBlock;
+import com.owen233666.block.painting.PaintBrushBlock;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

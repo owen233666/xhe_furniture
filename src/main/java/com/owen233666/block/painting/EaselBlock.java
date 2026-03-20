@@ -3,9 +3,7 @@ package com.owen233666.block.painting;
 import com.owen233666.XheFurniture;
 import com.owen233666.block.ModBlocks;
 import com.owen233666.block.entity.EaselBlockEntity;
-import com.owen233666.block.entity.StorageBlockEntity;
 import com.owen233666.item.ModItemTags;
-import com.owen233666.item.ModItems;
 import com.owen233666.item.PaintBrushItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -32,8 +30,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
-
-import java.rmi.registry.Registry;
 
 public class EaselBlock extends AbstractPaintingBlock implements EntityBlock {
     public static final BooleanProperty DIRTY = BooleanProperty.create("dirty");

@@ -1,6 +1,5 @@
 package com.owen233666.block.painting;
 
-import com.owen233666.item.ModItems;
 import com.owen233666.item.PaintBrushItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;

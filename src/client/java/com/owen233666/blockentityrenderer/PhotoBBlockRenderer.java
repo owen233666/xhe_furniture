@@ -168,7 +168,6 @@ package com.owen233666.blockentityrenderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.owen233666.block.entity.PhotoABlockEntity;
 import com.owen233666.block.entity.PhotoBBlockEntity;
 import com.owen233666.block.painting.PhotoPaperBlock;
 import com.owen233666.clientUtil.ClientUtil;
@@ -179,7 +178,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class PhotoBBlockRenderer implements BlockEntityRenderer<PhotoBBlockEntity> {
@@ -204,7 +202,7 @@ public class PhotoBBlockRenderer implements BlockEntityRenderer<PhotoBBlockEntit
                 renderPhotos(poseStack, multiBufferSource, textureLocation, i, null, 0.99f, 0.0f);
             }
             case SOUTH -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, null, 180.0f);
+                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.01f, 180.0f);
             }
             case WEST -> {
                 renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.99f, 90.0f);

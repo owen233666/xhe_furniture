@@ -1,8 +1,5 @@
 package com.owen233666.block;
 
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -27,6 +24,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class RattanTableBlock extends HorizontalDirectionalBlock {
     public static final EnumProperty<RattanTableClothColor> CLOTH_COLOR = EnumProperty.create("cloth_color", RattanTableClothColor.class);

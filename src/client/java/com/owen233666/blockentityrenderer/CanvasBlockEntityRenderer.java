@@ -2,7 +2,6 @@ package com.owen233666.blockentityrenderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.owen233666.XheFurniture;
 import com.owen233666.block.entity.CanvasBlockEntity;
 import com.owen233666.block.painting.CanvasBlock;
 import com.owen233666.block.painting.PlacementState;

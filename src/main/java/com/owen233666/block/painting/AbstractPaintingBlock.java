@@ -1,9 +1,6 @@
 package com.owen233666.block.painting;
 
 import com.owen233666.item.ModItems;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.HashMap;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -13,6 +10,9 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
 
 public abstract class AbstractPaintingBlock extends HorizontalDirectionalBlock {
 

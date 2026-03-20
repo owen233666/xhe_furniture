@@ -1,12 +1,7 @@
 package com.owen233666.block.painting;
 
-import com.owen233666.XheFurniture;
 import com.owen233666.block.ModBlocks;
 import com.owen233666.util.BlockUtil;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Supplier;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -26,6 +21,10 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class GridShelfBlock extends AbstractPaintingBlock {
     public static final BooleanProperty WHITE = BooleanProperty.create("white");

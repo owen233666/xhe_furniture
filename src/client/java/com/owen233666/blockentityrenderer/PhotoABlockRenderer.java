@@ -1,24 +1,16 @@
 package com.owen233666.blockentityrenderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
-import com.owen233666.XheFurniture;
 import com.owen233666.block.entity.PhotoABlockEntity;
 import com.owen233666.block.painting.PhotoPaperBlock;
 import com.owen233666.clientUtil.ClientUtil;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
@@ -45,7 +37,7 @@ public class PhotoABlockRenderer implements BlockEntityRenderer<PhotoABlockEntit
                 renderPhotos(poseStack, multiBufferSource, textureLocation, i, null, 0.99f, 0.0f);
             }
             case SOUTH -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, null, 180.0f);
+                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.01f, 180.0f);
             }
             case WEST -> {
                 renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.99f, 90.0f);

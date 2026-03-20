@@ -2,8 +2,6 @@ package com.owen233666.blockentityrenderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.owen233666.XheFurniture;
-import com.owen233666.block.entity.PhotoABlockEntity;
 import com.owen233666.block.entity.PhotoCBlockEntity;
 import com.owen233666.block.painting.PhotoPaperBlock;
 import com.owen233666.clientUtil.ClientUtil;
@@ -39,7 +37,7 @@ public class PhotoCBlockRenderer implements BlockEntityRenderer<PhotoCBlockEntit
                 renderPhotos(poseStack, multiBufferSource, textureLocation, i, null, 0.99f, 0.0f);
             }
             case SOUTH -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, null, 180.0f);
+                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.01f, 180.0f);
             }
             case WEST -> {
                 renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.99f, 90.0f);
