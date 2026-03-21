@@ -20,6 +20,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.WetSpongeBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,7 +32,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class EaselBlock extends AbstractPaintingBlock implements EntityBlock {
+public class EaselBlock extends HorizontalDirectionalBlock implements EntityBlock {
     public static final BooleanProperty DIRTY = BooleanProperty.create("dirty");
     public static final BooleanProperty WIP = BooleanProperty.create("wip");
     public static final EnumProperty<CanvasType> CANVAS_TYPE = EnumProperty.create("canvas_type", CanvasType.class);
