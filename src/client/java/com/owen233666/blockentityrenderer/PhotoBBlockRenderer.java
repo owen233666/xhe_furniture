@@ -215,27 +215,47 @@ public class PhotoBBlockRenderer implements BlockEntityRenderer<PhotoBBlockEntit
 
     private void renderPhotos(PoseStack poseStack, MultiBufferSource multiBufferSource, ResourceLocation textureLocation,
                               int packedLight, @Nullable Float offsetX, @Nullable Float offsetZ, Float yRotationDegrees) {
+        float x1 = 0.57500f;//左下x
+        float y1 = 0.20625f;//左下y
+        float x2 = 0.82500f;//右上x
+        float y2 = 0.48750f;//右上y
+        float w  = x2-x1;//x相减得到宽度
+        float h  = y2 - y1;//y相臧得到高度
+        float hw = w/2; //半宽
+        float hh = h/2; //半高
 
         poseStack.pushPose();
-        poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
+        //x1和y1是仅限”图片左下角为原点”时的移动长度，图片左下角距离图片中心（我们设定的原点）差个半高半宽，加上
+        poseStack.translate(offsetX == null ? 0.0f :offsetX, 0.0F, offsetZ == null ? 0.0f :offsetZ);
         poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
+        poseStack.translate(x1 + hw, y1 + hh, 0);
         poseStack.mulPose(Axis.ZP.rotationDegrees(-22.5f));
+        //以图片中心为原点绘制图片
         ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
-                0.57500f, 0.20625f, 0.82500f, 0.48750f,
-                CUBE_UV_1[0], CUBE_UV_1[1], CUBE_UV_1[2], CUBE_UV_1[3],
-                packedLight, 255, 255, 255, 255);
-
+                -hw, -hh, hw, hh,
+                CUBE_UV_1[0],CUBE_UV_1[1],CUBE_UV_1[2],CUBE_UV_1[3],
+                packedLight,255,255,255,255);
         poseStack.popPose();
 
-        poseStack.pushPose();
-        poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
-        poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
-        poseStack.mulPose(Axis.ZP.rotationDegrees(22.5f));
-        ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
-                0.15625f, 0.54375f, 0.40625f, 0.82500f,
-                CUBE_UV_2[0], CUBE_UV_2[1], CUBE_UV_2[2], CUBE_UV_2[3],
-                packedLight, 255, 255, 255, 255);
 
+        x1 = 0.15625f;//左下x
+        y1 = 0.54375f;//左下y
+        x2 = 0.40625f;//右上x
+        y2 = 0.82500f;//右上y
+        w  = x2 - x1;//x相减得到宽度
+        h  = y2 - y1;//y相减得到高度
+        hw = w/2;//半宽
+        hh = h/2;//半高
+
+        poseStack.pushPose();
+        poseStack.translate(offsetX == null? 0.0f :offsetX, 0.0F, offsetZ== null ? 0.0f :offsetZ);
+        poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
+        poseStack.translate(x1 + hw, y1 + hh, 0);
+        poseStack.mulPose(Axis.ZP.rotationDegrees(22.5f));
+        ClientUtil.renderTexture(textureLocation,poseStack,multiBufferSource,
+                -hw,-hh,hw, hh,
+                CUBE_UV_2[0],CUBE_UV_2[1],CUBE_UV_2[2],CUBE_UV_2[3],
+                packedLight,255,255,255,255);
         poseStack.popPose();
     }
 
