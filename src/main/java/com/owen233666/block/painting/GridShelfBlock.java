@@ -99,14 +99,6 @@ public class GridShelfBlock extends AbstractPaintingBlock {
         Boolean white = state.getValue(WHITE);
         PhotoType photoType = state.getValue(PHOTO_TYPE);
 
-//        XheFurniture.LOGGER.info(heldStack.toString());
-//        XheFurniture.LOGGER.info(heldItem.toString());
-//        XheFurniture.LOGGER.info(paintingsOn.toString());
-//        XheFurniture.LOGGER.info(paintingsTo.toString());
-//        XheFurniture.LOGGER.info(hasPhoto.toString());
-//        XheFurniture.LOGGER.info(white.toString());
-//        XheFurniture.LOGGER.info(photoType.toString());
-
         if (hasPhoto){
             if (paintingsTo != Paintings.NONE) {
                 if (paintingsOn != Paintings.NONE) {
@@ -134,9 +126,7 @@ public class GridShelfBlock extends AbstractPaintingBlock {
             }
         } else {
             if (heldIsPhoto(heldItem)){
-//                XheFurniture.LOGGER.info("held is photo");
                 if (heldIsWhite(heldItem)){
-//                    XheFurniture.LOGGER.info("held is white photo");
                     world.setBlockAndUpdate(
                             pos,
                             state.setValue(HAS_PHOTO, true)
@@ -146,7 +136,6 @@ public class GridShelfBlock extends AbstractPaintingBlock {
                     if (!player.isCreative()) heldStack.split(1);
                     return InteractionResult.SUCCESS;
                 }else {
-//                    XheFurniture.LOGGER.info("held is black photo");
                     world.setBlockAndUpdate(
                             pos,
                             state.setValue(HAS_PHOTO, true)
