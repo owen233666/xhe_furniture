@@ -1,0 +1,321 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_bamboo"
+      },
+      "when": {
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_bamboo",
+        "y": 180
+      },
+      "when": {
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_bamboo",
+        "y": 90
+      },
+      "when": {
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_bamboo",
+        "y": 270
+      },
+      "when": {
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_white_a"
+      },
+      "when": {
+        "facing": "north",
+        "has_photo": "true",
+        "photo_type": "a",
+        "white": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_white_a",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "has_photo": "true",
+        "photo_type": "a",
+        "white": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_white_a",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "has_photo": "true",
+        "photo_type": "a",
+        "white": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_white_a",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "has_photo": "true",
+        "photo_type": "a",
+        "white": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_white_b"
+      },
+      "when": {
+        "facing": "north",
+        "has_photo": "true",
+        "photo_type": "b",
+        "white": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_white_b",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "has_photo": "true",
+        "photo_type": "b",
+        "white": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_white_b",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "has_photo": "true",
+        "photo_type": "b",
+        "white": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_white_b",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "has_photo": "true",
+        "photo_type": "b",
+        "white": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_white_c"
+      },
+      "when": {
+        "facing": "north",
+        "has_photo": "true",
+        "photo_type": "c",
+        "white": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_white_c",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "has_photo": "true",
+        "photo_type": "c",
+        "white": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_white_c",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "has_photo": "true",
+        "photo_type": "c",
+        "white": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_white_c",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "has_photo": "true",
+        "photo_type": "c",
+        "white": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_black_a"
+      },
+      "when": {
+        "facing": "north",
+        "has_photo": "true",
+        "photo_type": "a",
+        "white": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_black_a",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "has_photo": "true",
+        "photo_type": "a",
+        "white": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_black_a",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "has_photo": "true",
+        "photo_type": "a",
+        "white": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_black_a",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "has_photo": "true",
+        "photo_type": "a",
+        "white": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_black_b"
+      },
+      "when": {
+        "facing": "north",
+        "has_photo": "true",
+        "photo_type": "b",
+        "white": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_black_b",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "has_photo": "true",
+        "photo_type": "b",
+        "white": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_black_b",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "has_photo": "true",
+        "photo_type": "b",
+        "white": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_black_b",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "has_photo": "true",
+        "photo_type": "b",
+        "white": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_black_c"
+      },
+      "when": {
+        "facing": "north",
+        "has_photo": "true",
+        "photo_type": "c",
+        "white": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_black_c",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "has_photo": "true",
+        "photo_type": "c",
+        "white": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_black_c",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "has_photo": "true",
+        "photo_type": "c",
+        "white": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/grid_shelf_photo_paper_black_c",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "has_photo": "true",
+        "photo_type": "c",
+        "white": "false"
+      }
+    }
+  ]
+}
