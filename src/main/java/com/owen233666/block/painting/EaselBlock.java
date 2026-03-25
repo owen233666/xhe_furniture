@@ -16,6 +16,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -187,17 +188,11 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
         }
         return InteractionResult.PASS;
     }
-//    @Override
-//    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
-//        super.afterBreak(world, player, pos, state, blockEntity, tool);
-//        if (player.isCreative()) return;
-//        if (hasCanvas(state.get(CANVAS_TYPE))) {
-//            ItemStack toDrop = state.get(CANVAS_TYPE) == CanvasType.CANVAS ? new ItemStack(ModBlocks.CANVAS, 1) : new ItemStack(ModBlocks.DRAWING_BOARD, 1);
-//            dropStack(world, pos, toDrop);
-//        }
-//        ItemStack paintings = getItemFromPaintings(state.get(PAINTINGS));
-//        dropStack(world, pos, paintings);
-//    }
+
+    @Override
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
+    }
 
     private boolean hasCanvas(CanvasType canvasType) {
         if (canvasType == CanvasType.NONE) {

@@ -1,19 +1,25 @@
 package com.owen233666.block.painting;
 
 import com.owen233666.block.ModBlocks;
+import com.owen233666.item.ModItemTags;
 import com.owen233666.util.BlockUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -21,12 +27,13 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class GridShelfBlock extends AbstractPaintingBlock {
+public class GridShelfBlock extends HorizontalDirectionalBlock implements EntityBlock {
     public static final BooleanProperty WHITE = BooleanProperty.create("white");
     public static final BooleanProperty HAS_PHOTO  = BooleanProperty.create("has_photo");
     public static final EnumProperty<PhotoType> PHOTO_TYPE = EnumProperty.create("photo_type", PhotoType.class);
@@ -73,7 +80,6 @@ public class GridShelfBlock extends AbstractPaintingBlock {
                 this.stateDefinition.any()
                         .setValue(HAS_PHOTO, false)
                         .setValue(WHITE, true)
-                        .setValue(PAINTINGS, Paintings.NONE)
                         .setValue(PHOTO_TYPE, PhotoType.A)
         );
     }
@@ -93,61 +99,24 @@ public class GridShelfBlock extends AbstractPaintingBlock {
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack heldStack = player.getItemInHand(hand);
         Item heldItem = heldStack.getItem();
-        Paintings paintingsOn = state.getValue(PAINTINGS);
-        Paintings paintingsTo = getPaintingsFromItem(heldItem);
         Boolean hasPhoto = state.getValue(HAS_PHOTO);
         Boolean white = state.getValue(WHITE);
         PhotoType photoType = state.getValue(PHOTO_TYPE);
 
-        if (hasPhoto){
-            if (paintingsTo != Paintings.NONE) {
-                if (paintingsOn != Paintings.NONE) {
-                    ItemStack giveStack = getItemFromPaintings(paintingsOn);
-                    if (!player.isCreative()) heldStack.split(1);
-                    if (!player.getInventory().add(giveStack)) player.spawnAtLocation(giveStack);
-                    world.setBlockAndUpdate(pos, state.setValue(PAINTINGS, paintingsTo));
-                    return InteractionResult.CONSUME_PARTIAL;
-                }else {
-                    if (!player.isCreative()) heldStack.split(1);
-                    world.setBlockAndUpdate(pos, state.setValue(PAINTINGS, paintingsTo));
-                    return InteractionResult.CONSUME_PARTIAL;
+        if (!world.isClientSide) {
+            if (hasPhoto) {
+                if (heldIsPhoto(heldItem)) {
+                    return InteractionResult.PASS;
                 }
-            }else {
-                if (player.isShiftKeyDown() && heldStack.isEmpty()) {
-                    ItemStack giveStack = getFromShelf(photoType, white);
-                    if (!player.getInventory().add(giveStack)) player.spawnAtLocation(giveStack);
-                    world.setBlockAndUpdate(pos, state.setValue(PAINTINGS, Paintings.NONE).setValue(HAS_PHOTO, false));
-                    return InteractionResult.SUCCESS;
-                }
-                ItemStack giveStack = getItemFromPaintings(paintingsOn);
-                if (!player.getInventory().add(giveStack)) player.spawnAtLocation(giveStack);
-                world.setBlockAndUpdate(pos, state.setValue(PAINTINGS, Paintings.NONE));
-                return InteractionResult.SUCCESS;
+
+                if ()
             }
-        } else {
-            if (heldIsPhoto(heldItem)){
-                if (heldIsWhite(heldItem)){
-                    world.setBlockAndUpdate(
-                            pos,
-                            state.setValue(HAS_PHOTO, true)
-                                    .setValue(WHITE, true)
-                                    .setValue(PHOTO_TYPE, getPhotoType(heldItem))
-                    );
-                    if (!player.isCreative()) heldStack.split(1);
-                    return InteractionResult.SUCCESS;
-                }else {
-                    world.setBlockAndUpdate(
-                            pos,
-                            state.setValue(HAS_PHOTO, true)
-                                    .setValue(WHITE, false)
-                                    .setValue(PHOTO_TYPE, getPhotoType(heldItem))
-                    );
-                    if (!player.isCreative()) heldStack.split(1);
-                    return InteractionResult.SUCCESS;
-                }
-            }
-            return InteractionResult.PASS;
         }
+    }
+
+    @Override
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
     }
 
     public boolean heldIsPhoto(Item heldItem) {
@@ -157,6 +126,10 @@ public class GridShelfBlock extends AbstractPaintingBlock {
                         heldItem == ModBlocks.PHOTO_PAPER_BLACK_A.asItem() ||
                         heldItem == ModBlocks.PHOTO_PAPER_BLACK_B.asItem() ||
                         heldItem == ModBlocks.PHOTO_PAPER_BLACK_C.asItem();
+    }
+
+    public boolean heldIsPainting(Item heldItem) {
+        return BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
     }
 
     public Boolean heldIsWhite(Item heldItem) {
@@ -174,6 +147,11 @@ public class GridShelfBlock extends AbstractPaintingBlock {
         if (heldItem == ModBlocks.PHOTO_PAPER_WHITE_B.asItem() || heldItem == ModBlocks.PHOTO_PAPER_BLACK_B.asItem()) return PhotoType.B;
         if (heldItem == ModBlocks.PHOTO_PAPER_WHITE_C.asItem() || heldItem == ModBlocks.PHOTO_PAPER_BLACK_C.asItem()) return PhotoType.C;
         return PhotoType.A;
+    }
+
+    @Override
+    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return null;
     }
 
     public enum PhotoType implements StringRepresentable {
