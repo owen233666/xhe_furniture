@@ -20,6 +20,7 @@ public class PhotoCBlockRenderer implements BlockEntityRenderer<PhotoCBlockEntit
     private final float[] CUBE_UV_3 = {0.21875f,     0.25000f,    0.46875f,     0.46875f};
 
     public PhotoCBlockRenderer(BlockEntityRendererProvider.Context context) {
+
     }
 
     @Override
@@ -59,7 +60,7 @@ public class PhotoCBlockRenderer implements BlockEntityRenderer<PhotoCBlockEntit
                 CUBE_UV_1[0], CUBE_UV_1[1], CUBE_UV_1[2], CUBE_UV_1[3],
                 packedLight, 255, 255, 255, 255);
         poseStack.popPose();
-        //左上空的
+        //左上
         poseStack.pushPose();
         poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
         poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));

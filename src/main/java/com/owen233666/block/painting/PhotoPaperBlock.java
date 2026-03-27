@@ -169,12 +169,4 @@ public abstract class PhotoPaperBlock extends HorizontalDirectionalBlock impleme
             }
         }
     }
-
-//    @Override
-//    public void playerDestroy(Level world, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity blockEntity, ItemStack tool) {
-//        super.playerDestroy(world, player, pos, state, blockEntity, tool);
-//        if (player.isCreative()) return;
-//        ItemStack painting = getItemFromPaintings(state.getValue(PAINTINGS));
-//        popResource(world, pos, painting);
-//    }
 }

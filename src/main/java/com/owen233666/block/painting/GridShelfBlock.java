@@ -1,12 +1,17 @@
 package com.owen233666.block.painting;
 
+import com.owen233666.XheFurniture;
 import com.owen233666.block.ModBlocks;
+import com.owen233666.block.entity.GridShelfBlockEntity;
+import com.owen233666.block.entity.PhotoBlockEntity;
 import com.owen233666.item.ModItemTags;
 import com.owen233666.util.BlockUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -87,7 +92,7 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(PHOTO_TYPE, HAS_PHOTO, WHITE);
+        builder.add(FACING, PHOTO_TYPE, HAS_PHOTO, WHITE);
     }
 
     @Override
@@ -99,19 +104,56 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack heldStack = player.getItemInHand(hand);
         Item heldItem = heldStack.getItem();
+        BlockEntity blockEntity = world.getBlockEntity(pos);
         Boolean hasPhoto = state.getValue(HAS_PHOTO);
         Boolean white = state.getValue(WHITE);
         PhotoType photoType = state.getValue(PHOTO_TYPE);
 
-        if (!world.isClientSide) {
-            if (hasPhoto) {
-                if (heldIsPhoto(heldItem)) {
-                    return InteractionResult.PASS;
-                }
+        if (blockEntity instanceof GridShelfBlockEntity gridShelfBlockEntity){
+            boolean hasPainting = !(gridShelfBlockEntity.getInv().getFirst() == ItemStack.EMPTY);
+            XheFurniture.LOGGER.info("-------------------");
+            XheFurniture.LOGGER.info("hasPainting:" + hasPainting);
+            XheFurniture.LOGGER.info("white:" + white);
+            XheFurniture.LOGGER.info("hasPhoto:" + hasPhoto);
+            if (!world.isClientSide) {
+                if (hasPhoto) {
+                    if (heldStack.isEmpty()){
+                        if (hasPainting) {
+                            remove(world, pos, player, gridShelfBlockEntity);
+                            return InteractionResult.SUCCESS;
+                        }
+                    }
 
-                if ()
+                    if (!hasPainting) {
+                        if (heldIsPainting(heldItem)) {
+                            addItem(world, pos, player, gridShelfBlockEntity, heldStack);
+                            return InteractionResult.CONSUME;
+                        }
+                    }
+
+                    if (heldIsPhoto(heldItem)) {
+                        ItemStack toGive = getFromShelf(state.getValue(PHOTO_TYPE), state.getValue(WHITE));
+                        if (!player.addItem(toGive)) player.drop(toGive, false);
+                        state = state.setValue(HAS_PHOTO, false);
+                        state = state.setValue(WHITE, true);
+                        state = state.setValue(PHOTO_TYPE, PhotoType.A);
+                        world.setBlockAndUpdate(pos, state);
+                        return InteractionResult.CONSUME;
+                    }
+                }else {
+                    if (heldIsPhoto(heldItem)) {
+                        if (!player.isCreative()) heldStack.shrink(1);
+                        state = state.setValue(HAS_PHOTO, true);
+                        state = state.setValue(WHITE, white);
+                        state = state.setValue(PHOTO_TYPE, getPhotoType(heldItem));
+                        world.setBlockAndUpdate(pos, state);
+                        return InteractionResult.CONSUME;
+                    }
+                }
             }
+            return InteractionResult.PASS;
         }
+        return InteractionResult.PASS;
     }
 
     @Override
@@ -151,7 +193,27 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return null;
+        return new GridShelfBlockEntity(blockPos, blockState);
+    }
+
+    public void addItem(Level world, BlockPos pos, Player player, GridShelfBlockEntity gridShelfBlockEntity, ItemStack stack){
+        if(!world.isClientSide()) {
+            gridShelfBlockEntity.setStack(stack.split(1));
+            world.playSound(null, pos, SoundEvents.WOOD_PLACE, SoundSource.BLOCKS, 1.0F, 1.0F);
+            if(player.isCreative()) {
+                stack.grow(1);
+            }
+        }
+    }
+
+    public void remove(Level world, BlockPos pos, Player player, GridShelfBlockEntity gridShelfBlockEntity){
+        if(!world.isClientSide()) {
+            ItemStack toRemoveStack =gridShelfBlockEntity.removeStack();
+            world.playSound(null, pos, SoundEvents.WOOD_BREAK, SoundSource.BLOCKS, 1.0F, 1.0F);
+            if(!player.getInventory().add(toRemoveStack)){
+                player.spawnAtLocation(toRemoveStack);
+            }
+        }
     }
 
     public enum PhotoType implements StringRepresentable {

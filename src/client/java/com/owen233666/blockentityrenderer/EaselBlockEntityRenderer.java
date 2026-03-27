@@ -22,7 +22,7 @@ public class EaselBlockEntityRenderer implements BlockEntityRenderer<EaselBlockE
 
     @Override
     public void render(EaselBlockEntity blockEntity, float f, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j) {
-        ItemStack stack = blockEntity.getInv().get(0);
+        ItemStack stack = blockEntity.getInv().getFirst();
         BlockState state = blockEntity.getBlockState();
         Direction direction = state.getValue(EaselBlock.FACING);
         if (stack.isEmpty()) {

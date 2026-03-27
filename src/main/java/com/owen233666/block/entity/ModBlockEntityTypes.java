@@ -65,6 +65,24 @@ public class ModBlockEntityTypes {
                     ).build(null)
             );
 
+    public static final BlockEntityType<GridShelfBlockEntity> GRID_SHELF_BLOCK_BE =
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "grid_shelf_block_entity"),
+                    BlockEntityType.Builder.of(
+                            GridShelfBlockEntity::new,
+                            ModBlocks.GRID_SHELF_OAK,
+                            ModBlocks.GRID_SHELF_SPRUCE,
+                            ModBlocks.GRID_SHELF_JUNGLE,
+                            ModBlocks.GRID_SHELF_BIRCH,
+                            ModBlocks.GRID_SHELF_ACACIA,
+                            ModBlocks.GRID_SHELF_DARK_OAK,
+                            ModBlocks.GRID_SHELF_MANGROVE,
+                            ModBlocks.GRID_SHELF_CHERRY,
+                            ModBlocks.GRID_SHELF_BAMBOO,
+                            ModBlocks.GRID_SHELF_PALE_OAK,
+                            ModBlocks.GRID_SHELF_BLACKSTONE
+                    ).build(null)
+            );
+
     public static final BlockEntityType<CanvasBlockEntity> PAINTING_FRAME_BLOCK_BE =
             Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_block_entity"),
                     BlockEntityType.Builder.of(
