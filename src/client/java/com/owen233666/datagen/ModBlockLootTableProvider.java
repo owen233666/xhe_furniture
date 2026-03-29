@@ -79,6 +79,23 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
         dropSelf(ModBlocks.EASEL);
         dropSelf(ModBlocks.CANVAS);
         dropSelf(ModBlocks.DRAWING_BOARD);
+        dropSelf(ModBlocks.PAINTING_FRAME_OAK);
+        dropSelf(ModBlocks.PAINTING_FRAME_SPRUCE);
+        dropSelf(ModBlocks.PAINTING_FRAME_JUNGLE);
+        dropSelf(ModBlocks.PAINTING_FRAME_BIRCH);
+        dropSelf(ModBlocks.PAINTING_FRAME_ACACIA);
+        dropSelf(ModBlocks.PAINTING_FRAME_DARK_OAK);
+        dropSelf(ModBlocks.PAINTING_FRAME_MANGROVE);
+        dropSelf(ModBlocks.PAINTING_FRAME_CHERRY);
+        dropSelf(ModBlocks.PAINTING_FRAME_BAMBOO);
+        dropSelf(ModBlocks.PAINTING_FRAME_PALE_OAK);
+        dropSelf(ModBlocks.PAINTING_FRAME_BLACKSTONE);
+        dropSelf(ModBlocks.PHOTO_PAPER_WHITE_A);
+        dropSelf(ModBlocks.PHOTO_PAPER_WHITE_B);
+        dropSelf(ModBlocks.PHOTO_PAPER_WHITE_C);
+        dropSelf(ModBlocks.PHOTO_PAPER_BLACK_A);
+        dropSelf(ModBlocks.PHOTO_PAPER_BLACK_B);
+        dropSelf(ModBlocks.PHOTO_PAPER_BLACK_C);
         dropSelf(ModBlocks.GRID_SHELF_OAK);
         dropSelf(ModBlocks.GRID_SHELF_SPRUCE);
         dropSelf(ModBlocks.GRID_SHELF_JUNGLE);
@@ -90,5 +107,8 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
         dropSelf(ModBlocks.GRID_SHELF_BAMBOO);
         dropSelf(ModBlocks.GRID_SHELF_PALE_OAK);
         dropSelf(ModBlocks.GRID_SHELF_BLACKSTONE);
+        dropSelf(ModBlocks.PAINT_BRUSH);
+        dropSelf(ModBlocks.PAINT_CAN);
+        dropSelf(ModBlocks.MESSY_PAINT_CAN);
     }
 }
