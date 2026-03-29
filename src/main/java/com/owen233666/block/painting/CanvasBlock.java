@@ -2,6 +2,7 @@ package com.owen233666.block.painting;
 
 import com.owen233666.block.entity.CanvasBlockEntity;
 import com.owen233666.block.entity.EaselBlockEntity;
+import com.owen233666.block.entity.PhotoBlockEntity;
 import com.owen233666.item.ModItemTags;
 import com.owen233666.item.PaintBrushItem;
 import com.owen233666.util.BlockUtil;
@@ -10,8 +11,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -202,6 +205,19 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
         }
 
         return this.defaultBlockState().setValue(FACING, playerFacing.getOpposite()).setValue(RACK, true);
+    }
+
+    @Override
+    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
+        if(!state.equals(newState)) {
+            BlockEntity be  =  world.getBlockEntity(pos);
+            if(be instanceof CanvasBlockEntity canvasBlockEntity){
+                if(world instanceof ServerLevel serverWorld){
+                    Containers.dropContents(serverWorld, pos, canvasBlockEntity.getInv());
+                }
+            }
+        }
+        super.onRemove(state, world, pos, newState, moved);
     }
 
     //向be的inv中添加物品的方法

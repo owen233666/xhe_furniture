@@ -3,14 +3,17 @@ package com.owen233666.block.painting;
 import com.owen233666.XheFurniture;
 import com.owen233666.block.ModBlocks;
 import com.owen233666.block.entity.EaselBlockEntity;
+import com.owen233666.block.entity.PhotoBlockEntity;
 import com.owen233666.item.ModItemTags;
 import com.owen233666.item.PaintBrushItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -194,6 +197,19 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
         return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
     }
 
+    @Override
+    public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
+        if(!state.equals(newState)) {
+            BlockEntity be  =  world.getBlockEntity(pos);
+            if(be instanceof EaselBlockEntity easelBlockEntity){
+                if(world instanceof ServerLevel serverWorld){
+                    Containers.dropContents(serverWorld, pos, easelBlockEntity.getInv());
+                }
+            }
+        }
+        super.onRemove(state, world, pos, newState, moved);
+    }
+
     private boolean hasCanvas(CanvasType canvasType) {
         if (canvasType == CanvasType.NONE) {
             return false;
@@ -202,13 +218,6 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
         }
     }
 
-    //没用了
-    @Deprecated
-    private boolean hasPainting(Paintings paintings) {
-        return paintings != Paintings.NONE;
-    }
-
-    //构造be的方法
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new EaselBlockEntity(pos, state);

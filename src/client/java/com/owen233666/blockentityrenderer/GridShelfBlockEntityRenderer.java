@@ -2,6 +2,7 @@ package com.owen233666.blockentityrenderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
+import com.owen233666.XheFurniture;
 import com.owen233666.block.entity.GridShelfBlockEntity;
 import com.owen233666.block.painting.GridShelfBlock;
 import com.owen233666.clientUtil.ClientUtil;
@@ -36,6 +37,8 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
         Direction direction = state.getValue(GridShelfBlock.FACING);
         GridShelfBlock.PhotoType photoType = state.getValue(GridShelfBlock.PHOTO_TYPE);
 
+        if (!state.getValue(GridShelfBlock.HAS_PHOTO)) return;
+
         ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(stack.getItem());
         if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) {
             return;
@@ -44,16 +47,16 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
 
         switch (direction) {
             case NORTH -> {
-                renderAsPhotoType(photoType, poseStack, multiBufferSource, textureLocation, i, null, 0.99f, 0.0f);
+                renderAsPhotoType(photoType, poseStack, multiBufferSource, textureLocation, i, null, 0.9275f, 0.0f);
             }
             case SOUTH -> {
-                renderAsPhotoType(photoType, poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.01f, 180.0f);
-            }
-            case EAST -> {
-                renderAsPhotoType(photoType, poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.99f, 90.0f);
+                renderAsPhotoType(photoType, poseStack, multiBufferSource, textureLocation, i, 1.00f, 0.0725f, 180.0f);
             }
             case WEST -> {
-                renderAsPhotoType(photoType, poseStack, multiBufferSource, textureLocation, i, 0.01f, null, 270.0f);
+                renderAsPhotoType(photoType, poseStack, multiBufferSource, textureLocation, i, 0.9275f, 1.00f, 90.0f);
+            }
+            case EAST -> {
+                renderAsPhotoType(photoType, poseStack, multiBufferSource, textureLocation, i, 0.0725f, null, 270.0f);
             }
         }
     }

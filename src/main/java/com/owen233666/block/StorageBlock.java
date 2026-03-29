@@ -106,7 +106,6 @@ public abstract class StorageBlock extends HorizontalDirectionalBlock implements
 
     @Override
     public void onRemove(BlockState state, Level world, BlockPos pos, BlockState newState, boolean moved) {
-        Block block = state.getBlock();
         if(!state.equals(newState)) {
             BlockEntity be  =  world.getBlockEntity(pos);
             if(be instanceof StorageBlockEntity storageBlockEntity){
