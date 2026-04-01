@@ -81,6 +81,8 @@ public class ModCreativeTab {
                         entries.accept(ModBlocks.CARPET_YELLOW);
                         //Rattan Table
                         entries.accept(ModBlocks.RATTAN_TABLE);
+
+                        entries.accept(ModBlocks.BIG_CRAFTING_TABLE_OAK);
                     })).build()
     );
 

@@ -3,6 +3,7 @@ package com.owen233666;
 import com.owen233666.datagen.ModBlockLootTableProvider;
 import com.owen233666.datagen.ModBlockTagProvider;
 import com.owen233666.datagen.ModItemTagProvider;
+import com.owen233666.datagen.ModRecipeProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -30,5 +31,6 @@ public class XheFurnitureDataGenerator implements DataGeneratorEntrypoint {
 //		pack.addProvider(PaintingFramePaintingCorner3ModelProvider::new);
 //		pack.addProvider(PaintingFramePaintingWallModelProvider::new);
 		pack.addProvider(ModItemTagProvider::new);
+		pack.addProvider(ModRecipeProvider::new);
 	}
 }

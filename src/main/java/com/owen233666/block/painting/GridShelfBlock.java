@@ -125,7 +125,7 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
                 if (heldIsPhoto(heldItem)) {
                     if (!player.isCreative()) heldStack.shrink(1);
                     state = state.setValue(HAS_PHOTO, true);
-                    state = state.setValue(WHITE, heldIsPainting(heldItem));
+                    state = state.setValue(WHITE, heldIsWhite(heldItem));
                     state = state.setValue(PHOTO_TYPE, getPhotoType(heldItem));
                     world.setBlockAndUpdate(pos, state);
                     return InteractionResult.SUCCESS;
@@ -181,7 +181,7 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     public Boolean heldIsWhite(Item heldItem) {
-        return heldItem == ModBlocks.PHOTO_PAPER_WHITE_A.asItem() || heldItem == ModBlocks.PHOTO_PAPER_WHITE_B.asItem() || heldItem == ModBlocks.PHOTO_PAPER_WHITE_C.asItem();
+        return (Block.byItem(heldItem) == ModBlocks.PHOTO_PAPER_WHITE_A || Block.byItem(heldItem) == ModBlocks.PHOTO_PAPER_WHITE_B || Block.byItem(heldItem) == ModBlocks.PHOTO_PAPER_WHITE_C);
     }
 
     public ItemStack getFromShelf(PhotoType photoType, Boolean white) {

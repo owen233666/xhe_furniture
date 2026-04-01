@@ -1,0 +1,7 @@
+{
+  "parent": "xhe_furniture:block/parent/big_crafting_table",
+  "textures": {
+    "48": "xhe_furniture:block/big_crafting_table_oak",
+    "particle": "xhe_furniture:block/big_crafting_table_oak"
+  }
+}
