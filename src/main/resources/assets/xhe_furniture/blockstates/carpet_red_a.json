@@ -1,17 +1,17 @@
 {
   "variants": {
-    "facing=east": {
+    "facing=west": {
       "model": "xhe_furniture:block/carpet_red_a",
       "y": 90
     },
-    "facing=north": {
+    "facing=south": {
       "model": "xhe_furniture:block/carpet_red_a"
     },
-    "facing=south": {
+    "facing=north": {
       "model": "xhe_furniture:block/carpet_red_a",
       "y": 180
     },
-    "facing=west": {
+    "facing=east": {
       "model": "xhe_furniture:block/carpet_red_a",
       "y": 270
     }

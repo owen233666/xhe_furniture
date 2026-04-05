@@ -91,6 +91,14 @@ public class ModBlockEntityTypes {
                     ).build(null)
             );
 
+    public static final BlockEntityType<BookLikeBlockEntity> BOOK_LIKE_BLOCK_BE =
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "book_like_block_entity"),
+                    BlockEntityType.Builder.of(
+                            BookLikeBlockEntity::new,
+                            ModBlocks.CANVAS
+                    ).build(null)
+            );
+
     public static void registerBlockEntityTypes() {
     }
 }

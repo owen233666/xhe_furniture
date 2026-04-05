@@ -117,7 +117,8 @@ public class ModBlocks {
     public static final ResourceLocation MESSY_PAINT_CAN_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "messy_paint_can");
     //Big Crafting Tables
     public static final ResourceLocation BIG_CRAFTING_TABLE_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "big_crafting_table_oak");
-
+    //Books
+    public static final ResourceLocation OPEN_BOOK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "open_book");
 
 
     //Cups
@@ -220,6 +221,8 @@ public class ModBlocks {
     public static final Block MESSY_PAINT_CAN           = registerBlock(MESSY_PAINT_CAN_RESOURCE_LOCATION,          new DyeablePaintCanBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion(), 0, 0, 0, 16, 6, 16));
     //Big Crafting Tables
     public static final Block BIG_CRAFTING_TABLE_OAK = registerBlock(BIG_CRAFTING_TABLE_OAK_RESOURCE_LOCATION, new StonecutterBlock(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
+    //Books
+    public static final Block OPEN_BOOK = registerBlock(OPEN_BOOK_RESOURCE_LOCATION, new OpenBookBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().sound(SoundType.WOOD).noOcclusion()));
 
     public static Block registerBlock(ResourceLocation resourceLocation, Block block){
         registerBlockItem(resourceLocation, block);

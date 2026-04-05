@@ -81,6 +81,8 @@ public class XheFurnitureClient implements ClientModInitializer {
 
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BIG_CRAFTING_TABLE_OAK, RenderType.cutout());
 
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.OPEN_BOOK, RenderType.cutout());
+
 
 		BlockEntityRenderers.register(ModBlockEntityTypes.STORAGE_BLOCK_BE, StorageBlockEntityRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.EASEL_BLOCK_BE, EaselBlockEntityRenderer::new);

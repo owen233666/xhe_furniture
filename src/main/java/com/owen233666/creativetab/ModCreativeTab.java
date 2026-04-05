@@ -125,6 +125,9 @@ public class ModCreativeTab {
                         entries.accept(ModBlocks.GRID_SHELF_BLACKSTONE);
                         entries.accept(ModBlocks.PAINT_CAN);
                         entries.accept(ModBlocks.MESSY_PAINT_CAN);
+
+                        entries.accept(ModBlocks.OPEN_BOOK);
+
                         entries.accept(ModItems.PAINTING_ANGEL);
                         entries.accept(ModItems.PAINTING_BEDROOM_BED);
                         entries.accept(ModItems.PAINTING_BERRY_BUSH);
