@@ -85,8 +85,25 @@
   "block.xhe_furniture.grid_shelf_bamboo": "竹子格子架",
   "block.xhe_furniture.grid_shelf_pale_oak": "苍白橡木格子架",
   "block.xhe_furniture.grid_shelf_blackstone": "黑石格子架",
+  "block.xhe_furniture.painting_frame_oak": "橡木画框",
+  "block.xhe_furniture.painting_frame_spruce": "云杉木画框",
+  "block.xhe_furniture.painting_frame_jungle": "从林木画框",
+  "block.xhe_furniture.painting_frame_birch": "白桦木画框",
+  "block.xhe_furniture.painting_frame_acacia": "金合欢木画框",
+  "block.xhe_furniture.painting_frame_dark_oak": "深色橡木画框",
+  "block.xhe_furniture.painting_frame_mangrove": "红树木画框",
+  "block.xhe_furniture.painting_frame_cherry": "樱花木画框",
+  "block.xhe_furniture.painting_frame_bamboo": "竹子画框",
+  "block.xhe_furniture.painting_frame_pale_oak": "苍白橡木画框",
+  "block.xhe_furniture.painting_frame_blackstone": "黑石画框",
+  "block.xhe_furniture.paint_can": "颜料罐",
+  "block.xhe_furniture.messy_paint_can": "杂乱的颜料罐",
+  "block.xhe_furniture.open_book": "打开的书籍",
+  "block.xhe_furniture.stacked_book": "叠放的书籍",
+  "block.xhe_furniture.bundled_book": "堆堆的书籍",
 
   "item.xhe_furniture.painting": "画作",
+  "item.xhe_furniture.paint_brush": "颜料刷",
 
   "painting.xhe_furniture.angel":"天使",
   "painting.xhe_furniture.bedroom_bed": "卧室小床",
@@ -136,5 +153,6 @@
   "painting.xhe_furniture.world_tree": "世界树",
 
   "tooltip.xhe_furniture.rattan_table": "可以将地毯放在桌子上当桌布",
-  "tooltip.xhe_furniture.author": "作者: "
+  "tooltip.xhe_furniture.author": "作者: ",
+  "tooltip.xhe_furniture.photo_paper": "按住 %s + %s 切换下一个形态"
 }

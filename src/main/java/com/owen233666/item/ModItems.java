@@ -57,7 +57,12 @@ public class ModItems {
     public static final Item PAINTING_WILDFLOWER_PLAIN      = registerItem("painting_wildflower_plain",     new ItemWithTranslatableTooltip(new FabricItemSettings(), "wildflower_plain",   "在掐饭的小禾"));
     public static final Item PAINTING_WORLD_TREE            = registerItem("painting_world_tree",           new ItemWithTranslatableTooltip(new FabricItemSettings(), "world_tree",         "在掐饭的小禾"));
     public static final Item PAINT_BRUSH                    = registerItem("paint_brush",                   new PaintBrushItem(new FabricItemSettings().stacksTo(1).durability(64).rarity(Rarity.RARE), ModBlocks.PAINT_BRUSH));
-
+    public static final Item PHOTO_PAPER_WHITE_A            = registerItem("photo_paper_white_a",           new PhotoPaperItem(ModBlocks.PHOTO_PAPER_WHITE_A, new Item.Properties()));
+    public static final Item PHOTO_PAPER_WHITE_B            = registerItem("photo_paper_white_b",           new PhotoPaperItem(ModBlocks.PHOTO_PAPER_WHITE_B, new Item.Properties()));
+    public static final Item PHOTO_PAPER_WHITE_C            = registerItem("photo_paper_white_c",           new PhotoPaperItem(ModBlocks.PHOTO_PAPER_WHITE_C, new Item.Properties()));
+    public static final Item PHOTO_PAPER_BLACK_A            = registerItem("photo_paper_black_a",           new PhotoPaperItem(ModBlocks.PHOTO_PAPER_BLACK_A, new Item.Properties()));
+    public static final Item PHOTO_PAPER_BLACK_B            = registerItem("photo_paper_black_b",           new PhotoPaperItem(ModBlocks.PHOTO_PAPER_BLACK_B, new Item.Properties()));
+    public static final Item PHOTO_PAPER_BLACK_C            = registerItem("photo_paper_black_c",           new PhotoPaperItem(ModBlocks.PHOTO_PAPER_BLACK_C, new Item.Properties()));
     private static Item registerItem(String name, Item item) {
         return Registry.register(BuiltInRegistries.ITEM, new ResourceLocation(XheFurniture.MOD_ID, name), item);
     }

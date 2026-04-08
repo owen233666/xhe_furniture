@@ -1,0 +1,215 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "xhe_furniture:block/wooden_rack"
+      },
+      "when": {
+        "facing": "north",
+        "rack": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/wooden_rack",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "rack": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/wooden_rack",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "rack": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/wooden_rack",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "rack": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_corner_1_pale_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "count": 1,
+        "type": "corner"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_corner_2_pale_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "count": 2,
+        "type": "corner"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_corner_3_pale_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "count": 3,
+        "type": "corner"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_wall_pale_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "type": "wall"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_corner_1_pale_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "count": 1,
+        "type": "corner"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_corner_2_pale_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "count": 2,
+        "type": "corner"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_corner_3_pale_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "count": 3,
+        "type": "corner"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_wall_pale_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "type": "wall"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_corner_1_pale_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "count": 1,
+        "type": "corner"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_corner_2_pale_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "count": 2,
+        "type": "corner"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_corner_3_pale_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "count": 3,
+        "type": "corner"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_wall_pale_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "type": "wall"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_corner_1_pale_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "count": 1,
+        "type": "corner"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_corner_2_pale_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "count": 2,
+        "type": "corner"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_corner_3_pale_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "count": 3,
+        "type": "corner"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/painting_frame_wall_pale_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "type": "wall"
+      }
+    }
+  ]
+}

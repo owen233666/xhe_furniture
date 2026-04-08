@@ -83,7 +83,7 @@ public class ModBlocks {
     //Painting Studio Series
     public static final ResourceLocation EASEL_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "easel");
     public static final ResourceLocation CANVAS_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "canvas");
-    public static final ResourceLocation PAINTING_FRAME_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame");
+    public static final ResourceLocation PAINTING_FRAME_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_oak");
     public static final ResourceLocation PAINTING_FRAME_SPRUCE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_spruce");
     public static final ResourceLocation PAINTING_FRAME_BIRCH_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_birch");
     public static final ResourceLocation PAINTING_FRAME_JUNGLE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_jungle");
@@ -92,7 +92,7 @@ public class ModBlocks {
     public static final ResourceLocation PAINTING_FRAME_MANGROVE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_mangrove");
     public static final ResourceLocation PAINTING_FRAME_CHERRY_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_cherry");
     public static final ResourceLocation PAINTING_FRAME_BAMBOO_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_bamboo");
-    public static final ResourceLocation PAINTING_FRAME_PALE_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_palm");
+    public static final ResourceLocation PAINTING_FRAME_PALE_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_pale_oak");
     public static final ResourceLocation PAINTING_FRAME_BLACKSTONE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_blackstone");
     public static final ResourceLocation DRAWING_BOARD_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "drawing_board");
     public static final ResourceLocation PHOTO_PAPER_WHITE_A_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "photo_paper_white_a");
@@ -199,12 +199,12 @@ public class ModBlocks {
     public static final Block PAINTING_FRAME_BAMBOO     = registerBlock(PAINTING_FRAME_BAMBOO_RESOURCE_LOCATION,    new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
     public static final Block PAINTING_FRAME_PALE_OAK   = registerBlock(PAINTING_FRAME_PALE_OAK_RESOURCE_LOCATION,  new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
     public static final Block PAINTING_FRAME_BLACKSTONE = registerBlock(PAINTING_FRAME_BLACKSTONE_RESOURCE_LOCATION,new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
-    public static final Block PHOTO_PAPER_WHITE_A       = registerBlock(PHOTO_PAPER_WHITE_A_RESOURCE_LOCATION,      new     PhotoAPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
-    public static final Block PHOTO_PAPER_WHITE_B       = registerBlock(PHOTO_PAPER_WHITE_B_RESOURCE_LOCATION,      new     PhotoBPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
-    public static final Block PHOTO_PAPER_WHITE_C       = registerBlock(PHOTO_PAPER_WHITE_C_RESOURCE_LOCATION,      new     PhotoCPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
-    public static final Block PHOTO_PAPER_BLACK_A       = registerBlock(PHOTO_PAPER_BLACK_A_RESOURCE_LOCATION,      new     PhotoAPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
-    public static final Block PHOTO_PAPER_BLACK_B       = registerBlock(PHOTO_PAPER_BLACK_B_RESOURCE_LOCATION,      new     PhotoBPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
-    public static final Block PHOTO_PAPER_BLACK_C       = registerBlock(PHOTO_PAPER_BLACK_C_RESOURCE_LOCATION,      new     PhotoCPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
+    public static final Block PHOTO_PAPER_WHITE_A       = registerWithoutItem(PHOTO_PAPER_WHITE_A_RESOURCE_LOCATION,new     PhotoAPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
+    public static final Block PHOTO_PAPER_WHITE_B       = registerWithoutItem(PHOTO_PAPER_WHITE_B_RESOURCE_LOCATION,new     PhotoBPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
+    public static final Block PHOTO_PAPER_WHITE_C       = registerWithoutItem(PHOTO_PAPER_WHITE_C_RESOURCE_LOCATION,new     PhotoCPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
+    public static final Block PHOTO_PAPER_BLACK_A       = registerWithoutItem(PHOTO_PAPER_BLACK_A_RESOURCE_LOCATION,new     PhotoAPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
+    public static final Block PHOTO_PAPER_BLACK_B       = registerWithoutItem(PHOTO_PAPER_BLACK_B_RESOURCE_LOCATION,new     PhotoBPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
+    public static final Block PHOTO_PAPER_BLACK_C       = registerWithoutItem(PHOTO_PAPER_BLACK_C_RESOURCE_LOCATION,new     PhotoCPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
     public static final Block GRID_SHELF_OAK            = registerBlock(GRID_SHELF_OAK_RESOURCE_LOCATION,           new       GridShelfBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
     public static final Block GRID_SHELF_SPRUCE         = registerBlock(GRID_SHELF_SPRUCE_RESOURCE_LOCATION,        new       GridShelfBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
     public static final Block GRID_SHELF_JUNGLE         = registerBlock(GRID_SHELF_JUNGLE_RESOURCE_LOCATION,        new       GridShelfBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
