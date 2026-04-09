@@ -61,7 +61,7 @@ public class ModBlocks {
     public static final ResourceLocation CARPET_GRAY_RESOURCE_LOCATION          = new ResourceLocation(XheFurniture.MOD_ID, "carpet_gray");
     public static final ResourceLocation CARPET_GRAY_A_RESOURCE_LOCATION        = new ResourceLocation(XheFurniture.MOD_ID, "carpet_gray_a");
     public static final ResourceLocation CARPET_GREEN_RESOURCE_LOCATION         = new ResourceLocation(XheFurniture.MOD_ID, "carpet_green");
-    public static final ResourceLocation CARPET_GREEN_A_RESOURCE_LOCATION       =  new ResourceLocation(XheFurniture.MOD_ID, "carpet_green_a");
+    public static final ResourceLocation CARPET_GREEN_A_RESOURCE_LOCATION       = new ResourceLocation(XheFurniture.MOD_ID, "carpet_green_a");
     public static final ResourceLocation CARPET_LEMON_SLICE_RESOURCE_LOCATION   = new ResourceLocation(XheFurniture.MOD_ID, "carpet_lemon_slice");
     public static final ResourceLocation CARPET_ORANGE_RESOURCE_LOCATION        = new ResourceLocation(XheFurniture.MOD_ID, "carpet_orange");
     public static final ResourceLocation CARPET_ORANGE_A_RESOURCE_LOCATION      = new ResourceLocation(XheFurniture.MOD_ID, "carpet_orange_a");
@@ -116,7 +116,7 @@ public class ModBlocks {
     public static final ResourceLocation PAINT_CAN_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "paint_can");
     public static final ResourceLocation MESSY_PAINT_CAN_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "messy_paint_can");
     //Big Crafting Tables
-    public static final ResourceLocation BIG_CRAFTING_TABLE_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "big_crafting_table_oak");
+    public static final ResourceLocation CRAFTING_TABLE_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "crafting_table_oak");
     //Books
     public static final ResourceLocation OPEN_BOOK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "open_book");
 
@@ -220,7 +220,7 @@ public class ModBlocks {
     public static final Block PAINT_CAN                 = registerBlock(PAINT_CAN_RESOURCE_LOCATION,                new        PaintCanBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion(), 0, 0, 0, 16, 6, 16));
     public static final Block MESSY_PAINT_CAN           = registerBlock(MESSY_PAINT_CAN_RESOURCE_LOCATION,          new DyeablePaintCanBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion(), 0, 0, 0, 16, 6, 16));
     //Big Crafting Tables
-    public static final Block BIG_CRAFTING_TABLE_OAK = registerBlock(BIG_CRAFTING_TABLE_OAK_RESOURCE_LOCATION, new StonecutterBlock(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
+    public static final Block CRAFTING_TABLE_OAK = registerBlock(CRAFTING_TABLE_OAK_RESOURCE_LOCATION, new CraftingTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
     //Books
     public static final Block OPEN_BOOK = registerBlock(OPEN_BOOK_RESOURCE_LOCATION, new OpenBookBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().sound(SoundType.WOOD).noOcclusion()));
 

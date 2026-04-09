@@ -80,7 +80,7 @@ public class XheFurnitureClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RATTAN_TABLE, RenderType.cutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PAINT_BRUSH, RenderType.cutout());
 
-		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BIG_CRAFTING_TABLE_OAK, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CRAFTING_TABLE_OAK, RenderType.cutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.OPEN_BOOK, RenderType.cutout());
 

@@ -19,6 +19,7 @@ repositories {
 }
 
 loom {
+	accessWidenerPath = file("src/main/resources/xhe_furniture.accesswidener")
 	splitEnvironmentSourceSets()
 
 	mods {

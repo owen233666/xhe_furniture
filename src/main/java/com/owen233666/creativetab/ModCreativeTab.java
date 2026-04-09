@@ -82,7 +82,7 @@ public class ModCreativeTab {
                         //Rattan Table
                         entries.accept(ModBlocks.RATTAN_TABLE);
 
-                        entries.accept(ModBlocks.BIG_CRAFTING_TABLE_OAK);
+                        entries.accept(ModBlocks.CRAFTING_TABLE_OAK);
                     })).build()
     );
 
@@ -94,6 +94,7 @@ public class ModCreativeTab {
                         entries.accept(ModItems.PAINT_BRUSH);
                         entries.accept(ModBlocks.EASEL);
                         entries.accept(ModBlocks.CANVAS);
+                        entries.accept(ModBlocks.DRAWING_BOARD);
                         entries.accept(ModBlocks.PAINTING_FRAME_OAK);
                         entries.accept(ModBlocks.PAINTING_FRAME_SPRUCE);
                         entries.accept(ModBlocks.PAINTING_FRAME_JUNGLE);
@@ -105,7 +106,6 @@ public class ModCreativeTab {
                         entries.accept(ModBlocks.PAINTING_FRAME_BAMBOO);
                         entries.accept(ModBlocks.PAINTING_FRAME_PALE_OAK);
                         entries.accept(ModBlocks.PAINTING_FRAME_BLACKSTONE);
-                        entries.accept(ModBlocks.DRAWING_BOARD);
                         entries.accept(ModBlocks.PHOTO_PAPER_WHITE_A);
                         entries.accept(ModBlocks.PHOTO_PAPER_WHITE_B);
                         entries.accept(ModBlocks.PHOTO_PAPER_WHITE_C);

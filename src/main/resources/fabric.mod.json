@@ -4,6 +4,7 @@
 	"version": "${version}",
 	"name": "Xhe Furniture",
 	"description": "This is an example description! Tell everyone what your mod is about!",
+	"accessWidener": "xhe_furniture.accesswidener",
 	"authors": [
 		"Me!"
 	],
