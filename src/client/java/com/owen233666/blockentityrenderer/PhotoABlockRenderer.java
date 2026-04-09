@@ -33,18 +33,10 @@ public class PhotoABlockRenderer implements BlockEntityRenderer<PhotoABlockEntit
         Direction direction = blockEntity.getBlockState().getValue(PhotoPaperBlock.FACING);
 
         switch (direction) {
-            case NORTH -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, null, 0.99f, 0.0f);
-            }
-            case SOUTH -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.01f, 180.0f);
-            }
-            case WEST -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.99f, 90.0f);
-            }
-            case EAST -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.01f, null, 270.0f);
-            }
+            case NORTH -> renderPhotos(poseStack, multiBufferSource, textureLocation, i, null,  0.99f, 0.0f);
+            case SOUTH -> renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.01f, 180.0f);
+            case WEST  -> renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.99f, 90.0f);
+            case EAST  -> renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.01f, null,  270.0f);
         }
     }
 

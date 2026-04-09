@@ -7,6 +7,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.resources.ResourceLocation;
@@ -95,6 +96,12 @@ public class XheFurnitureClient implements ClientModInitializer {
 
 		berInit();
 		registerStorageTypeRenderers();
+
+		ModelLoadingPlugin.register(
+				pluginContext -> {
+					new ResourceLocation(XheFurniture.MOD_ID, "block/parent/open_book_1");
+				}
+		);
 	}
 
 	public static void registerStorageTypeRenderers(){
