@@ -76,7 +76,12 @@ public class PhotoPaperItem extends BlockItem implements Vanishable {
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
         super.appendHoverText(itemStack, level, list, tooltipFlag);
-        list.add(Component.translatable("tooltip.xhe_furniture.photo_paper", Component.keybind("key.sneak"), Component.keybind("key.use")).withStyle(ChatFormatting.GRAY));
+        list.add(Component.translatable(
+                "tooltip.xhe_furniture.photo_paper",
+                Component.keybind("key.sneak"),
+                Component.keybind("key.use")
+                )
+                .withStyle(ChatFormatting.GRAY));
     }
 
     private Item getNextWhitePaper(Item current) {
