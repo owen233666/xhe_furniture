@@ -2,18 +2,19 @@
 	"schemaVersion": 1,
 	"id": "xhe_furniture",
 	"version": "${version}",
-	"name": "Xhe Furniture",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "小禾的家具",
+	"description": "感谢下载小禾家具，如遇BUG请前往模组发布页面反馈~",
 	"accessWidener": "xhe_furniture.accesswidener",
 	"authors": [
-		"Me!"
+		"owen233666",
+		"XHeYa_3u3"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://modrinth.com/mod/xhe-furniture",
+		"sources": "https://github.com/owen233666/xhe_furniture"
 	},
-	"license": "CC0-1.0",
-	"icon": "assets/xhe_furniture/icon.png",
+	"license": "All Rights Reserved",
+	"icon": "icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
@@ -36,7 +37,7 @@
 	"depends": {
 		"fabricloader": ">=0.18.3",
 		"minecraft": "~1.20.1",
-		"java": ">=17",
+		"java": ">=21",
 		"fabric-api": "*"
 	}
 }
