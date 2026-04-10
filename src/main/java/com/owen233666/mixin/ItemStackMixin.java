@@ -22,18 +22,15 @@ public class ItemStackMixin {
             int maxDamage = itemStack.getMaxDamage();
 
             if (currentDamage <= maxDamage - 2) {
-//                XheFurniture.LOGGER.info("damage 2 耐久正常-1");
                 return;
             }
 
             if (currentDamage == 63){
-//                XheFurniture.LOGGER.info("damage 2 耐久剩余1，减到0");
                 itemStack.setDamageValue(maxDamage);
                 ci.cancel();
             }
 
             if (currentDamage == 64){
-//                XheFurniture.LOGGER.info("damage 2 耐久为0，不减耐久");
                 ci.cancel();
             }
         }
