@@ -210,6 +210,18 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
         super.onRemove(state, world, pos, newState, moved);
     }
 
+    @Override
+    public void playerDestroy(Level level, Player player, BlockPos blockPos, BlockState blockState, @Nullable BlockEntity blockEntity, ItemStack itemStack) {
+        super.playerDestroy(level, player, blockPos, blockState, blockEntity, itemStack);
+        if (!player.isCreative()) {
+            if (blockState.getValue(CANVAS_TYPE) == CanvasType.CANVAS) {
+                popResource(level, blockPos, new ItemStack(ModBlocks.CANVAS));
+            } else if (blockState.getValue(CANVAS_TYPE) == CanvasType.DRAWING_BOARD) {
+                popResource(level, blockPos, new ItemStack(ModBlocks.DRAWING_BOARD));
+            }
+        }
+    }
+
     private boolean hasCanvas(CanvasType canvasType) {
         if (canvasType == CanvasType.NONE) {
             return false;
