@@ -3,7 +3,6 @@ package com.owen233666.block.painting;
 import com.owen233666.XheFurniture;
 import com.owen233666.block.ModBlocks;
 import com.owen233666.block.entity.EaselBlockEntity;
-import com.owen233666.block.entity.PhotoBlockEntity;
 import com.owen233666.item.ModItemTags;
 import com.owen233666.item.PaintBrushItem;
 import net.minecraft.core.BlockPos;
