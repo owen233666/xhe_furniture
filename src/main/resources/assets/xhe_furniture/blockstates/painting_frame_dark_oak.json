@@ -2,45 +2,6 @@
   "multipart": [
     {
       "apply": {
-        "model": "xhe_furniture:block/wooden_rack"
-      },
-      "when": {
-        "facing": "north",
-        "rack": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "xhe_furniture:block/wooden_rack",
-        "y": 90
-      },
-      "when": {
-        "facing": "east",
-        "rack": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "xhe_furniture:block/wooden_rack",
-        "y": 180
-      },
-      "when": {
-        "facing": "south",
-        "rack": "true"
-      }
-    },
-    {
-      "apply": {
-        "model": "xhe_furniture:block/wooden_rack",
-        "y": 270
-      },
-      "when": {
-        "facing": "west",
-        "rack": "true"
-      }
-    },
-    {
-      "apply": {
         "model": "xhe_furniture:block/painting_frame_corner_1_dark_oak",
         "y": 0
       },
