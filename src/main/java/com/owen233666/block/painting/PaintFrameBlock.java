@@ -41,7 +41,7 @@ import java.util.function.Supplier;
 public class PaintFrameBlock extends HorizontalDirectionalBlock implements EntityBlock {
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new CanvasBlockEntity(blockPos, blockState);
+        return new PaintFrameBlockEntity(blockPos, blockState);
     }
 
     public static final IntegerProperty COUNT = IntegerProperty.create("count", 1, 3);

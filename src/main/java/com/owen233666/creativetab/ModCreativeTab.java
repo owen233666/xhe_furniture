@@ -18,6 +18,18 @@ public class ModCreativeTab {
             FabricItemGroup.builder().title(Component.translatable("xhe_furniture.creativetab.items"))
                     .icon(() -> new ItemStack(BuiltInRegistries.BLOCK.get(new ResourceLocation(XheFurniture.MOD_ID, "hot_cocoa"))))
                     .displayItems(((displayContext, entries) -> {
+                        //Furniture Order Tables
+                        entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_OAK);
+                        entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_SPRUCE);
+                        entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_JUNGLE);
+                        entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_BIRCH);
+                        entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_ACACIA);
+                        entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_DARK_OAK);
+                        entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_MANGROVE);
+                        entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_CHERRY);
+                        entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_BAMBOO);
+                        entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_PALE_OAK);
+                        entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_BLACKSTONE);
                         //Cups
                         entries.accept(ModBlocks.HOT_COCOA);
                         //Shoe Flowerpots
@@ -82,7 +94,6 @@ public class ModCreativeTab {
                         //Rattan Table
                         entries.accept(ModBlocks.RATTAN_TABLE);
 
-                        entries.accept(ModBlocks.CRAFTING_TABLE_OAK);
                     })).build()
     );
 

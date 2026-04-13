@@ -83,11 +83,21 @@ public class ModBlockEntityTypes {
                     ).build(null)
             );
 
-    public static final BlockEntityType<CanvasBlockEntity> PAINTING_FRAME_BLOCK_BE =
+    public static final BlockEntityType<PaintFrameBlockEntity> PAINTING_FRAME_BLOCK_BE =
             Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_block_entity"),
                     BlockEntityType.Builder.of(
-                            CanvasBlockEntity::new,
-                            ModBlocks.PAINTING_FRAME_OAK
+                            PaintFrameBlockEntity::new,
+                            ModBlocks.PAINTING_FRAME_OAK,
+                            ModBlocks.PAINTING_FRAME_SPRUCE,
+                            ModBlocks.PAINTING_FRAME_JUNGLE,
+                            ModBlocks.PAINTING_FRAME_BIRCH,
+                            ModBlocks.PAINTING_FRAME_ACACIA,
+                            ModBlocks.PAINTING_FRAME_DARK_OAK,
+                            ModBlocks.PAINTING_FRAME_MANGROVE,
+                            ModBlocks.PAINTING_FRAME_CHERRY,
+                            ModBlocks.PAINTING_FRAME_BAMBOO,
+                            ModBlocks.PAINTING_FRAME_PALE_OAK,
+                            ModBlocks.PAINTING_FRAME_BLACKSTONE
                     ).build(null)
             );
 

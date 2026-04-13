@@ -115,7 +115,17 @@ public class ModBlocks {
     public static final ResourceLocation PAINT_CAN_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "paint_can");
     public static final ResourceLocation MESSY_PAINT_CAN_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "messy_paint_can");
     //Big Crafting Tables
-    public static final ResourceLocation CRAFTING_TABLE_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "crafting_table_oak");
+    public static final ResourceLocation FURNITURE_ORDER_TABLE_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "furniture_order_table_oak");
+    public static final ResourceLocation FURNITURE_ORDER_TABLE_SPRUCE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "furniture_order_table_spruce");
+    public static final ResourceLocation FURNITURE_ORDER_TABLE_BIRCH_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "furniture_order_table_birch");
+    public static final ResourceLocation FURNITURE_ORDER_TABLE_JUNGLE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "furniture_order_table_jungle");
+    public static final ResourceLocation FURNITURE_ORDER_TABLE_ACACIA_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "furniture_order_table_acacia");
+    public static final ResourceLocation FURNITURE_ORDER_TABLE_DARK_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "furniture_order_table_dark_oak");
+    public static final ResourceLocation FURNITURE_ORDER_TABLE_MANGROVE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "furniture_order_table_mangrove");
+    public static final ResourceLocation FURNITURE_ORDER_TABLE_CHERRY_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "furniture_order_table_cherry");
+    public static final ResourceLocation FURNITURE_ORDER_TABLE_BAMBOO_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "furniture_order_table_bamboo");
+    public static final ResourceLocation FURNITURE_ORDER_TABLE_PALE_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "furniture_order_table_pale_oak");
+    public static final ResourceLocation FURNITURE_ORDER_TABLE_BLACKSTONE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "furniture_order_table_blackstone");
     //Books
     public static final ResourceLocation OPEN_BOOK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "open_book");
 
@@ -187,17 +197,17 @@ public class ModBlocks {
     public static final Block EASEL                     = registerBlock(EASEL_RESOURCE_LOCATION,                    new           EaselBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
     public static final Block CANVAS                    = registerBlock(CANVAS_RESOURCE_LOCATION,                   new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
     public static final Block DRAWING_BOARD             = registerBlock(DRAWING_BOARD_RESOURCE_LOCATION,            new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
-    public static final Block PAINTING_FRAME_OAK        = registerBlock(PAINTING_FRAME_OAK_RESOURCE_LOCATION,       new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
-    public static final Block PAINTING_FRAME_SPRUCE     = registerBlock(PAINTING_FRAME_SPRUCE_RESOURCE_LOCATION,    new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
-    public static final Block PAINTING_FRAME_JUNGLE     = registerBlock(PAINTING_FRAME_JUNGLE_RESOURCE_LOCATION,    new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
-    public static final Block PAINTING_FRAME_BIRCH      = registerBlock(PAINTING_FRAME_BIRCH_RESOURCE_LOCATION,     new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
-    public static final Block PAINTING_FRAME_ACACIA     = registerBlock(PAINTING_FRAME_ACACIA_RESOURCE_LOCATION,    new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
-    public static final Block PAINTING_FRAME_DARK_OAK   = registerBlock(PAINTING_FRAME_DARK_OAK_RESOURCE_LOCATION,  new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
-    public static final Block PAINTING_FRAME_MANGROVE   = registerBlock(PAINTING_FRAME_MANGROVE_RESOURCE_LOCATION,  new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
-    public static final Block PAINTING_FRAME_CHERRY     = registerBlock(PAINTING_FRAME_CHERRY_RESOURCE_LOCATION,    new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
-    public static final Block PAINTING_FRAME_BAMBOO     = registerBlock(PAINTING_FRAME_BAMBOO_RESOURCE_LOCATION,    new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
-    public static final Block PAINTING_FRAME_PALE_OAK   = registerBlock(PAINTING_FRAME_PALE_OAK_RESOURCE_LOCATION,  new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
-    public static final Block PAINTING_FRAME_BLACKSTONE = registerBlock(PAINTING_FRAME_BLACKSTONE_RESOURCE_LOCATION,new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
+    public static final Block PAINTING_FRAME_OAK        = registerBlock(PAINTING_FRAME_OAK_RESOURCE_LOCATION,       new      PaintFrameBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
+    public static final Block PAINTING_FRAME_SPRUCE     = registerBlock(PAINTING_FRAME_SPRUCE_RESOURCE_LOCATION,    new      PaintFrameBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
+    public static final Block PAINTING_FRAME_JUNGLE     = registerBlock(PAINTING_FRAME_JUNGLE_RESOURCE_LOCATION,    new      PaintFrameBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
+    public static final Block PAINTING_FRAME_BIRCH      = registerBlock(PAINTING_FRAME_BIRCH_RESOURCE_LOCATION,     new      PaintFrameBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
+    public static final Block PAINTING_FRAME_ACACIA     = registerBlock(PAINTING_FRAME_ACACIA_RESOURCE_LOCATION,    new      PaintFrameBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
+    public static final Block PAINTING_FRAME_DARK_OAK   = registerBlock(PAINTING_FRAME_DARK_OAK_RESOURCE_LOCATION,  new      PaintFrameBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
+    public static final Block PAINTING_FRAME_MANGROVE   = registerBlock(PAINTING_FRAME_MANGROVE_RESOURCE_LOCATION,  new      PaintFrameBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
+    public static final Block PAINTING_FRAME_CHERRY     = registerBlock(PAINTING_FRAME_CHERRY_RESOURCE_LOCATION,    new      PaintFrameBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
+    public static final Block PAINTING_FRAME_BAMBOO     = registerBlock(PAINTING_FRAME_BAMBOO_RESOURCE_LOCATION,    new      PaintFrameBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
+    public static final Block PAINTING_FRAME_PALE_OAK   = registerBlock(PAINTING_FRAME_PALE_OAK_RESOURCE_LOCATION,  new      PaintFrameBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
+    public static final Block PAINTING_FRAME_BLACKSTONE = registerBlock(PAINTING_FRAME_BLACKSTONE_RESOURCE_LOCATION,new      PaintFrameBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
     public static final Block PHOTO_PAPER_WHITE_A       = registerWithoutItem(PHOTO_PAPER_WHITE_A_RESOURCE_LOCATION,new     PhotoAPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
     public static final Block PHOTO_PAPER_WHITE_B       = registerWithoutItem(PHOTO_PAPER_WHITE_B_RESOURCE_LOCATION,new     PhotoBPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
     public static final Block PHOTO_PAPER_WHITE_C       = registerWithoutItem(PHOTO_PAPER_WHITE_C_RESOURCE_LOCATION,new     PhotoCPaperBlock(BlockBehaviour.Properties.of().strength(0.1F).sound(SoundType.STONE).instabreak().noCollission().noOcclusion()));
@@ -218,8 +228,18 @@ public class ModBlocks {
     public static final Block PAINT_BRUSH               = registerWithoutItem(PAINT_BRUSH_RESOURCE_LOCATION,        new      PaintBrushBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion()));
     public static final Block PAINT_CAN                 = registerBlock(PAINT_CAN_RESOURCE_LOCATION,                new        PaintCanBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion(), 0, 0, 0, 16, 6, 16));
     public static final Block MESSY_PAINT_CAN           = registerBlock(MESSY_PAINT_CAN_RESOURCE_LOCATION,          new DyeablePaintCanBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion(), 0, 0, 0, 16, 6, 16));
-    //Big Crafting Tables
-    public static final Block CRAFTING_TABLE_OAK = registerBlock(CRAFTING_TABLE_OAK_RESOURCE_LOCATION, new CraftingTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
+    //Furniture Order Tables
+    public static final Block FURNITURE_ORDER_TABLE_OAK         = registerBlock(FURNITURE_ORDER_TABLE_OAK_RESOURCE_LOCATION,        new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
+    public static final Block FURNITURE_ORDER_TABLE_SPRUCE      = registerBlock(FURNITURE_ORDER_TABLE_SPRUCE_RESOURCE_LOCATION,     new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
+    public static final Block FURNITURE_ORDER_TABLE_JUNGLE      = registerBlock(FURNITURE_ORDER_TABLE_JUNGLE_RESOURCE_LOCATION,     new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
+    public static final Block FURNITURE_ORDER_TABLE_BIRCH       = registerBlock(FURNITURE_ORDER_TABLE_BIRCH_RESOURCE_LOCATION,      new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
+    public static final Block FURNITURE_ORDER_TABLE_ACACIA      = registerBlock(FURNITURE_ORDER_TABLE_ACACIA_RESOURCE_LOCATION,     new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
+    public static final Block FURNITURE_ORDER_TABLE_DARK_OAK    = registerBlock(FURNITURE_ORDER_TABLE_DARK_OAK_RESOURCE_LOCATION,   new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
+    public static final Block FURNITURE_ORDER_TABLE_MANGROVE    = registerBlock(FURNITURE_ORDER_TABLE_MANGROVE_RESOURCE_LOCATION,   new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
+    public static final Block FURNITURE_ORDER_TABLE_CHERRY      = registerBlock(FURNITURE_ORDER_TABLE_CHERRY_RESOURCE_LOCATION,     new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
+    public static final Block FURNITURE_ORDER_TABLE_BAMBOO      = registerBlock(FURNITURE_ORDER_TABLE_BAMBOO_RESOURCE_LOCATION,     new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
+    public static final Block FURNITURE_ORDER_TABLE_PALE_OAK    = registerBlock(FURNITURE_ORDER_TABLE_PALE_OAK_RESOURCE_LOCATION,   new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
+    public static final Block FURNITURE_ORDER_TABLE_BLACKSTONE  = registerBlock(FURNITURE_ORDER_TABLE_BLACKSTONE_RESOURCE_LOCATION, new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
     //Books
     public static final Block OPEN_BOOK = registerBlock(OPEN_BOOK_RESOURCE_LOCATION, new OpenBookBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().sound(SoundType.WOOD).noOcclusion()));
 

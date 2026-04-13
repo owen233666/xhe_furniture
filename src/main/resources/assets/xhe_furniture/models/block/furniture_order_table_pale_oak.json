@@ -1,0 +1,8 @@
+{
+  "parent": "xhe_furniture:block/parent/furniture_order_table",
+  "textures": {
+    "2": "xhe_furniture:block/furniture_order_table_pale_oak",
+    "4": "xhe_furniture:block/furniture_order_table_pale_oak",
+    "particle": "xhe_furniture:block/furniture_order_table_pale_oak"
+  }
+}

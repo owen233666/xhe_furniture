@@ -13,9 +13,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class CraftingTable extends StonecutterBlock {
+public class FurnitureOrderTable extends StonecutterBlock {
     public static final VoxelShape SHAPE = box(0, 0, 0, 16, 16, 16);
-    public CraftingTable(Properties properties) {
+    public FurnitureOrderTable(Properties properties) {
         super(properties);
     }
 

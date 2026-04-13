@@ -80,7 +80,17 @@ public class XheFurnitureClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.RATTAN_TABLE, RenderType.cutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PAINT_BRUSH, RenderType.cutout());
 
-		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CRAFTING_TABLE_OAK, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FURNITURE_ORDER_TABLE_OAK, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FURNITURE_ORDER_TABLE_SPRUCE, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FURNITURE_ORDER_TABLE_JUNGLE, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FURNITURE_ORDER_TABLE_BIRCH, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FURNITURE_ORDER_TABLE_ACACIA, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FURNITURE_ORDER_TABLE_DARK_OAK, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FURNITURE_ORDER_TABLE_MANGROVE, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FURNITURE_ORDER_TABLE_CHERRY, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FURNITURE_ORDER_TABLE_BAMBOO, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FURNITURE_ORDER_TABLE_PALE_OAK, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.FURNITURE_ORDER_TABLE_BLACKSTONE, RenderType.cutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.OPEN_BOOK, RenderType.cutout());
 
@@ -88,7 +98,7 @@ public class XheFurnitureClient implements ClientModInitializer {
 		BlockEntityRenderers.register(ModBlockEntityTypes.STORAGE_BLOCK_BE, StorageBlockEntityRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.EASEL_BLOCK_BE, EaselBlockEntityRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.CANVAS_BLOCK_BE, context -> new CanvasBlockEntityRenderer(context, true));
-//		BlockEntityRenderers.register(ModBlockEntityTypes.PAINTING_FRAME_BLOCK_BE, context ->  new CanvasBlockEntityRenderer(context, false));
+		BlockEntityRenderers.register(ModBlockEntityTypes.PAINTING_FRAME_BLOCK_BE, PaintFrameBlockEntityRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.PHOTO_A_BLOCK_BE, PhotoABlockRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.PHOTO_B_BLOCK_BE, PhotoBBlockRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.PHOTO_C_BLOCK_BE, PhotoCBlockRenderer::new);

@@ -21,6 +21,7 @@ public class PaintFrameBlockEntity extends BlockEntity {
 
     public PaintFrameBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(ModBlockEntityTypes.PAINTING_FRAME_BLOCK_BE, blockPos, blockState);
+        this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
     }
 
     public void setStack(ItemStack stack) {
