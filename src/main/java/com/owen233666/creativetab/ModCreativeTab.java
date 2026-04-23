@@ -94,6 +94,8 @@ public class ModCreativeTab {
                         //Rattan Table
                         entries.accept(ModBlocks.RATTAN_TABLE);
 
+                        entries.accept(ModBlocks.CORK_BOARD_LIGHT_OAK);
+
                     })).build()
     );
 

@@ -129,6 +129,8 @@ public class ModBlocks {
     //Books
     public static final ResourceLocation OPEN_BOOK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "open_book");
 
+    public static final ResourceLocation CORK_BOARD_LIGHT_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_light_oak");
+
 
     //Cups
     public static final Block HOT_COCOA = registerBlock(HOT_COCOA_RESOURCE_LOCATION, new CupBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).strength(0.0F, 0.0F).instabreak().sound(SoundType.STONE).noCollission()));
@@ -242,6 +244,8 @@ public class ModBlocks {
     public static final Block FURNITURE_ORDER_TABLE_BLACKSTONE  = registerBlock(FURNITURE_ORDER_TABLE_BLACKSTONE_RESOURCE_LOCATION, new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
     //Books
     public static final Block OPEN_BOOK = registerBlock(OPEN_BOOK_RESOURCE_LOCATION, new OpenBookBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().sound(SoundType.WOOD).noOcclusion()));
+
+    public static final Block CORK_BOARD_LIGHT_OAK = registerBlock(CORK_BOARD_LIGHT_OAK_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
 
     public static Block registerBlock(ResourceLocation resourceLocation, Block block){
         registerBlockItem(resourceLocation, block);

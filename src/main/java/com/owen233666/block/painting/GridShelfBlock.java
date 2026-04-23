@@ -135,8 +135,8 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
-        return this.defaultBlockState().setValue(FACING, ctx.getHorizontalDirection().getOpposite());
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
+        return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite());
     }
 
     @Override
@@ -213,23 +213,5 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
                 player.spawnAtLocation(toRemoveStack);
             }
         }
-    }
-
-    public enum PhotoType implements StringRepresentable {
-        A("a"),
-        B("b"),
-        C("c");
-
-        private final String name;
-
-        PhotoType(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String getSerializedName() {
-            return name;
-        }
-
     }
 }

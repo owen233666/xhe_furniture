@@ -34,8 +34,7 @@ public class PaintFrameBlockEntityRenderer implements BlockEntityRenderer<PaintF
         }
         ResourceLocation textureLocation = compileRenderResourceLocationForPaintings(resourceLocation);
         if (blockState.getValue(CanvasBlock.PLACE_TYPE) == PlacementState.WALL) {
-
-
+            renderVerticalPainting(textureLocation, poseStack, multiBufferSource, direction, i);
         } else if (blockState.getValue(CanvasBlock.PLACE_TYPE) == PlacementState.CORNER) {
             int count = blockState.getValue(CanvasBlock.COUNT);
             renderCornerPainting(count, textureLocation, poseStack, multiBufferSource, direction, i);
@@ -71,7 +70,7 @@ public class PaintFrameBlockEntityRenderer implements BlockEntityRenderer<PaintF
         poseStack.popPose();
     }
 
-    public void renderVerticalPainting(int count, ResourceLocation textureLocation, PoseStack poseStack, MultiBufferSource multiBufferSource, Direction direction, int packedLight) {
+    public void renderVerticalPainting(ResourceLocation textureLocation, PoseStack poseStack, MultiBufferSource multiBufferSource, Direction direction, int packedLight) {
         float x1 = 0.0625f, y1 = 0.0625f;
         float x2 = 0.9375f, y2 = 0.9375f;
         float w  = x2 - x1;//x相减得到宽度
@@ -90,9 +89,8 @@ public class PaintFrameBlockEntityRenderer implements BlockEntityRenderer<PaintF
         poseStack.pushPose();
         poseStack.translate(x1 + hw, y1 + hh, 0.5);
         poseStack.mulPose(Axis.YP.rotationDegrees(-yRotation));
-        poseStack.translate(0, 0, 0.3125);
-        poseStack.mulPose(Axis.XP.rotationDegrees(22.5f));
-        poseStack.translate(0, -0.05, 0);
+        poseStack.translate(0, 0, 0.499);
+//        poseStack.translate(0.5, 0, 0);
         ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
                 hh, hw, -hh, -hw,
                 0, 0, 1, 1,

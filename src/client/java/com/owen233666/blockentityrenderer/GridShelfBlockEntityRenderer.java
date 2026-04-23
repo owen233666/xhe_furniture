@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.owen233666.block.entity.GridShelfBlockEntity;
 import com.owen233666.block.painting.GridShelfBlock;
+import com.owen233666.block.painting.PhotoType;
 import com.owen233666.clientUtil.ClientUtil;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -34,7 +35,7 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
         BlockState state = blockEntity.getBlockState();
         ItemStack stack = blockEntity.getInv().getFirst();
         Direction direction = state.getValue(GridShelfBlock.FACING);
-        GridShelfBlock.PhotoType photoType = state.getValue(GridShelfBlock.PHOTO_TYPE);
+        PhotoType photoType = state.getValue(GridShelfBlock.PHOTO_TYPE);
 
         if (!state.getValue(GridShelfBlock.HAS_PHOTO)) return;
 
@@ -60,7 +61,7 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
         }
     }
 
-    public void renderAsPhotoType(GridShelfBlock.PhotoType photoType, PoseStack poseStack, MultiBufferSource multiBufferSource, ResourceLocation textureLocation,
+    public void renderAsPhotoType(PhotoType photoType, PoseStack poseStack, MultiBufferSource multiBufferSource, ResourceLocation textureLocation,
                                   int packedLight, @Nullable Float offsetX, @Nullable Float offsetZ, Float yRotationDegrees) {
         switch (photoType) {
             case A -> {
