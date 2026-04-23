@@ -1,0 +1,7 @@
+{
+	"parent": "xhe_furniture:block/parent/cork_board_frame_right_down",
+	"textures": {
+		"1": "xhe_furniture:block/cork_board_frame_oak",
+		"particle": "xhe_furniture:block/cork_board_frame_oak"
+	}
+}

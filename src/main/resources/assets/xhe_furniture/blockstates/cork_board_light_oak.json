@@ -1,0 +1,1616 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_left_up_light",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_left_mid_light",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_left_down_light",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_standalone_light",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_mid_up_light",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_mid_mid_light",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "true",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_mid_down_light",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_right_up_light",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_right_mid_light",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_right_down_light",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_up_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_down_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_up_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_up_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_mid_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_down_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_standalone_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_up_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_mid_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_up_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_up_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_up_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_down_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 0
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_left_up_light",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_left_mid_light",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_left_down_light",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_standalone_light",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_mid_up_light",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_mid_mid_light",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "true",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_mid_down_light",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_right_up_light",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_right_mid_light",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_right_down_light",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_up_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_down_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_up_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_up_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_mid_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_down_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_standalone_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_up_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_up_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_up_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_down_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_up_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_mid_oak",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_left_up_light",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_left_mid_light",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_left_down_light",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_standalone_light",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_mid_up_light",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_mid_mid_light",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "true",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_mid_down_light",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_right_up_light",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_right_mid_light",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_right_down_light",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_up_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_down_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_up_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_up_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_mid_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_down_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_standalone_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_up_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_up_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_up_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_down_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_up_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_mid_oak",
+        "y": 180
+      },
+      "when": {
+        "facing": "north",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_left_up_light",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_left_mid_light",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_left_down_light",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_standalone_light",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_mid_up_light",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_mid_mid_light",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "true",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_mid_down_light",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_right_up_light",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_right_mid_light",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_right_down_light",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_up_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_down_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_up_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_up_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_mid_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "true",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_down_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_standalone_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_up_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "false",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_up_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_up_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_down_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "false",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_up_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_mid_down_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "false",
+        "below": "false",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_left_mid_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/cork_board_frame_right_mid_oak",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "above": "true",
+        "below": "true",
+        "left": "false",
+        "right": "false"
+      }
+    }
+  ]
+}

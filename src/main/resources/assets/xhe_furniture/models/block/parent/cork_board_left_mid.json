@@ -1,0 +1,106 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"render_type": "cutout",
+	"elements": [
+		{
+			"name": "背板",
+			"from": [1, 0, 15.5],
+			"to": [16, 16, 15.9],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 17, 0]},
+			"faces": {
+				"north": {"uv": [3.875, 1.875, 5.75, 3.875], "texture": "#0"},
+				"east": {"uv": [3.875, 1.875, 4, 3.875], "texture": "#0"},
+				"south": {"uv": [5.75, 1.875, 3.875, 3.875], "texture": "#0"},
+				"west": {"uv": [5.625, 1.875, 5.75, 3.875], "texture": "#0"},
+				"up": {"uv": [3.875, 1.875, 5.75, 2], "texture": "#0"},
+				"down": {"uv": [3.875, 3.75, 5.75, 3.875], "texture": "#0"}
+			}
+		},
+		{
+			"name": "木板",
+			"from": [1, 0, 15.45],
+			"to": [16, 16, 15.45],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 17, -0.1]},
+			"faces": {
+				"north": {"uv": [3.875, 7.75, 5.75, 9.75], "texture": "#0"}
+			}
+		},
+		{
+			"name": "木板",
+			"from": [1, 0, 15.4],
+			"to": [16, 16, 15.4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 17, -0.1]},
+			"faces": {
+				"north": {"uv": [3.875, 7.75, 5.75, 9.75], "texture": "#0"}
+			}
+		},
+		{
+			"name": "木板",
+			"from": [1, 0, 15.3],
+			"to": [16, 16, 15.3],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 17, -0.1]},
+			"faces": {
+				"north": {"uv": [3.875, 7.75, 5.75, 9.75], "texture": "#0"}
+			}
+		},
+		{
+			"name": "木板",
+			"from": [1, 0, 15.35],
+			"to": [16, 16, 15.35],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 17, -0.1]},
+			"faces": {
+				"north": {"uv": [3.875, 7.75, 5.75, 9.75], "texture": "#0"}
+			}
+		}
+	],
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 5, 5.75],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 5, 5.75],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"firstperson_righthand": {
+			"rotation": [-45, -180, 0],
+			"translation": [0, 5.6, 6],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-45, -180, 0],
+			"translation": [0, 5.6, 6],
+			"scale": [0.5, 0.5, 0.5]
+		},
+		"ground": {
+			"translation": [0, 4, -5.5],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"gui": {
+			"rotation": [0, -180, 0],
+			"scale": [0.8, 0.8, 0.8]
+		},
+		"fixed": {
+			"translation": [0, 0, -16],
+			"scale": [2, 2, 2]
+		},
+		"on_shelf": {
+			"rotation": [0, -180, 0],
+			"translation": [0, 0, 4.75]
+		}
+	},
+	"groups": [
+		{
+			"name": "木板",
+			"origin": [8, -15, 16.3],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1, 2, 3, 4]
+		}
+	]
+}
