@@ -2,10 +2,7 @@
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
 	"texture_size": [128, 128],
-	"textures": {
-		"0": "软木板-浅色-改",
-		"particle": "软木板-浅色-改"
-	},
+	"render_type": "cutout",
 	"elements": [
 		{
 			"from": [1, 1, 15.6],
