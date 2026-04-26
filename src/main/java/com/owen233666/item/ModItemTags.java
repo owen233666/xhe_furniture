@@ -13,6 +13,12 @@ public class ModItemTags {
                     new ResourceLocation(XheFurniture.MOD_ID, "paintings")
             );
 
+    public static final TagKey<Item> PHOTO_PAPERS =
+            TagKey.create(
+                    BuiltInRegistries.ITEM.key(),
+                    new ResourceLocation(XheFurniture.MOD_ID, "photo_papers")
+            );
+
     public static void registerModItemTags() {
     }
 }

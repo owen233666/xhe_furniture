@@ -66,5 +66,13 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.PAINTING_WHEAT_FIELD)
                 .add(ModItems.PAINTING_WILDFLOWER_PLAIN)
                 .add(ModItems.PAINTING_WORLD_TREE);
+
+        getOrCreateTagBuilder(ModItemTags.PHOTO_PAPERS)
+                .add(ModItems.PHOTO_PAPER_WHITE_A)
+                .add(ModItems.PHOTO_PAPER_WHITE_B)
+                .add(ModItems.PHOTO_PAPER_WHITE_C)
+                .add(ModItems.PHOTO_PAPER_BLACK_A)
+                .add(ModItems.PHOTO_PAPER_BLACK_B)
+                .add(ModItems.PHOTO_PAPER_BLACK_C);
     }
 }
