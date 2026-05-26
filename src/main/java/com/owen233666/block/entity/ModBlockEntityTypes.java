@@ -109,6 +109,13 @@ public class ModBlockEntityTypes {
                     ).build(null)
             );
 
+    public static final BlockEntityType<CorkBoardBlockEntity> CORK_BOARD_BLOCK_BE =
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "cork_board_block_entity"),
+                    BlockEntityType.Builder.of(
+                            CorkBoardBlockEntity::new,
+                            ModBlocks.CORK_BOARD_LIGHT_OAK
+                    ).build(null)
+            );
     public static void registerBlockEntityTypes() {
     }
 }
