@@ -2,7 +2,7 @@
 	"schemaVersion": 1,
 	"id": "xhe_furniture",
 	"version": "${version}",
-	"name": "小禾的家具",
+	"name": "XHeYa's Furniture",
 	"description": "感谢下载小禾家具，如遇BUG请前往模组发布页面反馈~",
 	"accessWidener": "xhe_furniture.accesswidener",
 	"authors": [
