@@ -74,5 +74,17 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.PHOTO_PAPER_BLACK_A)
                 .add(ModItems.PHOTO_PAPER_BLACK_B)
                 .add(ModItems.PHOTO_PAPER_BLACK_C);
+
+        getOrCreateTagBuilder(ModItemTags.TYPE_A_PHOTO_PAPERS)
+                .add(ModItems.PHOTO_PAPER_WHITE_A)
+                .add(ModItems.PHOTO_PAPER_BLACK_A);
+
+        getOrCreateTagBuilder(ModItemTags.TYPE_B_PHOTO_PAPERS)
+                .add(ModItems.PHOTO_PAPER_WHITE_B)
+                .add(ModItems.PHOTO_PAPER_BLACK_B);
+
+        getOrCreateTagBuilder(ModItemTags.TYPE_C_PHOTO_PAPERS)
+                .add(ModItems.PHOTO_PAPER_WHITE_C)
+                .add(ModItems.PHOTO_PAPER_BLACK_C);
     }
 }

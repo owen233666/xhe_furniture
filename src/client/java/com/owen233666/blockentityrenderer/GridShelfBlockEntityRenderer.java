@@ -17,14 +17,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShelfBlockEntity> {
-    private final float[] CUBE_UV_1_A = {0.21875f,     0.65625f,    0.46875f,     0.93750f};
-    private final float[] CUBE_UV_2_A = {0.34375f,     0.09375f,    0.60625f,     0.37500f};
-    private final float[] CUBE_UV_3_A = {0.65625f,     0.31250f,    0.90625f,     0.59375f};
-    private final float[] CUBE_UV_1_B = {0.43750f,     0.00000f,    0.68750f,     0.28125f};
-    private final float[] CUBE_UV_2_B = {0.21875f,     0.25000f,    0.46875f,     0.53125f};
-    private final float[] CUBE_UV_1_C = {0.50000f,     0.18750f,    0.75000f,     0.40625f};
-    private final float[] CUBE_UV_2_C = {0.21875f,     0.50000f,    0.46875f,     0.71875f};
-    private final float[] CUBE_UV_3_C = {0.21875f,     0.25000f,    0.46875f,     0.46875f};
+    private static final float[] CUBE_UV_1_A = {0.21875f,     0.65625f,    0.46875f,     0.93750f};
+    private static final float[] CUBE_UV_2_A = {0.34375f,     0.09375f,    0.60625f,     0.37500f};
+    private static final float[] CUBE_UV_3_A = {0.65625f,     0.31250f,    0.90625f,     0.59375f};
+    private static final float[] CUBE_UV_1_B = {0.43750f,     0.00000f,    0.68750f,     0.28125f};
+    private static final float[] CUBE_UV_2_B = {0.21875f,     0.25000f,    0.46875f,     0.53125f};
+    private static final float[] CUBE_UV_1_C = {0.50000f,     0.18750f,    0.75000f,     0.40625f};
+    private static final float[] CUBE_UV_2_C = {0.21875f,     0.50000f,    0.46875f,     0.71875f};
+    private static final float[] CUBE_UV_3_C = {0.21875f,     0.25000f,    0.46875f,     0.46875f};
 
     public GridShelfBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
 
@@ -61,7 +61,7 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
         }
     }
 
-    public void renderAsPhotoType(PhotoType photoType, PoseStack poseStack, MultiBufferSource multiBufferSource, ResourceLocation textureLocation,
+    protected static void renderAsPhotoType(PhotoType photoType, PoseStack poseStack, MultiBufferSource multiBufferSource, ResourceLocation textureLocation,
                                   int packedLight, @Nullable Float offsetX, @Nullable Float offsetZ, Float yRotationDegrees) {
         switch (photoType) {
             case A -> {
@@ -169,7 +169,7 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
         }
     }
 
-    private ResourceLocation compileRenderResourceLocationForPaintings(ResourceLocation resourceLocation) {
+    protected static ResourceLocation compileRenderResourceLocationForPaintings(ResourceLocation resourceLocation) {
         return new ResourceLocation(resourceLocation.getNamespace(), "textures/item/paintings/" + resourceLocation.getPath().replace("painting_", "") + ".png");
     }
 }

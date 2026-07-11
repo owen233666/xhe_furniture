@@ -3,7 +3,6 @@ package com.owen233666.block;
 import com.owen233666.XheFurniture;
 import com.owen233666.block.entity.CorkBoardBlockEntity;
 import com.owen233666.block.entity.PaintFrameBlockEntity;
-import com.owen233666.block.painting.PhotoType;
 import com.owen233666.item.ModItemTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -29,7 +28,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -40,9 +38,9 @@ public class CorkBoardBlock extends HorizontalDirectionalBlock implements Entity
     public static final BooleanProperty BELOW = BooleanProperty.create("below");
     public static final BooleanProperty LEFT = BooleanProperty.create("left");
     public static final BooleanProperty RIGHT = BooleanProperty.create("right");
-    public static final BooleanProperty WHITE = BooleanProperty.create("white");
-    public static final BooleanProperty HAS_PHOTO  = BooleanProperty.create("has_photo");
-    public static final EnumProperty<PhotoType> PHOTO_TYPE = EnumProperty.create("photo_type", PhotoType.class);
+//    public static final BooleanProperty WHITE = BooleanProperty.create("white");
+//    public static final BooleanProperty HAS_PHOTO  = BooleanProperty.create("has_photo");
+//    public static final EnumProperty<PhotoType> PHOTO_TYPE = EnumProperty.create("photo_type", PhotoType.class);
 
     public static final VoxelShape FACING_N = box(0,  0, 15, 16, 16, 16);
     public static final VoxelShape FACING_S = box(0,  0, 0,  16, 16, 1);
@@ -55,7 +53,7 @@ public class CorkBoardBlock extends HorizontalDirectionalBlock implements Entity
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, ABOVE, BELOW, LEFT, RIGHT, PHOTO_TYPE, HAS_PHOTO, WHITE);
+        builder.add(FACING, ABOVE, BELOW, LEFT, RIGHT);
     }
 
     @Override
@@ -104,54 +102,52 @@ public class CorkBoardBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        if (!level.isClientSide()) return InteractionResult.PASS;
-        ItemStack heldStack = player.getItemInHand(interactionHand);
-        Item heldItem = heldStack.getItem();
-        BlockEntity be = level.getBlockEntity(blockPos);
-        NonNullList<ItemStack> inventory;
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        ItemStack heldStack = player.getItemInHand(hand);
+        BlockEntity be = level.getBlockEntity(pos);
 
-        //初始化inventory
-        if (be instanceof PaintFrameBlockEntity){
-            inventory = ((PaintFrameBlockEntity) be).getInv();
-        }else {
-            inventory = NonNullList.withSize(2, ItemStack.EMPTY);
+        if (!(be instanceof CorkBoardBlockEntity corkBoardBlockEntity)) {
+            return InteractionResult.PASS;
         }
 
-        //是否有相纸和画作
-        boolean hasPainting = !(inventory.get(0) == ItemStack.EMPTY);
-        boolean hasPhoto    = !(inventory.get(1) == ItemStack.EMPTY);
+        // 服务端处理所有业务
+        if (!level.isClientSide()) {
+            NonNullList<ItemStack> inventory = corkBoardBlockEntity.getInv();
+            boolean hasPainting = !inventory.get(1).isEmpty();
+            boolean hasPhoto    = !inventory.get(0).isEmpty();
+            boolean isPhoto     = BuiltInRegistries.ITEM.wrapAsHolder(heldStack.getItem()).is(ModItemTags.PHOTO_PAPERS);
+            boolean isPainting  = BuiltInRegistries.ITEM.wrapAsHolder(heldStack.getItem()).is(ModItemTags.PAINTINGS);
 
-        if (be instanceof CorkBoardBlockEntity corkBoardBlockEntity) {
-            boolean isPhoto = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PHOTO_PAPERS);
-            boolean isPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
-            if (isPhoto) {
-                setPhoto(level, blockPos, corkBoardBlockEntity, player, heldStack, hasPainting);
-            } else if (isPainting) {
-                setPainting(level, blockPos, corkBoardBlockEntity, player, heldStack);
-            }else {
-                if (hasPainting) {
-                    removePainting(level, blockPos, corkBoardBlockEntity, player);
-                }else {
-                    removePhoto(level, blockPos, corkBoardBlockEntity, player, heldStack, hasPainting);
+            if (hasPhoto) {
+                if (isPhoto) {
+                    setPhoto(level, pos, corkBoardBlockEntity, player, heldStack, hasPainting);
+                } else if (isPainting) {
+                    setPainting(level, pos, corkBoardBlockEntity, player, heldStack);
+                } else if (hasPainting) {
+                    removePainting(level, pos, corkBoardBlockEntity, player);
+                } else {
+                    removePhoto(level, pos, corkBoardBlockEntity, player, heldStack, hasPainting);
                 }
+            } else if (isPhoto) {
+                setPhoto(level, pos, corkBoardBlockEntity, player, heldStack, hasPhoto);
             }
         }
 
-        return super.use(blockState, level, blockPos, player, interactionHand, blockHitResult);
+        // 返回 SUCCESS 表示交互已处理（客户端和服务端都需要返回这个结果）
+        return InteractionResult.SUCCESS;
     }
 
     private void setPhoto(Level level, BlockPos pos, CorkBoardBlockEntity corkBoardBlockEntity, Player player, ItemStack itemStack, boolean hasPainting) {
         XheFurniture.LOGGER.info("setPhoto");
-        if (!hasPainting) return;
-        removeItem(level, pos, player, corkBoardBlockEntity,1);
-        addItem(level, pos, player, corkBoardBlockEntity, itemStack, 1);
+//        if (!hasPainting) return;
+        removeItem(level, pos, player, corkBoardBlockEntity,0);
+        addItem(level, pos, player, corkBoardBlockEntity, itemStack, 0);
     }
 
     private void setPainting(Level level, BlockPos pos, CorkBoardBlockEntity corkBoardBlockEntity, Player player, ItemStack itemStack) {
         XheFurniture.LOGGER.info("setPainting");
-        removeItem(level, pos, player, corkBoardBlockEntity,0);
-        addItem(level, pos, player, corkBoardBlockEntity, itemStack, 0);
+        removeItem(level, pos, player, corkBoardBlockEntity,1);
+        addItem(level, pos, player, corkBoardBlockEntity, itemStack, 1);
     }
 
     private void removePhoto(Level level, BlockPos pos, CorkBoardBlockEntity corkBoardBlockEntity, Player player, ItemStack heldStack, boolean hasPainting){

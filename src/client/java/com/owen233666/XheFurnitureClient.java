@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
@@ -105,15 +106,35 @@ public class XheFurnitureClient implements ClientModInitializer {
 		BlockEntityRenderers.register(ModBlockEntityTypes.PHOTO_B_BLOCK_BE, PhotoBBlockRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.PHOTO_C_BLOCK_BE, PhotoCBlockRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.GRID_SHELF_BLOCK_BE, GridShelfBlockEntityRenderer::new);
+		BlockEntityRenderers.register(ModBlockEntityTypes.CORK_BOARD_BLOCK_BE, CorkBoardBlockEntityRenderer::new);
 
 		berInit();
 		registerStorageTypeRenderers();
 
-		ModelLoadingPlugin.register(
-				pluginContext -> {
-					new ResourceLocation(XheFurniture.MOD_ID, "block/parent/open_book_1");
-				}
-		);
+		ModelLoadingPlugin.register(pluginContext -> {
+
+			pluginContext.addModels(
+					new ModelResourceLocation(
+							new ResourceLocation(
+									XheFurniture.MOD_ID,
+									"block/parent/photo_paper_a"
+							),
+							""),
+					new ModelResourceLocation(
+							new ResourceLocation(
+									XheFurniture.MOD_ID,
+									"block/parent/photo_paper_b"
+							),
+							""),
+					new ModelResourceLocation(
+							new ResourceLocation(
+									XheFurniture.MOD_ID,
+									"block/parent/photo_paper_c"
+							),
+							"")
+			);
+
+		});
 	}
 
 	public static void registerStorageTypeRenderers(){

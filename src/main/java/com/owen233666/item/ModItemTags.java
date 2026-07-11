@@ -19,6 +19,24 @@ public class ModItemTags {
                     new ResourceLocation(XheFurniture.MOD_ID, "photo_papers")
             );
 
+    public static final TagKey<Item> TYPE_A_PHOTO_PAPERS =
+            TagKey.create(
+                    BuiltInRegistries.ITEM.key(),
+                    new ResourceLocation(XheFurniture.MOD_ID, "type_a_photo_papers")
+            );
+
+    public static final TagKey<Item> TYPE_B_PHOTO_PAPERS =
+            TagKey.create(
+                    BuiltInRegistries.ITEM.key(),
+                    new ResourceLocation(XheFurniture.MOD_ID, "type_b_photo_papers")
+            );
+
+    public static final TagKey<Item> TYPE_C_PHOTO_PAPERS =
+            TagKey.create(
+                    BuiltInRegistries.ITEM.key(),
+                    new ResourceLocation(XheFurniture.MOD_ID, "type_c_photo_papers")
+            );
+
     public static void registerModItemTags() {
     }
 }
