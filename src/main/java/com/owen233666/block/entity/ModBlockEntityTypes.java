@@ -61,7 +61,8 @@ public class ModBlockEntityTypes {
                     BlockEntityType.Builder.of(
                             CanvasBlockEntity::new,
                             ModBlocks.CANVAS,
-                            ModBlocks.DRAWING_BOARD
+                            ModBlocks.DRAWING_BOARD,
+                            ModBlocks.CANVAS_BIG
                     ).build(null)
             );
 

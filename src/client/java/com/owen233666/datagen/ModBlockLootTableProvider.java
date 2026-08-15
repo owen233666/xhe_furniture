@@ -79,6 +79,7 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
         dropSelf(ModBlocks.EASEL);
         dropSelf(ModBlocks.CANVAS);
         dropSelf(ModBlocks.DRAWING_BOARD);
+        dropSelf(ModBlocks.CANVAS_BIG);
         dropSelf(ModBlocks.PAINTING_FRAME_OAK);
         dropSelf(ModBlocks.PAINTING_FRAME_SPRUCE);
         dropSelf(ModBlocks.PAINTING_FRAME_JUNGLE);

@@ -82,6 +82,7 @@ public class ModBlocks {
     //Painting Studio Series
     public static final ResourceLocation EASEL_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "easel");
     public static final ResourceLocation CANVAS_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "canvas");
+    public static final ResourceLocation CANVAS_BIG_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "canvas_big");
     public static final ResourceLocation PAINTING_FRAME_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_oak");
     public static final ResourceLocation PAINTING_FRAME_SPRUCE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_spruce");
     public static final ResourceLocation PAINTING_FRAME_BIRCH_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_birch");
@@ -221,6 +222,7 @@ public class ModBlocks {
     //Painting Studio Series
     public static final Block EASEL                     = registerBlock(EASEL_RESOURCE_LOCATION,                    new           EaselBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
     public static final Block CANVAS                    = registerBlock(CANVAS_RESOURCE_LOCATION,                   new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
+    public static final Block CANVAS_BIG                = registerBlock(CANVAS_BIG_RESOURCE_LOCATION,                new          CanvasBigBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
     public static final Block DRAWING_BOARD             = registerBlock(DRAWING_BOARD_RESOURCE_LOCATION,            new          CanvasBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
     public static final Block PAINTING_FRAME_OAK        = registerBlock(PAINTING_FRAME_OAK_RESOURCE_LOCATION,       new      PaintFrameBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));
     public static final Block PAINTING_FRAME_SPRUCE     = registerBlock(PAINTING_FRAME_SPRUCE_RESOURCE_LOCATION,    new      PaintFrameBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noCollission().noOcclusion()));

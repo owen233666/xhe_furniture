@@ -129,6 +129,7 @@ public class ModCreativeTab {
                         entries.accept(ModBlocks.EASEL);
                         entries.accept(ModBlocks.CANVAS);
                         entries.accept(ModBlocks.DRAWING_BOARD);
+                        entries.accept(ModBlocks.CANVAS_BIG);
                         entries.accept(ModBlocks.PAINTING_FRAME_OAK);
                         entries.accept(ModBlocks.PAINTING_FRAME_SPRUCE);
                         entries.accept(ModBlocks.PAINTING_FRAME_JUNGLE);

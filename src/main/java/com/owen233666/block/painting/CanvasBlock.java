@@ -98,16 +98,16 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
         Item heldItem = heldStack.getItem();
         BlockEntity be = level.getBlockEntity(pos);
         NonNullList<ItemStack> inventory;
-        boolean canAddCanvas = !state.getValue(RACK);
+        boolean canAddCanvas = !state.getValue(RACK) && state.getBlock().asItem() == heldItem;
 
-        //初始化inventory
-        if (be instanceof EaselBlockEntity){
-            inventory = ((EaselBlockEntity) be).getInv();
+        //初始化inventory（从 CanvasBlockEntity 获取实际内容，而非新建空列表）
+        if (be instanceof CanvasBlockEntity canvasBlockEntity){
+            inventory = canvasBlockEntity.getInv();
         }else {
             inventory = NonNullList.withSize(1, ItemStack.EMPTY);
         }
         //判断是否有画（获取be的inventory）
-        boolean hasPainting =!(inventory.getFirst() == ItemStack.EMPTY);
+        boolean hasPainting = !inventory.getFirst().isEmpty();
 
         if (heldItem instanceof PaintBrushItem) {
             InteractionResult dyeResult = dyeWithBrush(level, pos, state, player, hand);
@@ -127,22 +127,12 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
             }
         }
 
-        if (canAddCanvas && state.getBlock().asItem() == heldItem) {
-            if (state.getValue(COUNT) == 3) {
-                return InteractionResult.PASS;
-            }
-            level.setBlockAndUpdate(pos, state.setValue(COUNT, state.getValue(COUNT) + 1));
-            heldStack.split(1);
-            if (player.isCreative()) heldStack.grow(1);
-            return InteractionResult.CONSUME_PARTIAL;
-        }
-
+        // 先处理方块实体内容物：有画时右键取出（手持画则换画），优先于叠画布
         if (be instanceof CanvasBlockEntity canvasBlockEntity){
             boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
 
-            //有画
+            //有画：取出内容物（手上是画则先取旧画再放新画）
             if (hasPainting) {
-                //手上是画
                 if (heldIsPainting){
                     remove(level, pos, player, canvasBlockEntity);
                     addItem(level, pos, player, canvasBlockEntity, heldStack);
@@ -152,6 +142,7 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
                     return InteractionResult.SUCCESS;
                 }
             }else{
+                //无画：手持画作则放入
                 if (heldIsPainting){
                     addItem(level, pos, player, canvasBlockEntity, heldStack);
                     return InteractionResult.CONSUME;
@@ -159,7 +150,23 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
             }
         }
 
+        // 无画时：手持画布可叠放
+        if (canAddCanvas) {
+            return addCanvasLayer(level, pos, state, player, heldStack);
+        }
+
         return InteractionResult.PASS;
+    }
+
+    //叠放一层画布（COUNT+1），Shift 时即使有画也可触发
+    private InteractionResult addCanvasLayer(Level level, BlockPos pos, BlockState state, Player player, ItemStack heldStack){
+        if (state.getValue(COUNT) == 3) {
+            return InteractionResult.PASS;
+        }
+        level.setBlockAndUpdate(pos, state.setValue(COUNT, state.getValue(COUNT) + 1));
+        heldStack.split(1);
+        if (player.isCreative()) heldStack.grow(1);
+        return InteractionResult.CONSUME_PARTIAL;
     }
 
     @Override

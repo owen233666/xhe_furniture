@@ -3,6 +3,7 @@ package com.owen233666.blockentityrenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.owen233666.block.entity.CanvasBlockEntity;
+import com.owen233666.block.painting.CanvasBigBlock;
 import com.owen233666.block.painting.CanvasBlock;
 import com.owen233666.block.painting.PlacementState;
 import net.minecraft.client.Minecraft;
@@ -28,31 +29,56 @@ public class CanvasBlockEntityRenderer implements BlockEntityRenderer<CanvasBloc
         Direction direction = blockState.getValue(CanvasBlock.FACING);
 
         poseStack.pushPose();
-        poseStack.scale(0.87f, 0.87f, 0.87f);
+        boolean isBig = blockState.getBlock() instanceof CanvasBigBlock;
+        poseStack.scale(isBig ? 1.7f : 0.87f, isBig ? 1.7f : 0.87f, isBig ? 1.7f : 0.87f);
         if (IS_CANVAS_METHOD) {
             if (blockState.getValue(CanvasBlock.PLACE_TYPE) == PlacementState.WALL) {
 
-                switch (direction) {
-                    case NORTH -> {
-                        poseStack.translate(0.573, 0.573, 1.105);
+                if (isBig) {
+                    switch (direction) {
+                        case NORTH -> {
+                            poseStack.translate(0.294, 0.588, 0.571);
+                        }
+                        case SOUTH -> {
+                            poseStack.translate(0.294, 0.588, 0.018);
+                            poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
+                        }
+                        case EAST -> {
+                            poseStack.translate(0.018, 0.588, 0.294);
+                            poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
+                        }
+                        case WEST -> {
+                            poseStack.translate(0.571, 0.588, 0.294);
+                            poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
+                        }
                     }
-                    case SOUTH -> {
-                        poseStack.translate(0.573, 0.573, 0.045);
-                        poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
-                    }
-                    case EAST -> {
-                        poseStack.translate(0.045, 0.573, 0.573);
-                        poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
-                    }
-                    case WEST -> {
-                        poseStack.translate(1.105, 0.573, 0.573);
-                        poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
+                } else {
+                    switch (direction) {
+                        case NORTH -> {
+                            poseStack.translate(0.573, 0.573, 1.105);
+                        }
+                        case SOUTH -> {
+                            poseStack.translate(0.573, 0.573, 0.045);
+                            poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
+                        }
+                        case EAST -> {
+                            poseStack.translate(0.045, 0.573, 0.573);
+                            poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
+                        }
+                        case WEST -> {
+                            poseStack.translate(1.105, 0.573, 0.573);
+                            poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
+                        }
                     }
                 }
 
             } else if (blockState.getValue(CanvasBlock.PLACE_TYPE) == PlacementState.CORNER) {
                 int count = blockState.getValue(CanvasBlock.COUNT);
-                renderPainting(count, direction, poseStack);
+                if (isBig) {
+                    renderBigPainting(count, direction, poseStack);
+                } else {
+                    renderPainting(count, direction, poseStack);
+                }
             }
         }else {
 
@@ -126,6 +152,76 @@ public class CanvasBlockEntityRenderer implements BlockEntityRenderer<CanvasBloc
                 case WEST -> {
                     poseStack.mulPose(Axis.ZN.rotationDegrees(22.5f));
                     poseStack.translate(0.4555, 0.7925, 0.575);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
+                }
+            }
+        }
+    }
+
+    public void renderBigPainting(int count, Direction direction, PoseStack poseStack){
+        if (count == 1){
+            switch (direction) {
+                case NORTH -> {
+                    poseStack.mulPose(Axis.XP.rotationDegrees(22.5f));
+                    poseStack.translate(0.294, 0.497, 0.338);
+                }
+                case SOUTH -> {
+                    poseStack.mulPose(Axis.XN.rotationDegrees(22.5f));
+                    poseStack.translate(0.294, 0.274, 0.254);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
+                }
+                case EAST -> {
+                    poseStack.mulPose(Axis.ZP.rotationDegrees(22.5f));
+                    poseStack.translate(0.229, 0.269, 0.32);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
+                }
+                case WEST -> {
+                    poseStack.mulPose(Axis.ZN.rotationDegrees(22.5f));
+                    poseStack.translate(0.312, 0.496, 0.32);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
+                }
+            }
+        } else if (count == 2) {
+            switch (direction) {
+                case NORTH -> {
+                    poseStack.mulPose(Axis.XP.rotationDegrees(22.5f));
+                    poseStack.translate(0.294, 0.492, 0.312);
+                }
+                case SOUTH -> {
+                    poseStack.mulPose(Axis.XN.rotationDegrees(22.5f));
+                    poseStack.translate(0.294, 0.269, 0.298);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
+                }
+                case EAST -> {
+                    poseStack.mulPose(Axis.ZP.rotationDegrees(22.5f));
+                    poseStack.translate(0.264, 0.265, 0.326);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
+                }
+                case WEST -> {
+                    poseStack.mulPose(Axis.ZN.rotationDegrees(22.5f));
+                    poseStack.translate(0.281, 0.492, 0.326);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
+                }
+            }
+        } else {
+            switch (direction) {
+                case NORTH -> {
+                    poseStack.mulPose(Axis.XP.rotationDegrees(22.5f));
+                    poseStack.translate(0.294, 0.493, 0.303);
+                }
+                case SOUTH -> {
+                    poseStack.mulPose(Axis.XN.rotationDegrees(22.5f));
+                    poseStack.translate(0.294, 0.271, 0.378);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(180.0f));
+                }
+                case EAST -> {
+                    poseStack.mulPose(Axis.ZP.rotationDegrees(22.5f));
+                    poseStack.translate(0.309, 0.266, 0.365);
+                    poseStack.mulPose(Axis.YP.rotationDegrees(90.0f));
+                }
+                case WEST -> {
+                    poseStack.mulPose(Axis.ZN.rotationDegrees(22.5f));
+                    poseStack.translate(0.233, 0.493, 0.365);
                     poseStack.mulPose(Axis.YP.rotationDegrees(270.0f));
                 }
             }

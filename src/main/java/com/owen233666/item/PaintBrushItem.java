@@ -87,27 +87,6 @@ public class PaintBrushItem extends Item implements Vanishable {
     }
 
 
-//    @Override
-//    public ActionResult useOnBlock(ItemUsageContext context) {
-//        World world = context.getWorld();
-//        BlockState blockstate = world.getBlockState(context.getBlockPos());
-//        Block block = blockstate.getBlock();
-//        ItemStack itemstack = context.getStack();
-//        PlayerEntity playerentity = context.getPlayer();
-//        if (itemstack.getMaxDamage() - itemstack.getDamage() == 0) {
-//            return ActionResult.FAIL;
-//        }
-//
-//        if (block instanceof EaselBlock){
-//            return ActionResult.SUCCESS;
-//        }
-//
-//        if (block instanceof CanvasBlock){
-//            return ActionResult.SUCCESS;
-//        }
-//        return ActionResult.SUCCESS;
-//    }
-
     @Override
     public boolean isBarVisible(ItemStack stack) {
         return true;

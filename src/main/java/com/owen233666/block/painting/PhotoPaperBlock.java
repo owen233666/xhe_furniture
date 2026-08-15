@@ -1,6 +1,5 @@
 package com.owen233666.block.painting;
 
-import com.owen233666.block.entity.EaselBlockEntity;
 import com.owen233666.block.entity.PhotoBlockEntity;
 import com.owen233666.item.ModItemTags;
 import com.owen233666.util.BlockUtil;
@@ -67,37 +66,33 @@ public abstract class PhotoPaperBlock extends HorizontalDirectionalBlock impleme
         BlockEntity be = world.getBlockEntity(pos);
         NonNullList<ItemStack> inventory;
 
-        //初始化inventory
-        if (be instanceof EaselBlockEntity){
-            inventory = ((EaselBlockEntity) be).getInv();
+        //初始化inventory（从 PhotoBlockEntity 获取实际内容，而非新建空列表）
+        if (be instanceof PhotoBlockEntity photoBlockEntity){
+            inventory = photoBlockEntity.getInv();
         }else {
             inventory = NonNullList.withSize(1, ItemStack.EMPTY);
         }
         //判断是否有画（获取be的inventory）
-        boolean hasPainting =!(inventory.getFirst() == ItemStack.EMPTY);
+        boolean hasPainting = !inventory.getFirst().isEmpty();
 
         if (be instanceof PhotoBlockEntity photoBlockEntity) {
             boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
-            //方块实体inv为空
+
+            //有画：取出内容物（手上是画则先取旧画再放新画）
             if (hasPainting) {
-                //手上拿的东西是画
                 if (heldIsPainting){
+                    remove(world, pos, player, photoBlockEntity);
                     addItem(world, pos, player, photoBlockEntity, heldStack);
                     return InteractionResult.CONSUME;
                 }else {
                     remove(world, pos, player, photoBlockEntity);
-                    return InteractionResult.PASS;
+                    return InteractionResult.SUCCESS;
                 }
-                //方块实体inv不为空
-            }else {
-                //手上拿的东西是画
+            }else{
+                //无画：手持画作则放入
                 if (heldIsPainting){
-                    remove(world, pos, player, photoBlockEntity);
                     addItem(world, pos, player, photoBlockEntity, heldStack);
                     return InteractionResult.CONSUME;
-                }else{
-                    remove(world, pos, player, photoBlockEntity);
-                    return InteractionResult.SUCCESS;
                 }
             }
         }
