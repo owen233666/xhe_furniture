@@ -94,6 +94,27 @@ public class XheFurnitureClient implements ClientModInitializer {
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.OPEN_BOOK, RenderType.cutout());
 
 		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_LIGHT_OAK, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_LIGHT_SPRUCE, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_LIGHT_JUNGLE, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_LIGHT_BIRCH, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_LIGHT_ACACIA, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_LIGHT_DARK_OAK, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_LIGHT_MANGROVE, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_LIGHT_CHERRY, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_LIGHT_BAMBOO, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_LIGHT_PALE_OAK, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_LIGHT_BLACKSTONE, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_DARK_OAK, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_DARK_SPRUCE, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_DARK_JUNGLE, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_DARK_BIRCH, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_DARK_ACACIA, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_DARK_DARK_OAK, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_DARK_MANGROVE, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_DARK_CHERRY, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_DARK_BAMBOO, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_DARK_PALE_OAK, RenderType.cutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CORK_BOARD_DARK_BLACKSTONE, RenderType.cutout());
 
 
 		BlockEntityRenderers.register(ModBlockEntityTypes.STORAGE_BLOCK_BE, StorageBlockEntityRenderer::new);

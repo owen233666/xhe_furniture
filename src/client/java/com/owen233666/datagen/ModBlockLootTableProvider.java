@@ -110,5 +110,27 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
         dropSelf(ModBlocks.PAINT_BRUSH);
         dropSelf(ModBlocks.PAINT_CAN);
         dropSelf(ModBlocks.MESSY_PAINT_CAN);
+        dropSelf(ModBlocks.CORK_BOARD_LIGHT_OAK);
+        dropSelf(ModBlocks.CORK_BOARD_LIGHT_SPRUCE);
+        dropSelf(ModBlocks.CORK_BOARD_LIGHT_JUNGLE);
+        dropSelf(ModBlocks.CORK_BOARD_LIGHT_BIRCH);
+        dropSelf(ModBlocks.CORK_BOARD_LIGHT_ACACIA);
+        dropSelf(ModBlocks.CORK_BOARD_LIGHT_DARK_OAK);
+        dropSelf(ModBlocks.CORK_BOARD_LIGHT_MANGROVE);
+        dropSelf(ModBlocks.CORK_BOARD_LIGHT_CHERRY);
+        dropSelf(ModBlocks.CORK_BOARD_LIGHT_BAMBOO);
+        dropSelf(ModBlocks.CORK_BOARD_LIGHT_PALE_OAK);
+        dropSelf(ModBlocks.CORK_BOARD_LIGHT_BLACKSTONE);
+        dropSelf(ModBlocks.CORK_BOARD_DARK_OAK);
+        dropSelf(ModBlocks.CORK_BOARD_DARK_SPRUCE);
+        dropSelf(ModBlocks.CORK_BOARD_DARK_JUNGLE);
+        dropSelf(ModBlocks.CORK_BOARD_DARK_BIRCH);
+        dropSelf(ModBlocks.CORK_BOARD_DARK_ACACIA);
+        dropSelf(ModBlocks.CORK_BOARD_DARK_DARK_OAK);
+        dropSelf(ModBlocks.CORK_BOARD_DARK_MANGROVE);
+        dropSelf(ModBlocks.CORK_BOARD_DARK_CHERRY);
+        dropSelf(ModBlocks.CORK_BOARD_DARK_BAMBOO);
+        dropSelf(ModBlocks.CORK_BOARD_DARK_PALE_OAK);
+        dropSelf(ModBlocks.CORK_BOARD_DARK_BLACKSTONE);
     }
 }

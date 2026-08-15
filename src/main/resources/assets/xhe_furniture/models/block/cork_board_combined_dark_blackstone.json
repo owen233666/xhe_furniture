@@ -1,0 +1,8 @@
+{
+  "parent": "xhe_furniture:block/parent/cork_board_combined",
+  "textures": {
+    "0": "xhe_furniture:block/cork_board_dark",
+    "1": "xhe_furniture:block/cork_board_frame_blackstone",
+    "particle": "xhe_furniture:block/cork_board_dark"
+  }
+}

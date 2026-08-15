@@ -113,7 +113,28 @@ public class ModBlockEntityTypes {
             Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "cork_board_block_entity"),
                     BlockEntityType.Builder.of(
                             CorkBoardBlockEntity::new,
-                            ModBlocks.CORK_BOARD_LIGHT_OAK
+                            ModBlocks.CORK_BOARD_LIGHT_OAK,
+                            ModBlocks.CORK_BOARD_LIGHT_SPRUCE,
+                            ModBlocks.CORK_BOARD_LIGHT_JUNGLE,
+                            ModBlocks.CORK_BOARD_LIGHT_BIRCH,
+                            ModBlocks.CORK_BOARD_LIGHT_ACACIA,
+                            ModBlocks.CORK_BOARD_LIGHT_DARK_OAK,
+                            ModBlocks.CORK_BOARD_LIGHT_MANGROVE,
+                            ModBlocks.CORK_BOARD_LIGHT_CHERRY,
+                            ModBlocks.CORK_BOARD_LIGHT_BAMBOO,
+                            ModBlocks.CORK_BOARD_LIGHT_PALE_OAK,
+                            ModBlocks.CORK_BOARD_LIGHT_BLACKSTONE,
+                            ModBlocks.CORK_BOARD_DARK_OAK,
+                            ModBlocks.CORK_BOARD_DARK_SPRUCE,
+                            ModBlocks.CORK_BOARD_DARK_JUNGLE,
+                            ModBlocks.CORK_BOARD_DARK_BIRCH,
+                            ModBlocks.CORK_BOARD_DARK_ACACIA,
+                            ModBlocks.CORK_BOARD_DARK_DARK_OAK,
+                            ModBlocks.CORK_BOARD_DARK_MANGROVE,
+                            ModBlocks.CORK_BOARD_DARK_CHERRY,
+                            ModBlocks.CORK_BOARD_DARK_BAMBOO,
+                            ModBlocks.CORK_BOARD_DARK_PALE_OAK,
+                            ModBlocks.CORK_BOARD_DARK_BLACKSTONE
                     ).build(null)
             );
     public static void registerBlockEntityTypes() {

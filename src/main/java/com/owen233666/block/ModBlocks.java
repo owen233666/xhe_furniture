@@ -131,6 +131,29 @@ public class ModBlocks {
 
     public static final ResourceLocation CORK_BOARD_LIGHT_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_light_oak");
 
+    public static final ResourceLocation CORK_BOARD_LIGHT_SPRUCE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_light_spruce");
+    public static final ResourceLocation CORK_BOARD_LIGHT_JUNGLE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_light_jungle");
+    public static final ResourceLocation CORK_BOARD_LIGHT_BIRCH_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_light_birch");
+    public static final ResourceLocation CORK_BOARD_LIGHT_ACACIA_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_light_acacia");
+    public static final ResourceLocation CORK_BOARD_LIGHT_DARK_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_light_dark_oak");
+    public static final ResourceLocation CORK_BOARD_LIGHT_MANGROVE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_light_mangrove");
+    public static final ResourceLocation CORK_BOARD_LIGHT_CHERRY_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_light_cherry");
+    public static final ResourceLocation CORK_BOARD_LIGHT_BAMBOO_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_light_bamboo");
+    public static final ResourceLocation CORK_BOARD_LIGHT_PALE_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_light_pale_oak");
+    public static final ResourceLocation CORK_BOARD_LIGHT_BLACKSTONE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_light_blackstone");
+
+    public static final ResourceLocation CORK_BOARD_DARK_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_dark_oak");
+    public static final ResourceLocation CORK_BOARD_DARK_SPRUCE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_dark_spruce");
+    public static final ResourceLocation CORK_BOARD_DARK_JUNGLE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_dark_jungle");
+    public static final ResourceLocation CORK_BOARD_DARK_BIRCH_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_dark_birch");
+    public static final ResourceLocation CORK_BOARD_DARK_ACACIA_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_dark_acacia");
+    public static final ResourceLocation CORK_BOARD_DARK_DARK_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_dark_dark_oak");
+    public static final ResourceLocation CORK_BOARD_DARK_MANGROVE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_dark_mangrove");
+    public static final ResourceLocation CORK_BOARD_DARK_CHERRY_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_dark_cherry");
+    public static final ResourceLocation CORK_BOARD_DARK_BAMBOO_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_dark_bamboo");
+    public static final ResourceLocation CORK_BOARD_DARK_PALE_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_dark_pale_oak");
+    public static final ResourceLocation CORK_BOARD_DARK_BLACKSTONE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_dark_blackstone");
+
 
     //Cups
     public static final Block HOT_COCOA = registerBlock(HOT_COCOA_RESOURCE_LOCATION, new CupBlock(BlockBehaviour.Properties.of().mapColor(MapColor.SNOW).strength(0.0F, 0.0F).instabreak().sound(SoundType.STONE).noCollission()));
@@ -246,6 +269,29 @@ public class ModBlocks {
     public static final Block OPEN_BOOK = registerBlock(OPEN_BOOK_RESOURCE_LOCATION, new OpenBookBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().sound(SoundType.WOOD).noOcclusion()));
 
     public static final Block CORK_BOARD_LIGHT_OAK = registerBlock(CORK_BOARD_LIGHT_OAK_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+
+    public static final Block CORK_BOARD_LIGHT_SPRUCE = registerBlock(CORK_BOARD_LIGHT_SPRUCE_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_LIGHT_JUNGLE = registerBlock(CORK_BOARD_LIGHT_JUNGLE_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_LIGHT_BIRCH = registerBlock(CORK_BOARD_LIGHT_BIRCH_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_LIGHT_ACACIA = registerBlock(CORK_BOARD_LIGHT_ACACIA_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_LIGHT_DARK_OAK = registerBlock(CORK_BOARD_LIGHT_DARK_OAK_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_LIGHT_MANGROVE = registerBlock(CORK_BOARD_LIGHT_MANGROVE_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_LIGHT_CHERRY = registerBlock(CORK_BOARD_LIGHT_CHERRY_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_LIGHT_BAMBOO = registerBlock(CORK_BOARD_LIGHT_BAMBOO_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_LIGHT_PALE_OAK = registerBlock(CORK_BOARD_LIGHT_PALE_OAK_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_LIGHT_BLACKSTONE = registerBlock(CORK_BOARD_LIGHT_BLACKSTONE_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+
+    public static final Block CORK_BOARD_DARK_OAK = registerBlock(CORK_BOARD_DARK_OAK_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_DARK_SPRUCE = registerBlock(CORK_BOARD_DARK_SPRUCE_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_DARK_JUNGLE = registerBlock(CORK_BOARD_DARK_JUNGLE_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_DARK_BIRCH = registerBlock(CORK_BOARD_DARK_BIRCH_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_DARK_ACACIA = registerBlock(CORK_BOARD_DARK_ACACIA_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_DARK_DARK_OAK = registerBlock(CORK_BOARD_DARK_DARK_OAK_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_DARK_MANGROVE = registerBlock(CORK_BOARD_DARK_MANGROVE_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_DARK_CHERRY = registerBlock(CORK_BOARD_DARK_CHERRY_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_DARK_BAMBOO = registerBlock(CORK_BOARD_DARK_BAMBOO_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_DARK_PALE_OAK = registerBlock(CORK_BOARD_DARK_PALE_OAK_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
+    public static final Block CORK_BOARD_DARK_BLACKSTONE = registerBlock(CORK_BOARD_DARK_BLACKSTONE_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
 
     public static Block registerBlock(ResourceLocation resourceLocation, Block block){
         registerBlockItem(resourceLocation, block);

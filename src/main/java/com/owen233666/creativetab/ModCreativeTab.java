@@ -95,6 +95,27 @@ public class ModCreativeTab {
                         entries.accept(ModBlocks.RATTAN_TABLE);
 
                         entries.accept(ModBlocks.CORK_BOARD_LIGHT_OAK);
+                        entries.accept(ModBlocks.CORK_BOARD_LIGHT_SPRUCE);
+                        entries.accept(ModBlocks.CORK_BOARD_LIGHT_JUNGLE);
+                        entries.accept(ModBlocks.CORK_BOARD_LIGHT_BIRCH);
+                        entries.accept(ModBlocks.CORK_BOARD_LIGHT_ACACIA);
+                        entries.accept(ModBlocks.CORK_BOARD_LIGHT_DARK_OAK);
+                        entries.accept(ModBlocks.CORK_BOARD_LIGHT_MANGROVE);
+                        entries.accept(ModBlocks.CORK_BOARD_LIGHT_CHERRY);
+                        entries.accept(ModBlocks.CORK_BOARD_LIGHT_BAMBOO);
+                        entries.accept(ModBlocks.CORK_BOARD_LIGHT_PALE_OAK);
+                        entries.accept(ModBlocks.CORK_BOARD_LIGHT_BLACKSTONE);
+                        entries.accept(ModBlocks.CORK_BOARD_DARK_OAK);
+                        entries.accept(ModBlocks.CORK_BOARD_DARK_SPRUCE);
+                        entries.accept(ModBlocks.CORK_BOARD_DARK_JUNGLE);
+                        entries.accept(ModBlocks.CORK_BOARD_DARK_BIRCH);
+                        entries.accept(ModBlocks.CORK_BOARD_DARK_ACACIA);
+                        entries.accept(ModBlocks.CORK_BOARD_DARK_DARK_OAK);
+                        entries.accept(ModBlocks.CORK_BOARD_DARK_MANGROVE);
+                        entries.accept(ModBlocks.CORK_BOARD_DARK_CHERRY);
+                        entries.accept(ModBlocks.CORK_BOARD_DARK_BAMBOO);
+                        entries.accept(ModBlocks.CORK_BOARD_DARK_PALE_OAK);
+                        entries.accept(ModBlocks.CORK_BOARD_DARK_BLACKSTONE);
 
                     })).build()
     );
