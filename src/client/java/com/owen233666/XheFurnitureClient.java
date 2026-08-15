@@ -7,10 +7,8 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.fabricmc.fabric.api.client.model.loading.v1.ModelLoadingPlugin;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
 
 @Environment(EnvType.CLIENT)
@@ -111,30 +109,6 @@ public class XheFurnitureClient implements ClientModInitializer {
 		berInit();
 		registerStorageTypeRenderers();
 
-		ModelLoadingPlugin.register(pluginContext -> {
-
-			pluginContext.addModels(
-					new ModelResourceLocation(
-							new ResourceLocation(
-									XheFurniture.MOD_ID,
-									"block/parent/photo_paper_a"
-							),
-							""),
-					new ModelResourceLocation(
-							new ResourceLocation(
-									XheFurniture.MOD_ID,
-									"block/parent/photo_paper_b"
-							),
-							""),
-					new ModelResourceLocation(
-							new ResourceLocation(
-									XheFurniture.MOD_ID,
-									"block/parent/photo_paper_c"
-							),
-							"")
-			);
-
-		});
 	}
 
 	public static void registerStorageTypeRenderers(){
