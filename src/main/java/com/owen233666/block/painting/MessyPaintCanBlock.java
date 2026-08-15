@@ -15,11 +15,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class DyeablePaintCanBlock extends HorizontalDirectionalBlock implements PaintBrushDyeable {
+public class MessyPaintCanBlock extends HorizontalDirectionalBlock implements PaintBrushDyeable {
     public static final BooleanProperty DIRTY = BooleanProperty.create("dirty");
     private final float x1, y1, z1, x2, y2, z2;
 
-    public DyeablePaintCanBlock(Properties settings, float x1, float y1, float z1, float x2, float y2, float z2) {
+    public MessyPaintCanBlock(Properties settings, float x1, float y1, float z1, float x2, float y2, float z2) {
         super(settings);
         this.x1 = x1;
         this.y1 = y1;

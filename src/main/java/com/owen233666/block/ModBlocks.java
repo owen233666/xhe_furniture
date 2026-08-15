@@ -252,7 +252,7 @@ public class ModBlocks {
     public static final Block GRID_SHELF_BLACKSTONE     = registerBlock(GRID_SHELF_BLACKSTONE_RESOURCE_LOCATION,    new       GridShelfBlock(BlockBehaviour.Properties.of().strength(1.0F).sound(SoundType.WOOD).noOcclusion()));
     public static final Block PAINT_BRUSH               = registerWithoutItem(PAINT_BRUSH_RESOURCE_LOCATION,        new      PaintBrushBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion()));
     public static final Block PAINT_CAN                 = registerBlock(PAINT_CAN_RESOURCE_LOCATION,                new        PaintCanBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion(), 0, 0, 0, 16, 6, 16));
-    public static final Block MESSY_PAINT_CAN           = registerBlock(MESSY_PAINT_CAN_RESOURCE_LOCATION,          new DyeablePaintCanBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion(), 0, 0, 0, 16, 6, 16));
+    public static final Block MESSY_PAINT_CAN           = registerBlock(MESSY_PAINT_CAN_RESOURCE_LOCATION,          new MessyPaintCanBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion(), 0, 0, 0, 16, 6, 16));
     //Furniture Order Tables
     public static final Block FURNITURE_ORDER_TABLE_OAK         = registerBlock(FURNITURE_ORDER_TABLE_OAK_RESOURCE_LOCATION,        new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
     public static final Block FURNITURE_ORDER_TABLE_SPRUCE      = registerBlock(FURNITURE_ORDER_TABLE_SPRUCE_RESOURCE_LOCATION,     new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));

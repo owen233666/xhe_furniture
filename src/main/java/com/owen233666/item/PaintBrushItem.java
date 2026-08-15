@@ -1,7 +1,7 @@
 package com.owen233666.item;
 
 import com.owen233666.block.painting.CanvasBlock;
-import com.owen233666.block.painting.DyeablePaintCanBlock;
+import com.owen233666.block.painting.MessyPaintCanBlock;
 import com.owen233666.block.painting.EaselBlock;
 import com.owen233666.block.painting.PaintBrushBlock;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -55,7 +55,7 @@ public class PaintBrushItem extends Item implements Vanishable {
         if (!world.isClientSide && playerentity.isShiftKeyDown()) {
             Direction facing = playerentity.getDirection().getOpposite();
 
-            if (clickedBlock instanceof DyeablePaintCanBlock) {
+            if (clickedBlock instanceof MessyPaintCanBlock) {
                 itemstack.setDamageValue(0);
                 return InteractionResult.SUCCESS;
             }
