@@ -1,17 +1,13 @@
 package com.owen233666.block.painting;
 
-import com.owen233666.item.PaintBrushItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.WetSpongeBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -19,7 +15,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class DyeablePaintCanBlock extends HorizontalDirectionalBlock {
+public class DyeablePaintCanBlock extends HorizontalDirectionalBlock implements PaintBrushDyeable {
     public static final BooleanProperty DIRTY = BooleanProperty.create("dirty");
     private final float x1, y1, z1, x2, y2, z2;
 
@@ -46,28 +42,14 @@ public class DyeablePaintCanBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
+    public BooleanProperty getDirtyProperty() {
+        return DIRTY;
+    }
+
+    @Override
     public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        ItemStack heldStack = player.getItemInHand(hand);
-        Item heldItem = heldStack.getItem();
-
-        if (heldItem instanceof PaintBrushItem){
-            if (!state.getValue(DIRTY)){
-                if (heldStack.getDamageValue() != heldStack.getMaxDamage()) {
-                    world.setBlockAndUpdate(pos, state.setValue(DIRTY, true));
-                    heldStack.hurtAndBreak(1, player, (playerx) -> playerx.broadcastBreakEvent(hand));
-                    return InteractionResult.SUCCESS;
-                }
-            }else {
-                if (byItem(heldItem) instanceof WetSpongeBlock){
-                    world.setBlockAndUpdate(pos, state.setValue(DIRTY, false));
-                    return InteractionResult.SUCCESS;
-                }
-            }
-
-            if (player.isShiftKeyDown()){
-                return InteractionResult.SUCCESS;
-            }
-            return InteractionResult.PASS;
+        if (dyeWithBrush(world, pos, state, player, hand).consumesAction()) {
+            return InteractionResult.SUCCESS;
         }
         return super.use(state, world, pos, player, hand, hit);
     }

@@ -35,7 +35,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class EaselBlock extends HorizontalDirectionalBlock implements EntityBlock {
+public class EaselBlock extends HorizontalDirectionalBlock implements EntityBlock, PaintBrushDyeable {
     public static final BooleanProperty DIRTY = BooleanProperty.create("dirty");
     public static final BooleanProperty WIP = BooleanProperty.create("wip");
     public static final EnumProperty<CanvasType> CANVAS_TYPE = EnumProperty.create("canvas_type", CanvasType.class);
@@ -44,7 +44,6 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
     public EaselBlock(Properties settings) {
         super(settings);
         this.registerDefaultState(defaultBlockState()
-//                .with(PAINTINGS, Paintings.NONE)
                 .setValue(DIRTY, false)
                 .setValue(WIP, false)
                 .setValue(CANVAS_TYPE, CanvasType.NONE)
@@ -59,6 +58,11 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, DIRTY,CANVAS_TYPE, WIP);
+    }
+
+    @Override
+    public BooleanProperty getDirtyProperty() {
+        return DIRTY;
     }
 
     @Override
@@ -78,22 +82,15 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
         //判断是否有画（获取be的inventory）
         boolean hasPainting =!(inventory.getFirst() == ItemStack.EMPTY);
 
-        //染色逻辑，与be无关
         if (heldItem instanceof PaintBrushItem) {
-
-//            XheFurniture.LOGGER.info("1");
-
-            if (state.getValue(DIRTY)) return InteractionResult.PASS;
-            if (heldStack.getDamageValue() == heldItem.getMaxDamage()) return InteractionResult.PASS;
-            world.setBlockAndUpdate(pos, state.setValue(DIRTY, true));
-            if (!player.isCreative()) heldStack.hurtAndBreak(1, player, (entity) -> {});
-            return InteractionResult.SUCCESS;
+            InteractionResult dyeResult = dyeWithBrush(world, pos, state, player, hand);
+            if (dyeResult.consumesAction()) {
+                return dyeResult;
+            }
         }
 
         //洗色逻辑，与be无关
         if (byItem(heldItem) instanceof WetSpongeBlock){
-
-//            XheFurniture.LOGGER.info("2");
 
             if (state.getValue(DIRTY)) {
                 world.setBlockAndUpdate(pos, state.setValue(DIRTY, false));
@@ -105,8 +102,6 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
 
         //放画布逻辑
         if (byItem(heldItem) instanceof CanvasBlock){
-
-//            XheFurniture.LOGGER.info("3");
 
             if (!hasCanvas){
                 if (byItem(heldItem) == ModBlocks.CANVAS){
@@ -130,7 +125,6 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
 
         //取画布逻辑，仅hasPainting与be无关，大部分与be无关
         if (player.getItemInHand(hand).isEmpty() && player.isShiftKeyDown()) {
-//            XheFurniture.LOGGER.info("4");
             if (hasCanvas && !hasPainting) {
                 CanvasType canvasType = state.getValue(CANVAS_TYPE);
                 return switch (canvasType) {

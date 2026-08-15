@@ -41,7 +41,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlock {
+public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlock, PaintBrushDyeable {
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new CanvasBlockEntity(blockPos, blockState);
@@ -83,6 +83,11 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
     }
 
     @Override
+    public BooleanProperty getDirtyProperty() {
+        return DIRTY;
+    }
+
+    @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return state.getValue(PLACE_TYPE) == PlacementState.WALL ? SHAPE_WALL.get(state.getValue(FACING)) : SHAPE_CORNER.get(state.getValue(FACING));
     }
@@ -105,11 +110,11 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
         boolean hasPainting =!(inventory.getFirst() == ItemStack.EMPTY);
 
         if (heldItem instanceof PaintBrushItem) {
-            if (state.getValue(DIRTY)) return InteractionResult.PASS;
-            if (heldStack.getDamageValue() == heldItem.getMaxDamage()) return InteractionResult.PASS;
-            level.setBlockAndUpdate(pos, state.setValue(DIRTY, true));
-            if (!player.isCreative()) heldStack.hurtAndBreak(1, player, (entity) -> {});
-            return InteractionResult.SUCCESS;
+            InteractionResult dyeResult = dyeWithBrush(level, pos, state, player, hand);
+            if (dyeResult.consumesAction()) {
+                return dyeResult;
+            }
+            // 已脏或刷子满耐久：继续原有逻辑
         }
 
 
