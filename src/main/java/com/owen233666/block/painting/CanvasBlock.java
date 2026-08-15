@@ -127,11 +127,9 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
             }
         }
 
-        // 先处理方块实体内容物：有画时右键取出（手持画则换画），优先于叠画布
         if (be instanceof CanvasBlockEntity canvasBlockEntity){
             boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
 
-            //有画：取出内容物（手上是画则先取旧画再放新画）
             if (hasPainting) {
                 if (heldIsPainting){
                     remove(level, pos, player, canvasBlockEntity);
