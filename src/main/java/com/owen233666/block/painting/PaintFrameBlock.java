@@ -1,6 +1,5 @@
 package com.owen233666.block.painting;
 
-import com.owen233666.block.entity.CanvasBlockEntity;
 import com.owen233666.block.entity.PaintFrameBlockEntity;
 import com.owen233666.item.ModItemTags;
 import com.owen233666.util.BlockUtil;

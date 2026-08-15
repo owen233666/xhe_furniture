@@ -2,7 +2,6 @@ package com.owen233666.blockentityrenderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import com.owen233666.XheFurniture;
 import com.owen233666.block.CorkBoardBlock;
 import com.owen233666.block.entity.CorkBoardBlockEntity;
 import com.owen233666.block.painting.PhotoType;
