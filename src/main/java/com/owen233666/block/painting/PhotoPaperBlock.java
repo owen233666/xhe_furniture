@@ -1,4 +1,5 @@
 package com.owen233666.block.painting;
+import net.minecraft.world.ItemInteractionResult;
 
 import com.owen233666.block.entity.PhotoBlockEntity;
 import com.owen233666.item.ModItemTags;
@@ -60,7 +61,7 @@ public abstract class PhotoPaperBlock extends HorizontalDirectionalBlock impleme
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack heldStack = player.getItemInHand(hand);
         Item heldItem = heldStack.getItem();
         BlockEntity be = world.getBlockEntity(pos);
@@ -83,20 +84,20 @@ public abstract class PhotoPaperBlock extends HorizontalDirectionalBlock impleme
                 if (heldIsPainting){
                     remove(world, pos, player, photoBlockEntity);
                     addItem(world, pos, player, photoBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }else {
                     remove(world, pos, player, photoBlockEntity);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             }else{
                 //无画：手持画作则放入
                 if (heldIsPainting){
                     addItem(world, pos, player, photoBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override

@@ -1,4 +1,6 @@
 package com.owen233666.block;
+import net.minecraft.world.ItemInteractionResult;
+import com.mojang.serialization.MapCodec;
 
 import com.owen233666.XheFurniture;
 import com.owen233666.block.entity.CorkBoardBlockEntity;
@@ -100,12 +102,12 @@ public class CorkBoardBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack heldStack = player.getItemInHand(hand);
         BlockEntity be = level.getBlockEntity(pos);
 
         if (!(be instanceof CorkBoardBlockEntity corkBoardBlockEntity)) {
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
 
         // 服务端处理所有业务
@@ -132,7 +134,7 @@ public class CorkBoardBlock extends HorizontalDirectionalBlock implements Entity
         }
 
         // 返回 SUCCESS 表示交互已处理（客户端和服务端都需要返回这个结果）
-        return InteractionResult.SUCCESS;
+        return ItemInteractionResult.SUCCESS;
     }
 
     private void setPhoto(Level level, BlockPos pos, CorkBoardBlockEntity corkBoardBlockEntity, Player player, ItemStack itemStack, boolean hasPainting) {
@@ -232,4 +234,10 @@ public class CorkBoardBlock extends HorizontalDirectionalBlock implements Entity
             }
         }
     }
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(CorkBoardBlock::new);
+    }
+
 }

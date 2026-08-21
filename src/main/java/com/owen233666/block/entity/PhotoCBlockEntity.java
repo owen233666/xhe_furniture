@@ -1,5 +1,6 @@
 package com.owen233666.block.entity;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 

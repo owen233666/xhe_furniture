@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 public class ModBlockEntityTypes {
 
     public static final BlockEntityType<StorageBlockEntity> STORAGE_BLOCK_BE =
-            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "storage_block_entity"),
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "storage_block_entity"),
                     BlockEntityType.Builder.of(
                             StorageBlockEntity::new,
                             ModBlocks.WHITE_SHOE_FLOWERPOT,
@@ -22,7 +22,7 @@ public class ModBlockEntityTypes {
             );
 
     public static final BlockEntityType<PhotoABlockEntity> PHOTO_A_BLOCK_BE =
-            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "photo_a_block_entity"),
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "photo_a_block_entity"),
                     BlockEntityType.Builder.of(
                             PhotoABlockEntity::new,
                             ModBlocks.PHOTO_PAPER_WHITE_A,
@@ -31,7 +31,7 @@ public class ModBlockEntityTypes {
             );
 
     public static final BlockEntityType<PhotoBBlockEntity> PHOTO_B_BLOCK_BE =
-            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "photo_b_block_entity"),
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "photo_b_block_entity"),
                     BlockEntityType.Builder.of(
                             PhotoBBlockEntity::new,
                             ModBlocks.PHOTO_PAPER_WHITE_B,
@@ -40,7 +40,7 @@ public class ModBlockEntityTypes {
             );
 
     public static final BlockEntityType<PhotoCBlockEntity> PHOTO_C_BLOCK_BE =
-            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "photo_c_block_entity"),
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "photo_c_block_entity"),
                     BlockEntityType.Builder.of(
                             PhotoCBlockEntity::new,
                             ModBlocks.PHOTO_PAPER_WHITE_C,
@@ -49,7 +49,7 @@ public class ModBlockEntityTypes {
             );
 
     public static final BlockEntityType<EaselBlockEntity> EASEL_BLOCK_BE =
-            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "easel_block_entity"),
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "easel_block_entity"),
                     BlockEntityType.Builder.of(
                             EaselBlockEntity::new,
                             ModBlocks.EASEL
@@ -57,7 +57,7 @@ public class ModBlockEntityTypes {
             );
 
     public static final BlockEntityType<CanvasBlockEntity> CANVAS_BLOCK_BE =
-            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "canvas_block_entity"),
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "canvas_block_entity"),
                     BlockEntityType.Builder.of(
                             CanvasBlockEntity::new,
                             ModBlocks.CANVAS,
@@ -67,7 +67,7 @@ public class ModBlockEntityTypes {
             );
 
     public static final BlockEntityType<GridShelfBlockEntity> GRID_SHELF_BLOCK_BE =
-            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "grid_shelf_block_entity"),
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "grid_shelf_block_entity"),
                     BlockEntityType.Builder.of(
                             GridShelfBlockEntity::new,
                             ModBlocks.GRID_SHELF_OAK,
@@ -85,7 +85,7 @@ public class ModBlockEntityTypes {
             );
 
     public static final BlockEntityType<PaintFrameBlockEntity> PAINTING_FRAME_BLOCK_BE =
-            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "painting_frame_block_entity"),
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "painting_frame_block_entity"),
                     BlockEntityType.Builder.of(
                             PaintFrameBlockEntity::new,
                             ModBlocks.PAINTING_FRAME_OAK,
@@ -103,7 +103,7 @@ public class ModBlockEntityTypes {
             );
 
     public static final BlockEntityType<BookLikeBlockEntity> BOOK_LIKE_BLOCK_BE =
-            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "book_like_block_entity"),
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "book_like_block_entity"),
                     BlockEntityType.Builder.of(
                             BookLikeBlockEntity::new,
                             ModBlocks.CANVAS
@@ -111,7 +111,7 @@ public class ModBlockEntityTypes {
             );
 
     public static final BlockEntityType<CorkBoardBlockEntity> CORK_BOARD_BLOCK_BE =
-            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, new ResourceLocation(XheFurniture.MOD_ID, "cork_board_block_entity"),
+            Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "cork_board_block_entity"),
                     BlockEntityType.Builder.of(
                             CorkBoardBlockEntity::new,
                             ModBlocks.CORK_BOARD_LIGHT_OAK,

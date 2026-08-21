@@ -40,7 +40,7 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
         if (!state.getValue(GridShelfBlock.HAS_PHOTO)) return;
 
         ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(stack.getItem());
-        if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) {
+        if (resourceLocation.equals(ResourceLocation.parse("minecraft:air"))) {
             return;
         }
         ResourceLocation textureLocation = compileRenderResourceLocationForPaintings(resourceLocation);
@@ -170,6 +170,6 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
     }
 
     protected static ResourceLocation compileRenderResourceLocationForPaintings(ResourceLocation resourceLocation) {
-        return new ResourceLocation(resourceLocation.getNamespace(), "textures/item/paintings/" + resourceLocation.getPath().replace("painting_", "") + ".png");
+        return ResourceLocation.fromNamespaceAndPath(resourceLocation.getNamespace(), "textures/item/paintings/" + resourceLocation.getPath().replace("painting_", "") + ".png");
     }
 }

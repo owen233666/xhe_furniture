@@ -1,4 +1,6 @@
 package com.owen233666.block.painting;
+import net.minecraft.world.ItemInteractionResult;
+import com.mojang.serialization.MapCodec;
 
 import com.owen233666.block.entity.PaintFrameBlockEntity;
 import com.owen233666.item.ModItemTags;
@@ -80,7 +82,7 @@ public class PaintFrameBlock extends HorizontalDirectionalBlock implements Entit
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack heldStack = player.getItemInHand(hand);
         Item heldItem = heldStack.getItem();
         BlockEntity be = level.getBlockEntity(pos);
@@ -104,20 +106,20 @@ public class PaintFrameBlock extends HorizontalDirectionalBlock implements Entit
                 if (heldIsPainting){
                     remove(level, pos, player, paintFrameBlockEntity);
                     addItem(level, pos, player, paintFrameBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }else {
                     remove(level, pos, player, paintFrameBlockEntity);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             }else{
                 if (heldIsPainting){
                     addItem(level, pos, player, paintFrameBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }
             }
         }
 
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
@@ -204,4 +206,10 @@ public class PaintFrameBlock extends HorizontalDirectionalBlock implements Entit
             }
         }
     }
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(PaintFrameBlock::new);
+    }
+
 }

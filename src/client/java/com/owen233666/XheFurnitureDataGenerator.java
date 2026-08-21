@@ -4,33 +4,41 @@ import com.owen233666.datagen.ModBlockLootTableProvider;
 import com.owen233666.datagen.ModBlockTagProvider;
 import com.owen233666.datagen.ModItemTagProvider;
 import com.owen233666.datagen.ModRecipeProvider;
-import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-public class XheFurnitureDataGenerator implements DataGeneratorEntrypoint {
-	@Override
-	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
-		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
-//		pack.addProvider(ModModelProvider::new);
-		pack.addProvider(ModBlockLootTableProvider::new);
-//		pack.addProvider(EaselPaintingModelProvider::new);
-//		pack.addProvider(CanvasAndDrawingBoardPaintingWallModelProvider::new);
-//		pack.addProvider(CanvasAndDrawingBoardPaintingCorner1ModelProvider::new);
-//		pack.addProvider(CanvasAndDrawingBoardPaintingCorner2ModelProvider::new);
-//		pack.addProvider(CanvasAndDrawingBoardPaintingCorner3ModelProvider::new);
-//		pack.addProvider(PhotoPaperPaintingsAModelProvider::new);
-//		pack.addProvider(PhotoPaperPaintingsBModelProvider::new);
-//		pack.addProvider(PhotoPaperPaintingsCModelProvider::new);
-//		pack.addProvider(GridShelfPhotoPaperPaintingsAModelProvider::new);
-//		pack.addProvider(GridShelfPhotoPaperPaintingsBModelProvider::new);
-//		pack.addProvider(GridShelfPhotoPaperPaintingsCModelProvider::new);
-		pack.addProvider(ModBlockTagProvider::new);
-//		pack.addProvider(PaintingFramePaintingCorner1ModelProvider::new);
-//		pack.addProvider(PaintingFramePaintingCorner2ModelProvider::new);
-//		pack.addProvider(PaintingFramePaintingCorner3ModelProvider::new);
-//		pack.addProvider(PaintingFramePaintingWallModelProvider::new);
-		pack.addProvider(ModItemTagProvider::new);
-		pack.addProvider(ModRecipeProvider::new);
+@EventBusSubscriber(modid = XheFurniture.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+public class XheFurnitureDataGenerator {
+	@SubscribeEvent
+	public static void onGatherData(GatherDataEvent event) {
+		DataGenerator generator = event.getGenerator();
+		PackOutput output = generator.getPackOutput();
+		CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+		ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+
+		generator.addProvider(event.includeServer(), new LootTableProvider(
+				output,
+				Set.of(),
+				List.of(
+						new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)
+				),
+				lookupProvider
+		));
+
+		ModBlockTagProvider blockTags = new ModBlockTagProvider(output, lookupProvider, existingFileHelper);
+		generator.addProvider(event.includeServer(), blockTags);
+		generator.addProvider(event.includeServer(), new ModItemTagProvider(output, lookupProvider, blockTags.contentsGetter(), existingFileHelper));
+		generator.addProvider(event.includeServer(), new ModRecipeProvider(output, lookupProvider));
 	}
 }

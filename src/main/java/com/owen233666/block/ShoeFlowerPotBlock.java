@@ -1,4 +1,6 @@
 package com.owen233666.block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -56,4 +58,10 @@ public class ShoeFlowerPotBlock extends StorageBlock implements EntityBlock {
     public int getSection(float x, float y) {
         return 0;
     }
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(ShoeFlowerPotBlock::new);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.owen233666.block.entity;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
@@ -56,18 +57,18 @@ public class StorageBlockEntity extends BlockEntity {
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+        super.loadAdditional(nbt, registries);
         this.size = nbt.getInt("size");
         this.inventory = NonNullList.withSize(this.size, ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt, this.inventory);
+        ContainerHelper.loadAllItems(nbt, this.inventory, registries);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        ContainerHelper.saveAllItems(nbt, this.inventory);
+    protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+        ContainerHelper.saveAllItems(nbt, this.inventory, registries);
         nbt.putInt("size", this.size);
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, registries);
     }
 
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
@@ -75,8 +76,8 @@ public class StorageBlockEntity extends BlockEntity {
     }
 
     @Override
-    public @NotNull CompoundTag getUpdateTag() {
-        return this.saveWithoutMetadata();
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return this.saveWithoutMetadata(registries);
     }
 
     public void setInv(NonNullList<ItemStack> inventory) {

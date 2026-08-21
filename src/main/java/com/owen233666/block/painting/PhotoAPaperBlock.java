@@ -1,4 +1,6 @@
 package com.owen233666.block.painting;
+import net.minecraft.world.level.block.Block;
+import com.mojang.serialization.MapCodec;
 
 import com.owen233666.block.entity.PhotoABlockEntity;
 import net.minecraft.core.BlockPos;
@@ -15,4 +17,10 @@ public class PhotoAPaperBlock extends PhotoPaperBlock{
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
         return new PhotoABlockEntity(blockPos, blockState);
     }
+
+    @Override
+    protected MapCodec<? extends PhotoPaperBlock> codec() {
+        return simpleCodec(PhotoAPaperBlock::new);
+    }
+
 }

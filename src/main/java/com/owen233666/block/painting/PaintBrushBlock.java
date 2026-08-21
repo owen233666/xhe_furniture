@@ -1,4 +1,6 @@
 package com.owen233666.block.painting;
+import net.minecraft.world.ItemInteractionResult;
+import com.mojang.serialization.MapCodec;
 
 import com.owen233666.item.ModItems;
 import net.minecraft.core.BlockPos;
@@ -34,12 +36,12 @@ public class PaintBrushBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (Block.byItem(player.getItemInHand(hand).getItem()) instanceof WetSpongeBlock && state.getValue(DURABILITY) != 0){
             world.setBlockAndUpdate(pos, state.setValue(DURABILITY, 0));
-            return InteractionResult.SUCCESS;
+            return ItemInteractionResult.SUCCESS;
         }
-        return super.use(state, world, pos, player, hand, hit);
+        return super.useItemOn(stack, state, world, pos, player, hand, hit);
     }
 
     @Override
@@ -53,7 +55,13 @@ public class PaintBrushBlock extends HorizontalDirectionalBlock {
         if (player.isCreative()) return;
         int durability = state.getValue(DURABILITY);
         ItemStack toDropStack = new ItemStack(ModItems.PAINT_BRUSH, 1);
-        toDropStack.setDamageValue(ModItems.PAINT_BRUSH.getMaxDamage() - durability);
+        toDropStack.setDamageValue(new ItemStack(ModItems.PAINT_BRUSH).getMaxDamage() - durability);
         popResource(world, pos, toDropStack);
     }
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(PaintBrushBlock::new);
+    }
+
 }

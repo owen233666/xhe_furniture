@@ -3,7 +3,6 @@ package com.owen233666.creativetab;
 import com.owen233666.XheFurniture;
 import com.owen233666.block.ModBlocks;
 import com.owen233666.item.ModItems;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -14,9 +13,9 @@ import net.minecraft.world.item.ItemStack;
 public class ModCreativeTab {
     public static final CreativeModeTab FURNITURE_GROUP = Registry.register(
             BuiltInRegistries.CREATIVE_MODE_TAB,
-            new ResourceLocation(XheFurniture.MOD_ID, "xhe_furniture.creativetab.items"),
-            FabricItemGroup.builder().title(Component.translatable("xhe_furniture.creativetab.items"))
-                    .icon(() -> new ItemStack(BuiltInRegistries.BLOCK.get(new ResourceLocation(XheFurniture.MOD_ID, "hot_cocoa"))))
+            ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "xhe_furniture.creativetab.items"),
+            CreativeModeTab.builder().title(Component.translatable("xhe_furniture.creativetab.items"))
+                    .icon(() -> new ItemStack(BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "hot_cocoa"))))
                     .displayItems(((displayContext, entries) -> {
                         //Furniture Order Tables
                         entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_OAK);
@@ -122,8 +121,8 @@ public class ModCreativeTab {
 
     public static final CreativeModeTab PAINTINGS = Registry.register(
             BuiltInRegistries.CREATIVE_MODE_TAB,
-            new ResourceLocation(XheFurniture.MOD_ID, "xhe_furniture.creativetab.paintings"),
-            FabricItemGroup.builder().title(Component.translatable("xhe_furniture.creativetab.paintings")).icon(() -> new ItemStack(BuiltInRegistries.BLOCK.get(new ResourceLocation(XheFurniture.MOD_ID, "hot_cocoa"))))
+            ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "xhe_furniture.creativetab.paintings"),
+            CreativeModeTab.builder().title(Component.translatable("xhe_furniture.creativetab.paintings")).icon(() -> new ItemStack(BuiltInRegistries.BLOCK.get(ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "hot_cocoa"))))
                     .displayItems(((displayContext, entries) -> {
                         entries.accept(ModItems.PAINT_BRUSH);
                         entries.accept(ModBlocks.EASEL);

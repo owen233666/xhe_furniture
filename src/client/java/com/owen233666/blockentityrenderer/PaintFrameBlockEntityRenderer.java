@@ -25,7 +25,7 @@ public class PaintFrameBlockEntityRenderer implements BlockEntityRenderer<PaintF
         ItemStack itemStack = paintFrameBlockEntity.getInv().get(0);
         Direction direction = blockState.getValue(CanvasBlock.FACING);
         ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(itemStack.getItem());
-        if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) {
+        if (resourceLocation.equals(ResourceLocation.parse("minecraft:air"))) {
             return;
         }
         ResourceLocation textureLocation = compileRenderResourceLocationForPaintings(resourceLocation);
@@ -95,6 +95,6 @@ public class PaintFrameBlockEntityRenderer implements BlockEntityRenderer<PaintF
     }
 
     private ResourceLocation compileRenderResourceLocationForPaintings(ResourceLocation resourceLocation) {
-        return new ResourceLocation(resourceLocation.getNamespace(), "textures/item/paintings/" + resourceLocation.getPath().replace("painting_", "") + ".png");
+        return ResourceLocation.fromNamespaceAndPath(resourceLocation.getNamespace(), "textures/item/paintings/" + resourceLocation.getPath().replace("painting_", "") + ".png");
     }
 }

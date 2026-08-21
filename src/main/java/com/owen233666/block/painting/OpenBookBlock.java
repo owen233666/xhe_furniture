@@ -1,4 +1,6 @@
 package com.owen233666.block.painting;
+import net.minecraft.world.ItemInteractionResult;
+import com.mojang.serialization.MapCodec;
 
 import com.owen233666.block.entity.BookLikeBlockEntity;
 import com.owen233666.item.ModItemTags;
@@ -51,7 +53,7 @@ public class OpenBookBlock extends HorizontalDirectionalBlock implements EntityB
     }
 
     @Override
-    public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
         ItemStack heldStack = player.getItemInHand(interactionHand);
         Item heldItem = heldStack.getItem();
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
@@ -67,7 +69,7 @@ public class OpenBookBlock extends HorizontalDirectionalBlock implements EntityB
                         state = bstate + 1;
                     }
                     level.setBlockAndUpdate(blockPos, blockState.setValue(STATE, state));
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }else {
                     remove(level, blockPos, player, bookLikeBlockEntity);
                 }
@@ -75,14 +77,14 @@ public class OpenBookBlock extends HorizontalDirectionalBlock implements EntityB
             if (heldIsPainting(heldItem)) {
                 remove(level, blockPos, player, bookLikeBlockEntity);
                 addItem(level, blockPos, player, bookLikeBlockEntity, heldStack);
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
             if (!(bookLikeBlockEntity.getInv().getFirst() == ItemStack.EMPTY)){
                 remove(level, blockPos, player, bookLikeBlockEntity);
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
@@ -118,4 +120,10 @@ public class OpenBookBlock extends HorizontalDirectionalBlock implements EntityB
             }
         }
     }
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(OpenBookBlock::new);
+    }
+
 }

@@ -47,9 +47,9 @@ public class ClientUtil {
 
         Matrix4f matrix4f = poseStack.last().pose();
         VertexConsumer vertexConsumer = multiBufferSource.getBuffer(RenderType.text(resourceLocation));
-        vertexConsumer.vertex(matrix4f, x1, y2, 0).color(r, g, b, a).uv(u1, v2).uv2(packedLight).endVertex();
-        vertexConsumer.vertex(matrix4f, x2, y2, 0).color(r, g, b, a).uv(u2, v2).uv2(packedLight).endVertex();
-        vertexConsumer.vertex(matrix4f, x2, y1, 0).color(r, g, b, a).uv(u2, v1).uv2(packedLight).endVertex();
-        vertexConsumer.vertex(matrix4f, x1, y1, 0).color(r, g, b, a).uv(u1, v1).uv2(packedLight).endVertex();
+        vertexConsumer.addVertex(matrix4f, x1, y2, 0.0F).setColor(r, g, b, a).setUv(u1, v2).setLight(packedLight);
+        vertexConsumer.addVertex(matrix4f, x2, y2, 0.0F).setColor(r, g, b, a).setUv(u2, v2).setLight(packedLight);
+        vertexConsumer.addVertex(matrix4f, x2, y1, 0.0F).setColor(r, g, b, a).setUv(u2, v1).setLight(packedLight);
+        vertexConsumer.addVertex(matrix4f, x1, y1, 0.0F).setColor(r, g, b, a).setUv(u1, v1).setLight(packedLight);
     }
 }

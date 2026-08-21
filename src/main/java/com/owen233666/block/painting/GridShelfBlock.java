@@ -1,4 +1,6 @@
 package com.owen233666.block.painting;
+import net.minecraft.world.ItemInteractionResult;
+import com.mojang.serialization.MapCodec;
 
 import com.owen233666.block.ModBlocks;
 import com.owen233666.block.entity.GridShelfBlockEntity;
@@ -71,7 +73,7 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack heldStack = player.getItemInHand(hand);
         Item heldItem = heldStack.getItem();
         BlockEntity blockEntity = world.getBlockEntity(pos);
@@ -83,7 +85,7 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
                 if (heldStack.isEmpty()) {
                     if (hasPainting) {
                         remove(world, pos, player, gridShelfBlockEntity);
-                        return InteractionResult.SUCCESS;
+                        return ItemInteractionResult.SUCCESS;
                     }
                 }
 
@@ -92,7 +94,7 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
                         remove(world, pos, player, gridShelfBlockEntity);
                     }
                     addItem(world, pos, player, gridShelfBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }
 
                 if (heldIsPhoto(heldItem)) {
@@ -103,7 +105,7 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
                     state = state.setValue(WHITE, heldIsWhite(heldItem));
                     state = state.setValue(PHOTO_TYPE, getPhotoType(heldItem));
                     world.setBlockAndUpdate(pos, state);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
 
                 if (!(heldIsPainting(heldItem) || heldIsPhoto(heldItem))) {
@@ -117,7 +119,7 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
                     state = state.setValue(WHITE, true);
                     state = state.setValue(PHOTO_TYPE, PhotoType.A);
                     world.setBlockAndUpdate(pos, state);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             } else {
                 if (heldIsPhoto(heldItem)) {
@@ -126,12 +128,12 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
                     state = state.setValue(WHITE, heldIsWhite(heldItem));
                     state = state.setValue(PHOTO_TYPE, getPhotoType(heldItem));
                     world.setBlockAndUpdate(pos, state);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             }
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     @Override
@@ -214,4 +216,10 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
             }
         }
     }
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(GridShelfBlock::new);
+    }
+
 }

@@ -1,4 +1,5 @@
 package com.owen233666.block;
+import net.minecraft.world.ItemInteractionResult;
 
 import com.owen233666.block.entity.StorageBlockEntity;
 import com.owen233666.util.BlockUtil;
@@ -45,7 +46,7 @@ public abstract class StorageBlock extends HorizontalDirectionalBlock implements
     public abstract int getSection(float x, float y);
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         BlockEntity be = world.getBlockEntity(pos);
         ItemStack heldStack = player.getItemInHand(hand);
 
@@ -53,13 +54,13 @@ public abstract class StorageBlock extends HorizontalDirectionalBlock implements
 
             Optional<Tuple<Float, Float>> hitPos = BlockUtil.getHitSectionCoordinate(hit, state.getValue(FACING), this.unAllowedDirections());
             if (hitPos.isEmpty()) {
-                return InteractionResult.PASS;
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
 
             Tuple<Float, Float> coordinate = hitPos.get();
             int section = this.getSection(coordinate.getA(), coordinate.getB());
             if (section == Integer.MIN_VALUE) {
-                return  InteractionResult.PASS;
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
 
             ItemStack firstItem = storageBlockEntity.getInv().get(section);
@@ -67,7 +68,7 @@ public abstract class StorageBlock extends HorizontalDirectionalBlock implements
 
             if(hasItem){
                 remove(world, pos, player, storageBlockEntity, section);
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
 
             if(!heldStack.isEmpty()){
@@ -75,13 +76,13 @@ public abstract class StorageBlock extends HorizontalDirectionalBlock implements
 
                 if(canInsert){
                     this.addItem(world, pos, player, storageBlockEntity, heldStack, section);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             }
 
-            return InteractionResult.CONSUME;
+            return ItemInteractionResult.CONSUME;
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     public void remove(Level world, BlockPos pos, Player player, StorageBlockEntity storageBlockEntity, int index){

@@ -1,4 +1,7 @@
 package com.owen233666.block;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.ItemInteractionResult;
+import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,13 +41,13 @@ public class SlippersBlock extends HorizontalDirectionalBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!world.isClientSide) {
             SlippersType slippersType = state.getValue(SLIPPERS_TYPE).next();
             BlockState newState = state.setValue(SLIPPERS_TYPE, slippersType);
             world.setBlockAndUpdate(pos, newState);
         }
-        return InteractionResult.SUCCESS;
+        return ItemInteractionResult.SUCCESS;
     }
 
     public enum SlippersType implements StringRepresentable {
@@ -69,4 +72,10 @@ public class SlippersBlock extends HorizontalDirectionalBlock {
             return values[nextOrdinal];
         }
     }
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(SlippersBlock::new);
+    }
+
 }

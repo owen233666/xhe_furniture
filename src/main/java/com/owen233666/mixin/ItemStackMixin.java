@@ -1,6 +1,7 @@
 package com.owen233666.mixin;
 
 import com.owen233666.item.ModItems;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,10 +13,10 @@ import java.util.function.Consumer;
 
 @Mixin(ItemStack.class)
 public class ItemStackMixin {
-    @Inject(method = "hurtAndBreak(ILnet/minecraft/world/entity/LivingEntity;Ljava/util/function/Consumer;)V",
+    @Inject(method = "hurtAndBreak(ILnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/entity/LivingEntity;Ljava/util/function/Consumer;)V",
             at = @At("HEAD"),
             cancellable = true)
-    private void onDamage(int amount, LivingEntity entity, Consumer<LivingEntity> breakCallback, CallbackInfo ci) {
+    private void xheFurniture$onDamage(int amount, ServerLevel level, LivingEntity entity, Consumer<LivingEntity> breakCallback, CallbackInfo ci) {
         ItemStack itemStack = (ItemStack) (Object) this;
         if (itemStack.is(ModItems.PAINT_BRUSH)){
             int currentDamage = itemStack.getDamageValue();
@@ -35,5 +36,4 @@ public class ItemStackMixin {
             }
         }
     }
-
 }

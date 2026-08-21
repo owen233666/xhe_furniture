@@ -5,28 +5,34 @@ import com.owen233666.block.entity.ModBlockEntityTypes;
 import com.owen233666.creativetab.ModCreativeTab;
 import com.owen233666.item.ModItemTags;
 import com.owen233666.item.ModItems;
-import net.fabricmc.api.ModInitializer;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XheFurniture implements ModInitializer {
+@Mod(XheFurniture.MOD_ID)
+public class XheFurniture {
 	public static final String MOD_ID = "xhe_furniture";
 
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	@Override
-	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
-		ModItems.registerModItems();
-        ModBlocks.registerModBlocks();
-        ModCreativeTab.registerItemGroup();
-		ModBlockEntityTypes.registerBlockEntityTypes();
-		ModItemTags.registerModItemTags();
+	public XheFurniture(IEventBus modEventBus) {
+		modEventBus.addListener(RegisterEvent.class, event -> {
+			ResourceKey<? extends Registry<?>> key = event.getRegistryKey();
+			if (key == Registries.BLOCK) {
+				ModBlocks.registerModBlocks();
+			} else if (key == Registries.ITEM) {
+				ModItems.registerModItems();
+			} else if (key == Registries.BLOCK_ENTITY_TYPE) {
+				ModBlockEntityTypes.registerBlockEntityTypes();
+			} else if (key == Registries.CREATIVE_MODE_TAB) {
+				ModCreativeTab.registerItemGroup();
+			}
+			ModItemTags.registerModItemTags();
+		});
 	}
 }

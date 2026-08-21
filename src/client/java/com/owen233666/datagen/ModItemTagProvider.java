@@ -2,24 +2,23 @@ package com.owen233666.datagen;
 
 import com.owen233666.item.ModItemTags;
 import com.owen233666.item.ModItems;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.ItemTagsProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
 
+public class ModItemTagProvider extends ItemTagsProvider {
 
-public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
-
-    public ModItemTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
-        super(output, completableFuture);
+    public ModItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<net.minecraft.world.level.block.Block>> blockTags, @Nullable ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, blockTags, "xhe_furniture", existingFileHelper);
     }
 
     @Override
     protected void addTags(HolderLookup.Provider arg) {
-
-
-        getOrCreateTagBuilder(ModItemTags.PAINTINGS)
+        tag(ModItemTags.PAINTINGS)
                 .add(ModItems.PAINTING_ANGEL)
                 .add(ModItems.PAINTING_BEDROOM_BED)
                 .add(ModItems.PAINTING_BERRY_BUSH)
@@ -67,7 +66,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.PAINTING_WILDFLOWER_PLAIN)
                 .add(ModItems.PAINTING_WORLD_TREE);
 
-        getOrCreateTagBuilder(ModItemTags.PHOTO_PAPERS)
+        tag(ModItemTags.PHOTO_PAPERS)
                 .add(ModItems.PHOTO_PAPER_WHITE_A)
                 .add(ModItems.PHOTO_PAPER_WHITE_B)
                 .add(ModItems.PHOTO_PAPER_WHITE_C)
@@ -75,15 +74,15 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                 .add(ModItems.PHOTO_PAPER_BLACK_B)
                 .add(ModItems.PHOTO_PAPER_BLACK_C);
 
-        getOrCreateTagBuilder(ModItemTags.TYPE_A_PHOTO_PAPERS)
+        tag(ModItemTags.TYPE_A_PHOTO_PAPERS)
                 .add(ModItems.PHOTO_PAPER_WHITE_A)
                 .add(ModItems.PHOTO_PAPER_BLACK_A);
 
-        getOrCreateTagBuilder(ModItemTags.TYPE_B_PHOTO_PAPERS)
+        tag(ModItemTags.TYPE_B_PHOTO_PAPERS)
                 .add(ModItems.PHOTO_PAPER_WHITE_B)
                 .add(ModItems.PHOTO_PAPER_BLACK_B);
 
-        getOrCreateTagBuilder(ModItemTags.TYPE_C_PHOTO_PAPERS)
+        tag(ModItemTags.TYPE_C_PHOTO_PAPERS)
                 .add(ModItems.PHOTO_PAPER_WHITE_C)
                 .add(ModItems.PHOTO_PAPER_BLACK_C);
     }

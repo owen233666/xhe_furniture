@@ -1,5 +1,7 @@
 package com.owen233666.block;
 
+import com.mojang.serialization.MapCodec;
+
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
@@ -24,4 +26,10 @@ public class SimpleHorizontalDirectionalBlock extends HorizontalDirectionalBlock
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
         return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite());
     }
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(props -> new SimpleHorizontalDirectionalBlock(props, Block.box(0,0,0,16,16,16)));
+    }
+
 }

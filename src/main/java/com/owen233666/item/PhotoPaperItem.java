@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class PhotoPaperItem extends BlockItem implements Vanishable {
+public class PhotoPaperItem extends BlockItem {
 
     public PhotoPaperItem(Block block, Properties properties) {
         super(block, properties);
@@ -67,8 +67,8 @@ public class PhotoPaperItem extends BlockItem implements Vanishable {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
-        super.appendHoverText(itemStack, level, list, tooltipFlag);
+    public void appendHoverText(ItemStack itemStack, Item.TooltipContext context, List<Component> list, TooltipFlag tooltipFlag) {
+        super.appendHoverText(itemStack, context, list, tooltipFlag);
         list.add(Component.translatable(
                 "tooltip.xhe_furniture.photo_paper",
                 Component.keybind("key.sneak"),

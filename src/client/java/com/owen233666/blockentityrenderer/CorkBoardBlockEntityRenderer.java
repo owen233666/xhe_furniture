@@ -48,7 +48,7 @@ public class CorkBoardBlockEntityRenderer implements BlockEntityRenderer<CorkBoa
         renderPhotoPaper(photoPaperStack, poseStack, multiBufferSource, i, direction);
 
         ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(paintingStack.getItem());
-        if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) return;
+        if (resourceLocation.equals(ResourceLocation.parse("minecraft:air"))) return;
 
         ResourceLocation paintingTextureLocation = GridShelfBlockEntityRenderer.compileRenderResourceLocationForPaintings(resourceLocation);
 

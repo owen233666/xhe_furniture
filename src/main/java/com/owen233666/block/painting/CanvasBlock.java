@@ -1,4 +1,6 @@
 package com.owen233666.block.painting;
+import net.minecraft.world.ItemInteractionResult;
+import com.mojang.serialization.MapCodec;
 
 import com.owen233666.block.entity.CanvasBlockEntity;
 import com.owen233666.item.ModItemTags;
@@ -92,7 +94,7 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         ItemStack heldStack = player.getItemInHand(hand);
         Item heldItem = heldStack.getItem();
         BlockEntity be = level.getBlockEntity(pos);
@@ -109,7 +111,7 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
         boolean hasPainting = !inventory.getFirst().isEmpty();
 
         if (heldItem instanceof PaintBrushItem) {
-            InteractionResult dyeResult = dyeWithBrush(level, pos, state, player, hand);
+            ItemInteractionResult dyeResult = dyeWithBrush(level, pos, state, player, hand);
             if (dyeResult.consumesAction()) {
                 return dyeResult;
             }
@@ -120,9 +122,9 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
         if (Block.byItem(heldItem) instanceof WetSpongeBlock){
             if (state.getValue(DIRTY)) {
                 level.setBlockAndUpdate(pos, state.setValue(DIRTY, false));
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }else {
-                return InteractionResult.PASS;
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
         }
 
@@ -133,16 +135,16 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
                 if (heldIsPainting){
                     remove(level, pos, player, canvasBlockEntity);
                     addItem(level, pos, player, canvasBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }else {
                     remove(level, pos, player, canvasBlockEntity);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             }else{
                 //无画：手持画作则放入
                 if (heldIsPainting){
                     addItem(level, pos, player, canvasBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }
             }
         }
@@ -152,18 +154,18 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
             return addCanvasLayer(level, pos, state, player, heldStack);
         }
 
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
     //叠放一层画布（COUNT+1），Shift 时即使有画也可触发
-    private InteractionResult addCanvasLayer(Level level, BlockPos pos, BlockState state, Player player, ItemStack heldStack){
+    private ItemInteractionResult addCanvasLayer(Level level, BlockPos pos, BlockState state, Player player, ItemStack heldStack){
         if (state.getValue(COUNT) == 3) {
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         level.setBlockAndUpdate(pos, state.setValue(COUNT, state.getValue(COUNT) + 1));
         heldStack.split(1);
         if (player.isCreative()) heldStack.grow(1);
-        return InteractionResult.CONSUME_PARTIAL;
+        return ItemInteractionResult.CONSUME_PARTIAL;
     }
 
     @Override
@@ -249,6 +251,12 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
                 player.spawnAtLocation(toRemoveStack);
             }
         }
+    }
+
+
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(CanvasBlock::new);
     }
 
 }

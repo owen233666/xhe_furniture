@@ -10,31 +10,31 @@ public class ModItemTags {
     public static final TagKey<Item> PAINTINGS =
             TagKey.create(
                     BuiltInRegistries.ITEM.key(),
-                    new ResourceLocation(XheFurniture.MOD_ID, "paintings")
+                    ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "paintings")
             );
 
     public static final TagKey<Item> PHOTO_PAPERS =
             TagKey.create(
                     BuiltInRegistries.ITEM.key(),
-                    new ResourceLocation(XheFurniture.MOD_ID, "photo_papers")
+                    ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "photo_papers")
             );
 
     public static final TagKey<Item> TYPE_A_PHOTO_PAPERS =
             TagKey.create(
                     BuiltInRegistries.ITEM.key(),
-                    new ResourceLocation(XheFurniture.MOD_ID, "type_a_photo_papers")
+                    ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "type_a_photo_papers")
             );
 
     public static final TagKey<Item> TYPE_B_PHOTO_PAPERS =
             TagKey.create(
                     BuiltInRegistries.ITEM.key(),
-                    new ResourceLocation(XheFurniture.MOD_ID, "type_b_photo_papers")
+                    ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "type_b_photo_papers")
             );
 
     public static final TagKey<Item> TYPE_C_PHOTO_PAPERS =
             TagKey.create(
                     BuiltInRegistries.ITEM.key(),
-                    new ResourceLocation(XheFurniture.MOD_ID, "type_c_photo_papers")
+                    ResourceLocation.fromNamespaceAndPath(XheFurniture.MOD_ID, "type_c_photo_papers")
             );
 
     public static void registerModItemTags() {

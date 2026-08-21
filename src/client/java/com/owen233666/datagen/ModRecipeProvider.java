@@ -1,12 +1,12 @@
 package com.owen233666.datagen;
 
 import com.owen233666.block.ModBlocks;
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.advancements.Criterion;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -16,19 +16,20 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
 
-public class ModRecipeProvider extends FabricRecipeProvider {
-    public ModRecipeProvider(FabricDataOutput output) {
-        super(output);
+public class ModRecipeProvider extends RecipeProvider {
+
+    public ModRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+        super(output, registries);
     }
 
     @Override
-    public void buildRecipes(Consumer<FinishedRecipe> exporter) {
+    protected void buildRecipes(RecipeOutput exporter) {
         buildModStoneCuttingRecipes(exporter);
     }
 
-    public void buildModStoneCuttingRecipes(Consumer<FinishedRecipe> exporter) {
+    public void buildModStoneCuttingRecipes(RecipeOutput exporter) {
         Block[] slippers = new Block[]{
                 ModBlocks.WHITE_BUNNY_SLIPPERS,
                 ModBlocks.WHITE_HAMSTERS_SLIPPERS,
@@ -43,7 +44,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 ModBlocks.CALICO_HAMSTERS_SLIPPERS,
                 ModBlocks.PANDA_SLIPPERS
         };
-        //羊毛制作
         for (Block block : slippers) {
             SingleItemRecipeBuilder.stonecutting(
                     Ingredient.of(ItemTags.WOOL),
@@ -125,22 +125,22 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 .unlockedBy("has_carpet", has(ItemTags.PLANKS))
                 .save(exporter, getStonecuttingRecipeId(ModBlocks.EASEL.asItem(), ItemTags.PLANKS));
 
-        Block[] photos = new Block[]{
-                ModBlocks.PHOTO_PAPER_WHITE_A,
-                ModBlocks.PHOTO_PAPER_WHITE_B,
-                ModBlocks.PHOTO_PAPER_WHITE_C,
-                ModBlocks.PHOTO_PAPER_BLACK_A,
-                ModBlocks.PHOTO_PAPER_BLACK_B,
-                ModBlocks.PHOTO_PAPER_BLACK_C
+        Item[] photos = new Item[]{
+                com.owen233666.item.ModItems.PHOTO_PAPER_WHITE_A,
+                com.owen233666.item.ModItems.PHOTO_PAPER_WHITE_B,
+                com.owen233666.item.ModItems.PHOTO_PAPER_WHITE_C,
+                com.owen233666.item.ModItems.PHOTO_PAPER_BLACK_A,
+                com.owen233666.item.ModItems.PHOTO_PAPER_BLACK_B,
+                com.owen233666.item.ModItems.PHOTO_PAPER_BLACK_C
         };
-        circleStoneCuttingReceipes(exporter, photos, RecipeCategory.BUILDING_BLOCKS, "has_paper", has(Items.PAPER));
-        for (Block photo : photos) {
+        circleStoneCuttingReceipesItems(exporter, photos, RecipeCategory.BUILDING_BLOCKS, "has_paper", has(Items.PAPER));
+        for (Item photo : photos) {
             SingleItemRecipeBuilder.stonecutting(
                     Ingredient.of(Items.PAPER),
                     RecipeCategory.BUILDING_BLOCKS,
                     photo)
                     .unlockedBy("has_paper", has(photo))
-                    .save(exporter, getStonecuttingRecipeId(photo.asItem(), Items.PAPER));
+                    .save(exporter, getStonecuttingRecipeId(photo, Items.PAPER));
         }
 
         Block[] cans = new Block[]{
@@ -160,9 +160,9 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         SingleItemRecipeBuilder.stonecutting(
                 Ingredient.of(ItemTags.PLANKS),
                 RecipeCategory.BUILDING_BLOCKS,
-                ModBlocks.PAINT_BRUSH)
+                com.owen233666.item.ModItems.PAINT_BRUSH)
                 .unlockedBy("has_planks", has(ItemTags.PLANKS))
-                .save(exporter, getStonecuttingRecipeId(ModBlocks.PAINT_BRUSH.asItem(), ItemTags.PLANKS));
+                .save(exporter, getStonecuttingRecipeId(com.owen233666.item.ModItems.PAINT_BRUSH, ItemTags.PLANKS));
 
         Block[] paintingFrames = new Block[]{
                 ModBlocks.PAINTING_FRAME_OAK,
@@ -259,7 +259,22 @@ public class ModRecipeProvider extends FabricRecipeProvider {
         }
     }
 
-    private void circleStoneCuttingReceipes(Consumer<FinishedRecipe> exporter, Block[] blocks, RecipeCategory recipeCategory, String unlockString, CriterionTriggerInstance criterionTriggerInstance) {
+    private void circleStoneCuttingReceipesItems(RecipeOutput exporter, Item[] items, RecipeCategory recipeCategory, String unlockString, Criterion<?> criterionTriggerInstance) {
+        for (int i = 0; i < items.length; i++) {
+            for (int j = 0; j < items.length; j++) {
+                if (items[i] == items[j]) continue;
+
+                SingleItemRecipeBuilder.stonecutting(
+                        Ingredient.of(items[i]),
+                        recipeCategory,
+                        items[j])
+                        .unlockedBy(unlockString, criterionTriggerInstance)
+                        .save(exporter, getStonecuttingRecipeId(items[i], items[j]));
+            }
+        }
+    }
+
+    private void circleStoneCuttingReceipes(RecipeOutput exporter, Block[] blocks, RecipeCategory recipeCategory, String unlockString, Criterion<?> criterionTriggerInstance) {
         for (int i = 0; i < blocks.length; i++) {
             for (int j = 0; j < blocks.length; j++) {
                 if (blocks[i] == blocks[j]) continue;
@@ -275,45 +290,33 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     }
 
     private ResourceLocation getStonecuttingRecipeId(Item result, Item ingredient) {
-        return new ResourceLocation(
-                output.getModId(),
-                getName(result) + "_from_" + getName(ingredient) + "_stonecutting"
-        );
+        return ResourceLocation.fromNamespaceAndPath("xhe_furniture",
+                getName(result) + "_from_" + getName(ingredient) + "_stonecutting");
     }
 
     private ResourceLocation getStonecuttingRecipeId(Block result, Item ingredient) {
-        return new ResourceLocation(
-                output.getModId(),
-                getName(result) + "_from_" + getName(ingredient) + "_stonecutting"
-        );
+        return ResourceLocation.fromNamespaceAndPath("xhe_furniture",
+                getName(result) + "_from_" + getName(ingredient) + "_stonecutting");
     }
 
     private ResourceLocation getStonecuttingRecipeId(Item result, Block ingredient) {
-        return new ResourceLocation(
-                output.getModId(),
-                getName(result) + "_from_" + getName(ingredient) + "_stonecutting"
-        );
+        return ResourceLocation.fromNamespaceAndPath("xhe_furniture",
+                getName(result) + "_from_" + getName(ingredient) + "_stonecutting");
     }
 
     private ResourceLocation getStonecuttingRecipeId(Block result, Block ingredient) {
-        return new ResourceLocation(
-                output.getModId(),
-                getName(result) + "_from_" + getName(ingredient) + "_stonecutting"
-        );
+        return ResourceLocation.fromNamespaceAndPath("xhe_furniture",
+                getName(result) + "_from_" + getName(ingredient) + "_stonecutting");
     }
 
     private ResourceLocation getStonecuttingRecipeId(Item result, TagKey<Item> tag) {
-        return new ResourceLocation(
-                output.getModId(),
-                getName(result) + "_from_" + tag.location().getPath() + "_stonecutting"
-        );
+        return ResourceLocation.fromNamespaceAndPath("xhe_furniture",
+                getName(result) + "_from_" + tag.location().getPath() + "_stonecutting");
     }
 
     private ResourceLocation getStonecuttingRecipeId(Block result, TagKey<Item> tag) {
-        return new ResourceLocation(
-                output.getModId(),
-                getName(result) + "_from_" + tag.location().getPath() + "_stonecutting"
-        );
+        return ResourceLocation.fromNamespaceAndPath("xhe_furniture",
+                getName(result) + "_from_" + tag.location().getPath() + "_stonecutting");
     }
 
     private String getName(Block block) {
@@ -321,6 +324,6 @@ public class ModRecipeProvider extends FabricRecipeProvider {
     }
 
     private String getName(Item item) {
-        return BuiltInRegistries.ITEM.getKey(item).getPath();
+        return net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(item).getPath();
     }
 }

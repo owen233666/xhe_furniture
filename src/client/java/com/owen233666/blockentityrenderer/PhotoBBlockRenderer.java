@@ -25,7 +25,7 @@ public class PhotoBBlockRenderer implements BlockEntityRenderer<PhotoBBlockEntit
     public void render(PhotoBBlockEntity blockEntity, float f, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j) {
         ItemStack itemStack = blockEntity.getInv().getFirst();
         ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(itemStack.getItem());
-        if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) {
+        if (resourceLocation.equals(ResourceLocation.parse("minecraft:air"))) {
             return;
         }
         ResourceLocation textureLocation = compileRenderResourceLocationForPaintings(resourceLocation);
@@ -95,6 +95,6 @@ public class PhotoBBlockRenderer implements BlockEntityRenderer<PhotoBBlockEntit
 
 
     private ResourceLocation compileRenderResourceLocationForPaintings(ResourceLocation resourceLocation) {
-        return new ResourceLocation(resourceLocation.getNamespace(), "textures/item/paintings/" + resourceLocation.getPath().replace("painting_", "") + ".png");
+        return ResourceLocation.fromNamespaceAndPath(resourceLocation.getNamespace(), "textures/item/paintings/" + resourceLocation.getPath().replace("painting_", "") + ".png");
     }
 }
