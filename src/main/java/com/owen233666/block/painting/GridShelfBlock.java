@@ -87,11 +87,12 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
                     }
                 }
 
-                if (!hasPainting) {
-                    if (heldIsPainting(heldItem)) {
-                        addItem(world, pos, player, gridShelfBlockEntity, heldStack);
-                        return InteractionResult.SUCCESS;
+                if (heldIsPainting(heldItem)) {
+                    if (hasPainting) {
+                        remove(world, pos, player, gridShelfBlockEntity);
                     }
+                    addItem(world, pos, player, gridShelfBlockEntity, heldStack);
+                    return InteractionResult.CONSUME;
                 }
 
                 if (heldIsPhoto(heldItem)) {
