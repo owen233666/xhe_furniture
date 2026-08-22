@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.owen233666.block.entity.PhotoBBlockEntity;
 import com.owen233666.block.painting.PhotoPaperBlock;
-import com.owen233666.clientUtil.ClientUtil;
+import com.owen233666.clientUtil.ExposurePhotoUtil;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -24,30 +24,38 @@ public class PhotoBBlockRenderer implements BlockEntityRenderer<PhotoBBlockEntit
     @Override
     public void render(PhotoBBlockEntity blockEntity, float f, PoseStack poseStack, MultiBufferSource multiBufferSource, int i, int j) {
         ItemStack itemStack = blockEntity.getInv().getFirst();
-        ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(itemStack.getItem());
-        if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) {
+        if (itemStack.isEmpty()) {
             return;
         }
-        ResourceLocation textureLocation = compileRenderResourceLocationForPaintings(resourceLocation);
+        Object exposureImage = ExposurePhotoUtil.getRenderableImage(itemStack);
+        ResourceLocation textureLocation = null;
+        if (exposureImage == null) {
+            ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(itemStack.getItem());
+            if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) {
+                return;
+            }
+            textureLocation = compileRenderResourceLocationForPaintings(resourceLocation);
+        }
         Direction direction = blockEntity.getBlockState().getValue(PhotoPaperBlock.FACING);
 
         switch (direction) {
             case NORTH -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, null, 0.99f, 0.0f);
+                renderPhotos(poseStack, multiBufferSource, exposureImage, textureLocation, i, null, 0.99f, 0.0f);
             }
             case SOUTH -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.01f, 180.0f);
+                renderPhotos(poseStack, multiBufferSource, exposureImage, textureLocation, i, 0.99f, 0.01f, 180.0f);
             }
             case WEST -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.99f, 0.99f, 90.0f);
+                renderPhotos(poseStack, multiBufferSource, exposureImage, textureLocation, i, 0.99f, 0.99f, 90.0f);
             }
             case EAST -> {
-                renderPhotos(poseStack, multiBufferSource, textureLocation, i, 0.01f, null, 270.0f);
+                renderPhotos(poseStack, multiBufferSource, exposureImage, textureLocation, i, 0.01f, null, 270.0f);
             }
         }
     }
 
-    private void renderPhotos(PoseStack poseStack, MultiBufferSource multiBufferSource, ResourceLocation textureLocation,
+    private void renderPhotos(PoseStack poseStack, MultiBufferSource multiBufferSource,
+                              @Nullable Object exposureImage, ResourceLocation textureLocation,
                               int packedLight, @Nullable Float offsetX, @Nullable Float offsetZ, Float yRotationDegrees) {
         float x1 = 0.57500f;//左下x
         float y1 = 0.20625f;//左下y
@@ -65,10 +73,10 @@ public class PhotoBBlockRenderer implements BlockEntityRenderer<PhotoBBlockEntit
         poseStack.translate(x1 + hw, y1 + hh, 0);
         poseStack.mulPose(Axis.ZP.rotationDegrees(-22.5f));
         //以图片中心为原点绘制图片
-        ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
+        ExposurePhotoUtil.renderPhotoOrPainting(exposureImage, textureLocation, poseStack, multiBufferSource,
                 -hw, -hh, hw, hh,
                 CUBE_UV_1[0],CUBE_UV_1[1],CUBE_UV_1[2],CUBE_UV_1[3],
-                packedLight,255,255,255,255);
+                packedLight);
         poseStack.popPose();
 
 
@@ -86,10 +94,10 @@ public class PhotoBBlockRenderer implements BlockEntityRenderer<PhotoBBlockEntit
         poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
         poseStack.translate(x1 + hw, y1 + hh, 0);
         poseStack.mulPose(Axis.ZP.rotationDegrees(22.5f));
-        ClientUtil.renderTexture(textureLocation,poseStack,multiBufferSource,
+        ExposurePhotoUtil.renderPhotoOrPainting(exposureImage, textureLocation, poseStack, multiBufferSource,
                 -hw,-hh,hw, hh,
                 CUBE_UV_2[0],CUBE_UV_2[1],CUBE_UV_2[2],CUBE_UV_2[3],
-                packedLight,255,255,255,255);
+                packedLight);
         poseStack.popPose();
     }
 

@@ -53,7 +53,11 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-	modImplementation "maven.modrinth:exposure:1.9.20"
+
+	// Exposure is a soft (optional) dependency: available at compile time for the
+	// photograph feature, but NOT required at runtime. All runtime access is done
+	// through reflection, so the mod loads fine without Exposure installed.
+	modCompileOnly "maven.modrinth:exposure:1.9.20"
 	
 }
 

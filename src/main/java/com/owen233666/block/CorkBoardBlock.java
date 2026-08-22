@@ -3,6 +3,7 @@ package com.owen233666.block;
 import com.owen233666.XheFurniture;
 import com.owen233666.block.entity.CorkBoardBlockEntity;
 import com.owen233666.item.ModItemTags;
+import com.owen233666.util.ExposureUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -36,9 +37,6 @@ public class CorkBoardBlock extends HorizontalDirectionalBlock implements Entity
     public static final BooleanProperty BELOW = BooleanProperty.create("below");
     public static final BooleanProperty LEFT = BooleanProperty.create("left");
     public static final BooleanProperty RIGHT = BooleanProperty.create("right");
-//    public static final BooleanProperty WHITE = BooleanProperty.create("white");
-//    public static final BooleanProperty HAS_PHOTO  = BooleanProperty.create("has_photo");
-//    public static final EnumProperty<PhotoType> PHOTO_TYPE = EnumProperty.create("photo_type", PhotoType.class);
 
     public static final VoxelShape FACING_N = box(0,  0, 15, 16, 16, 16);
     public static final VoxelShape FACING_S = box(0,  0, 0,  16, 16, 1);
@@ -114,7 +112,8 @@ public class CorkBoardBlock extends HorizontalDirectionalBlock implements Entity
             boolean hasPainting = !inventory.get(1).isEmpty();
             boolean hasPhoto    = !inventory.get(0).isEmpty();
             boolean isPhoto     = BuiltInRegistries.ITEM.wrapAsHolder(heldStack.getItem()).is(ModItemTags.PHOTO_PAPERS);
-            boolean isPainting  = BuiltInRegistries.ITEM.wrapAsHolder(heldStack.getItem()).is(ModItemTags.PAINTINGS);
+            boolean isPainting  = BuiltInRegistries.ITEM.wrapAsHolder(heldStack.getItem()).is(ModItemTags.PAINTINGS)
+                    || ExposureUtil.isExposurePhotograph(heldStack.getItem());
 
             if (hasPhoto) {
                 if (isPhoto) {
@@ -131,30 +130,24 @@ public class CorkBoardBlock extends HorizontalDirectionalBlock implements Entity
             }
         }
 
-        // 返回 SUCCESS 表示交互已处理（客户端和服务端都需要返回这个结果）
         return InteractionResult.SUCCESS;
     }
 
     private void setPhoto(Level level, BlockPos pos, CorkBoardBlockEntity corkBoardBlockEntity, Player player, ItemStack itemStack, boolean hasPainting) {
-        XheFurniture.LOGGER.info("setPhoto");
-//        if (!hasPainting) return;
         removeItem(level, pos, player, corkBoardBlockEntity,0);
         addItem(level, pos, player, corkBoardBlockEntity, itemStack, 0);
     }
 
     private void setPainting(Level level, BlockPos pos, CorkBoardBlockEntity corkBoardBlockEntity, Player player, ItemStack itemStack) {
-        XheFurniture.LOGGER.info("setPainting");
         removeItem(level, pos, player, corkBoardBlockEntity,1);
         addItem(level, pos, player, corkBoardBlockEntity, itemStack, 1);
     }
 
     private void removePhoto(Level level, BlockPos pos, CorkBoardBlockEntity corkBoardBlockEntity, Player player, ItemStack heldStack, boolean hasPainting){
-        XheFurniture.LOGGER.info("removePhoto");
         removeItem(level, pos, player, corkBoardBlockEntity,1);
     }
 
     private void removePainting(Level level, BlockPos pos, CorkBoardBlockEntity corkBoardBlockEntity, Player player) {
-        XheFurniture.LOGGER.info("removePainting");
         removeItem(level, pos, player, corkBoardBlockEntity,0);
     }
 

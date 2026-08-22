@@ -5,6 +5,7 @@ import com.mojang.math.Axis;
 import com.owen233666.block.CorkBoardBlock;
 import com.owen233666.block.entity.CorkBoardBlockEntity;
 import com.owen233666.block.painting.PhotoType;
+import com.owen233666.clientUtil.ExposurePhotoUtil;
 import com.owen233666.item.ModItemTags;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -47,16 +48,21 @@ public class CorkBoardBlockEntityRenderer implements BlockEntityRenderer<CorkBoa
 
         renderPhotoPaper(photoPaperStack, poseStack, multiBufferSource, i, direction);
 
-        ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(paintingStack.getItem());
-        if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) return;
+        if (paintingStack.isEmpty()) return;
 
-        ResourceLocation paintingTextureLocation = GridShelfBlockEntityRenderer.compileRenderResourceLocationForPaintings(resourceLocation);
+        Object exposureImage = ExposurePhotoUtil.getRenderableImage(paintingStack);
+        ResourceLocation paintingTextureLocation = null;
+        if (exposureImage == null) {
+            ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(paintingStack.getItem());
+            if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) return;
+            paintingTextureLocation = GridShelfBlockEntityRenderer.compileRenderResourceLocationForPaintings(resourceLocation);
+        }
 
         switch (direction) {
-            case NORTH -> GridShelfBlockEntityRenderer.renderAsPhotoType(photoType, poseStack, multiBufferSource, paintingTextureLocation, i, null, 0.9275f, 0.0f);
-            case SOUTH -> GridShelfBlockEntityRenderer.renderAsPhotoType(photoType, poseStack, multiBufferSource, paintingTextureLocation, i, 1.00f, 0.0725f, 180.0f);
-            case WEST  -> GridShelfBlockEntityRenderer.renderAsPhotoType(photoType, poseStack, multiBufferSource, paintingTextureLocation, i, 0.9275f, 1.00f, 90.0f);
-            default    -> GridShelfBlockEntityRenderer.renderAsPhotoType(photoType, poseStack, multiBufferSource, paintingTextureLocation, i, 0.0725f, null, 270.0f);
+            case NORTH -> GridShelfBlockEntityRenderer.renderAsPhotoType(photoType, poseStack, multiBufferSource, exposureImage, paintingTextureLocation, i, null, 0.9275f, 0.0f);
+            case SOUTH -> GridShelfBlockEntityRenderer.renderAsPhotoType(photoType, poseStack, multiBufferSource, exposureImage, paintingTextureLocation, i, 1.00f, 0.0725f, 180.0f);
+            case WEST  -> GridShelfBlockEntityRenderer.renderAsPhotoType(photoType, poseStack, multiBufferSource, exposureImage, paintingTextureLocation, i, 0.9275f, 1.00f, 90.0f);
+            default    -> GridShelfBlockEntityRenderer.renderAsPhotoType(photoType, poseStack, multiBufferSource, exposureImage, paintingTextureLocation, i, 0.0725f, null, 270.0f);
         }
     }
 

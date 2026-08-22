@@ -5,7 +5,7 @@ import com.mojang.math.Axis;
 import com.owen233666.block.entity.GridShelfBlockEntity;
 import com.owen233666.block.painting.GridShelfBlock;
 import com.owen233666.block.painting.PhotoType;
-import com.owen233666.clientUtil.ClientUtil;
+import com.owen233666.clientUtil.ExposurePhotoUtil;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -38,59 +38,65 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
         PhotoType photoType = state.getValue(GridShelfBlock.PHOTO_TYPE);
 
         if (!state.getValue(GridShelfBlock.HAS_PHOTO)) return;
+        if (stack.isEmpty()) return;
 
-        ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(stack.getItem());
-        if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) {
-            return;
+        Object exposureImage = ExposurePhotoUtil.getRenderableImage(stack);
+        ResourceLocation textureLocation = null;
+        if (exposureImage == null) {
+            ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(stack.getItem());
+            if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) {
+                return;
+            }
+            textureLocation = compileRenderResourceLocationForPaintings(resourceLocation);
         }
-        ResourceLocation textureLocation = compileRenderResourceLocationForPaintings(resourceLocation);
 
         switch (direction) {
             case NORTH -> {
-                renderAsPhotoType(photoType, poseStack, multiBufferSource, textureLocation, i, null, 0.9275f, 0.0f);
+                renderAsPhotoType(photoType, poseStack, multiBufferSource, exposureImage, textureLocation, i, null, 0.9275f, 0.0f);
             }
             case SOUTH -> {
-                renderAsPhotoType(photoType, poseStack, multiBufferSource, textureLocation, i, 1.00f, 0.0725f, 180.0f);
+                renderAsPhotoType(photoType, poseStack, multiBufferSource, exposureImage, textureLocation, i, 1.00f, 0.0725f, 180.0f);
             }
             case WEST -> {
-                renderAsPhotoType(photoType, poseStack, multiBufferSource, textureLocation, i, 0.9275f, 1.00f, 90.0f);
+                renderAsPhotoType(photoType, poseStack, multiBufferSource, exposureImage, textureLocation, i, 0.9275f, 1.00f, 90.0f);
             }
             case EAST -> {
-                renderAsPhotoType(photoType, poseStack, multiBufferSource, textureLocation, i, 0.0725f, null, 270.0f);
+                renderAsPhotoType(photoType, poseStack, multiBufferSource, exposureImage, textureLocation, i, 0.0725f, null, 270.0f);
             }
         }
     }
 
-    protected static void renderAsPhotoType(PhotoType photoType, PoseStack poseStack, MultiBufferSource multiBufferSource, ResourceLocation textureLocation,
-                                  int packedLight, @Nullable Float offsetX, @Nullable Float offsetZ, Float yRotationDegrees) {
+    protected static void renderAsPhotoType(PhotoType photoType, PoseStack poseStack, MultiBufferSource multiBufferSource,
+                                            @Nullable Object exposureImage, ResourceLocation textureLocation,
+                                            int packedLight, @Nullable Float offsetX, @Nullable Float offsetZ, Float yRotationDegrees) {
         switch (photoType) {
             case A -> {
                 //左下
                 poseStack.pushPose();
                 poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
                 poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
-                ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
+                ExposurePhotoUtil.renderPhotoOrPainting(exposureImage, textureLocation, poseStack, multiBufferSource,
                         0.50000f, 0.16875f, 0.75000f, 0.45000f,
                         CUBE_UV_1_A[0], CUBE_UV_1_A[1], CUBE_UV_1_A[2], CUBE_UV_1_A[3],
-                        packedLight, 255, 255, 255, 255);
+                        packedLight);
                 poseStack.popPose();
                 //左上空的
                 poseStack.pushPose();
                 poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
                 poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
-                ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
+                ExposurePhotoUtil.renderPhotoOrPainting(exposureImage, textureLocation, poseStack, multiBufferSource,
                         0.58750f, 0.58750f, 0.85000f, 0.86875f,
                         CUBE_UV_2_A[0], CUBE_UV_2_A[1], CUBE_UV_2_A[2], CUBE_UV_2_A[3],
-                        packedLight, 255, 255, 255, 255);
+                        packedLight);
                 poseStack.popPose();
                 //右边块
                 poseStack.pushPose();
                 poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
                 poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
-                ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
+                ExposurePhotoUtil.renderPhotoOrPainting(exposureImage, textureLocation, poseStack, multiBufferSource,
                         0.15625f, 0.43750f, 0.40625f, 0.71875f,
                         CUBE_UV_3_A[0], CUBE_UV_3_A[1], CUBE_UV_3_A[2], CUBE_UV_3_A[3],
-                        packedLight, 255, 255, 255, 255);
+                        packedLight);
                 poseStack.popPose();
             }
             case B -> {
@@ -110,10 +116,10 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
                 poseStack.translate(x1 + hw, y1 + hh, 0);
                 poseStack.mulPose(Axis.ZP.rotationDegrees(-22.5f));
                 //以图片中心为原点绘制图片
-                ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
+                ExposurePhotoUtil.renderPhotoOrPainting(exposureImage, textureLocation, poseStack, multiBufferSource,
                         -hw, -hh, hw, hh,
                         CUBE_UV_1_B[0], CUBE_UV_1_B[1], CUBE_UV_1_B[2], CUBE_UV_1_B[3],
-                        packedLight,255,255,255,255);
+                        packedLight);
                 poseStack.popPose();
 
 
@@ -131,10 +137,10 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
                 poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
                 poseStack.translate(x1 + hw, y1 + hh, 0);
                 poseStack.mulPose(Axis.ZP.rotationDegrees(22.5f));
-                ClientUtil.renderTexture(textureLocation,poseStack,multiBufferSource,
+                ExposurePhotoUtil.renderPhotoOrPainting(exposureImage, textureLocation, poseStack, multiBufferSource,
                         -hw,-hh,hw, hh,
                         CUBE_UV_2_B[0], CUBE_UV_2_B[1], CUBE_UV_2_B[2], CUBE_UV_2_B[3],
-                        packedLight,255,255,255,255);
+                        packedLight);
                 poseStack.popPose();
             }
             case C -> {
@@ -142,28 +148,28 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
                 poseStack.pushPose();
                 poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
                 poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
-                ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
+                ExposurePhotoUtil.renderPhotoOrPainting(exposureImage, textureLocation, poseStack, multiBufferSource,
                         0.20000f, 0.64375f, 0.45000f, 0.86250f,
                         CUBE_UV_1_C[0], CUBE_UV_1_C[1], CUBE_UV_1_C[2], CUBE_UV_1_C[3],
-                        packedLight, 255, 255, 255, 255);
+                        packedLight);
                 poseStack.popPose();
                 //左上空的
                 poseStack.pushPose();
                 poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
                 poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
-                ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
+                ExposurePhotoUtil.renderPhotoOrPainting(exposureImage, textureLocation, poseStack, multiBufferSource,
                         0.15625f, 0.23125f, 0.40625f, 0.45000f,
                         CUBE_UV_2_C[0], CUBE_UV_2_C[1], CUBE_UV_2_C[2], CUBE_UV_2_C[3],
-                        packedLight, 255, 255, 255, 255);
+                        packedLight);
                 poseStack.popPose();
                 //右边块
                 poseStack.pushPose();
                 poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
                 poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
-                ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
+                ExposurePhotoUtil.renderPhotoOrPainting(exposureImage, textureLocation, poseStack, multiBufferSource,
                         0.59375f, 0.54375f, 0.84375f, 0.76250f,
                         CUBE_UV_3_C[0], CUBE_UV_3_C[1], CUBE_UV_3_C[2], CUBE_UV_3_C[3],
-                        packedLight, 255, 255, 255, 255);
+                        packedLight);
                 poseStack.popPose();
             }
         }

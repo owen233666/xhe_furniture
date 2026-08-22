@@ -4,6 +4,7 @@ import com.owen233666.block.ModBlocks;
 import com.owen233666.block.entity.GridShelfBlockEntity;
 import com.owen233666.item.ModItemTags;
 import com.owen233666.util.BlockUtil;
+import com.owen233666.util.ExposureUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -175,7 +176,8 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     public boolean heldIsPainting(Item heldItem) {
-        return BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
+        return BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS)
+                || ExposureUtil.isExposurePhotograph(heldItem);
     }
 
     public Boolean heldIsWhite(Item heldItem) {

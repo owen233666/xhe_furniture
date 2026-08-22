@@ -3,6 +3,7 @@ package com.owen233666.block.painting;
 import com.owen233666.block.entity.PhotoBlockEntity;
 import com.owen233666.item.ModItemTags;
 import com.owen233666.util.BlockUtil;
+import com.owen233666.util.ExposureUtil;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -76,7 +77,8 @@ public abstract class PhotoPaperBlock extends HorizontalDirectionalBlock impleme
         boolean hasPainting = !inventory.getFirst().isEmpty();
 
         if (be instanceof PhotoBlockEntity photoBlockEntity) {
-            boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
+            boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS)
+                    || ExposureUtil.isExposurePhotograph(heldItem);
 
             //有画：取出内容物（手上是画则先取旧画再放新画）
             if (hasPainting) {
