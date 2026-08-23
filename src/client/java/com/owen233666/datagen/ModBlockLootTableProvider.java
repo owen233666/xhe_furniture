@@ -112,6 +112,7 @@ public class ModBlockLootTableProvider extends FabricBlockLootTableProvider {
         dropSelf(ModBlocks.PAINT_CAN);
         dropSelf(ModBlocks.MESSY_PAINT_CAN);
         dropSelf(ModBlocks.PAINT_BRUSH_BUCKET);
+        dropSelf(ModBlocks.CRAYON_BOX);
         dropSelf(ModBlocks.CORK_BOARD_LIGHT_OAK);
         dropSelf(ModBlocks.CORK_BOARD_LIGHT_SPRUCE);
         dropSelf(ModBlocks.CORK_BOARD_LIGHT_JUNGLE);

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=north,state=1": { "model": "xhe_furniture:block/crayon_box_1", "y": 0 },
+    "facing=north,state=2": { "model": "xhe_furniture:block/crayon_box_2", "y": 0 },
+    "facing=north,state=3": { "model": "xhe_furniture:block/crayon_box_3", "y": 0 },
+    "facing=south,state=1": { "model": "xhe_furniture:block/crayon_box_1", "y": 180 },
+    "facing=south,state=2": { "model": "xhe_furniture:block/crayon_box_2", "y": 180 },
+    "facing=south,state=3": { "model": "xhe_furniture:block/crayon_box_3", "y": 180 },
+    "facing=east,state=1": { "model": "xhe_furniture:block/crayon_box_1", "y": 90 },
+    "facing=east,state=2": { "model": "xhe_furniture:block/crayon_box_2", "y": 90 },
+    "facing=east,state=3": { "model": "xhe_furniture:block/crayon_box_3", "y": 90 },
+    "facing=west,state=1": { "model": "xhe_furniture:block/crayon_box_1", "y": 270 },
+    "facing=west,state=2": { "model": "xhe_furniture:block/crayon_box_2", "y": 270 },
+    "facing=west,state=3": { "model": "xhe_furniture:block/crayon_box_3", "y": 270 }
+  }
+}
