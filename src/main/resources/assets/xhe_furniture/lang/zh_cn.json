@@ -2,6 +2,17 @@
   "xhe_furniture.creativetab.items": "小禾的家具",
   "xhe_furniture.creativetab.paintings": "小禾的家具-画作",
 
+  "item.xhe_furniture.slipper_kit": "拖鞋套件",
+  "item.xhe_furniture.carpet_kit": "地毯套件",
+  "item.xhe_furniture.shoe_flower_pot_kit": "雨鞋花盆套件",
+  "item.xhe_furniture.painting_frame_kit": "画框套件",
+  "item.xhe_furniture.grid_shelf_kit": "网格架套件",
+  "item.xhe_furniture.furniture_order_table_kit": "家具订单桌套件",
+  "item.xhe_furniture.cork_board_kit": "软木板套件",
+  "item.xhe_furniture.photo_paper_kit": "相纸套件",
+  "item.xhe_furniture.painting_kit": "画作套件",
+  "jei.xhe_furniture.kit": "套件转换",
+
   "block.xhe_furniture.hot_cocoa": "热可可",
 
   "block.xhe_furniture.white_shoe_flowerpot": "白色雨鞋花盆",
@@ -99,6 +110,7 @@
   "block.xhe_furniture.painting_frame_blackstone": "黑石画框",
   "block.xhe_furniture.paint_can": "颜料罐",
   "block.xhe_furniture.messy_paint_can": "杂乱的颜料罐",
+  "block.xhe_furniture.paint_brush_bucket": "画笔桶",
   "block.xhe_furniture.open_book": "打开的书籍",
   "block.xhe_furniture.stacked_book": "叠放的书籍",
   "block.xhe_furniture.bundled_book": "堆堆的书籍",

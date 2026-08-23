@@ -53,6 +53,9 @@ public class CorkBoardBlockEntityRenderer implements BlockEntityRenderer<CorkBoa
         Object exposureImage = ExposurePhotoUtil.getRenderableImage(paintingStack);
         ResourceLocation paintingTextureLocation = null;
         if (exposureImage == null) {
+            if (ExposurePhotoUtil.isPhotograph(paintingStack)) {
+                return;
+            }
             ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(paintingStack.getItem());
             if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) return;
             paintingTextureLocation = GridShelfBlockEntityRenderer.compileRenderResourceLocationForPaintings(resourceLocation);

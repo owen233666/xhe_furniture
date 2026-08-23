@@ -60,6 +60,14 @@ public class ExposurePhotoUtil {
         }
     }
 
+    public static boolean isPhotograph(ItemStack stack) {
+        if (stack == null || stack.isEmpty()) {
+            return false;
+        }
+        ensureExposureLoaded();
+        return exposureAvailable && photographItemClass.isAssignableFrom(stack.getItem().getClass());
+    }
+
     @Nullable
     public static Object getRenderableImage(ItemStack stack) {
         if (stack == null || stack.isEmpty()) {
@@ -104,7 +112,7 @@ public class ExposurePhotoUtil {
         if (exposureImage != null) {
             renderExposureImage(exposureImage, poseStack, multiBufferSource,
                     x1, y1, x2, y2,
-                    paintingU1, paintingV2, paintingU2, paintingV1, // V flipped to correct orientation
+                    paintingU1, paintingV2, paintingU2, paintingV1,
                     packedLight);
         } else {
             ClientUtil.renderTexture(

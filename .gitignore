@@ -11379,3 +11379,4 @@ replay_*.log
 /.gradle_home/caches/9.2.1/groovy-dsl/4434d1c263bb53220ff5a89485fb83e8/workspace/metadata.bin
 /.gradle_home/caches/jars-9/56afb1e42bebee9bbff2c70dc32e3720/proj.lock.lock
 /.gradle_home/caches/jars-9/56afb1e42bebee9bbff2c70dc32e3720/proj.receipt
+/.gradle_home/

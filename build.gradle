@@ -24,6 +24,10 @@ repositories {
 			includeGroup "maven.modrinth"
 		}
 	}
+	maven {
+		name = "BlameJared"
+		url = "https://maven.blamejared.com"
+	}
 }
 
 loom {
@@ -58,6 +62,11 @@ dependencies {
 	// photograph feature, but NOT required at runtime. All runtime access is done
 	// through reflection, so the mod loads fine without Exposure installed.
 	modCompileOnly "maven.modrinth:exposure:1.9.20"
+
+	// JEI is a soft (optional) dependency: compile-only for the kit recipe integration.
+	// The JEI plugin classes are only loaded by JEI's own plugin discovery, so the mod
+	// loads fine without JEI installed.
+	modCompileOnly "mezz.jei:jei-1.20.1-fabric:15.49.0.191"
 	
 }
 

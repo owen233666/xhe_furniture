@@ -31,6 +31,9 @@ public class PhotoABlockRenderer implements BlockEntityRenderer<PhotoABlockEntit
         Object exposureImage = ExposurePhotoUtil.getRenderableImage(itemStack);
         ResourceLocation textureLocation = null;
         if (exposureImage == null) {
+            if (ExposurePhotoUtil.isPhotograph(itemStack)) {
+                return;
+            }
             ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(itemStack.getItem());
             if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) {
                 return;

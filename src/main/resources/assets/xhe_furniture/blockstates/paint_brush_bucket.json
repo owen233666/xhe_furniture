@@ -1,0 +1,82 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paint_brush_bucket_a"
+      },
+      "when": {
+        "facing": "north",
+        "dirty": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paint_brush_bucket_a",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "dirty": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paint_brush_bucket_a",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "dirty": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paint_brush_bucket_a",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "dirty": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paint_brush_bucket_b"
+      },
+      "when": {
+        "facing": "north",
+        "dirty": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paint_brush_bucket_b",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "dirty": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paint_brush_bucket_b",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "dirty": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "xhe_furniture:block/paint_brush_bucket_b",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "dirty": "true"
+      }
+    }
+  ]
+}

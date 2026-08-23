@@ -1,0 +1,7 @@
+{
+  "parent": "xhe_furniture:block/parent/paint_brush_bucket",
+  "textures": {
+    "3": "xhe_furniture:block/paint_brush_bucket_b",
+    "particle": "xhe_furniture:block/paint_brush_bucket_b"
+  }
+}

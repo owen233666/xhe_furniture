@@ -18,6 +18,15 @@ public class ModCreativeTab {
             FabricItemGroup.builder().title(Component.translatable("xhe_furniture.creativetab.items"))
                     .icon(() -> new ItemStack(BuiltInRegistries.BLOCK.get(new ResourceLocation(XheFurniture.MOD_ID, "hot_cocoa"))))
                     .displayItems(((displayContext, entries) -> {
+                        //Kits
+                        entries.accept(ModItems.SLIPPER_KIT);
+                        entries.accept(ModItems.CARPET_KIT);
+                        entries.accept(ModItems.SHOE_FLOWER_POT_KIT);
+                        entries.accept(ModItems.PAINTING_FRAME_KIT);
+                        entries.accept(ModItems.GRID_SHELF_KIT);
+                        entries.accept(ModItems.FURNITURE_ORDER_TABLE_KIT);
+                        entries.accept(ModItems.CORK_BOARD_KIT);
+                        entries.accept(ModItems.PHOTO_PAPER_KIT);
                         //Furniture Order Tables
                         entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_OAK);
                         entries.accept(ModBlocks.FURNITURE_ORDER_TABLE_SPRUCE);
@@ -125,6 +134,7 @@ public class ModCreativeTab {
             new ResourceLocation(XheFurniture.MOD_ID, "xhe_furniture.creativetab.paintings"),
             FabricItemGroup.builder().title(Component.translatable("xhe_furniture.creativetab.paintings")).icon(() -> new ItemStack(BuiltInRegistries.BLOCK.get(new ResourceLocation(XheFurniture.MOD_ID, "hot_cocoa"))))
                     .displayItems(((displayContext, entries) -> {
+                        entries.accept(ModItems.PAINTING_KIT);
                         entries.accept(ModItems.PAINT_BRUSH);
                         entries.accept(ModBlocks.EASEL);
                         entries.accept(ModBlocks.CANVAS);
@@ -160,6 +170,7 @@ public class ModCreativeTab {
                         entries.accept(ModBlocks.GRID_SHELF_BLACKSTONE);
                         entries.accept(ModBlocks.PAINT_CAN);
                         entries.accept(ModBlocks.MESSY_PAINT_CAN);
+                        entries.accept(ModBlocks.PAINT_BRUSH_BUCKET);
 
                         entries.accept(ModBlocks.OPEN_BOOK);
 

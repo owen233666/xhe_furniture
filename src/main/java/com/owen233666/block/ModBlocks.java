@@ -115,6 +115,7 @@ public class ModBlocks {
     public static final ResourceLocation PAINT_BRUSH_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "paint_brush");
     public static final ResourceLocation PAINT_CAN_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "paint_can");
     public static final ResourceLocation MESSY_PAINT_CAN_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "messy_paint_can");
+    public static final ResourceLocation PAINT_BRUSH_BUCKET_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "paint_brush_bucket");
     //Big Crafting Tables
     public static final ResourceLocation FURNITURE_ORDER_TABLE_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "furniture_order_table_oak");
     public static final ResourceLocation FURNITURE_ORDER_TABLE_SPRUCE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "furniture_order_table_spruce");
@@ -255,6 +256,7 @@ public class ModBlocks {
     public static final Block PAINT_BRUSH               = registerWithoutItem(PAINT_BRUSH_RESOURCE_LOCATION,        new      PaintBrushBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion()));
     public static final Block PAINT_CAN                 = registerBlock(PAINT_CAN_RESOURCE_LOCATION,                new        PaintCanBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion(), 0, 0, 0, 16, 6, 16));
     public static final Block MESSY_PAINT_CAN           = registerBlock(MESSY_PAINT_CAN_RESOURCE_LOCATION,          new MessyPaintCanBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion(), 0, 0, 0, 16, 6, 16));
+    public static final Block PAINT_BRUSH_BUCKET        = registerBlock(PAINT_BRUSH_BUCKET_RESOURCE_LOCATION,       new   PaintBrushBucketBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().noOcclusion(), 0, 0, 0, 16, 11, 16));
     //Furniture Order Tables
     public static final Block FURNITURE_ORDER_TABLE_OAK         = registerBlock(FURNITURE_ORDER_TABLE_OAK_RESOURCE_LOCATION,        new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));
     public static final Block FURNITURE_ORDER_TABLE_SPRUCE      = registerBlock(FURNITURE_ORDER_TABLE_SPRUCE_RESOURCE_LOCATION,     new FurnitureOrderTable(BlockBehaviour.Properties.copy(Blocks.STONECUTTER).noOcclusion()));

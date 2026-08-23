@@ -25,6 +25,9 @@
 		],
 		"fabric-datagen": [
 			"com.owen233666.XheFurnitureDataGenerator"
+		],
+		"jei_mod_plugin": [
+			"com.owen233666.client.jei.KitJeiPlugin"
 		]
 	},
 	"mixins": [

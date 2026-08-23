@@ -43,6 +43,9 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
         Object exposureImage = ExposurePhotoUtil.getRenderableImage(stack);
         ResourceLocation textureLocation = null;
         if (exposureImage == null) {
+            if (ExposurePhotoUtil.isPhotograph(stack)) {
+                return;
+            }
             ResourceLocation resourceLocation = BuiltInRegistries.ITEM.getKey(stack.getItem());
             if (resourceLocation.equals(new ResourceLocation("minecraft:air"))) {
                 return;

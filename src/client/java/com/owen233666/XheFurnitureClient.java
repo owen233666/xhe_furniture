@@ -3,10 +3,13 @@ package com.owen233666;
 import com.owen233666.block.ModBlocks;
 import com.owen233666.block.entity.ModBlockEntityTypes;
 import com.owen233666.blockentityrenderer.*;
+import com.owen233666.client.screen.KitScreen;
+import com.owen233666.screen.ModMenus;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.resources.ResourceLocation;
@@ -126,6 +129,8 @@ public class XheFurnitureClient implements ClientModInitializer {
 		BlockEntityRenderers.register(ModBlockEntityTypes.PHOTO_C_BLOCK_BE, PhotoCBlockRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.GRID_SHELF_BLOCK_BE, GridShelfBlockEntityRenderer::new);
 		BlockEntityRenderers.register(ModBlockEntityTypes.CORK_BOARD_BLOCK_BE, CorkBoardBlockEntityRenderer::new);
+
+		ScreenRegistry.register(ModMenus.KIT_MENU, KitScreen::new);
 
 		berInit();
 		registerStorageTypeRenderers();
