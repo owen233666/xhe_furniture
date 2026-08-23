@@ -36,16 +36,13 @@ public class BlockUtil {
     public static Optional<Tuple<Float, Float>> getHitSectionCoordinate(BlockHitResult blockHitResult, Direction direction, Direction[] unAllowedDirections) {
         Direction hitSide = blockHitResult.getDirection();
 
-        // 检查是否点击了不允许的方向
         if (Arrays.asList(unAllowedDirections).contains(hitSide)) {
             return Optional.empty();
         }
 
-        // 获取点击点在方块内部的相对坐标
         Vec3 hitPos = blockHitResult.getLocation();
         BlockPos blockPos = blockHitResult.getBlockPos();
 
-        // 计算相对于方块左下角的坐标 (0,0,0 到 1,1,1)
         Vec3 relativePos = hitPos.subtract(blockPos.getX(), blockPos.getY(), blockPos.getZ());
 
         float x = (float) relativePos.x();

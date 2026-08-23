@@ -103,22 +103,20 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
                 poseStack.popPose();
             }
             case B -> {
-                float x1 = 0.57500f;//左下x
-                float y1 = 0.20625f;//左下y
-                float x2 = 0.82500f;//右上x
-                float y2 = 0.48750f;//右上y
-                float w  = x2-x1;//x相减得到宽度
-                float h  = y2 - y1;//y相臧得到高度
-                float hw = w/2; //半宽
-                float hh = h/2; //半高
+                float x1 = 0.57500f;
+                float y1 = 0.20625f;
+                float x2 = 0.82500f;
+                float y2 = 0.48750f;
+                float w  = x2-x1;
+                float h  = y2 - y1;
+                float hw = w/2;
+                float hh = h/2;
 
                 poseStack.pushPose();
-                //x1和y1是仅限”图片左下角为原点”时的移动长度，图片左下角距离图片中心（我们设定的原点）差个半高半宽，加上
                 poseStack.translate(offsetX == null ? 0.0f :offsetX, 0.0F, offsetZ == null ? 0.0f :offsetZ);
                 poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
                 poseStack.translate(x1 + hw, y1 + hh, 0);
                 poseStack.mulPose(Axis.ZP.rotationDegrees(-22.5f));
-                //以图片中心为原点绘制图片
                 ExposurePhotoUtil.renderPhotoOrPainting(exposureImage, textureLocation, poseStack, multiBufferSource,
                         -hw, -hh, hw, hh,
                         CUBE_UV_1_B[0], CUBE_UV_1_B[1], CUBE_UV_1_B[2], CUBE_UV_1_B[3],
@@ -126,14 +124,14 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
                 poseStack.popPose();
 
 
-                x1 = 0.15625f;//左下x
-                y1 = 0.54375f;//左下y
-                x2 = 0.40625f;//右上x
-                y2 = 0.82500f;//右上y
-                w  = x2 - x1;//x相减得到宽度
-                h  = y2 - y1;//y相减得到高度
-                hw = w/2;//半宽
-                hh = h/2;//半高
+                x1 = 0.15625f;
+                y1 = 0.54375f;
+                x2 = 0.40625f;
+                y2 = 0.82500f;
+                w  = x2 - x1;
+                h  = y2 - y1;
+                hw = w/2;
+                hh = h/2;
 
                 poseStack.pushPose();
                 poseStack.translate(offsetX == null? 0.0f :offsetX, 0.0F, offsetZ== null ? 0.0f :offsetZ);
@@ -147,7 +145,6 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
                 poseStack.popPose();
             }
             case C -> {
-                //左下
                 poseStack.pushPose();
                 poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
                 poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
@@ -156,7 +153,6 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
                         CUBE_UV_1_C[0], CUBE_UV_1_C[1], CUBE_UV_1_C[2], CUBE_UV_1_C[3],
                         packedLight);
                 poseStack.popPose();
-                //左上空的
                 poseStack.pushPose();
                 poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
                 poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
@@ -165,7 +161,6 @@ public class GridShelfBlockEntityRenderer implements BlockEntityRenderer<GridShe
                         CUBE_UV_2_C[0], CUBE_UV_2_C[1], CUBE_UV_2_C[2], CUBE_UV_2_C[3],
                         packedLight);
                 poseStack.popPose();
-                //右边块
                 poseStack.pushPose();
                 poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
                 poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));

@@ -62,7 +62,6 @@ public class PhotoABlockRenderer implements BlockEntityRenderer<PhotoABlockEntit
                 CUBE_UV_1[0], CUBE_UV_1[1], CUBE_UV_1[2], CUBE_UV_1[3],
                 packedLight);
         poseStack.popPose();
-        //左上空的
         poseStack.pushPose();
         poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
         poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));
@@ -71,7 +70,6 @@ public class PhotoABlockRenderer implements BlockEntityRenderer<PhotoABlockEntit
                 CUBE_UV_2[0], CUBE_UV_2[1], CUBE_UV_2[2], CUBE_UV_2[3],
                 packedLight);
         poseStack.popPose();
-        //右边块
         poseStack.pushPose();
         poseStack.translate(offsetX == null ? 0.0f : offsetX, 0.0F, offsetZ == null ? 0.0f : offsetZ);
         poseStack.mulPose(Axis.YP.rotationDegrees(yRotationDegrees));

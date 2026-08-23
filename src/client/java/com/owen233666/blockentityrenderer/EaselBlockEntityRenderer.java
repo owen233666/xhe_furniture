@@ -29,28 +29,17 @@ public class EaselBlockEntityRenderer implements BlockEntityRenderer<EaselBlockE
             return;
         }
 
-        // 保存当前矩阵状态
         poseStack.pushPose();
 
         switch (direction) {
             case NORTH -> {
-                // 移动到方块中心并抬高一点
                 poseStack.translate(0.5, 1.17, 0.43);
-
-                //添加轴旋转
                 poseStack.mulPose(Axis.XP.rotationDegrees(22.5F));
-
-                // 设置缩放，让物品大小适中
                 poseStack.scale(0.87F, 0.87F, 0.87F);
             }
             case SOUTH -> {
-                // 移动到方块中心并抬高一点
                 poseStack.translate(0.5, 1.17, 0.57);
-
-                //添加轴旋转
                 poseStack.mulPose(Axis.XN.rotationDegrees(22.5F));
-
-                // 设置缩放，让物品大小适中
                 poseStack.scale(0.87F, 0.87F, 0.87F);
             }
             case EAST -> {
@@ -66,8 +55,6 @@ public class EaselBlockEntityRenderer implements BlockEntityRenderer<EaselBlockE
                 poseStack.scale(0.87F, 0.87F, 0.87F);
             }
         }
-
-        // 获取物品渲染器
         ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
         itemRenderer.renderStatic(stack, ItemDisplayContext.FIXED, i, j, poseStack, multiBufferSource, blockEntity.getLevel(), 0);
         poseStack.popPose();

@@ -31,13 +31,11 @@ public interface PaintBrushDyeable {
 
         boolean isDirty = state.getValue(dirty);
 
-        // 洗色：湿海绵可以清洗，无需手持颜料刷。而如果方块是干净的，湿海绵不消耗。
         if (isDirty && Block.byItem(heldItem) instanceof WetSpongeBlock) {
             level.setBlockAndUpdate(pos, state.setValue(dirty, false));
             return InteractionResult.SUCCESS;
         }
 
-        // 染色：只有手持颜料刷且耐久未耗尽时才生效。
         if (!(heldItem instanceof PaintBrushItem) || !canDyeWithBrush(state)) {
             return InteractionResult.PASS;
         }

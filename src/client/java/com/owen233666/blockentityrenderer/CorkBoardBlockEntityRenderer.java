@@ -38,7 +38,6 @@ public class CorkBoardBlockEntityRenderer implements BlockEntityRenderer<CorkBoa
         ItemStack paintingStack = blockEntity.getInv().get(1);
         Direction direction = state.getValue(CorkBoardBlock.FACING);
 
-        //slot0物品应在ModItemTags.PHOTO_PAPERS中，否则不渲染
         if (photoPaperStack.isEmpty()
                 || !BuiltInRegistries.ITEM.wrapAsHolder(photoPaperStack.getItem()).is(ModItemTags.PHOTO_PAPERS)) {
             return;

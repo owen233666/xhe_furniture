@@ -5,13 +5,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ClickType;
-import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.DataSlot;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.inventory.ResultContainer;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -48,9 +42,6 @@ public class KitMenu extends AbstractContainerMenu {
     public KitMenu(int id, Inventory inventory, ContainerLevelAccess access) {
         super(ModMenus.KIT_MENU, id);
         this.access = access;
-        // DataSlot.standalone() starts at 0, which would auto-select the first recipe when
-        // the GUI opens. Force it to -1 so nothing is selected (and the result slot is
-        // empty) until the player explicitly picks a recipe.
         this.selectedIndex.set(-1);
         this.inputSlot = this.addSlot(new Slot(this.input, 0, 20, 33) {
             @Override
@@ -71,7 +62,6 @@ public class KitMenu extends AbstractContainerMenu {
 
             @Override
             public void onTake(Player player, ItemStack stack) {
-                // Let the standard slot logic remove the result first.
                 super.onTake(player, stack);
 
                 stack.onCraftedBy(player.level(), player, 1);
@@ -98,9 +88,6 @@ public class KitMenu extends AbstractContainerMenu {
     }
 
     public void setInput(ItemStack stack) {
-        // Hold the SAME ItemStack object the player's inventory slot holds. The input slot
-        // becomes a locked mirror: it shows the kit and stays in sync with the inventory as
-        // results are crafted. It is never moved out and never needs to be returned.
         this.input.setItem(0, stack);
         this.slotsChanged(this.input);
     }
@@ -112,10 +99,6 @@ public class KitMenu extends AbstractContainerMenu {
     @Override
     public void slotsChanged(Container container) {
         this.setupResults(container);
-        // Keep the current selection while the input still has kits, exactly like the
-        // stonecutter: after taking a result the same recipe indexes are re-shown. Only
-        // reset the selection when the recipe list no longer contains that index (e.g. the
-        // input was emptied).
         if (!this.isValidIndex(this.selectedIndex.get())) {
             this.selectedIndex.set(-1);
         }
@@ -192,8 +175,6 @@ public class KitMenu extends AbstractContainerMenu {
 
     @Override
     public void clicked(int slotId, int button, ClickType clickType, Player player) {
-        // A normal left-click on the result slot takes it the same way as shift-click:
-        // through quickMoveStack, which moves the result into the player's inventory.
         if (slotId == RESULT_SLOT && clickType == ClickType.PICKUP && button == 0) {
             if (this.resultSlot.hasItem() && this.getCarried().isEmpty()) {
                 this.quickMoveStack(player, RESULT_SLOT);
@@ -207,9 +188,6 @@ public class KitMenu extends AbstractContainerMenu {
     public void removed(Player player) {
         super.removed(player);
         this.resultContainer.removeItemNoUpdate(1);
-        // The kit was never moved out of the inventory: the input slot is just a locked
-        // mirror of the same stack. So there is nothing to return here -- writing it back
-        // would duplicate it. Drop the menu's reference and re-sync to the client.
         this.input.setItem(0, ItemStack.EMPTY);
         this.broadcastChanges();
     }
@@ -222,25 +200,18 @@ public class KitMenu extends AbstractContainerMenu {
             ItemStack slotStack = slot.getItem();
             itemStack = slotStack.copy();
             if (index == RESULT_SLOT) {
-                // 获取物品副本
                 ItemStack resultStack = slotStack.copy();
 
-                // 尝试移动物品
                 if (!this.moveItemStackTo(slotStack, 2, 38, true)) {
                     return ItemStack.EMPTY;
                 }
 
-                // 如果物品完全移动了
                 if (slotStack.isEmpty()) {
                     slot.set(ItemStack.EMPTY);
                 } else {
                     slot.setChanged();
                 }
-
-                // 触发 onTake 逻辑
                 slot.onTake(player, resultStack);
-
-                // 调用 quickCraft
                 slot.onQuickCraft(slotStack, resultStack);
 
                 return resultStack;

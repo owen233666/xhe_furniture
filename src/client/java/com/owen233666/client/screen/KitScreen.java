@@ -173,11 +173,6 @@ public class KitScreen extends AbstractContainerScreen<KitMenu> {
     }
 
     private void containerChanged() {
-        // Do NOT auto-close the screen from here. This callback runs while the container
-        // is synchronizing slot changes; calling onClose()/setScreen() at that moment
-        // corrupts the client's screen state and throws "Screen cannot be null" (Fabric
-        // ScreenEvents.remove NPE). Instead just toggle the recipe list, exactly like the
-        // vanilla stonecutter screen; the player closes the screen normally afterwards.
         boolean hasInput = this.menu.hasInputItem();
         this.hadInput = hasInput;
         this.displayRecipes = hasInput;

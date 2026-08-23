@@ -99,13 +99,11 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
         NonNullList<ItemStack> inventory;
         boolean canAddCanvas = !state.getValue(RACK) && state.getBlock().asItem() == heldItem;
 
-        //初始化inventory（从 CanvasBlockEntity 获取实际内容，而非新建空列表）
         if (be instanceof CanvasBlockEntity canvasBlockEntity){
             inventory = canvasBlockEntity.getInv();
         }else {
             inventory = NonNullList.withSize(1, ItemStack.EMPTY);
         }
-        //判断是否有画（获取be的inventory）
         boolean hasPainting = !inventory.getFirst().isEmpty();
 
         if (heldItem instanceof PaintBrushItem) {
@@ -113,7 +111,6 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
             if (dyeResult.consumesAction()) {
                 return dyeResult;
             }
-            // 已脏或刷子满耐久：继续原有逻辑
         }
 
 
@@ -139,7 +136,6 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
                     return InteractionResult.SUCCESS;
                 }
             }else{
-                //无画：手持画作则放入
                 if (heldIsPainting){
                     addItem(level, pos, player, canvasBlockEntity, heldStack);
                     return InteractionResult.CONSUME;
@@ -147,7 +143,6 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
             }
         }
 
-        // 无画时：手持画布可叠放
         if (canAddCanvas) {
             return addCanvasLayer(level, pos, state, player, heldStack);
         }
@@ -155,7 +150,6 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
         return InteractionResult.PASS;
     }
 
-    //叠放一层画布（COUNT+1），Shift 时即使有画也可触发
     private InteractionResult addCanvasLayer(Level level, BlockPos pos, BlockState state, Player player, ItemStack heldStack){
         if (state.getValue(COUNT) == 3) {
             return InteractionResult.PASS;
@@ -228,7 +222,6 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
         super.onRemove(state, world, pos, newState, moved);
     }
 
-    //向be的inv中添加物品的方法
     public void addItem(Level level, BlockPos pos, Player player, CanvasBlockEntity canvasBlockEntity, ItemStack stack){
         if(!level.isClientSide()) {
             canvasBlockEntity.setStack(stack.split(1));

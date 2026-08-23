@@ -40,10 +40,10 @@ public class PaintFrameBlockEntityRenderer implements BlockEntityRenderer<PaintF
     public void renderCornerPainting(int count, ResourceLocation textureLocation, PoseStack poseStack, MultiBufferSource multiBufferSource, Direction direction, int packedLight) {
         float x1 = 0.0625f, y1 = 0.0625f;
         float x2 = 0.9375f, y2 = 0.9375f;
-        float w  = x2 - x1;//x相减得到宽度
-        float h  = y2 - y1;//y相臧得到高度
-        float hw = w/2; //半宽
-        float hh = h/2; //半高
+        float w  = x2 - x1;
+        float h  = y2 - y1;
+        float hw = w/2;
+        float hh = h/2;
 
         float yRotation = switch (direction){
             case NORTH -> 0f;
@@ -69,10 +69,10 @@ public class PaintFrameBlockEntityRenderer implements BlockEntityRenderer<PaintF
     public void renderVerticalPainting(ResourceLocation textureLocation, PoseStack poseStack, MultiBufferSource multiBufferSource, Direction direction, int packedLight) {
         float x1 = 0.0625f, y1 = 0.0625f;
         float x2 = 0.9375f, y2 = 0.9375f;
-        float w  = x2 - x1;//x相减得到宽度
-        float h  = y2 - y1;//y相臧得到高度
-        float hw = w/2; //半宽
-        float hh = h/2; //半高
+        float w  = x2 - x1;
+        float h  = y2 - y1;
+        float hw = w/2;
+        float hh = h/2;
 
         float yRotation = switch (direction){
             case NORTH -> 0f;
@@ -86,7 +86,6 @@ public class PaintFrameBlockEntityRenderer implements BlockEntityRenderer<PaintF
         poseStack.translate(x1 + hw, y1 + hh, 0.5);
         poseStack.mulPose(Axis.YP.rotationDegrees(-yRotation));
         poseStack.translate(0, 0, 0.499);
-//        poseStack.translate(0.5, 0, 0);
         ClientUtil.renderTexture(textureLocation, poseStack, multiBufferSource,
                 hh, hw, -hh, -hw,
                 0, 0, 1, 1,

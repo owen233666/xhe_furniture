@@ -73,13 +73,11 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
         BlockEntity be = world.getBlockEntity(pos);
         NonNullList<ItemStack> inventory;
 
-        //初始化inventory
         if (be instanceof EaselBlockEntity){
             inventory = ((EaselBlockEntity) be).getInv();
         }else {
             inventory = NonNullList.withSize(1, ItemStack.EMPTY);
         }
-        //判断是否有画（获取be的inventory）
         boolean hasPainting =!(inventory.getFirst() == ItemStack.EMPTY);
 
         if (heldItem instanceof PaintBrushItem) {
@@ -89,7 +87,6 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
             }
         }
 
-        //洗色逻辑，与be无关
         if (byItem(heldItem) instanceof WetSpongeBlock){
 
             if (state.getValue(DIRTY)) {
@@ -100,7 +97,6 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
             }
         }
 
-        //放画布逻辑
         if (byItem(heldItem) instanceof CanvasBlock){
 
             if (!hasCanvas){
@@ -123,7 +119,6 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
             }
         }
 
-        //取画布逻辑，仅hasPainting与be无关，大部分与be无关
         if (player.getItemInHand(hand).isEmpty() && player.isShiftKeyDown()) {
             if (hasCanvas && !hasPainting) {
                 CanvasType canvasType = state.getValue(CANVAS_TYPE);
@@ -151,16 +146,11 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
             }
         }
 
-        //放画逻辑
-        //判断获取到的方块实体是EaselBlockEntity
         if (be instanceof EaselBlockEntity easelBlockEntity){
-//            XheFurniture.LOGGER.info("5");
             boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
             XheFurniture.LOGGER.info(String.valueOf(heldIsPainting));
             if (!hasCanvas)return InteractionResult.PASS;
-            //方块实体inv为空
             if (!(inventory.isEmpty() || inventory.getFirst() == ItemStack.EMPTY)) {
-                //手上拿的东西是画
                 if (heldIsPainting){
                     addItem(world, pos, player, easelBlockEntity, heldStack);
                     return InteractionResult.CONSUME;
@@ -168,10 +158,8 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
                     remove(world, pos, player, easelBlockEntity);
                     return InteractionResult.PASS;
                 }
-            //方块实体inv不为空
             }else {
                 if (!hasCanvas)return InteractionResult.PASS;
-                //手上拿的东西是画
                 if (heldIsPainting){
                     remove(world, pos, player, easelBlockEntity);
                     addItem(world, pos, player, easelBlockEntity, heldStack);

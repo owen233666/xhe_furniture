@@ -1,6 +1,5 @@
 package com.owen233666.block;
 
-import com.owen233666.XheFurniture;
 import com.owen233666.block.entity.CorkBoardBlockEntity;
 import com.owen233666.item.ModItemTags;
 import com.owen233666.util.ExposureUtil;
