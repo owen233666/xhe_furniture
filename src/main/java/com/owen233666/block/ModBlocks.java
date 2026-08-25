@@ -132,6 +132,7 @@ public class ModBlocks {
     public static final ResourceLocation OPEN_BOOK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "open_book");
 
     public static final ResourceLocation CRAYON_BOX_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "crayon_box");
+    public static final ResourceLocation PALETTE_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "palette");
 
     public static final ResourceLocation CORK_BOARD_LIGHT_OAK_RESOURCE_LOCATION = new ResourceLocation(XheFurniture.MOD_ID, "cork_board_light_oak");
 
@@ -275,6 +276,8 @@ public class ModBlocks {
     public static final Block OPEN_BOOK = registerBlock(OPEN_BOOK_RESOURCE_LOCATION, new OpenBookBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().sound(SoundType.WOOD).noOcclusion()));
 
     public static final Block CRAYON_BOX = registerBlock(CRAYON_BOX_RESOURCE_LOCATION, new CrayonBoxBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().sound(SoundType.WOOD).noOcclusion()));
+
+    public static final Block PALETTE = registerBlock(PALETTE_RESOURCE_LOCATION, new PaletteBlock(BlockBehaviour.Properties.of().strength(1.0F).instabreak().sound(SoundType.WOOD).noOcclusion()));
 
     public static final Block CORK_BOARD_LIGHT_OAK = registerBlock(CORK_BOARD_LIGHT_OAK_RESOURCE_LOCATION, new CorkBoardBlock(BlockBehaviour.Properties.of().strength(1.0f).sound(SoundType.WOOD).noOcclusion()));
 

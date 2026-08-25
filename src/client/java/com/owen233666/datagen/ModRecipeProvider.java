@@ -109,6 +109,14 @@ public class ModRecipeProvider extends FabricRecipeProvider {
 
         shapeless(exporter, ModBlocks.OPEN_BOOK.asItem(), has(Items.PAPER),
                 Items.PAPER, Items.PAPER, Items.PAPER, Items.LEATHER);
+
+        shaped(exporter, ModBlocks.CRAYON_BOX.asItem(), has(ItemTags.PLANKS),
+                new Object[]{'P', ItemTags.PLANKS, 'W', Items.PAPER},
+                "PPP", "PWP", "PPP");
+
+        shaped(exporter, ModBlocks.PALETTE.asItem(), has(ItemTags.PLANKS),
+                new Object[]{'P', ItemTags.PLANKS, 'W', Items.WHITE_WOOL},
+                "PW", "PP");
     }
 
     private void shaped(Consumer<FinishedRecipe> exporter, ItemLike result, CriterionTriggerInstance unlock,

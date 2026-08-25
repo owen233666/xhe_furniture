@@ -174,6 +174,7 @@ public class ModCreativeTab {
 
                         entries.accept(ModBlocks.OPEN_BOOK);
                         entries.accept(ModBlocks.CRAYON_BOX);
+                        entries.accept(ModBlocks.PALETTE);
 
                         entries.accept(ModItems.PAINTING_ANGEL);
                         entries.accept(ModItems.PAINTING_BEDROOM_BED);

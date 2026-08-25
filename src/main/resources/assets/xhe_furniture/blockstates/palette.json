@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "xhe_furniture:block/palette", "y": 0 },
+    "facing=south": { "model": "xhe_furniture:block/palette", "y": 180 },
+    "facing=east": { "model": "xhe_furniture:block/palette", "y": 90 },
+    "facing=west": { "model": "xhe_furniture:block/palette", "y": 270 }
+  }
+}
