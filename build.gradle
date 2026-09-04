@@ -1,119 +1,86 @@
 plugins {
-	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 	id 'maven-publish'
+	id 'com.github.hierynomus.license' version '0.16.1' apply false
+	id 'net.fabricmc.fabric-loom' version '1.17-SNAPSHOT' apply false
+	id 'net.fabricmc.fabric-loom-remap' version '1.17-SNAPSHOT' apply false
+
+	// https://github.com/ReplayMod/preprocessor
+	// https://github.com/Fallen-Breath/preprocessor
+	id 'com.replaymod.preprocess' version 'c5abb4fb12'
+
+	// https://github.com/Fallen-Breath/yamlang
+	id 'me.fallenbreath.yamlang' version '1.5.0' apply false
 }
 
-version = project.mod_version
-group = project.maven_group
+preprocess {
+	strictExtraMappings = false
 
-base {
-	archivesName = project.archives_base_name
+	def mc114  = createNode('1.14.4', 1_14_04, '')
+	def mc115  = createNode('1.15.2', 1_15_02, '')
+	def mc116  = createNode('1.16.5', 1_16_05, '')
+	def mc117  = createNode('1.17.1', 1_17_01, '')
+	def mc118  = createNode('1.18.2', 1_18_02, '')
+	def mc119  = createNode('1.19.4', 1_19_04, '')
+	def mc1201 = createNode('1.20.1', 1_20_01, '')
+	def mc1202 = createNode('1.20.2', 1_20_02, '')
+	def mc1204 = createNode('1.20.4', 1_20_04, '')
+	def mc1206 = createNode('1.20.6', 1_20_06, '')
+	def mc1211 = createNode('1.21.1', 1_21_01, '')
+	def mc1213 = createNode('1.21.3', 1_21_03, '')
+	def mc1214 = createNode('1.21.4', 1_21_04, '')
+	def mc1215 = createNode('1.21.5', 1_21_05, '')
+	def mc1218 = createNode('1.21.8', 1_21_08, '')
+	def mc12110 = createNode('1.21.10', 1_21_10, '')
+	def mc12111 = createNode('1.21.11', 1_21_11, '')
+	def mc2601 = createNode('26.1.2', 26_01_02, '')
+	def mc2602 = createNode('26.2', 26_02_00, '')
+
+	mc115 .link(mc114 , null)
+	mc115 .link(mc116 , null)
+	mc116 .link(mc117 , null)
+	mc117 .link(mc118 , null)
+	mc118 .link(mc119 , null)
+	mc119 .link(mc1201, null)
+	mc1201.link(mc1202, null)
+	mc1202.link(mc1204, null)
+	mc1204.link(mc1206, null)
+	mc1206.link(mc1211, null)
+	mc1211.link(mc1213, null)
+	mc1213.link(mc1214, null)
+	mc1214.link(mc1215, null)
+	mc1215.link(mc1218, null)
+	mc1218.link(mc12110, null)
+	mc12110.link(mc12111, null)
+	mc12111.link(mc2601, null)
+	mc2601.link(mc2602, null)
+
+	// See https://github.com/Fallen-Breath/fabric-mod-template/blob/1d72d77a1c5ce0bf060c2501270298a12adab679/build.gradle#L55-L63
+	for (final def node in getNodes()) {
+		findProject(node.project).ext.mcVersion = node.mcVersion
+	}
 }
 
-repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
-	mavenCentral()
-	maven {
-		name = "Modrinth"
-		url = "https://api.modrinth.com/maven"
-		content {
-			includeGroup "maven.modrinth"
+tasks.register('buildAndGather') {
+	subprojects {
+		dependsOn project.tasks.named('build').get()
+	}
+	doFirst {
+		println 'Gathering builds'
+		def buildLibs = {
+			p -> p.buildDir.toPath().resolve('libs')
 		}
-	}
-	maven {
-		name = "BlameJared"
-		url = "https://maven.blamejared.com"
-	}
-}
-
-loom {
-	accessWidenerPath = file("src/main/resources/xhe_furniture.accesswidener")
-	splitEnvironmentSourceSets()
-
-	mods {
-		"xhe_furniture" {
-			sourceSet sourceSets.main
-			sourceSet sourceSets.client
+		delete fileTree(buildLibs(rootProject)) {
+			include '*'
 		}
-	}
-
-}
-
-fabricApi {
-	configureDataGeneration {
-		client = true
-	}
-}
-
-dependencies {
-	// To change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	// Exposure is a soft (optional) dependency: available at compile time for the
-	// photograph feature, but NOT required at runtime. All runtime access is done
-	// through reflection, so the mod loads fine without Exposure installed.
-	modCompileOnly "maven.modrinth:exposure:1.9.20"
-
-	// JEI is a soft (optional) dependency: compile-only for the kit recipe integration.
-	// The JEI plugin classes are only loaded by JEI's own plugin discovery, so the mod
-	// loads fine without JEI installed.
-	modCompileOnly "mezz.jei:jei-1.20.1-fabric:15.49.0.191"
-	
-}
-
-processResources {
-	inputs.property "version", project.version
-
-	filesMatching("fabric.mod.json") {
-		expand "version": inputs.properties.version
-	}
-}
-
-tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
-}
-
-java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-	// if it is present.
-	// If you remove this line, sources will not be generated.
-	withSourcesJar()
-
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
-}
-
-jar {
-	inputs.property "archivesName", project.base.archivesName
-
-	from("LICENSE") {
-		rename { "${it}_${inputs.properties.archivesName}"}
-	}
-}
-
-// configure the maven publication
-publishing {
-	publications {
-		create("mavenJava", MavenPublication) {
-			artifactId = project.archives_base_name
-			from components.java
+		subprojects {
+			copy {
+				from(buildLibs(project)) {
+					include '*.jar'
+					exclude '*-dev.jar', '*-sources.jar', '*-shadow.jar'
+				}
+				into buildLibs(rootProject)
+				duplicatesStrategy = DuplicatesStrategy.INCLUDE
+			}
 		}
-	}
-
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
 	}
 }
