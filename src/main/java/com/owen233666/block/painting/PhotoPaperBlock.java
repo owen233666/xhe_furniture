@@ -1,3 +1,8 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.block.painting;
 
 import com.owen233666.block.entity.PhotoBlockEntity;
@@ -15,6 +20,9 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+//#if MC >= 12005
+import net.minecraft.world.ItemInteractionResult;
+//#endif
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -60,9 +68,11 @@ public abstract class PhotoPaperBlock extends HorizontalDirectionalBlock impleme
         return SHAPE.get(state.getValue(FACING));
     }
 
+    // 1.20.5 起 BlockBehaviour#use 被拆成 useItemOn / useWithoutItem。
+    //#if MC >= 12005
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        ItemStack heldStack = player.getItemInHand(hand);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        ItemStack heldStack = stack;
         Item heldItem = heldStack.getItem();
         BlockEntity be = world.getBlockEntity(pos);
         NonNullList<ItemStack> inventory;
@@ -85,21 +95,63 @@ public abstract class PhotoPaperBlock extends HorizontalDirectionalBlock impleme
                 if (heldIsPainting){
                     remove(world, pos, player, photoBlockEntity);
                     addItem(world, pos, player, photoBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }else {
                     remove(world, pos, player, photoBlockEntity);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             }else{
                 //无画：手持画作则放入
                 if (heldIsPainting){
                     addItem(world, pos, player, photoBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
+    //#else
+    //$$ @Override
+    //$$ public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    //$$     ItemStack heldStack = player.getItemInHand(hand);
+    //$$     Item heldItem = heldStack.getItem();
+    //$$     BlockEntity be = world.getBlockEntity(pos);
+    //$$     NonNullList<ItemStack> inventory;
+    //$$
+    //$$     //初始化inventory（从 PhotoBlockEntity 获取实际内容，而非新建空列表）
+    //$$     if (be instanceof PhotoBlockEntity photoBlockEntity){
+    //$$         inventory = photoBlockEntity.getInv();
+    //$$     }else {
+    //$$         inventory = NonNullList.withSize(1, ItemStack.EMPTY);
+    //$$     }
+    //$$     //判断是否有画（获取be的inventory）
+    //$$     boolean hasPainting = !inventory.getFirst().isEmpty();
+    //$$
+    //$$     if (be instanceof PhotoBlockEntity photoBlockEntity) {
+    //$$         boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS)
+    //$$                 || ExposureUtil.isExposurePhotograph(heldItem);
+    //$$
+    //$$         //有画：取出内容物（手上是画则先取旧画再放新画）
+    //$$         if (hasPainting) {
+    //$$             if (heldIsPainting){
+    //$$                 remove(world, pos, player, photoBlockEntity);
+    //$$                 addItem(world, pos, player, photoBlockEntity, heldStack);
+    //$$                 return InteractionResult.CONSUME;
+    //$$             }else {
+    //$$                 remove(world, pos, player, photoBlockEntity);
+    //$$                 return InteractionResult.SUCCESS;
+    //$$             }
+    //$$         }else{
+    //$$             //无画：手持画作则放入
+    //$$             if (heldIsPainting){
+    //$$                 addItem(world, pos, player, photoBlockEntity, heldStack);
+    //$$                 return InteractionResult.CONSUME;
+    //$$             }
+    //$$         }
+    //$$     }
+    //$$     return InteractionResult.PASS;
+    //$$ }
+    //#endif
 
     @Override
     public void neighborChanged(BlockState state, Level world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {

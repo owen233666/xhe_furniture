@@ -1,0 +1,30 @@
+{
+  "replace": false,
+  "values": [
+    "xhe_furniture:easel",
+    "xhe_furniture:canvas",
+    "xhe_furniture:drawing_board",
+    "xhe_furniture:grid_shelf_oak",
+    "xhe_furniture:grid_shelf_spruce",
+    "xhe_furniture:grid_shelf_jungle",
+    "xhe_furniture:grid_shelf_birch",
+    "xhe_furniture:grid_shelf_acacia",
+    "xhe_furniture:grid_shelf_dark_oak",
+    "xhe_furniture:grid_shelf_mangrove",
+    "xhe_furniture:grid_shelf_cherry",
+    "xhe_furniture:grid_shelf_bamboo",
+    "xhe_furniture:grid_shelf_pale_oak",
+    "xhe_furniture:grid_shelf_blackstone",
+    "xhe_furniture:furniture_crafting_table_oak",
+    "xhe_furniture:furniture_crafting_table_spruce",
+    "xhe_furniture:furniture_crafting_table_birch",
+    "xhe_furniture:furniture_crafting_table_jungle",
+    "xhe_furniture:furniture_crafting_table_acacia",
+    "xhe_furniture:furniture_crafting_table_dark_oak",
+    "xhe_furniture:furniture_crafting_table_mangrove",
+    "xhe_furniture:furniture_crafting_table_cherry",
+    "xhe_furniture:furniture_crafting_table_bamboo",
+    "xhe_furniture:furniture_crafting_table_pale_oak",
+    "xhe_furniture:furniture_crafting_table_blackstone"
+  ]
+}

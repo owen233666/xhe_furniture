@@ -2,16 +2,17 @@
   "xhe_furniture.creativetab.items": "小禾的家具",
   "xhe_furniture.creativetab.paintings": "小禾的家具-画作",
 
+  "jei.xhe_furniture.kit": "套件转换",
+
   "item.xhe_furniture.slipper_kit": "拖鞋套件",
   "item.xhe_furniture.carpet_kit": "地毯套件",
   "item.xhe_furniture.shoe_flower_pot_kit": "雨鞋花盆套件",
   "item.xhe_furniture.painting_frame_kit": "画框套件",
   "item.xhe_furniture.grid_shelf_kit": "网格架套件",
-  "item.xhe_furniture.furniture_order_table_kit": "家具订单桌套件",
+  "item.xhe_furniture.furniture_crafting_table_kit": "家具工作台套件",
   "item.xhe_furniture.cork_board_kit": "软木板套件",
   "item.xhe_furniture.photo_paper_kit": "相纸套件",
   "item.xhe_furniture.painting_kit": "画作套件",
-  "jei.xhe_furniture.kit": "套件转换",
 
   "block.xhe_furniture.hot_cocoa": "热可可",
 
@@ -88,9 +89,9 @@
   "block.xhe_furniture.photo_paper_black_c": "黑色相纸C",
   "block.xhe_furniture.grid_shelf_oak": "橡木格子架",
   "block.xhe_furniture.grid_shelf_spruce": "云杉木格子架",
-  "block.xhe_furniture.grid_shelf_jungle": "从林木格子架",
+  "block.xhe_furniture.grid_shelf_jungle": "丛林木格子架",
   "block.xhe_furniture.grid_shelf_birch": "白桦木格子架",
-  "block.xhe_furniture.grid_shelf_acacia": "金合欢格子架",
+  "block.xhe_furniture.grid_shelf_acacia": "金合欢木格子架",
   "block.xhe_furniture.grid_shelf_dark_oak": "深色橡木格子架",
   "block.xhe_furniture.grid_shelf_mangrove": "红木格子架",
   "block.xhe_furniture.grid_shelf_cherry": "樱花木格子架",
@@ -99,7 +100,7 @@
   "block.xhe_furniture.grid_shelf_blackstone": "黑石格子架",
   "block.xhe_furniture.painting_frame_oak": "橡木画框",
   "block.xhe_furniture.painting_frame_spruce": "云杉木画框",
-  "block.xhe_furniture.painting_frame_jungle": "从林木画框",
+  "block.xhe_furniture.painting_frame_jungle": "丛林木画框",
   "block.xhe_furniture.painting_frame_birch": "白桦木画框",
   "block.xhe_furniture.painting_frame_acacia": "金合欢木画框",
   "block.xhe_furniture.painting_frame_dark_oak": "深色橡木画框",
@@ -121,7 +122,7 @@
   "block.xhe_furniture.cork_board_light_spruce": "浅色云杉木软木板",
   "block.xhe_furniture.cork_board_light_jungle": "浅色丛林木软木板",
   "block.xhe_furniture.cork_board_light_birch": "浅色白桦木软木板",
-  "block.xhe_furniture.cork_board_light_acacia": "浅色金合欢软木板",
+  "block.xhe_furniture.cork_board_light_acacia": "浅色金合欢木软木板",
   "block.xhe_furniture.cork_board_light_dark_oak": "浅色深色橡木软木板",
   "block.xhe_furniture.cork_board_light_mangrove": "浅色红木软木板",
   "block.xhe_furniture.cork_board_light_cherry": "浅色樱花木软木板",
@@ -132,7 +133,7 @@
   "block.xhe_furniture.cork_board_dark_spruce": "深色云杉木软木板",
   "block.xhe_furniture.cork_board_dark_jungle": "深色丛林木软木板",
   "block.xhe_furniture.cork_board_dark_birch": "深色白桦木软木板",
-  "block.xhe_furniture.cork_board_dark_acacia": "深色金合欢软木板",
+  "block.xhe_furniture.cork_board_dark_acacia": "深色金合欢木软木板",
   "block.xhe_furniture.cork_board_dark_dark_oak": "深色深色橡木软木板",
   "block.xhe_furniture.cork_board_dark_mangrove": "深色红木软木板",
   "block.xhe_furniture.cork_board_dark_cherry": "深色樱花木软木板",
@@ -192,5 +193,25 @@
 
   "tooltip.xhe_furniture.rattan_table": "可以将地毯放在桌子上当桌布",
   "tooltip.xhe_furniture.author": "作者: ",
-  "tooltip.xhe_furniture.photo_paper": "按住 %s + %s 切换下一个形态"
-}
+  "tooltip.xhe_furniture.photo_paper": "按住 %s + %s 切换下一个形态",
+
+    "item.xhe_furniture.photo_paper_white_a": "白色相纸A",
+    "item.xhe_furniture.photo_paper_white_b": "白色相纸B",
+    "item.xhe_furniture.photo_paper_white_c": "白色相纸C",
+    "item.xhe_furniture.photo_paper_black_a": "黑色相纸A",
+    "item.xhe_furniture.photo_paper_black_b": "黑色相纸B",
+    "item.xhe_furniture.photo_paper_black_c": "黑色相纸C",
+
+    "block.xhe_furniture.furniture_crafting_table_acacia": "金合欢木家具工作台",
+    "block.xhe_furniture.furniture_crafting_table_bamboo": "竹子家具工作台",
+    "block.xhe_furniture.furniture_crafting_table_birch": "白桦木家具工作台",
+    "block.xhe_furniture.furniture_crafting_table_blackstone": "黑石家具工作台",
+    "block.xhe_furniture.furniture_crafting_table_cherry": "樱花木家具工作台",
+    "block.xhe_furniture.furniture_crafting_table_dark_oak": "深色橡木家具工作台",
+    "block.xhe_furniture.furniture_crafting_table_jungle": "丛林木家具工作台",
+    "block.xhe_furniture.furniture_crafting_table_mangrove": "红木家具工作台",
+    "block.xhe_furniture.furniture_crafting_table_oak": "橡木家具工作台",
+    "block.xhe_furniture.furniture_crafting_table_pale_oak": "苍白橡木家具工作台",
+    "block.xhe_furniture.furniture_crafting_table_spruce": "云杉木家具工作台",
+    "block.xhe_furniture.furniture_crafting_table": "家具工作台"
+  }

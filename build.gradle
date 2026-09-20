@@ -1,119 +1,84 @@
+import com.replaymod.gradle.preprocess.Node
+import groovy.json.JsonSlurper
+
 plugins {
-	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
 	id 'maven-publish'
+	id 'com.github.hierynomus.license' version '0.16.1' apply false
+	id 'dev.architectury.loom' version '1.17.491' apply false
+	id 'net.fabricmc.fabric-loom' version '1.16-SNAPSHOT' apply false
+
+	// https://github.com/ReplayMod/preprocessor
+	// https://github.com/Fallen-Breath/preprocessor
+	id 'com.replaymod.preprocess' version 'c5abb4fb12'
+
+	// https://github.com/Fallen-Breath/yamlang
+	id 'me.fallenbreath.yamlang' version '1.5.0' apply false
 }
 
-version = project.mod_version
-group = project.maven_group
-
-base {
-	archivesName = project.archives_base_name
+def linkNode(Node src, Node dst) {
+	def mappingFile = rootProject.file("versions/mapping-${src.project}-${dst.project}.txt")
+	src.link(dst, mappingFile.isFile() ? mappingFile : null)
 }
 
-repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
-	mavenCentral()
-	maven {
-		name = "Modrinth"
-		url = "https://api.modrinth.com/maven"
-		content {
-			includeGroup "maven.modrinth"
+preprocess {
+	strictExtraMappings = false
+
+	def settings = new JsonSlurper().parseText(file('settings.json').text)
+	def all_versions = new ArrayList<>(settings.versions)
+	Map<String, Node> all_nodes = [:]
+
+	for (String version : all_versions) {
+		String[] versionParts = version.split("-")[0].split("\\.")
+		if (versionParts.size() == 2) {
+			versionParts = [versionParts[0], versionParts[1], "0"]
 		}
-	}
-	maven {
-		name = "BlameJared"
-		url = "https://maven.blamejared.com"
-	}
-}
-
-loom {
-	accessWidenerPath = file("src/main/resources/xhe_furniture.accesswidener")
-	splitEnvironmentSourceSets()
-
-	mods {
-		"xhe_furniture" {
-			sourceSet sourceSets.main
-			sourceSet sourceSets.client
-		}
+		int versionId = Integer.parseInt(versionParts[0]) * 10000 + Integer.parseInt(versionParts[1]) * 100 + Integer.parseInt(versionParts[2])
+		all_nodes[version] = createNode(version, versionId, '')
 	}
 
-}
-
-fabricApi {
-	configureDataGeneration {
-		client = true
-	}
-}
-
-dependencies {
-	// To change the versions see the gradle.properties file
-	minecraft "com.mojang:minecraft:${project.minecraft_version}"
-	mappings loom.officialMojangMappings()
-	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-	// Fabric API. This is technically optional, but you probably want it anyway.
-	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	// Exposure is a soft (optional) dependency: available at compile time for the
-	// photograph feature, but NOT required at runtime. All runtime access is done
-	// through reflection, so the mod loads fine without Exposure installed.
-	modCompileOnly "maven.modrinth:exposure:1.9.20"
-
-	// JEI is a soft (optional) dependency: compile-only for the kit recipe integration.
-	// The JEI plugin classes are only loaded by JEI's own plugin discovery, so the mod
-	// loads fine without JEI installed.
-	modCompileOnly "mezz.jei:jei-1.20.1-fabric:15.49.0.191"
-	
-}
-
-processResources {
-	inputs.property "version", project.version
-
-	filesMatching("fabric.mod.json") {
-		expand "version": inputs.properties.version
-	}
-}
-
-tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
-}
-
-java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-	// if it is present.
-	// If you remove this line, sources will not be generated.
-	withSourcesJar()
-
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
-}
-
-jar {
-	inputs.property "archivesName", project.base.archivesName
-
-	from("LICENSE") {
-		rename { "${it}_${inputs.properties.archivesName}"}
-	}
-}
-
-// configure the maven publication
-publishing {
-	publications {
-		create("mavenJava", MavenPublication) {
-			artifactId = project.archives_base_name
-			from components.java
+	Node prev_fabric_node = null
+	for (String version : all_versions) {
+		def (mc_version, mod_brand) = version.split("-")
+		def node = all_nodes[version]
+		switch (mod_brand) {
+			case ["fabric", "merged"]:
+				if (prev_fabric_node != null) {
+					linkNode(prev_fabric_node, all_nodes[version])
+				}
+				prev_fabric_node = node
+				break
+			default:
+				linkNode(all_nodes["${mc_version}-fabric"], all_nodes[version])
 		}
 	}
 
-	// See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
-	repositories {
-		// Add repositories to publish to here.
-		// Notice: This block does NOT have the same function as the block in the top level.
-		// The repositories here will be used for publishing your artifact, not for
-		// retrieving dependencies.
+	// See https://github.com/Fallen-Breath/fabric-mod-template/blob/1d72d77a1c5ce0bf060c2501270298a12adab679/build.gradle#L55-L63
+	for (final def node in getNodes()) {
+		findProject(node.project).ext.mcVersion = node.mcVersion
+	}
+}
+
+tasks.register('buildAndGather') {
+	subprojects {
+		dependsOn project.tasks.named('build').get()
+	}
+	doFirst {
+		println 'Gathering builds'
+		def buildLibs = {
+			p -> p.buildDir.toPath().resolve('libs')
+		}
+		delete fileTree(buildLibs(rootProject)) {
+			include '*'
+		}
+		subprojects {
+			copy {
+				from(buildLibs(project)) {
+					include '*.jar'
+					exclude '*-dev.jar', '*-sources.jar', '*-shadow.jar'
+				}
+				into buildLibs(rootProject)
+				duplicatesStrategy = DuplicatesStrategy.INCLUDE
+			}
+		}
 	}
 }

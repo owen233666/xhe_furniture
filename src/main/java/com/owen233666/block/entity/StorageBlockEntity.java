@@ -1,6 +1,12 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.block.entity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -21,11 +27,11 @@ public class StorageBlockEntity extends BlockEntity {
     private NonNullList<ItemStack> inventory;
 
     public StorageBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntityTypes.STORAGE_BLOCK_BE, pos, state);
+        super(ModBlockEntityTypes.STORAGE_BLOCK_BE.get(), pos, state);
     }
 
     public StorageBlockEntity(BlockPos pos, BlockState state, int size) {
-        super(ModBlockEntityTypes.STORAGE_BLOCK_BE, pos, state);
+        super(ModBlockEntityTypes.STORAGE_BLOCK_BE.get(), pos, state);
         this.size = size;
         this.inventory = NonNullList.withSize(this.size, ItemStack.EMPTY);
     }
@@ -55,29 +61,55 @@ public class StorageBlockEntity extends BlockEntity {
         super.setChanged();
     }
 
+    //#if MC >= 12005
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+        super.loadAdditional(nbt, registries);
         this.size = nbt.getInt("size");
         this.inventory = NonNullList.withSize(this.size, ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt, this.inventory);
+        ContainerHelper.loadAllItems(nbt, this.inventory, registries);
     }
+    //#else
+    //$$ @Override
+    //$$ public void load(CompoundTag nbt) {
+    //$$     super.load(nbt);
+    //$$     this.size = nbt.getInt("size");
+    //$$     this.inventory = NonNullList.withSize(this.size, ItemStack.EMPTY);
+    //$$     ContainerHelper.loadAllItems(nbt, this.inventory);
+    //$$ }
+    //#endif
 
+    //#if MC >= 12005
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        ContainerHelper.saveAllItems(nbt, this.inventory);
+    protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+        ContainerHelper.saveAllItems(nbt, this.inventory, registries);
         nbt.putInt("size", this.size);
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, registries);
     }
+    //#else
+    //$$ @Override
+    //$$ protected void saveAdditional(CompoundTag nbt) {
+    //$$     ContainerHelper.saveAllItems(nbt, this.inventory);
+    //$$     nbt.putInt("size", this.size);
+    //$$     super.saveAdditional(nbt);
+    //$$ }
+    //#endif
 
     public ClientboundBlockEntityDataPacket getUpdatePacket() {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
+    //#if MC >= 12005
     @Override
-    public @NotNull CompoundTag getUpdateTag() {
-        return this.saveWithoutMetadata();
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return this.saveWithoutMetadata(registries);
     }
+    //#else
+    //$$ @Override
+    //$$ public @NotNull CompoundTag getUpdateTag() {
+    //$$     return this.saveWithoutMetadata();
+    //$$ }
+    //#endif
 
     public void setInv(NonNullList<ItemStack> inventory) {
         for(int i = 0; i < inventory.size(); ++i) {

@@ -1,6 +1,12 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.block.entity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -30,18 +36,35 @@ public class PhotoBlockEntity extends BlockEntity {
         setChanged();
     }
 
+    //#if MC >= 12005
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+        super.loadAdditional(nbt, registries);
         this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(nbt, this.inventory);
+        ContainerHelper.loadAllItems(nbt, this.inventory, registries);
     }
+    //#else
+    //$$ @Override
+    //$$ public void load(CompoundTag nbt) {
+    //$$     super.load(nbt);
+    //$$     this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
+    //$$     ContainerHelper.loadAllItems(nbt, this.inventory);
+    //$$ }
+    //#endif
 
+    //#if MC >= 12005
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        ContainerHelper.saveAllItems(nbt, this.inventory);
-        super.saveAdditional(nbt);
+    protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+        ContainerHelper.saveAllItems(nbt, this.inventory, registries);
+        super.saveAdditional(nbt, registries);
     }
+    //#else
+    //$$ @Override
+    //$$ protected void saveAdditional(CompoundTag nbt) {
+    //$$     ContainerHelper.saveAllItems(nbt, this.inventory);
+    //$$     super.saveAdditional(nbt);
+    //$$ }
+    //#endif
 
     @Override
     public void setChanged() {
@@ -61,10 +84,17 @@ public class PhotoBlockEntity extends BlockEntity {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
+    //#if MC >= 12005
     @Override
-    public @NotNull CompoundTag getUpdateTag() {
-        return this.saveWithoutMetadata();
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return this.saveWithoutMetadata(registries);
     }
+    //#else
+    //$$ @Override
+    //$$ public @NotNull CompoundTag getUpdateTag() {
+    //$$     return this.saveWithoutMetadata();
+    //$$ }
+    //#endif
 
     public NonNullList<ItemStack> getInv() {
         return this.inventory;

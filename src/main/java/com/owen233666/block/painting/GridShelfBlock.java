@@ -1,5 +1,11 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.block.painting;
 
+import com.mojang.serialization.MapCodec;
 import com.owen233666.block.ModBlocks;
 import com.owen233666.block.entity.GridShelfBlockEntity;
 import com.owen233666.item.ModItemTags;
@@ -15,6 +21,9 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+//#if MC >= 12005
+import net.minecraft.world.ItemInteractionResult;
+//#endif
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -60,6 +69,14 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
         );
     }
 
+    // 1.20.5 起 BlockBehaviour.codec() 是抽象方法，每个具体方块都要给出自己的 MapCodec。
+    //#if MC >= 12005
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(GridShelfBlock::new);
+    }
+    //#endif
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
@@ -71,9 +88,11 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
         return SHAPE.get(state.getValue(FACING));
     }
 
+    // 1.20.5 起 BlockBehaviour#use 被拆成 useItemOn / useWithoutItem。
+    //#if MC >= 12005
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        ItemStack heldStack = player.getItemInHand(hand);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        ItemStack heldStack = stack;
         Item heldItem = heldStack.getItem();
         BlockEntity blockEntity = world.getBlockEntity(pos);
         Boolean hasPhoto = state.getValue(HAS_PHOTO);
@@ -84,7 +103,7 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
                 if (heldStack.isEmpty()) {
                     if (hasPainting) {
                         remove(world, pos, player, gridShelfBlockEntity);
-                        return InteractionResult.SUCCESS;
+                        return ItemInteractionResult.SUCCESS;
                     }
                 }
 
@@ -93,7 +112,7 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
                         remove(world, pos, player, gridShelfBlockEntity);
                     }
                     addItem(world, pos, player, gridShelfBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }
 
                 if (heldIsPhoto(heldItem)) {
@@ -104,7 +123,7 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
                     state = state.setValue(WHITE, heldIsWhite(heldItem));
                     state = state.setValue(PHOTO_TYPE, getPhotoType(heldItem));
                     world.setBlockAndUpdate(pos, state);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
 
                 if (!(heldIsPainting(heldItem) || heldIsPhoto(heldItem))) {
@@ -118,7 +137,7 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
                     state = state.setValue(WHITE, true);
                     state = state.setValue(PHOTO_TYPE, PhotoType.A);
                     world.setBlockAndUpdate(pos, state);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             } else {
                 if (heldIsPhoto(heldItem)) {
@@ -127,13 +146,78 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
                     state = state.setValue(WHITE, heldIsWhite(heldItem));
                     state = state.setValue(PHOTO_TYPE, getPhotoType(heldItem));
                     world.setBlockAndUpdate(pos, state);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             }
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
+    //#else
+    //$$ @Override
+    //$$ public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    //$$     ItemStack heldStack = player.getItemInHand(hand);
+    //$$     Item heldItem = heldStack.getItem();
+    //$$     BlockEntity blockEntity = world.getBlockEntity(pos);
+    //$$     Boolean hasPhoto = state.getValue(HAS_PHOTO);
+    //$$
+    //$$     if (blockEntity instanceof GridShelfBlockEntity gridShelfBlockEntity) {
+    //$$         boolean hasPainting = !(gridShelfBlockEntity.getInv().getFirst() == ItemStack.EMPTY);
+    //$$         if (hasPhoto) {
+    //$$             if (heldStack.isEmpty()) {
+    //$$                 if (hasPainting) {
+    //$$                     remove(world, pos, player, gridShelfBlockEntity);
+    //$$                     return InteractionResult.SUCCESS;
+    //$$                 }
+    //$$             }
+    //$$
+    //$$             if (heldIsPainting(heldItem)) {
+    //$$                 if (hasPainting) {
+    //$$                     remove(world, pos, player, gridShelfBlockEntity);
+    //$$                 }
+    //$$                 addItem(world, pos, player, gridShelfBlockEntity, heldStack);
+    //$$                 return InteractionResult.CONSUME;
+    //$$             }
+    //$$
+    //$$             if (heldIsPhoto(heldItem)) {
+    //$$                 ItemStack toGive = getFromShelf(state.getValue(PHOTO_TYPE), state.getValue(WHITE));
+    //$$
+    //$$                 if (!player.addItem(toGive)) player.drop(toGive, false);
+    //$$
+    //$$                 state = state.setValue(WHITE, heldIsWhite(heldItem));
+    //$$                 state = state.setValue(PHOTO_TYPE, getPhotoType(heldItem));
+    //$$                 world.setBlockAndUpdate(pos, state);
+    //$$                 return InteractionResult.SUCCESS;
+    //$$             }
+    //$$
+    //$$             if (!(heldIsPainting(heldItem) || heldIsPhoto(heldItem))) {
+    //$$                 ItemStack toGive = getFromShelf(state.getValue(PHOTO_TYPE), state.getValue(WHITE));
+    //$$
+    //$$                 if (!player.addItem(toGive)) player.drop(toGive, false);
+    //$$
+    //$$                 if (!(gridShelfBlockEntity.getInv().getFirst() == ItemStack.EMPTY)) remove(world, pos, player, gridShelfBlockEntity);
+    //$$
+    //$$                 state = state.setValue(HAS_PHOTO, false);
+    //$$                 state = state.setValue(WHITE, true);
+    //$$                 state = state.setValue(PHOTO_TYPE, PhotoType.A);
+    //$$                 world.setBlockAndUpdate(pos, state);
+    //$$                 return InteractionResult.SUCCESS;
+    //$$             }
+    //$$         } else {
+    //$$             if (heldIsPhoto(heldItem)) {
+    //$$                 if (!player.isCreative()) heldStack.shrink(1);
+    //$$                 state = state.setValue(HAS_PHOTO, true);
+    //$$                 state = state.setValue(WHITE, heldIsWhite(heldItem));
+    //$$                 state = state.setValue(PHOTO_TYPE, getPhotoType(heldItem));
+    //$$                 world.setBlockAndUpdate(pos, state);
+    //$$                 return InteractionResult.SUCCESS;
+    //$$             }
+    //$$         }
+    //$$         return InteractionResult.PASS;
+    //$$     }
+    //$$     return InteractionResult.PASS;
+    //$$ }
+    //#endif
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext) {
@@ -167,12 +251,12 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     public boolean heldIsPhoto(Item heldItem) {
-                return  heldItem == ModBlocks.PHOTO_PAPER_WHITE_A.asItem() ||
-                        heldItem == ModBlocks.PHOTO_PAPER_WHITE_B.asItem() ||
-                        heldItem == ModBlocks.PHOTO_PAPER_WHITE_C.asItem() ||
-                        heldItem == ModBlocks.PHOTO_PAPER_BLACK_A.asItem() ||
-                        heldItem == ModBlocks.PHOTO_PAPER_BLACK_B.asItem() ||
-                        heldItem == ModBlocks.PHOTO_PAPER_BLACK_C.asItem();
+                return  heldItem == ModBlocks.PHOTO_PAPER_WHITE_A.get().asItem() ||
+                        heldItem == ModBlocks.PHOTO_PAPER_WHITE_B.get().asItem() ||
+                        heldItem == ModBlocks.PHOTO_PAPER_WHITE_C.get().asItem() ||
+                        heldItem == ModBlocks.PHOTO_PAPER_BLACK_A.get().asItem() ||
+                        heldItem == ModBlocks.PHOTO_PAPER_BLACK_B.get().asItem() ||
+                        heldItem == ModBlocks.PHOTO_PAPER_BLACK_C.get().asItem();
     }
 
     public boolean heldIsPainting(Item heldItem) {
@@ -181,19 +265,19 @@ public class GridShelfBlock extends HorizontalDirectionalBlock implements Entity
     }
 
     public Boolean heldIsWhite(Item heldItem) {
-        return (Block.byItem(heldItem) == ModBlocks.PHOTO_PAPER_WHITE_A || Block.byItem(heldItem) == ModBlocks.PHOTO_PAPER_WHITE_B || Block.byItem(heldItem) == ModBlocks.PHOTO_PAPER_WHITE_C);
+        return (Block.byItem(heldItem) == ModBlocks.PHOTO_PAPER_WHITE_A.get() || Block.byItem(heldItem) == ModBlocks.PHOTO_PAPER_WHITE_B.get() || Block.byItem(heldItem) == ModBlocks.PHOTO_PAPER_WHITE_C.get());
     }
 
     public ItemStack getFromShelf(PhotoType photoType, Boolean white) {
-        if (photoType == PhotoType.A) return white ? new ItemStack(ModBlocks.PHOTO_PAPER_WHITE_A, 1) :  new ItemStack(ModBlocks.PHOTO_PAPER_BLACK_A, 1);
-        else if (photoType == PhotoType.B) return white ? new ItemStack(ModBlocks.PHOTO_PAPER_WHITE_B, 1) :  new ItemStack(ModBlocks.PHOTO_PAPER_BLACK_B, 1);
-        else return white ? new ItemStack(ModBlocks.PHOTO_PAPER_WHITE_C, 1) :  new ItemStack(ModBlocks.PHOTO_PAPER_BLACK_C, 1);
+        if (photoType == PhotoType.A) return white ? new ItemStack(ModBlocks.PHOTO_PAPER_WHITE_A.get(), 1) :  new ItemStack(ModBlocks.PHOTO_PAPER_BLACK_A.get(), 1);
+        else if (photoType == PhotoType.B) return white ? new ItemStack(ModBlocks.PHOTO_PAPER_WHITE_B.get(), 1) :  new ItemStack(ModBlocks.PHOTO_PAPER_BLACK_B.get(), 1);
+        else return white ? new ItemStack(ModBlocks.PHOTO_PAPER_WHITE_C.get(), 1) :  new ItemStack(ModBlocks.PHOTO_PAPER_BLACK_C.get(), 1);
     }
 
     public PhotoType getPhotoType(Item heldItem) {
-        if (heldItem == ModBlocks.PHOTO_PAPER_WHITE_A.asItem() || heldItem == ModBlocks.PHOTO_PAPER_BLACK_A.asItem()) return PhotoType.A;
-        if (heldItem == ModBlocks.PHOTO_PAPER_WHITE_B.asItem() || heldItem == ModBlocks.PHOTO_PAPER_BLACK_B.asItem()) return PhotoType.B;
-        if (heldItem == ModBlocks.PHOTO_PAPER_WHITE_C.asItem() || heldItem == ModBlocks.PHOTO_PAPER_BLACK_C.asItem()) return PhotoType.C;
+        if (heldItem == ModBlocks.PHOTO_PAPER_WHITE_A.get().asItem() || heldItem == ModBlocks.PHOTO_PAPER_BLACK_A.get().asItem()) return PhotoType.A;
+        if (heldItem == ModBlocks.PHOTO_PAPER_WHITE_B.get().asItem() || heldItem == ModBlocks.PHOTO_PAPER_BLACK_B.get().asItem()) return PhotoType.B;
+        if (heldItem == ModBlocks.PHOTO_PAPER_WHITE_C.get().asItem() || heldItem == ModBlocks.PHOTO_PAPER_BLACK_C.get().asItem()) return PhotoType.C;
         return PhotoType.A;
     }
 

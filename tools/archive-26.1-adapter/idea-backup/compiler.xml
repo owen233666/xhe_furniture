@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="17">
+      <module name="xhe_furniture_multiplatform_multiversion.26_1_2-merged" target="25" />
+      <module name="xhe_furniture_multiplatform_multiversion.26_1_2-merged.main" target="25" />
+      <module name="xhe_furniture_multiplatform_multiversion.26_1_2-merged.test" target="25" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="xhe_furniture_multiplatform_multiversion.1.20.1-fabric" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1.20.1-fabric.main" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1.20.1-fabric.test" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1.20.1-forge" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1.20.1-forge.main" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1.20.1-forge.test" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1.21.1-fabric" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1.21.1-fabric.main" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1.21.1-fabric.test" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1.21.1-neoforge" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1.21.1-neoforge.main" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1.21.1-neoforge.test" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1_20_1-fabric" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1_20_1-fabric.main" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1_20_1-fabric.test" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1_20_1-forge" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1_20_1-forge.main" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1_20_1-forge.test" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1_21_1-fabric" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1_21_1-fabric.main" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1_21_1-fabric.test" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1_21_1-neoforge" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1_21_1-neoforge.main" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.1_21_1-neoforge.test" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.26.1.2-merged" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.26.1.2-merged.main" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.26.1.2-merged.test" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.26_1_2-merged" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.26_1_2-merged.main" options="-Xlint:deprecation -Xlint:unchecked" />
+      <module name="xhe_furniture_multiplatform_multiversion.26_1_2-merged.test" options="-Xlint:deprecation -Xlint:unchecked" />
+    </option>
+  </component>
+</project>

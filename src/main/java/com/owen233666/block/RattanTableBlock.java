@@ -1,5 +1,11 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -7,6 +13,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+//#if MC >= 12005
+import net.minecraft.world.ItemInteractionResult;
+//#endif
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -53,6 +62,14 @@ public class RattanTableBlock extends HorizontalDirectionalBlock {
                 .setValue(CLOTH_COLOR, RattanTableClothColor.NONE));
     }
 
+    // 1.20.5 起 BlockBehaviour.codec() 是抽象方法，每个具体方块都要给出自己的 MapCodec。
+    //#if MC >= 12005
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(RattanTableBlock::new);
+    }
+    //#endif
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
@@ -69,93 +86,57 @@ public class RattanTableBlock extends HorizontalDirectionalBlock {
         return SHAPE;
     }
 
+    // 1.20.5 起 appendHoverText 的第二个参数由 BlockGetter 变成 Item.TooltipContext。
+    //#if MC >= 12005
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable BlockGetter world, List<Component> tooltip, TooltipFlag options) {
-        super.appendHoverText(stack, world, tooltip, options);
+    public void appendHoverText(ItemStack stack, Item.TooltipContext context, List<Component> tooltip, TooltipFlag options) {
+        super.appendHoverText(stack, context, tooltip, options);
         tooltip.add(Component.translatable("tooltip.xhe_furniture.rattan_table").withStyle(ChatFormatting.GRAY));
+    }
+    //#else
+    //$$ @Override
+    //$$ public void appendHoverText(ItemStack stack, @Nullable BlockGetter world, List<Component> tooltip, TooltipFlag options) {
+    //$$     super.appendHoverText(stack, world, tooltip, options);
+    //$$     tooltip.add(Component.translatable("tooltip.xhe_furniture.rattan_table").withStyle(ChatFormatting.GRAY));
+    //$$ }
+    //#endif
+
+    // 1.20.5 起 BlockBehaviour#use 被拆成 useItemOn / useWithoutItem。
+    //#if MC >= 12005
+    /** 把桌布换成 {@code color}，消耗一个手持物品（创造模式补回），返回 {@link ItemInteractionResult#CONSUME}。 */
+    private static ItemInteractionResult applyCloth(Level world, BlockPos pos, BlockState state, ItemStack stack, Player player, RattanTableClothColor color) {
+        world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, color));
+        stack.split(1);
+        if (player.isCreative()) {
+            stack.grow(1);
+        }
+        return ItemInteractionResult.CONSUME;
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        ItemStack stack = player.getItemInHand(hand);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        ItemStack heldStack = stack;
         Block block = state.getBlock();
         if (block instanceof RattanTableBlock) {
             RattanTableClothColor COLOR = state.getValue(CLOTH_COLOR);
-            Item heldItem = player.getItemInHand(hand).getItem();
+            Item heldItem = heldStack.getItem();
             if (!player.isShiftKeyDown()) {
-                return switch (heldItem) {
-                    case Item item when item == Items.ORANGE_CARPET -> {
-                        world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, RattanTableClothColor.ORANGE));
-                        stack.split(1);
-                        if (player.isCreative()) stack.grow(1);
-                        yield InteractionResult.CONSUME;
-                    }
-                    case Item item when item == Items.PURPLE_CARPET -> {
-                        world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, RattanTableClothColor.DEEP_PURPLE));
-                        stack.split(1);
-                        if (player.isCreative()) stack.grow(1);
-                        yield InteractionResult.CONSUME;
-                    }
-                    case Item item when item == Items.GREEN_CARPET -> {
-                        world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, RattanTableClothColor.DEEP_GREEN));
-                        stack.split(1);
-                        if (player.isCreative()) stack.grow(1);
-                        yield InteractionResult.CONSUME;
-                    }
-                    case Item item when item == Items.BLUE_CARPET -> {
-                        world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, RattanTableClothColor.DEEP_BLUE));
-                        stack.split(1);
-                        if (player.isCreative()) stack.grow(1);
-                        yield InteractionResult.CONSUME;
-                    }
-                    case Item item when item == Items.WHITE_CARPET -> {
-                        world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, RattanTableClothColor.WHITE));
-                        stack.split(1);
-                        if (player.isCreative()) stack.grow(1);
-                        yield InteractionResult.CONSUME;
-                    }
-                    case Item item when item == Items.PINK_CARPET -> {
-                        world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, RattanTableClothColor.PINK));
-                        stack.split(1);
-                        if (player.isCreative()) stack.grow(1);
-                        yield InteractionResult.CONSUME;
-                    }
-                    case Item item when item == Items.MAGENTA_CARPET -> {
-                        world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, RattanTableClothColor.PURPLE));
-                        stack.split(1);
-                        if (player.isCreative()) stack.grow(1);
-                        yield InteractionResult.CONSUME;
-                    }
-                    case Item item when item == Items.RED_CARPET -> {
-                        world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, RattanTableClothColor.RED));
-                        stack.split(1);
-                        if (player.isCreative()) stack.grow(1);
-                        yield InteractionResult.CONSUME;
-                    }
-                    case Item item when item == Items.LIME_CARPET -> {
-                        world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, RattanTableClothColor.GREEN));
-                        stack.split(1);
-                        if (player.isCreative()) stack.grow(1);
-                        yield InteractionResult.CONSUME;
-                    }
-                    case Item item when item == Items.LIGHT_BLUE_CARPET -> {
-                        world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, RattanTableClothColor.BLUE));
-                        stack.split(1);
-                        if (player.isCreative()) stack.grow(1);
-                        yield InteractionResult.CONSUME;
-                    }
-                    case Item item when item == Items.YELLOW_CARPET -> {
-                        world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, RattanTableClothColor.YELLOW));
-                        stack.split(1);
-                        if (player.isCreative()) stack.grow(1);
-                        yield InteractionResult.CONSUME;
-                    }
-                    default -> {
-                        world.setBlockAndUpdate(pos, state);
-                        yield InteractionResult.PASS;
-                    }
-                };
-            } else if (player.isShiftKeyDown() && player.getItemInHand(hand).isEmpty()) {
+                // 原来这里是 Java 21 的 switch 模式匹配 + when 守卫。1.20.1 目标按模板要求编译在
+                // Java 17，所以改成等价的身份比较链，各版本一致，无需预处理器指令。
+                if (heldItem == Items.ORANGE_CARPET)     return applyCloth(world, pos, state, heldStack, player, RattanTableClothColor.ORANGE);
+                if (heldItem == Items.PURPLE_CARPET)     return applyCloth(world, pos, state, heldStack, player, RattanTableClothColor.DEEP_PURPLE);
+                if (heldItem == Items.GREEN_CARPET)      return applyCloth(world, pos, state, heldStack, player, RattanTableClothColor.DEEP_GREEN);
+                if (heldItem == Items.BLUE_CARPET)       return applyCloth(world, pos, state, heldStack, player, RattanTableClothColor.DEEP_BLUE);
+                if (heldItem == Items.WHITE_CARPET)      return applyCloth(world, pos, state, heldStack, player, RattanTableClothColor.WHITE);
+                if (heldItem == Items.PINK_CARPET)       return applyCloth(world, pos, state, heldStack, player, RattanTableClothColor.PINK);
+                if (heldItem == Items.MAGENTA_CARPET)    return applyCloth(world, pos, state, heldStack, player, RattanTableClothColor.PURPLE);
+                if (heldItem == Items.RED_CARPET)        return applyCloth(world, pos, state, heldStack, player, RattanTableClothColor.RED);
+                if (heldItem == Items.LIME_CARPET)       return applyCloth(world, pos, state, heldStack, player, RattanTableClothColor.GREEN);
+                if (heldItem == Items.LIGHT_BLUE_CARPET) return applyCloth(world, pos, state, heldStack, player, RattanTableClothColor.BLUE);
+                if (heldItem == Items.YELLOW_CARPET)     return applyCloth(world, pos, state, heldStack, player, RattanTableClothColor.YELLOW);
+                world.setBlockAndUpdate(pos, state);
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            } else if (player.isShiftKeyDown() && heldStack.isEmpty()) {
                 switch (COLOR) {
                     case ORANGE -> {
                         if (!player.getInventory().add(new ItemStack(Items.ORANGE_CARPET)))      player.spawnAtLocation(new ItemStack(Items.ORANGE_CARPET));
@@ -189,11 +170,85 @@ public class RattanTableBlock extends HorizontalDirectionalBlock {
                     }
                 }
                 world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, RattanTableClothColor.NONE));
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
+    //#else
+    //$$ /** 把桌布换成 {@code color}，消耗一个手持物品（创造模式补回），返回 {@link InteractionResult#CONSUME}。 */
+    //$$ private static InteractionResult applyCloth(Level world, BlockPos pos, BlockState state, ItemStack stack, Player player, RattanTableClothColor color) {
+    //$$     world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, color));
+    //$$     stack.split(1);
+    //$$     if (player.isCreative()) {
+    //$$         stack.grow(1);
+    //$$     }
+    //$$     return InteractionResult.CONSUME;
+    //$$ }
+    //$$
+    //$$ @Override
+    //$$ public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    //$$     ItemStack stack = player.getItemInHand(hand);
+    //$$     Block block = state.getBlock();
+    //$$     if (block instanceof RattanTableBlock) {
+    //$$         RattanTableClothColor COLOR = state.getValue(CLOTH_COLOR);
+    //$$         Item heldItem = player.getItemInHand(hand).getItem();
+    //$$         if (!player.isShiftKeyDown()) {
+    //$$             // 原来这里是 Java 21 的 switch 模式匹配 + when 守卫。1.20.1 目标按模板要求编译在
+    //$$             // Java 17，所以改成等价的身份比较链，各版本一致，无需预处理器指令。
+    //$$             if (heldItem == Items.ORANGE_CARPET)     return applyCloth(world, pos, state, stack, player, RattanTableClothColor.ORANGE);
+    //$$             if (heldItem == Items.PURPLE_CARPET)     return applyCloth(world, pos, state, stack, player, RattanTableClothColor.DEEP_PURPLE);
+    //$$             if (heldItem == Items.GREEN_CARPET)      return applyCloth(world, pos, state, stack, player, RattanTableClothColor.DEEP_GREEN);
+    //$$             if (heldItem == Items.BLUE_CARPET)       return applyCloth(world, pos, state, stack, player, RattanTableClothColor.DEEP_BLUE);
+    //$$             if (heldItem == Items.WHITE_CARPET)      return applyCloth(world, pos, state, stack, player, RattanTableClothColor.WHITE);
+    //$$             if (heldItem == Items.PINK_CARPET)       return applyCloth(world, pos, state, stack, player, RattanTableClothColor.PINK);
+    //$$             if (heldItem == Items.MAGENTA_CARPET)    return applyCloth(world, pos, state, stack, player, RattanTableClothColor.PURPLE);
+    //$$             if (heldItem == Items.RED_CARPET)        return applyCloth(world, pos, state, stack, player, RattanTableClothColor.RED);
+    //$$             if (heldItem == Items.LIME_CARPET)       return applyCloth(world, pos, state, stack, player, RattanTableClothColor.GREEN);
+    //$$             if (heldItem == Items.LIGHT_BLUE_CARPET) return applyCloth(world, pos, state, stack, player, RattanTableClothColor.BLUE);
+    //$$             if (heldItem == Items.YELLOW_CARPET)     return applyCloth(world, pos, state, stack, player, RattanTableClothColor.YELLOW);
+    //$$             world.setBlockAndUpdate(pos, state);
+    //$$             return InteractionResult.PASS;
+    //$$         } else if (player.isShiftKeyDown() && player.getItemInHand(hand).isEmpty()) {
+    //$$             switch (COLOR) {
+    //$$                 case ORANGE -> {
+    //$$                     if (!player.getInventory().add(new ItemStack(Items.ORANGE_CARPET)))      player.spawnAtLocation(new ItemStack(Items.ORANGE_CARPET));
+    //$$                 }
+    //$$                 case RED -> {
+    //$$                     if (!player.getInventory().add(new ItemStack(Items.RED_CARPET)))         player.spawnAtLocation(new ItemStack(Items.RED_CARPET));
+    //$$                 }
+    //$$                 case DEEP_PURPLE -> {
+    //$$                     if (!player.getInventory().add(new ItemStack(Items.PURPLE_CARPET)))      player.spawnAtLocation(new ItemStack(Items.PURPLE_CARPET));
+    //$$                 }
+    //$$                 case DEEP_GREEN -> {
+    //$$                     if (!player.getInventory().add(new ItemStack(Items.GREEN_CARPET)))       player.spawnAtLocation(new ItemStack(Items.GREEN_CARPET));
+    //$$                 }
+    //$$                 case DEEP_BLUE -> {
+    //$$                     if (!player.getInventory().add(new ItemStack(Items.BLUE_CARPET)))        player.spawnAtLocation(new ItemStack(Items.BLUE_CARPET));
+    //$$                 }
+    //$$                 case PINK -> {
+    //$$                     if (!player.getInventory().add(new ItemStack(Items.PINK_CARPET)))        player.spawnAtLocation(new ItemStack(Items.PINK_CARPET));
+    //$$                 }
+    //$$                 case PURPLE -> {
+    //$$                     if (!player.getInventory().add(new ItemStack(Items.MAGENTA_CARPET)))     player.spawnAtLocation(new ItemStack(Items.MAGENTA_CARPET));
+    //$$                 }
+    //$$                 case GREEN ->  {
+    //$$                     if (!player.getInventory().add(new ItemStack(Items.LIME_CARPET)))        player.spawnAtLocation(new ItemStack(Items.LIME_CARPET));
+    //$$                 }
+    //$$                 case BLUE -> {
+    //$$                     if (!player.getInventory().add(new ItemStack(Items.LIGHT_BLUE_CARPET)))  player.spawnAtLocation(new ItemStack(Items.LIGHT_BLUE_CARPET));
+    //$$                 }
+    //$$                 case YELLOW -> {
+    //$$                     if (!player.getInventory().add(new ItemStack(Items.YELLOW_CARPET)))      player.spawnAtLocation(new ItemStack(Items.YELLOW_CARPET));
+    //$$                 }
+    //$$             }
+    //$$             world.setBlockAndUpdate(pos, state.setValue(CLOTH_COLOR, RattanTableClothColor.NONE));
+    //$$             return InteractionResult.SUCCESS;
+    //$$         }
+    //$$     }
+    //$$     return InteractionResult.PASS;
+    //$$ }
+    //#endif
 
     public enum RattanTableClothColor implements StringRepresentable {
         NONE("none"),

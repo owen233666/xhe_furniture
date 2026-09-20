@@ -1,0 +1,46 @@
+package com.owen233666;/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
+// Registered as the "fabric-datagen" entrypoint in fabric.mod.json. Run it with
+// `gradlew :<version>:runDatagen`; output lands in that version's src/main/generated.
+//#if FABRIC
+//$$ package com.owen233666;
+//$$
+//$$ import com.owen233666.datagen.ModBlockLootTableProvider;
+//$$ import com.owen233666.datagen.ModBlockTagProvider;
+//$$ import com.owen233666.datagen.ModItemTagProvider;
+//$$ import com.owen233666.datagen.ModRecipeProvider;
+//$$ import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
+//$$ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+//$$
+//$$ public class XheFurnitureDataGenerator implements DataGeneratorEntrypoint {
+//$$ 	@Override
+//$$ 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
+//$$ 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
+//$$
+//$$ //		pack.addProvider(ModModelProvider::new);
+//$$ 		pack.addProvider(ModBlockLootTableProvider::new);
+//$$ //		pack.addProvider(EaselPaintingModelProvider::new);
+//$$ //		pack.addProvider(CanvasAndDrawingBoardPaintingWallModelProvider::new);
+//$$ //		pack.addProvider(CanvasAndDrawingBoardPaintingCorner1ModelProvider::new);
+//$$ //		pack.addProvider(CanvasAndDrawingBoardPaintingCorner2ModelProvider::new);
+//$$ //		pack.addProvider(CanvasAndDrawingBoardPaintingCorner3ModelProvider::new);
+//$$ //		pack.addProvider(PhotoPaperPaintingsAModelProvider::new);
+//$$ //		pack.addProvider(PhotoPaperPaintingsBModelProvider::new);
+//$$ //		pack.addProvider(PhotoPaperPaintingsCModelProvider::new);
+//$$ //		pack.addProvider(GridShelfPhotoPaperPaintingsAModelProvider::new);
+//$$ //		pack.addProvider(GridShelfPhotoPaperPaintingsBModelProvider::new);
+//$$ //		pack.addProvider(GridShelfPhotoPaperPaintingsCModelProvider::new);
+//$$ 		pack.addProvider(ModBlockTagProvider::new);
+//$$ //		pack.addProvider(PaintingFramePaintingCorner1ModelProvider::new);
+//$$ //		pack.addProvider(PaintingFramePaintingCorner2ModelProvider::new);
+//$$ //		pack.addProvider(PaintingFramePaintingCorner3ModelProvider::new);
+//$$ //		pack.addProvider(PaintingFramePaintingWallModelProvider::new);
+//$$ 		pack.addProvider(ModItemTagProvider::new);
+//$$ 		pack.addProvider(ModRecipeProvider::new);
+//$$ 	}
+//$$ }
+//$$
+//#endif

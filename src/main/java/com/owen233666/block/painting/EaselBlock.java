@@ -1,5 +1,11 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.block.painting;
 
+import com.mojang.serialization.MapCodec;
 import com.owen233666.XheFurniture;
 import com.owen233666.block.ModBlocks;
 import com.owen233666.block.entity.EaselBlockEntity;
@@ -15,6 +21,9 @@ import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+//#if MC >= 12005
+import net.minecraft.world.ItemInteractionResult;
+//#endif
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -50,6 +59,14 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
         );
     }
 
+    // 1.20.5 起 BlockBehaviour.codec() 是抽象方法，每个具体方块都要给出自己的 MapCodec。
+    //#if MC >= 12005
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(EaselBlock::new);
+    }
+    //#endif
+
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
@@ -65,9 +82,11 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
         return DIRTY;
     }
 
+    // 1.20.5 起 BlockBehaviour#use 被拆成 useItemOn / useWithoutItem。
+    //#if MC >= 12005
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        ItemStack heldStack = player.getItemInHand(hand);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        ItemStack heldStack = stack;
         Item heldItem = heldStack.getItem();
         boolean hasCanvas = hasCanvas(state.getValue(CANVAS_TYPE));
         BlockEntity be = world.getBlockEntity(pos);
@@ -83,7 +102,8 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
         if (heldItem instanceof PaintBrushItem) {
             InteractionResult dyeResult = dyeWithBrush(world, pos, state, player, hand);
             if (dyeResult.consumesAction()) {
-                return dyeResult;
+                // dyeWithBrush 只会返回 PASS 或 SUCCESS，能消耗动作时必然等价于 SUCCESS。
+                return ItemInteractionResult.SUCCESS;
             }
         }
 
@@ -91,56 +111,57 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
 
             if (state.getValue(DIRTY)) {
                 world.setBlockAndUpdate(pos, state.setValue(DIRTY, false));
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }else {
-                return InteractionResult.PASS;
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
         }
 
         if (byItem(heldItem) instanceof CanvasBlock){
 
             if (!hasCanvas){
-                if (byItem(heldItem) == ModBlocks.CANVAS){
+                if (byItem(heldItem) == ModBlocks.CANVAS.get()){
                     world.setBlockAndUpdate(pos, state.setValue(CANVAS_TYPE, CanvasType.CANVAS));
                 }else {
                     world.setBlockAndUpdate(pos, state.setValue(CANVAS_TYPE, CanvasType.DRAWING_BOARD));
                 }
                 if (!player.isCreative()) heldStack.shrink(1);
-                return InteractionResult.CONSUME;
+                return ItemInteractionResult.CONSUME;
             }else {
                 if (state.getValue(CANVAS_TYPE) == CanvasType.CANVAS){
-                    ItemStack stack = new ItemStack(ModBlocks.CANVAS, 1);
-                    if (!player.getInventory().add(stack)) player.spawnAtLocation(stack);
+                    // 局部变量不能再叫 stack：useItemOn 的入参已经占用了这个名字。
+                    ItemStack returnStack = new ItemStack(ModBlocks.CANVAS.get(), 1);
+                    if (!player.getInventory().add(returnStack)) player.spawnAtLocation(returnStack);
                 }else{
-                    ItemStack stack = new ItemStack(ModBlocks.DRAWING_BOARD, 1);
-                    if (!player.getInventory().add(stack)) player.spawnAtLocation(stack);
+                    ItemStack returnStack = new ItemStack(ModBlocks.DRAWING_BOARD.get(), 1);
+                    if (!player.getInventory().add(returnStack)) player.spawnAtLocation(returnStack);
                 }
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
 
-        if (player.getItemInHand(hand).isEmpty() && player.isShiftKeyDown()) {
+        if (heldStack.isEmpty() && player.isShiftKeyDown()) {
             if (hasCanvas && !hasPainting) {
                 CanvasType canvasType = state.getValue(CANVAS_TYPE);
                 return switch (canvasType) {
                     case NONE -> {
-                        yield InteractionResult.PASS;
+                        yield ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
                     }
                     case CANVAS -> {
-                        ItemStack giveStack = new ItemStack(ModBlocks.CANVAS);
+                        ItemStack giveStack = new ItemStack(ModBlocks.CANVAS.get());
                         if (!player.getInventory().add(giveStack)) {
                             player.spawnAtLocation(giveStack);
                         }
                         world.setBlockAndUpdate(pos, state.setValue(CANVAS_TYPE, CanvasType.NONE));
-                        yield InteractionResult.SUCCESS;
+                        yield ItemInteractionResult.SUCCESS;
                     }
                     case DRAWING_BOARD -> {
-                        ItemStack giveStack = new ItemStack(ModBlocks.DRAWING_BOARD);
+                        ItemStack giveStack = new ItemStack(ModBlocks.DRAWING_BOARD.get());
                         if (!player.getInventory().add(giveStack)) {
                             player.spawnAtLocation(giveStack);
                         }
                         world.setBlockAndUpdate(pos, state.setValue(CANVAS_TYPE, CanvasType.NONE));
-                        yield InteractionResult.SUCCESS;
+                        yield ItemInteractionResult.SUCCESS;
                     }
                 };
             }
@@ -149,29 +170,138 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
         if (be instanceof EaselBlockEntity easelBlockEntity){
             boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
             XheFurniture.LOGGER.info(String.valueOf(heldIsPainting));
-            if (!hasCanvas)return InteractionResult.PASS;
+            if (!hasCanvas)return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             if (!(inventory.isEmpty() || inventory.getFirst() == ItemStack.EMPTY)) {
                 if (heldIsPainting){
                     addItem(world, pos, player, easelBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }else {
                     remove(world, pos, player, easelBlockEntity);
-                    return InteractionResult.PASS;
+                    return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
                 }
             }else {
-                if (!hasCanvas)return InteractionResult.PASS;
+                if (!hasCanvas)return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
                 if (heldIsPainting){
                     remove(world, pos, player, easelBlockEntity);
                     addItem(world, pos, player, easelBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }else{
                     remove(world, pos, player, easelBlockEntity);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
+    //#else
+    //$$ @Override
+    //$$ public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    //$$     ItemStack heldStack = player.getItemInHand(hand);
+    //$$     Item heldItem = heldStack.getItem();
+    //$$     boolean hasCanvas = hasCanvas(state.getValue(CANVAS_TYPE));
+    //$$     BlockEntity be = world.getBlockEntity(pos);
+    //$$     NonNullList<ItemStack> inventory;
+    //$$
+    //$$     if (be instanceof EaselBlockEntity){
+    //$$         inventory = ((EaselBlockEntity) be).getInv();
+    //$$     }else {
+    //$$         inventory = NonNullList.withSize(1, ItemStack.EMPTY);
+    //$$     }
+    //$$     boolean hasPainting =!(inventory.getFirst() == ItemStack.EMPTY);
+    //$$
+    //$$     if (heldItem instanceof PaintBrushItem) {
+    //$$         InteractionResult dyeResult = dyeWithBrush(world, pos, state, player, hand);
+    //$$         if (dyeResult.consumesAction()) {
+    //$$             return dyeResult;
+    //$$         }
+    //$$     }
+    //$$
+    //$$     if (byItem(heldItem) instanceof WetSpongeBlock){
+    //$$
+    //$$         if (state.getValue(DIRTY)) {
+    //$$             world.setBlockAndUpdate(pos, state.setValue(DIRTY, false));
+    //$$             return InteractionResult.SUCCESS;
+    //$$         }else {
+    //$$             return InteractionResult.PASS;
+    //$$         }
+    //$$     }
+    //$$
+    //$$     if (byItem(heldItem) instanceof CanvasBlock){
+    //$$
+    //$$         if (!hasCanvas){
+    //$$             if (byItem(heldItem) == ModBlocks.CANVAS.get()){
+    //$$                 world.setBlockAndUpdate(pos, state.setValue(CANVAS_TYPE, CanvasType.CANVAS));
+    //$$             }else {
+    //$$                 world.setBlockAndUpdate(pos, state.setValue(CANVAS_TYPE, CanvasType.DRAWING_BOARD));
+    //$$             }
+    //$$             if (!player.isCreative()) heldStack.shrink(1);
+    //$$             return InteractionResult.CONSUME;
+    //$$         }else {
+    //$$             if (state.getValue(CANVAS_TYPE) == CanvasType.CANVAS){
+    //$$                 ItemStack stack = new ItemStack(ModBlocks.CANVAS.get(), 1);
+    //$$                 if (!player.getInventory().add(stack)) player.spawnAtLocation(stack);
+    //$$             }else{
+    //$$                 ItemStack stack = new ItemStack(ModBlocks.DRAWING_BOARD.get(), 1);
+    //$$                 if (!player.getInventory().add(stack)) player.spawnAtLocation(stack);
+    //$$             }
+    //$$             return InteractionResult.SUCCESS;
+    //$$         }
+    //$$     }
+    //$$
+    //$$     if (player.getItemInHand(hand).isEmpty() && player.isShiftKeyDown()) {
+    //$$         if (hasCanvas && !hasPainting) {
+    //$$             CanvasType canvasType = state.getValue(CANVAS_TYPE);
+    //$$             return switch (canvasType) {
+    //$$                 case NONE -> {
+    //$$                     yield InteractionResult.PASS;
+    //$$                 }
+    //$$                 case CANVAS -> {
+    //$$                     ItemStack giveStack = new ItemStack(ModBlocks.CANVAS.get());
+    //$$                     if (!player.getInventory().add(giveStack)) {
+    //$$                         player.spawnAtLocation(giveStack);
+    //$$                     }
+    //$$                     world.setBlockAndUpdate(pos, state.setValue(CANVAS_TYPE, CanvasType.NONE));
+    //$$                     yield InteractionResult.SUCCESS;
+    //$$                 }
+    //$$                 case DRAWING_BOARD -> {
+    //$$                     ItemStack giveStack = new ItemStack(ModBlocks.DRAWING_BOARD.get());
+    //$$                     if (!player.getInventory().add(giveStack)) {
+    //$$                         player.spawnAtLocation(giveStack);
+    //$$                     }
+    //$$                     world.setBlockAndUpdate(pos, state.setValue(CANVAS_TYPE, CanvasType.NONE));
+    //$$                     yield InteractionResult.SUCCESS;
+    //$$                 }
+    //$$             };
+    //$$         }
+    //$$     }
+    //$$
+    //$$     if (be instanceof EaselBlockEntity easelBlockEntity){
+    //$$         boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
+    //$$         XheFurniture.LOGGER.info(String.valueOf(heldIsPainting));
+    //$$         if (!hasCanvas)return InteractionResult.PASS;
+    //$$         if (!(inventory.isEmpty() || inventory.getFirst() == ItemStack.EMPTY)) {
+    //$$             if (heldIsPainting){
+    //$$                 addItem(world, pos, player, easelBlockEntity, heldStack);
+    //$$                 return InteractionResult.CONSUME;
+    //$$             }else {
+    //$$                 remove(world, pos, player, easelBlockEntity);
+    //$$                 return InteractionResult.PASS;
+    //$$             }
+    //$$         }else {
+    //$$             if (!hasCanvas)return InteractionResult.PASS;
+    //$$             if (heldIsPainting){
+    //$$                 remove(world, pos, player, easelBlockEntity);
+    //$$                 addItem(world, pos, player, easelBlockEntity, heldStack);
+    //$$                 return InteractionResult.CONSUME;
+    //$$             }else{
+    //$$                 remove(world, pos, player, easelBlockEntity);
+    //$$                 return InteractionResult.SUCCESS;
+    //$$             }
+    //$$         }
+    //$$     }
+    //$$     return InteractionResult.PASS;
+    //$$ }
+    //#endif
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
@@ -196,9 +326,9 @@ public class EaselBlock extends HorizontalDirectionalBlock implements EntityBloc
         super.playerDestroy(level, player, blockPos, blockState, blockEntity, itemStack);
         if (!player.isCreative()) {
             if (blockState.getValue(CANVAS_TYPE) == CanvasType.CANVAS) {
-                popResource(level, blockPos, new ItemStack(ModBlocks.CANVAS));
+                popResource(level, blockPos, new ItemStack(ModBlocks.CANVAS.get()));
             } else if (blockState.getValue(CANVAS_TYPE) == CanvasType.DRAWING_BOARD) {
-                popResource(level, blockPos, new ItemStack(ModBlocks.DRAWING_BOARD));
+                popResource(level, blockPos, new ItemStack(ModBlocks.DRAWING_BOARD.get()));
             }
         }
     }

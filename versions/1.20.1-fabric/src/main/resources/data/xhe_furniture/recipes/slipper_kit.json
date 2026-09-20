@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "W": {
+      "tag": "minecraft:wool"
+    }
+  },
+  "pattern": [
+    "WWW",
+    " WW"
+  ],
+  "result": {
+    "item": "xhe_furniture:slipper_kit"
+  },
+  "show_notification": true
+}

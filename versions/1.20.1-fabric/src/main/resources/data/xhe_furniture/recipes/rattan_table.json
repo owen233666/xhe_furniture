@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "minecraft:bamboo"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "BBB",
+    " B ",
+    " S "
+  ],
+  "result": {
+    "item": "xhe_furniture:rattan_table"
+  },
+  "show_notification": true
+}

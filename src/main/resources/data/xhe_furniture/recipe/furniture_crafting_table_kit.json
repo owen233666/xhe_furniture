@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "P P",
+    "SSS"
+  ],
+  "result": {
+    "id": "xhe_furniture:furniture_crafting_table_kit"
+  },
+  "show_notification": true
+}

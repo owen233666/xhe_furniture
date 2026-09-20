@@ -3,7 +3,7 @@
 	"credit": "Made with Blockbench",
 	"texture_size": [32, 32],
 	"textures": {
-		"3": "书籍"
+		"3": "xhe_furniture:block/book"
 	},
 	"elements": [
 		{

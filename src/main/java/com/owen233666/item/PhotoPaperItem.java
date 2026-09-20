@@ -1,3 +1,8 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.item;
 
 import net.minecraft.ChatFormatting;
@@ -12,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class PhotoPaperItem extends BlockItem implements Vanishable {
+public class PhotoPaperItem extends BlockItem {
 
     public PhotoPaperItem(Block block, Properties properties) {
         super(block, properties);
@@ -55,20 +60,27 @@ public class PhotoPaperItem extends BlockItem implements Vanishable {
     }
 
     private boolean isWhitePaper(Item item) {
-        return item == ModItems.PHOTO_PAPER_WHITE_A ||
-                item == ModItems.PHOTO_PAPER_WHITE_B ||
-                item == ModItems.PHOTO_PAPER_WHITE_C;
+        return item == ModItems.PHOTO_PAPER_WHITE_A.get() ||
+                item == ModItems.PHOTO_PAPER_WHITE_B.get() ||
+                item == ModItems.PHOTO_PAPER_WHITE_C.get();
     }
 
     private boolean isBlackPaper(Item item) {
-        return item == ModItems.PHOTO_PAPER_BLACK_A ||
-                item == ModItems.PHOTO_PAPER_BLACK_B ||
-                item == ModItems.PHOTO_PAPER_BLACK_C;
+        return item == ModItems.PHOTO_PAPER_BLACK_A.get() ||
+                item == ModItems.PHOTO_PAPER_BLACK_B.get() ||
+                item == ModItems.PHOTO_PAPER_BLACK_C.get();
     }
 
+    // 1.20.5 replaced the Level tooltip parameter with Item.TooltipContext.
+    //#if MC >= 12005
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
-        super.appendHoverText(itemStack, level, list, tooltipFlag);
+    public void appendHoverText(ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
+        super.appendHoverText(itemStack, tooltipContext, list, tooltipFlag);
+    //#else
+    //$$ @Override
+    //$$ public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {
+    //$$     super.appendHoverText(itemStack, level, list, tooltipFlag);
+    //#endif
         list.add(Component.translatable(
                 "tooltip.xhe_furniture.photo_paper",
                 Component.keybind("key.sneak"),
@@ -78,16 +90,16 @@ public class PhotoPaperItem extends BlockItem implements Vanishable {
     }
 
     private Item getNextWhitePaper(Item current) {
-        if (current == ModItems.PHOTO_PAPER_WHITE_A) return ModItems.PHOTO_PAPER_WHITE_B;
-        if (current == ModItems.PHOTO_PAPER_WHITE_B) return ModItems.PHOTO_PAPER_WHITE_C;
-        if (current == ModItems.PHOTO_PAPER_WHITE_C) return ModItems.PHOTO_PAPER_WHITE_A;
+        if (current == ModItems.PHOTO_PAPER_WHITE_A.get()) return ModItems.PHOTO_PAPER_WHITE_B.get();
+        if (current == ModItems.PHOTO_PAPER_WHITE_B.get()) return ModItems.PHOTO_PAPER_WHITE_C.get();
+        if (current == ModItems.PHOTO_PAPER_WHITE_C.get()) return ModItems.PHOTO_PAPER_WHITE_A.get();
         return null;
     }
 
     private Item getNextBlackPaper(Item current) {
-        if (current == ModItems.PHOTO_PAPER_BLACK_A) return ModItems.PHOTO_PAPER_BLACK_B;
-        if (current == ModItems.PHOTO_PAPER_BLACK_B) return ModItems.PHOTO_PAPER_BLACK_C;
-        if (current == ModItems.PHOTO_PAPER_BLACK_C) return ModItems.PHOTO_PAPER_BLACK_A;
+        if (current == ModItems.PHOTO_PAPER_BLACK_A.get()) return ModItems.PHOTO_PAPER_BLACK_B.get();
+        if (current == ModItems.PHOTO_PAPER_BLACK_B.get()) return ModItems.PHOTO_PAPER_BLACK_C.get();
+        if (current == ModItems.PHOTO_PAPER_BLACK_C.get()) return ModItems.PHOTO_PAPER_BLACK_A.get();
         return null;
     }
 }

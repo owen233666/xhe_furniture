@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "W": {
+      "item": "minecraft:white_wool"
+    }
+  },
+  "pattern": [
+    "PW",
+    "PP"
+  ],
+  "result": {
+    "id": "xhe_furniture:palette"
+  },
+  "show_notification": true
+}

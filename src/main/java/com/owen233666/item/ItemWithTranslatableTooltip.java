@@ -1,3 +1,8 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.item;
 
 import net.minecraft.ChatFormatting;
@@ -25,8 +30,14 @@ public class ItemWithTranslatableTooltip extends Item {
         return "item.xhe_furniture.painting";
     }
 
+    // 1.20.5 replaced the Level tooltip parameter with Item.TooltipContext.
+    //#if MC >= 12005
     @Override
-    public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
+    public void appendHoverText(ItemStack stack, Item.TooltipContext tooltipContext, List<Component> tooltip, TooltipFlag context) {
+    //#else
+    //$$ @Override
+    //$$ public void appendHoverText(ItemStack stack, @Nullable Level world, List<Component> tooltip, TooltipFlag context) {
+    //#endif
         tooltip.add(Component.translatable("painting.xhe_furniture." + key).withStyle(ChatFormatting.GRAY));
         tooltip.add(
                 Component.empty()

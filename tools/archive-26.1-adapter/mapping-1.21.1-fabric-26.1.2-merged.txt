@@ -1,0 +1,16 @@
+# Extra mappings for the edge 1.21.1-fabric -> 26.1.2-merged.
+#
+# IMPORTANT: fields MUST be separated by a single literal SPACE.
+# A TAB separator breaks parsing with "Failed to parse line N in <path>".
+# (This file is read by com.replaymod.gradle.remap.legacy.LegacyMapping, which splits
+#  on " " -- NOT by ExtraMapping, which is the one that uses the regex \s+.)
+#
+# Format:  <sourceName> <destinationName>
+# See REMAINING_WORK.md section K for details and for the full 26.1.2 error inventory.
+
+# 26.1 renamed the identifier type.
+net.minecraft.resources.ResourceLocation net.minecraft.resources.Identifier
+
+# 26.1 package moves.
+net.minecraft.Util net.minecraft.util.Util
+net.minecraft.client.renderer.RenderType net.minecraft.client.renderer.rendertype.RenderType

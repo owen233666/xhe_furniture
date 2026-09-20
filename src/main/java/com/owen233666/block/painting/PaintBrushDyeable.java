@@ -1,9 +1,15 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.block.painting;
 
 import com.owen233666.item.PaintBrushItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -44,7 +50,14 @@ public interface PaintBrushDyeable {
             if (heldStack.getDamageValue() != heldStack.getMaxDamage()) {
                 level.setBlockAndUpdate(pos, state.setValue(dirty, true));
                 if (!player.isCreative()) {
-                    heldStack.hurtAndBreak(1, player, (playerx) -> playerx.broadcastBreakEvent(hand));
+//#disable-remap
+                    // 1.20.5 起 hurtAndBreak 的第三个参数由 Consumer 变成 EquipmentSlot。
+                    //#if MC >= 12005
+                    heldStack.hurtAndBreak(1, player, hand == InteractionHand.MAIN_HAND ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND);
+                    //#else
+                    //$$                 heldStack.hurtAndBreak(1, player, (playerx) -> playerx.broadcastBreakEvent(hand));
+                    //#endif
+//#enable-remap
                 }
                 return InteractionResult.SUCCESS;
             }

@@ -1,6 +1,12 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.block.entity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -21,7 +27,7 @@ public class EaselBlockEntity extends BlockEntity {
     private Boolean wip;
 
     public EaselBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntityTypes.EASEL_BLOCK_BE, pos, state);
+        super(ModBlockEntityTypes.EASEL_BLOCK_BE.get(), pos, state);
         this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
         this.wip = false;
     }
@@ -36,20 +42,39 @@ public class EaselBlockEntity extends BlockEntity {
         setChanged();
     }
 
+    //#if MC >= 12005
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+        super.loadAdditional(nbt, registries);
         this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
         this.wip = nbt.getBoolean("wip");
-        ContainerHelper.loadAllItems(nbt, this.inventory);
+        ContainerHelper.loadAllItems(nbt, this.inventory, registries);
     }
+    //#else
+    //$$ @Override
+    //$$ public void load(CompoundTag nbt) {
+    //$$     super.load(nbt);
+    //$$     this.inventory = NonNullList.withSize(1, ItemStack.EMPTY);
+    //$$     this.wip = nbt.getBoolean("wip");
+    //$$     ContainerHelper.loadAllItems(nbt, this.inventory);
+    //$$ }
+    //#endif
 
+    //#if MC >= 12005
     @Override
-    protected void saveAdditional(CompoundTag nbt) {
-        ContainerHelper.saveAllItems(nbt, this.inventory);
+    protected void saveAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+        ContainerHelper.saveAllItems(nbt, this.inventory, registries);
         nbt.putBoolean("wip", wip);
-        super.saveAdditional(nbt);
+        super.saveAdditional(nbt, registries);
     }
+    //#else
+    //$$ @Override
+    //$$ protected void saveAdditional(CompoundTag nbt) {
+    //$$     ContainerHelper.saveAllItems(nbt, this.inventory);
+    //$$     nbt.putBoolean("wip", wip);
+    //$$     super.saveAdditional(nbt);
+    //$$ }
+    //#endif
 
     @Override
     public void setChanged() {
@@ -69,10 +94,17 @@ public class EaselBlockEntity extends BlockEntity {
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
+    //#if MC >= 12005
     @Override
-    public @NotNull CompoundTag getUpdateTag() {
-        return this.saveWithoutMetadata();
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+        return this.saveWithoutMetadata(registries);
     }
+    //#else
+    //$$ @Override
+    //$$ public @NotNull CompoundTag getUpdateTag() {
+    //$$     return this.saveWithoutMetadata();
+    //$$ }
+    //#endif
 
     public NonNullList<ItemStack> getInv() {
         return this.inventory;

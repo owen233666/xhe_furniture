@@ -4,7 +4,7 @@
       "model": "xhe_furniture:block/carpet_yellow",
       "y": 90
     },
-    "facing=southnorth": {
+    "facing=south": {
       "model": "xhe_furniture:block/carpet_yellow"
     },
     "facing=north": {

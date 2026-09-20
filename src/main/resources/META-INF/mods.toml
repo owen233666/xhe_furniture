@@ -1,0 +1,22 @@
+modLoader = "javafml"
+loaderVersion = "[31,)"
+license = "LGPLv3"
+issueTrackerURL = "https://github.com/owen233666/xhe_furniture/issues"
+
+[[mods]]
+modId = "${id}"
+version = "${version}"
+displayName = "${name}"
+displayURL = "https://github.com/owen233666/xhe_furniture"
+authors = "owen233666, XHeYa_3u3"
+description = '''
+感谢下载小禾家具，如遇BUG请前往模组发布页面反馈~
+'''
+logoFile = "icon.png"
+
+[[dependencies."${id}"]]
+modId = "minecraft"
+mandatory = true
+versionRange = "${minecraft_dependency}"
+ordering = "NONE"
+side = "BOTH"

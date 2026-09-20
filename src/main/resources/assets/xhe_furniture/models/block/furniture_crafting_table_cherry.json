@@ -1,0 +1,8 @@
+{
+  "parent": "xhe_furniture:block/parent/furniture_crafting_table",
+  "textures": {
+    "2": "xhe_furniture:block/furniture_crafting_table_cherry",
+    "4": "xhe_furniture:block/furniture_crafting_table_cherry",
+    "particle": "xhe_furniture:block/furniture_crafting_table_cherry"
+  }
+}

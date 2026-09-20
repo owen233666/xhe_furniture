@@ -1,3 +1,8 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.item;
 
 import com.owen233666.block.painting.CanvasBlock;
@@ -13,7 +18,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Vanishable;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -21,7 +25,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 
-public class PaintBrushItem extends Item implements Vanishable {
+public class PaintBrushItem extends Item {
     private final Block block;
 
     public PaintBrushItem(Properties settings, Block block) {
@@ -94,6 +98,8 @@ public class PaintBrushItem extends Item implements Vanishable {
 
     @Override
     public boolean isEnchantable(ItemStack stack) {
-        return this.getMaxStackSize() == 1;
+        // 1.21 removed Item#getMaxStackSize(); the stack size now lives in the item's data
+        // components (set via Item.Properties#stacksTo) and is read back from the stack.
+        return stack.getMaxStackSize() == 1;
     }
 }

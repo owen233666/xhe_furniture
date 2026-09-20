@@ -1,11 +1,21 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.block;
 
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+//#if MC >= 12005
+import net.minecraft.world.ItemInteractionResult;
+//#endif
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -26,6 +36,14 @@ public class SlippersBlock extends HorizontalDirectionalBlock {
                 .setValue(SLIPPERS_TYPE, SlippersType.A));
     }
 
+    // 1.20.5 起 BlockBehaviour.codec() 是抽象方法，每个具体方块都要给出自己的 MapCodec。
+    //#if MC >= 12005
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(SlippersBlock::new);
+    }
+    //#endif
+
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
@@ -37,15 +55,28 @@ public class SlippersBlock extends HorizontalDirectionalBlock {
         builder.add(FACING, SLIPPERS_TYPE);
     }
 
+    // 1.20.5 起 BlockBehaviour#use 被拆成 useItemOn / useWithoutItem。
+    //#if MC >= 12005
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (!world.isClientSide) {
             SlippersType slippersType = state.getValue(SLIPPERS_TYPE).next();
             BlockState newState = state.setValue(SLIPPERS_TYPE, slippersType);
             world.setBlockAndUpdate(pos, newState);
         }
-        return InteractionResult.SUCCESS;
+        return ItemInteractionResult.SUCCESS;
     }
+    //#else
+    //$$ @Override
+    //$$ public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    //$$     if (!world.isClientSide) {
+    //$$         SlippersType slippersType = state.getValue(SLIPPERS_TYPE).next();
+    //$$         BlockState newState = state.setValue(SLIPPERS_TYPE, slippersType);
+    //$$         world.setBlockAndUpdate(pos, newState);
+    //$$     }
+    //$$     return InteractionResult.SUCCESS;
+    //$$ }
+    //#endif
 
     public enum SlippersType implements StringRepresentable {
         A("a"),

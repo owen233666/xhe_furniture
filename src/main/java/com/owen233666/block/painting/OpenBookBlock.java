@@ -1,5 +1,11 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.block.painting;
 
+import com.mojang.serialization.MapCodec;
 import com.owen233666.block.entity.BookLikeBlockEntity;
 import com.owen233666.item.ModItemTags;
 import net.minecraft.core.BlockPos;
@@ -8,6 +14,9 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+//#if MC >= 12005
+import net.minecraft.world.ItemInteractionResult;
+//#endif
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -37,6 +46,14 @@ public class OpenBookBlock extends HorizontalDirectionalBlock implements EntityB
         super(properties);
     }
 
+    // 1.20.5 起 BlockBehaviour.codec() 是抽象方法，每个具体方块都要给出自己的 MapCodec。
+    //#if MC >= 12005
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(OpenBookBlock::new);
+    }
+    //#endif
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING, STATE);
@@ -50,9 +67,11 @@ public class OpenBookBlock extends HorizontalDirectionalBlock implements EntityB
                 .setValue(STATE, random.nextInt(1, 6));
     }
 
+    // 1.20.5 起 BlockBehaviour#use 被拆成 useItemOn / useWithoutItem。
+    //#if MC >= 12005
     @Override
-    public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
-        ItemStack heldStack = player.getItemInHand(interactionHand);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+        ItemStack heldStack = stack;
         Item heldItem = heldStack.getItem();
         BlockEntity blockEntity = level.getBlockEntity(blockPos);
 
@@ -67,7 +86,7 @@ public class OpenBookBlock extends HorizontalDirectionalBlock implements EntityB
                         state = bstate + 1;
                     }
                     level.setBlockAndUpdate(blockPos, blockState.setValue(STATE, state));
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }else {
                     remove(level, blockPos, player, bookLikeBlockEntity);
                 }
@@ -75,15 +94,51 @@ public class OpenBookBlock extends HorizontalDirectionalBlock implements EntityB
             if (heldIsPainting(heldItem)) {
                 remove(level, blockPos, player, bookLikeBlockEntity);
                 addItem(level, blockPos, player, bookLikeBlockEntity, heldStack);
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
             if (!(bookLikeBlockEntity.getInv().getFirst() == ItemStack.EMPTY)){
                 remove(level, blockPos, player, bookLikeBlockEntity);
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
+    //#else
+    //$$ @Override
+    //$$ public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult) {
+    //$$     ItemStack heldStack = player.getItemInHand(interactionHand);
+    //$$     Item heldItem = heldStack.getItem();
+    //$$     BlockEntity blockEntity = level.getBlockEntity(blockPos);
+    //$$
+    //$$     if (blockEntity instanceof BookLikeBlockEntity bookLikeBlockEntity) {
+    //$$         if (heldStack.isEmpty()) {
+    //$$             if (player.isShiftKeyDown()) {
+    //$$                 int bstate = blockState.getValue(STATE);
+    //$$                 int state;
+    //$$                 if (bstate + 1 > 5) {
+    //$$                     state = 1;
+    //$$                 }else {
+    //$$                     state = bstate + 1;
+    //$$                 }
+    //$$                 level.setBlockAndUpdate(blockPos, blockState.setValue(STATE, state));
+    //$$                 return InteractionResult.SUCCESS;
+    //$$             }else {
+    //$$                 remove(level, blockPos, player, bookLikeBlockEntity);
+    //$$             }
+    //$$         }
+    //$$         if (heldIsPainting(heldItem)) {
+    //$$             remove(level, blockPos, player, bookLikeBlockEntity);
+    //$$             addItem(level, blockPos, player, bookLikeBlockEntity, heldStack);
+    //$$             return InteractionResult.SUCCESS;
+    //$$         }
+    //$$         if (!(bookLikeBlockEntity.getInv().getFirst() == ItemStack.EMPTY)){
+    //$$             remove(level, blockPos, player, bookLikeBlockEntity);
+    //$$             return InteractionResult.SUCCESS;
+    //$$         }
+    //$$     }
+    //$$     return InteractionResult.PASS;
+    //$$ }
+    //#endif
 
     @Override
     public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext) {

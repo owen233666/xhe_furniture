@@ -1,3 +1,8 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.util;
 
 import net.minecraft.world.item.Item;
@@ -20,13 +25,18 @@ public class ExposureUtil {
         if (exposureChecked) {
             return;
         }
-        exposureChecked = true;
         try {
-            photographItemClass = Class.forName(PHOTOGRAPH_ITEM_CLASS);
+            photographItemClass = ExposureReflection.loadClass(PHOTOGRAPH_ITEM_CLASS);
             exposureAvailable = true;
-        } catch (Throwable ignored) {
+        } catch (Throwable t) {
+            // Exposure is absent, or its classes are not visible to this mod's class loader. Either
+            // way the integration is simply unavailable; never let it take the game down.
             exposureAvailable = false;
+            ExposureReflection.warnUnavailableOnce("ExposureUtil", PHOTOGRAPH_ITEM_CLASS, t);
         }
+        // Only latch the flag once the probe actually settled, so a half-failed probe is retried
+        // instead of permanently disabling the integration.
+        exposureChecked = true;
     }
 
     /**

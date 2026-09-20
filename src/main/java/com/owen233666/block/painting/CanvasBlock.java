@@ -1,5 +1,11 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.block.painting;
 
+import com.mojang.serialization.MapCodec;
 import com.owen233666.block.entity.CanvasBlockEntity;
 import com.owen233666.item.ModItemTags;
 import com.owen233666.item.PaintBrushItem;
@@ -15,6 +21,9 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+//#if MC >= 12005
+import net.minecraft.world.ItemInteractionResult;
+//#endif
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -75,6 +84,14 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
         );
     }
 
+    // 1.20.5 起 BlockBehaviour.codec() 是抽象方法，每个具体方块都要给出自己的 MapCodec。
+    //#if MC >= 12005
+    @Override
+    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
+        return simpleCodec(CanvasBlock::new);
+    }
+    //#endif
+
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
@@ -91,9 +108,11 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
         return state.getValue(PLACE_TYPE) == PlacementState.WALL ? SHAPE_WALL.get(state.getValue(FACING)) : SHAPE_CORNER.get(state.getValue(FACING));
     }
 
+    // 1.20.5 起 BlockBehaviour#use 被拆成 useItemOn / useWithoutItem。
+    //#if MC >= 12005
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        ItemStack heldStack = player.getItemInHand(hand);
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        ItemStack heldStack = stack;
         Item heldItem = heldStack.getItem();
         BlockEntity be = level.getBlockEntity(pos);
         NonNullList<ItemStack> inventory;
@@ -109,7 +128,8 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
         if (heldItem instanceof PaintBrushItem) {
             InteractionResult dyeResult = dyeWithBrush(level, pos, state, player, hand);
             if (dyeResult.consumesAction()) {
-                return dyeResult;
+                // dyeWithBrush 只会返回 PASS 或 SUCCESS，能消耗动作时必然等价于 SUCCESS。
+                return ItemInteractionResult.SUCCESS;
             }
         }
 
@@ -117,9 +137,9 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
         if (Block.byItem(heldItem) instanceof WetSpongeBlock){
             if (state.getValue(DIRTY)) {
                 level.setBlockAndUpdate(pos, state.setValue(DIRTY, false));
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }else {
-                return InteractionResult.PASS;
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
         }
 
@@ -130,15 +150,15 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
                 if (heldIsPainting){
                     remove(level, pos, player, canvasBlockEntity);
                     addItem(level, pos, player, canvasBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }else {
                     remove(level, pos, player, canvasBlockEntity);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             }else{
                 if (heldIsPainting){
                     addItem(level, pos, player, canvasBlockEntity, heldStack);
-                    return InteractionResult.CONSUME;
+                    return ItemInteractionResult.CONSUME;
                 }
             }
         }
@@ -147,18 +167,88 @@ public class CanvasBlock extends HorizontalDirectionalBlock implements EntityBlo
             return addCanvasLayer(level, pos, state, player, heldStack);
         }
 
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
 
-    private InteractionResult addCanvasLayer(Level level, BlockPos pos, BlockState state, Player player, ItemStack heldStack){
+    private ItemInteractionResult addCanvasLayer(Level level, BlockPos pos, BlockState state, Player player, ItemStack heldStack){
         if (state.getValue(COUNT) == 3) {
-            return InteractionResult.PASS;
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
         }
         level.setBlockAndUpdate(pos, state.setValue(COUNT, state.getValue(COUNT) + 1));
         heldStack.split(1);
         if (player.isCreative()) heldStack.grow(1);
-        return InteractionResult.CONSUME_PARTIAL;
+        return ItemInteractionResult.CONSUME_PARTIAL;
     }
+    //#else
+    //$$ @Override
+    //$$ public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    //$$     ItemStack heldStack = player.getItemInHand(hand);
+    //$$     Item heldItem = heldStack.getItem();
+    //$$     BlockEntity be = level.getBlockEntity(pos);
+    //$$     NonNullList<ItemStack> inventory;
+    //$$     boolean canAddCanvas = !state.getValue(RACK) && state.getBlock().asItem() == heldItem;
+    //$$
+    //$$     if (be instanceof CanvasBlockEntity canvasBlockEntity){
+    //$$         inventory = canvasBlockEntity.getInv();
+    //$$     }else {
+    //$$         inventory = NonNullList.withSize(1, ItemStack.EMPTY);
+    //$$     }
+    //$$     boolean hasPainting = !inventory.getFirst().isEmpty();
+    //$$
+    //$$     if (heldItem instanceof PaintBrushItem) {
+    //$$         InteractionResult dyeResult = dyeWithBrush(level, pos, state, player, hand);
+    //$$         if (dyeResult.consumesAction()) {
+    //$$             return dyeResult;
+    //$$         }
+    //$$     }
+    //$$
+    //$$
+    //$$     if (Block.byItem(heldItem) instanceof WetSpongeBlock){
+    //$$         if (state.getValue(DIRTY)) {
+    //$$             level.setBlockAndUpdate(pos, state.setValue(DIRTY, false));
+    //$$             return InteractionResult.SUCCESS;
+    //$$         }else {
+    //$$             return InteractionResult.PASS;
+    //$$         }
+    //$$     }
+    //$$
+    //$$     if (be instanceof CanvasBlockEntity canvasBlockEntity){
+    //$$         boolean heldIsPainting = BuiltInRegistries.ITEM.wrapAsHolder(heldItem).is(ModItemTags.PAINTINGS);
+    //$$
+    //$$         if (hasPainting) {
+    //$$             if (heldIsPainting){
+    //$$                 remove(level, pos, player, canvasBlockEntity);
+    //$$                 addItem(level, pos, player, canvasBlockEntity, heldStack);
+    //$$                 return InteractionResult.CONSUME;
+    //$$             }else {
+    //$$                 remove(level, pos, player, canvasBlockEntity);
+    //$$                 return InteractionResult.SUCCESS;
+    //$$             }
+    //$$         }else{
+    //$$             if (heldIsPainting){
+    //$$                 addItem(level, pos, player, canvasBlockEntity, heldStack);
+    //$$                 return InteractionResult.CONSUME;
+    //$$             }
+    //$$         }
+    //$$     }
+    //$$
+    //$$     if (canAddCanvas) {
+    //$$         return addCanvasLayer(level, pos, state, player, heldStack);
+    //$$     }
+    //$$
+    //$$     return InteractionResult.PASS;
+    //$$ }
+    //$$
+    //$$ private InteractionResult addCanvasLayer(Level level, BlockPos pos, BlockState state, Player player, ItemStack heldStack){
+    //$$     if (state.getValue(COUNT) == 3) {
+    //$$         return InteractionResult.PASS;
+    //$$     }
+    //$$     level.setBlockAndUpdate(pos, state.setValue(COUNT, state.getValue(COUNT) + 1));
+    //$$     heldStack.split(1);
+    //$$     if (player.isCreative()) heldStack.grow(1);
+    //$$     return InteractionResult.CONSUME_PARTIAL;
+    //$$ }
+    //#endif
 
     @Override
     public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {

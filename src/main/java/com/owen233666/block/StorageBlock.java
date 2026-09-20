@@ -1,3 +1,8 @@
+/*
+ * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
+ *
+ * Copyright (C) 2026 owen233666, XHeYa_3u3
+ */
 package com.owen233666.block;
 
 import com.owen233666.block.entity.StorageBlockEntity;
@@ -12,6 +17,9 @@ import net.minecraft.util.Tuple;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+//#if MC >= 12005
+import net.minecraft.world.ItemInteractionResult;
+//#endif
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -44,22 +52,24 @@ public abstract class StorageBlock extends HorizontalDirectionalBlock implements
 
     public abstract int getSection(float x, float y);
 
+    // 1.20.5 起 BlockBehaviour#use 被拆成 useItemOn / useWithoutItem。
+    //#if MC >= 12005
     @Override
-    public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         BlockEntity be = world.getBlockEntity(pos);
-        ItemStack heldStack = player.getItemInHand(hand);
+        ItemStack heldStack = stack;
 
         if(be instanceof StorageBlockEntity storageBlockEntity){
 
             Optional<Tuple<Float, Float>> hitPos = BlockUtil.getHitSectionCoordinate(hit, state.getValue(FACING), this.unAllowedDirections());
             if (hitPos.isEmpty()) {
-                return InteractionResult.PASS;
+                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
 
             Tuple<Float, Float> coordinate = hitPos.get();
             int section = this.getSection(coordinate.getA(), coordinate.getB());
             if (section == Integer.MIN_VALUE) {
-                return  InteractionResult.PASS;
+                return  ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
             }
 
             ItemStack firstItem = storageBlockEntity.getInv().get(section);
@@ -67,7 +77,7 @@ public abstract class StorageBlock extends HorizontalDirectionalBlock implements
 
             if(hasItem){
                 remove(world, pos, player, storageBlockEntity, section);
-                return InteractionResult.SUCCESS;
+                return ItemInteractionResult.SUCCESS;
             }
 
             if(!heldStack.isEmpty()){
@@ -75,14 +85,55 @@ public abstract class StorageBlock extends HorizontalDirectionalBlock implements
 
                 if(canInsert){
                     this.addItem(world, pos, player, storageBlockEntity, heldStack, section);
-                    return InteractionResult.SUCCESS;
+                    return ItemInteractionResult.SUCCESS;
                 }
             }
 
-            return InteractionResult.CONSUME;
+            return ItemInteractionResult.CONSUME;
         }
-        return InteractionResult.PASS;
+        return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
     }
+    //#else
+    //$$ @Override
+    //$$ public InteractionResult use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    //$$     BlockEntity be = world.getBlockEntity(pos);
+    //$$     ItemStack heldStack = player.getItemInHand(hand);
+    //$$
+    //$$     if(be instanceof StorageBlockEntity storageBlockEntity){
+    //$$
+    //$$         Optional<Tuple<Float, Float>> hitPos = BlockUtil.getHitSectionCoordinate(hit, state.getValue(FACING), this.unAllowedDirections());
+    //$$         if (hitPos.isEmpty()) {
+    //$$             return InteractionResult.PASS;
+    //$$         }
+    //$$
+    //$$         Tuple<Float, Float> coordinate = hitPos.get();
+    //$$         int section = this.getSection(coordinate.getA(), coordinate.getB());
+    //$$         if (section == Integer.MIN_VALUE) {
+    //$$             return  InteractionResult.PASS;
+    //$$         }
+    //$$
+    //$$         ItemStack firstItem = storageBlockEntity.getInv().get(section);
+    //$$         boolean hasItem = !firstItem.isEmpty();
+    //$$
+    //$$         if(hasItem){
+    //$$             remove(world, pos, player, storageBlockEntity, section);
+    //$$             return InteractionResult.SUCCESS;
+    //$$         }
+    //$$
+    //$$         if(!heldStack.isEmpty()){
+    //$$             boolean canInsert = this.canInsertStack(heldStack);
+    //$$
+    //$$             if(canInsert){
+    //$$                 this.addItem(world, pos, player, storageBlockEntity, heldStack, section);
+    //$$                 return InteractionResult.SUCCESS;
+    //$$             }
+    //$$         }
+    //$$
+    //$$         return InteractionResult.CONSUME;
+    //$$     }
+    //$$     return InteractionResult.PASS;
+    //$$ }
+    //#endif
 
     public void remove(Level world, BlockPos pos, Player player, StorageBlockEntity storageBlockEntity, int index){
         if(!world.isClientSide()) {
