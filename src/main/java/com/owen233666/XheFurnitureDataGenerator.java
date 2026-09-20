@@ -1,4 +1,4 @@
-package com.owen233666;/*
+/*
  * XHeYa's Furniture (xhe_furniture) - All Rights Reserved
  *
  * Copyright (C) 2026 owen233666, XHeYa_3u3
