@@ -16,6 +16,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,9 +64,15 @@ public class KitJeiPlugin implements IModPlugin {
         Iterable<Item> items = BuiltInRegistries.ITEM;
         for (Item item : items) {
             if (item instanceof KitItem kit) {
-                List<ItemStack> outputs = kit.getOutputs().stream().map(ItemStack::new).toList();
-                // getOutputs() resolves lazily and may briefly contain AIR; drop empties so JEI
-                // never receives a count-0 stack.
+                // getOutputs() resolves lazily, and on the Forge-like loaders it can still contain
+                // AIR: Block#asItem() caches its result, and a list resolved before the block items
+                // existed cached AIR permanently (see KitItem's constructor comment). An AIR entry
+                // becomes a count-0 ItemStack, which JEI rejects with "The stack count must be 1",
+                // so drop the individual empties rather than only checking that the list is non-empty.
+                List<ItemStack> outputs = kit.getOutputs().stream()
+                        .filter(output -> output != Items.AIR)
+                        .map(ItemStack::new)
+                        .toList();
                 if (!outputs.isEmpty()) {
                     recipes.add(new KitRecipe(new ItemStack(kit), outputs));
                 }
