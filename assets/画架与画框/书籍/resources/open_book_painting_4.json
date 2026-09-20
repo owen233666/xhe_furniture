@@ -1,0 +1,193 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"texture_size": [32, 32],
+	"textures": {
+		"4": "画-城市夜景A"
+	},
+	"elements": [
+		{
+			"name": "纸",
+			"from": [5.35, 0.25, -0.25],
+			"to": [7.35, 0.25, 0.75],
+			"rotation": {"angle": 45, "axis": "y", "origin": [9.35, 1.095, 3]},
+			"faces": {
+				"north": {"uv": [2, 5.5, 7.5, 6], "rotation": 180, "texture": "#missing"},
+				"east": {"uv": [8, 5, 12, 5.5], "rotation": 180, "texture": "#missing"},
+				"south": {"uv": [11.5, 0, 12, 5.5], "rotation": 270, "texture": "#missing"},
+				"west": {"uv": [8, 0, 12, 0.5], "rotation": 180, "texture": "#missing"},
+				"up": {"uv": [4.5, 0, 4, 1], "rotation": 270, "texture": "#4"},
+				"down": {"uv": [14, 3.5, 12, 0], "rotation": 90, "texture": "#missing"}
+			}
+		},
+		{
+			"name": "右边封面",
+			"from": [2.55, 0.51, 4.75],
+			"to": [14.55, 0.51, 13.75],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [8.55, 0.795, 9]},
+			"faces": {
+				"north": {"uv": [11.5, 0, 12, 5.5], "rotation": 90, "texture": "#4"},
+				"east": {"uv": [8, 5, 12, 5.5], "texture": "#4"},
+				"south": {"uv": [2, 5.5, 7.5, 6], "texture": "#4"},
+				"west": {"uv": [8, 0, 12, 0.5], "texture": "#4"},
+				"up": {"uv": [10.5, 14, 6, 8], "rotation": 90, "texture": "#4"},
+				"down": {"uv": [12, 0, 8, 5.5], "rotation": 270, "texture": "#4"}
+			}
+		},
+		{
+			"from": [1.58582, 0.9, 10.92597],
+			"to": [2.58582, 1.9, 11.92597],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [4.58582, 1.4, 11.42597]},
+			"faces": {
+				"north": {"uv": [1, 0.5, 1.5, 1], "texture": "#4"},
+				"south": {"uv": [1, 0.5, 1.5, 1], "texture": "#4"},
+				"west": {"uv": [1, 0.5, 1.5, 1], "texture": "#4"},
+				"up": {"uv": [1, 0.5, 1.5, 1], "rotation": 90, "texture": "#4"},
+				"down": {"uv": [1, 0.5, 1.5, 1], "rotation": 270, "texture": "#4"}
+			}
+		},
+		{
+			"from": [6.58582, 0.9, 10.92597],
+			"to": [7.58582, 1.9, 11.92597],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [4.58582, 1.4, 11.42597]},
+			"faces": {
+				"north": {"uv": [0.5, 1, 1, 1.5], "texture": "#4"},
+				"east": {"uv": [0.5, 1, 1, 1.5], "texture": "#4"},
+				"south": {"uv": [0.5, 1, 1, 1.5], "texture": "#4"},
+				"up": {"uv": [0.5, 1, 1, 1.5], "rotation": 90, "texture": "#4"},
+				"down": {"uv": [0.5, 1, 1, 1.5], "rotation": 270, "texture": "#4"}
+			}
+		},
+		{
+			"name": "本子",
+			"from": [4.05, 0.91, 6.25],
+			"to": [9.05, 0.91, 8.25],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [8.55, 0.095, 9]},
+			"faces": {
+				"north": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"east": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"south": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"west": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"up": {"uv": [14.5, 9.5, 13.5, 7], "rotation": 90, "texture": "#4"}
+			}
+		},
+		{
+			"name": "本子",
+			"from": [4.05, 0.91, 9.25],
+			"to": [9.05, 0.91, 10.25],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [8.55, 0.095, 9]},
+			"faces": {
+				"north": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"east": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"south": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"west": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"up": {"uv": [14.5, 15, 14, 12.5], "rotation": 90, "texture": "#4"}
+			}
+		},
+		{
+			"name": "本子",
+			"from": [4.05, 0.91, 11.25],
+			"to": [9.05, 0.91, 12.25],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [8.55, 0.095, 9]},
+			"faces": {
+				"north": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"east": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"south": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"west": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"up": {"uv": [11, 15.5, 10.5, 13], "rotation": 90, "texture": "#4"}
+			}
+		},
+		{
+			"name": "本子",
+			"from": [10.05, 0.91, 9.25],
+			"to": [13.05, 0.91, 12.25],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [8.55, 0.095, 9]},
+			"faces": {
+				"north": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"east": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"south": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"west": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"up": {"uv": [4, 13.5, 2.5, 12], "rotation": 90, "texture": "#4"}
+			}
+		},
+		{
+			"name": "本子",
+			"from": [10.05, 0.91, 6.25],
+			"to": [11.05, 0.91, 8.25],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [8.55, 0.095, 9]},
+			"faces": {
+				"north": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"east": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"south": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"west": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"up": {"uv": [13, 13.5, 12, 13], "rotation": 90, "texture": "#4"}
+			}
+		},
+		{
+			"name": "本子",
+			"from": [12.05, 0.91, 6.25],
+			"to": [13.05, 0.91, 8.25],
+			"rotation": {"angle": 22.5, "axis": "y", "origin": [8.55, 0.095, 9]},
+			"faces": {
+				"north": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"east": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"south": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"west": {"uv": [3, 0.5, 0, 0], "texture": "#4"},
+				"up": {"uv": [14.5, 12.5, 13.5, 12], "rotation": 90, "texture": "#4"}
+			}
+		}
+	],
+	"gui_light": "front",
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [90, -180, 0],
+			"translation": [0, 3.75, 4.75],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [90, -180, 0],
+			"translation": [0, 3.75, 4.75],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"firstperson_righthand": {
+			"rotation": [60, -180, 0],
+			"translation": [1, 5.75, 1.5],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"firstperson_lefthand": {
+			"rotation": [60, -180, 0],
+			"translation": [1, 5.75, 1.5],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"ground": {
+			"translation": [0, 4, 0.5],
+			"scale": [0.7, 0.7, 0.7]
+		},
+		"gui": {
+			"rotation": [67, -147, 8],
+			"translation": [0.75, 2.75, 0],
+			"scale": [0.8, 0.8, 0.8]
+		},
+		"head": {
+			"translation": [0, 15.25, 0]
+		},
+		"fixed": {
+			"rotation": [-90, 0, 0],
+			"translation": [0, 0, -16],
+			"scale": [2, 2, 2]
+		},
+		"on_shelf": {
+			"rotation": [60, -180, 0],
+			"translation": [0, 0, 6.75]
+		}
+	},
+	"groups": [
+		{
+			"name": "贴图",
+			"origin": [9.35, 1.095, 3],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+		}
+	]
+}
