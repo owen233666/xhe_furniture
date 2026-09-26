@@ -93,9 +93,14 @@ public final class ClientRegistrar {
 	/**
 	 * NeoForge replacement for {@code MenuScreens.register}.
 	 *
-	 * <p>It has to be driven by the loader, so the {@code @Mod} entry point is expected to add
-	 * {@code modBus.addListener(ClientRegistrar::registerMenuScreens);} next to its other
-	 * listeners, or to annotate a client-side class with a mod-bus subscriber.
+	 * <p>Driven by the loader: the {@code @Mod} entry point adds
+	 * {@code modBus.addListener(ClientRegistrar::registerMenuScreens)}.
+	 *
+	 * <p>Note the timing constraint on the other half -- whatever calls {@link #menuScreen} must run
+	 * during mod construction, not client setup. NeoForge posts this event from
+	 * {@code ClientHooks.initClientHooks} before the deferred mod-loading work dispatches
+	 * {@code FMLClientSetupEvent}, so factories queued from client setup arrive after this method has
+	 * already run and drained an empty queue.
 	 */
 	public static void registerMenuScreens(RegisterMenuScreensEvent event) {
 		for (Consumer<RegisterMenuScreensEvent> pending : PENDING_MENU_SCREENS) {

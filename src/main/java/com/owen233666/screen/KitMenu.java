@@ -22,6 +22,21 @@ public class KitMenu extends AbstractContainerMenu {
     public static final int INPUT_SLOT = 0;
     public static final int RESULT_SLOT = 1;
 
+    // Slot geometry, in panel-relative pixels. The screen draws its own frames around these, so
+    // both sides have to agree; they live here because the menu is what actually positions the
+    // slots and therefore decides where the items get rendered.
+    //
+    // The panel is 220 wide to fit a 6x4 picker, so the inventory block is inset by 30 to sit
+    // centred under it (9 slots * 18 - 2 = 160 of content, leaving 30 either side), and the result
+    // slot is pinned to the right margin so it lines up with the panel edge.
+    public static final int INPUT_SLOT_X = 8;
+    public static final int RESULT_SLOT_X = 194;
+    public static final int SLOT_Y = 18;
+    public static final int INVENTORY_X = 30;
+    public static final int INVENTORY_Y = 140;
+    /** Vertical gap between the three main inventory rows and the hotbar, as in vanilla. */
+    public static final int HOTBAR_GAP = 4;
+
     private final ContainerLevelAccess access;
     private final DataSlot selectedIndex = DataSlot.standalone();
     private final List<ItemStack> results = new ArrayList<>();
@@ -48,7 +63,7 @@ public class KitMenu extends AbstractContainerMenu {
         super(ModMenus.KIT_MENU, id);
         this.access = access;
         this.selectedIndex.set(-1);
-        this.inputSlot = this.addSlot(new Slot(this.input, 0, 20, 33) {
+        this.inputSlot = this.addSlot(new Slot(this.input, 0, INPUT_SLOT_X, SLOT_Y) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;
@@ -59,7 +74,7 @@ public class KitMenu extends AbstractContainerMenu {
                 return false;
             }
         });
-        this.resultSlot = this.addSlot(new Slot(this.resultContainer, 1, 143, 33) {
+        this.resultSlot = this.addSlot(new Slot(this.resultContainer, 1, RESULT_SLOT_X, SLOT_Y) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;
@@ -84,11 +99,11 @@ public class KitMenu extends AbstractContainerMenu {
 
         for (int l = 0; l < 3; ++l) {
             for (int j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(inventory, j + l * 9 + 9, 8 + j * 18, 84 + l * 18));
+                this.addSlot(new Slot(inventory, j + l * 9 + 9, INVENTORY_X + j * 18, INVENTORY_Y + l * 18));
             }
         }
         for (int l = 0; l < 9; ++l) {
-            this.addSlot(new Slot(inventory, l, 8 + l * 18, 142));
+            this.addSlot(new Slot(inventory, l, INVENTORY_X + l * 18, INVENTORY_Y + 3 * 18 + HOTBAR_GAP));
         }
     }
 

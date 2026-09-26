@@ -4,6 +4,9 @@
 
   "jei.xhe_furniture.kit": "套件转换",
 
+  "gui.xhe_furniture.kit.take": "点击取走",
+  "gui.xhe_furniture.kit.empty": "请选择",
+
   "item.xhe_furniture.slipper_kit": "拖鞋套件",
   "item.xhe_furniture.carpet_kit": "地毯套件",
   "item.xhe_furniture.shoe_flower_pot_kit": "雨鞋花盆套件",

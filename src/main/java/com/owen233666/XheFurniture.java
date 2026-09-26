@@ -79,6 +79,23 @@ public class XheFurniture
 	public XheFurniture(IEventBus modBus) {
 		modBus.addListener(this::onRegister);
 		modBus.addListener(this::onClientSetup);
+		// 1.21 made MenuScreens#register private, so container screen factories have to be handed
+		// to NeoForge through RegisterMenuScreensEvent. Two halves are needed and the ORDER matters:
+		//
+		//   * this listener, so the event has somewhere to deliver them;
+		//   * the queueing below, which must run during mod construction.
+		//
+		// Queueing it from FMLClientSetupEvent (the natural-looking place) is too late: NeoForge
+		// posts RegisterMenuScreensEvent from ClientHooks.initClientHooks before the deferred
+		// mod-loading work dispatches client setup, so the event finds an empty queue and the kit
+		// screen stays unregistered. Confirmed at runtime:
+		//
+		//   23:09:23  registerMenuScreens event fired, pending=0
+		//   23:09:24  menuScreen() queued for MenuType@...
+		modBus.addListener(com.owen233666.platform.ClientRegistrar::registerMenuScreens);
+		if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {
+			XheFurnitureClient.registerMenuScreens();
+		}
 		com.owen233666.datagen.XheFurnitureForgeDataGenerator.register(modBus);
 		init();
 		Registrar.attachToBus(modBus);

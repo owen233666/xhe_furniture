@@ -29,7 +29,36 @@ public class XheFurnitureClient
 	//$$ }
 	//#endif
 
-	/** Registers render layers, block entity renderers and menu screens. */
+	/**
+	 * Queues the container screen factories.
+	 *
+	 * <p>Called from two places depending on the platform, because the correct moment differs:
+	 *
+	 * <ul>
+	 *   <li><b>NeoForge</b> &mdash; from the mod constructor. {@code MenuScreens.init()} posts
+	 *       {@code RegisterMenuScreensEvent} from {@code ClientHooks.initClientHooks}, which runs
+	 *       before the deferred mod-loading work dispatches {@code FMLClientSetupEvent}. Queueing
+	 *       during client setup is therefore too late: the event finds an empty queue. Verified at
+	 *       runtime:
+	 *       <pre>
+	 *         23:09:23  registerMenuScreens event fired, pending=0
+	 *         23:09:24  menuScreen() queued for MenuType@...   &lt;-- too late
+	 *       </pre></li>
+	 *   <li><b>Fabric / Forge</b> &mdash; from {@link #initClient()}, which forwards straight to
+	 *       {@code MenuScreens.register} and has no such ordering constraint.</li>
+	 * </ul>
+	 *
+	 * <p>Called from the mod constructor on NeoForge (via {@code XheFurniture}) and from
+	 * {@link #initClient()} everywhere else. Both paths are safe to leave unconditional: on
+	 * non-NeoForge platforms {@code ClientRegistrar.menuScreen} forwards straight to
+	 * {@code MenuScreens.register}, and the NeoForge queue is cleared once drained, so a second
+	 * queueing would simply be re-delivered rather than throwing.
+	 */
+	public static void registerMenuScreens() {
+		ClientRegistrar.menuScreen(ModMenus.KIT_MENU, KitScreen::new);
+	}
+
+	/** Registers render layers and block entity renderers. */
 	public static void initClient() {
 
 		// Shoe Flowerpots
@@ -143,7 +172,9 @@ public class XheFurnitureClient
 		ClientRegistrar.blockEntityRenderer(ModBlockEntityTypes.GRID_SHELF_BLOCK_BE.get(), GridShelfBlockEntityRenderer::new);
 		ClientRegistrar.blockEntityRenderer(ModBlockEntityTypes.CORK_BOARD_BLOCK_BE.get(), CorkBoardBlockEntityRenderer::new);
 
-		ClientRegistrar.menuScreen(ModMenus.KIT_MENU, KitScreen::new);
+		// On NeoForge this is a no-op: the factory was already queued from the mod constructor, for
+		// the ordering reasons documented on registerMenuScreens().
+		registerMenuScreens();
 
 		berInit();
 		registerStorageTypeRenderers();
